@@ -2,37 +2,14 @@
     ViewBag.Title = "Home Page";
 }
 
-
-<nav>
-    <div class="container-fluid">
-        <div class="navbar navbar-default  navbar-fixed-top">
-            <div class="container navigator">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#"> <span class="pro">PRO</span><span class="CNC">CNC</span></a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">START</a></li>
-                        <li><a href="#">Lorem 1</a></li>
-                        <li><a href="#">Lorem 2</a></li>
-                        <li><a href="#">Lorem 3</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-
 <div class="container-fluid AddSearchEdit">
 
     <div class="row">
-        <div class="col-lg-6">
-            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> DODAJ ZADANIE</button>
+        <div class="col-lg-8">
+            <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> DODAJ ZADANIE</button>
             <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-erase"></span>WYCZYŚĆ FILTRY</button>
         </div>
-        <div class="col-lg-6">
+        <div class="searcher col-lg-4">
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
                 <input id="email" type="text" class="form-control" name="email" placeholder="Search...">
@@ -40,42 +17,89 @@
         </div>
     </div>
 </div>
-
 <div class="container-fluid">
     <table class="table table-hover">
         <thead>
-            <tr>
+            <tr class="rowMain">
                 <th>Id</th>
                 <th>Reason</th>
                 <th>Initiator</th>
                 <th>Date create</th>
-                <th id="issue">Issue</th>
+                <th>Issue</th>
                 <th>Root_cause</th>
                 <th>Corrective action</th>
                 <th>Responsible</th>
-                <th>Target date</th>
                 <th>Progress</th>
+                <th>Target date</th>
                 <th>Real date</th>
                 <th id="action">Actions</th>
             </tr>
         </thead>
         <tbody>
+            <!-- #region Test-->
             <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
+                <td>1</td>
+                <td>Lack of clips on latches</td>
                 <td>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="35"
-                             aria-valuemin="0" aria-valuemax="100" style="width:35%">
-                            35%
-                        </div>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                            Choose
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Dropdown header 1</li>
+                            <li><a href="#">HTML</a></li>
+                            <li><a href="#">CSS</a></li>
+                            <li><a href="#">JavaScript</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Dropdown header 2</li>
+                            <li><a href="#">About Us</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    <div class='input-group date' id='datetimepicker3' style="width:140px">
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar">
+                            </span>
+                        </span>
+                    </div>
+                </td>
+                <td>No clips at customer</td>
+                <td>Machine not able to detect lack of clips</td>
+                <td>Additional sensor on the machines</td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                            Choose
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Dropdown header 1</li>
+                            <li><a href="#">HTML</a></li>
+                            <li><a href="#">CSS</a></li>
+                            <li><a href="#">JavaScript</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Dropdown header 2</li>
+                            <li><a href="#">About Us</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-remove-sign"></span></button>
+                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-question-sign"></span></button>
+                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span></button>
+                    </div>
+                </td>
+                <td>
+                    <div class='input-group date' id='datetimepicker3' style="width:140px">
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar">
+                            </span>
+                        </span>
                     </div>
                 </td>
                 <td>
@@ -92,11 +116,10 @@
                         <button id="edit"><span class="glyphicon glyphicon-edit"></span></button>
                         <button id="view"><span class="glyphicon glyphicon-eye-open"></span></button>
                         <button id="trash"><span class="glyphicon glyphicon-plus"></span></button>
-
                     </div>
                 </td>
-
             </tr>
+            <!-- #endregion -->
             <tr>
                 <td>Mary</td>
                 <td>Moe</td>
@@ -107,34 +130,9 @@
                 <td>John</td>
                 <td>Doe</td>
                 <td>john@example.com</td>
-                <td>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="45"
-                             aria-valuemin="0" aria-valuemax="100" style="width:45%">
-                            45%
-                        </div>
-                    </div>
-                </td>
+                <td></td>
             </tr>
-            <tr>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-                <td>
-                    <div class="btn-group">
-                        <button type="button" id="incomplete" class="btn btn-basic">Incomplete</button>
-                        <button type="button" class="btn btn-basic" id="inprogress">In progress</button>
-                        <button type="button" class="btn btn-basic" id="complete">Complete</button>
-                    </div>
 
-                </td>
-            </tr>
         </tbody>
     </table>
 </div>
@@ -148,9 +146,6 @@
         });
     });
 </script>
-    
-    
-    
     }
 
 
