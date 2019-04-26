@@ -10,14 +10,20 @@ namespace ccar.Controllers
     {
         public ActionResult Index()
         {
+            Session["date"] = DateTime.Now.ToShortDateString();
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
+     
             return View();
+        }
+
+        public PartialViewResult Test()
+        {
+          
+            return PartialView();
         }
 
         public ActionResult Contact()
