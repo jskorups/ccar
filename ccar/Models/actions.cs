@@ -5,8 +5,9 @@ using System.Web;
 
 namespace ccar.Models
 {
-    public class DatePickerModel
+    public class actions
     {
-        public DateTime dtmDate { get; set; }
+        public int id { get; set; }
+        public int MyProperty { get; set; }
     }
 }

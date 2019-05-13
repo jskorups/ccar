@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ccarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="actions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="idReason" Type="int" Nullable="false" />
+          <Property Name="idInitiator" Type="int" Nullable="false" />
+          <Property Name="originationDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="idTypeOfAction" Type="int" Nullable="false" />
+          <Property Name="problem" Type="nvarchar" MaxLength="50" />
+          <Property Name="rootCause" Type="nvarchar" MaxLength="200" />
+          <Property Name="correctiveAction" Type="nvarchar" MaxLength="200" />
+          <Property Name="idResponsible" Type="int" Nullable="false" />
+          <Property Name="targetDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="idProgress" Type="int" />
+          <Property Name="completionDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="measureEffic" Type="nvarchar" MaxLength="50" />
+          <Property Name="dateOfEffic" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="progress">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="progress" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="reasons">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="reason" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="typeOfaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="typeOfaction" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="300" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_actions_progress">
+          <End Role="progress" Type="Self.progress" Multiplicity="0..1" />
+          <End Role="actions" Type="Self.actions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="progress">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actions">
+              <PropertyRef Name="idProgress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_actions_reasons">
+          <End Role="reasons" Type="Self.reasons" Multiplicity="1" />
+          <End Role="actions" Type="Self.actions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reasons">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actions">
+              <PropertyRef Name="idReason" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_actions_typeOfaction">
+          <End Role="typeOfaction" Type="Self.typeOfaction" Multiplicity="1" />
+          <End Role="actions" Type="Self.actions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="typeOfaction">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actions">
+              <PropertyRef Name="idTypeOfAction" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_actions_user1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="actions" Type="Self.actions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actions">
+              <PropertyRef Name="idResponsible" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_actions_users2">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="actions" Type="Self.actions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actions">
+              <PropertyRef Name="idInitiator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ccarModelStoreContainer">
+          <EntitySet Name="actions" EntityType="Self.actions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="progress" EntityType="Self.progress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reasons" EntityType="Self.reasons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="typeOfaction" EntityType="Self.typeOfaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_actions_progress" Association="Self.FK_actions_progress">
+            <End Role="progress" EntitySet="progress" />
+            <End Role="actions" EntitySet="actions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actions_reasons" Association="Self.FK_actions_reasons">
+            <End Role="reasons" EntitySet="reasons" />
+            <End Role="actions" EntitySet="actions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actions_typeOfaction" Association="Self.FK_actions_typeOfaction">
+            <End Role="typeOfaction" EntitySet="typeOfaction" />
+            <End Role="actions" EntitySet="actions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actions_user1" Association="Self.FK_actions_user1">
+            <End Role="users" EntitySet="users" />
+            <End Role="actions" EntitySet="actions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actions_users2" Association="Self.FK_actions_users2">
+            <End Role="users" EntitySet="users" />
+            <End Role="actions" EntitySet="actions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ccarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="actions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="idReason" Type="Int32" Nullable="false" />
+          <Property Name="idInitiator" Type="Int32" Nullable="false" />
+          <Property Name="originationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idTypeOfAction" Type="Int32" Nullable="false" />
+          <Property Name="problem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rootCause" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="correctiveAction" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="idResponsible" Type="Int32" Nullable="false" />
+          <Property Name="targetDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idProgress" Type="Int32" />
+          <Property Name="completionDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="measureEffic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dateOfEffic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="progress" Relationship="Self.FK_actions_progress" FromRole="actions" ToRole="progress" />
+          <NavigationProperty Name="reasons" Relationship="Self.FK_actions_reasons" FromRole="actions" ToRole="reasons" />
+          <NavigationProperty Name="typeOfaction" Relationship="Self.FK_actions_typeOfaction" FromRole="actions" ToRole="typeOfaction" />
+          <NavigationProperty Name="users" Relationship="Self.FK_actions_user1" FromRole="actions" ToRole="users" />
+          <NavigationProperty Name="users1" Relationship="Self.FK_actions_users2" FromRole="actions" ToRole="users" />
+        </EntityType>
+        <EntityType Name="progress">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="progress1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="actions" Relationship="Self.FK_actions_progress" FromRole="progress" ToRole="actions" />
+        </EntityType>
+        <EntityType Name="reasons">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="reason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="actions" Relationship="Self.FK_actions_reasons" FromRole="reasons" ToRole="actions" />
+        </EntityType>
+        <EntityType Name="typeOfaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="typeOfaction1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="actions" Relationship="Self.FK_actions_typeOfaction" FromRole="typeOfaction" ToRole="actions" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="actions" Relationship="Self.FK_actions_user1" FromRole="users" ToRole="actions" />
+          <NavigationProperty Name="actions1" Relationship="Self.FK_actions_users2" FromRole="users" ToRole="actions" />
+        </EntityType>
+        <Association Name="FK_actions_progress">
+          <End Role="progress" Type="Self.progress" Multiplicity="0..1" />
+          <End Role="actions" Type="Self.actions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="progress">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actions">
+              <PropertyRef Name="idProgress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_actions_reasons">
+          <End Role="reasons" Type="Self.reasons" Multiplicity="1" />
+          <End Role="actions" Type="Self.actions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reasons">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actions">
+              <PropertyRef Name="idReason" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_actions_typeOfaction">
+          <End Role="typeOfaction" Type="Self.typeOfaction" Multiplicity="1" />
+          <End Role="actions" Type="Self.actions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="typeOfaction">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actions">
+              <PropertyRef Name="idTypeOfAction" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_actions_user1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="actions" Type="Self.actions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actions">
+              <PropertyRef Name="idResponsible" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_actions_users2">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="actions" Type="Self.actions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actions">
+              <PropertyRef Name="idInitiator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ccarEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="actions" EntityType="Self.actions" />
+          <EntitySet Name="progress" EntityType="Self.progress" />
+          <EntitySet Name="reasons" EntityType="Self.reasons" />
+          <EntitySet Name="typeOfaction" EntityType="Self.typeOfaction" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK_actions_progress" Association="Self.FK_actions_progress">
+            <End Role="progress" EntitySet="progress" />
+            <End Role="actions" EntitySet="actions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actions_reasons" Association="Self.FK_actions_reasons">
+            <End Role="reasons" EntitySet="reasons" />
+            <End Role="actions" EntitySet="actions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actions_typeOfaction" Association="Self.FK_actions_typeOfaction">
+            <End Role="typeOfaction" EntitySet="typeOfaction" />
+            <End Role="actions" EntitySet="actions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actions_user1" Association="Self.FK_actions_user1">
+            <End Role="users" EntitySet="users" />
+            <End Role="actions" EntitySet="actions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actions_users2" Association="Self.FK_actions_users2">
+            <End Role="users" EntitySet="users" />
+            <End Role="actions" EntitySet="actions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ccarModelStoreContainer" CdmEntityContainer="ccarEntities">
+          <EntitySetMapping Name="actions">
+            <EntityTypeMapping TypeName="ccarModel.actions">
+              <MappingFragment StoreEntitySet="actions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idReason" ColumnName="idReason" />
+                <ScalarProperty Name="idInitiator" ColumnName="idInitiator" />
+                <ScalarProperty Name="originationDate" ColumnName="originationDate" />
+                <ScalarProperty Name="idTypeOfAction" ColumnName="idTypeOfAction" />
+                <ScalarProperty Name="problem" ColumnName="problem" />
+                <ScalarProperty Name="rootCause" ColumnName="rootCause" />
+                <ScalarProperty Name="correctiveAction" ColumnName="correctiveAction" />
+                <ScalarProperty Name="idResponsible" ColumnName="idResponsible" />
+                <ScalarProperty Name="targetDate" ColumnName="targetDate" />
+                <ScalarProperty Name="idProgress" ColumnName="idProgress" />
+                <ScalarProperty Name="completionDate" ColumnName="completionDate" />
+                <ScalarProperty Name="measureEffic" ColumnName="measureEffic" />
+                <ScalarProperty Name="dateOfEffic" ColumnName="dateOfEffic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="progress">
+            <EntityTypeMapping TypeName="ccarModel.progress">
+              <MappingFragment StoreEntitySet="progress">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="progress1" ColumnName="progress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reasons">
+            <EntityTypeMapping TypeName="ccarModel.reasons">
+              <MappingFragment StoreEntitySet="reasons">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="reason" ColumnName="reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="typeOfaction">
+            <EntityTypeMapping TypeName="ccarModel.typeOfaction">
+              <MappingFragment StoreEntitySet="typeOfaction">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="typeOfaction1" ColumnName="typeOfaction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="ccarModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
