@@ -4,6 +4,7 @@
     Layout = null;
 }
 
+
 <!DOCTYPE html>
 
 <html>
@@ -12,17 +13,23 @@
     <title>Logowanie</title>
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    <script>
+        particlesJS.load('particles-js', 'particles.json', function () {
+            console.log('particles.json loaded...do your thing!');
+        });
+    </script>
+
 
 </head>
-<body>
-
+<body id="particles-js">
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <div class="container text-center" style="margin-top:200px; width:800px;">
+        <div class="container text-center " style="margin-top:200px; width:800px;">
             <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                 <div class="panel panel-info">
                     <div class="panel-heading">
@@ -45,7 +52,7 @@
                             </div>
                             <!--2705-->
                             <!-- Button Login -->
-                            <div style="margin-top:10px; align-content:center" class="form-group" >
+                            <div style="margin-top:10px; align-content:center" class="form-group">
 
                                 <div class="col-sm-12 controls">
                                     <a id="btn-login" href="#" class="btn btn-info">Login  </a>
@@ -74,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!--signupbox-->
             <div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                 <div class="panel panel-info">
@@ -140,6 +147,8 @@
 
         </div>
 
+
+
         @*<div class="form-horizontal">
                 <h4>Login</h4>
                 <hr />
@@ -167,5 +176,17 @@
             </div>*@
     }
 
+    <script src="~/Scripts/app.js"></script>
+    <script src="~/Scripts/particles.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script>
+        particlesJS.load('particles-js', 'particles.json', function () {
+            console.log('particles.json loaded...do your thing!');
+        });
+    </script>
+
 </body>
+
 </html>
