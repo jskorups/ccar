@@ -20,124 +20,161 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
+    
 
-        <div class="container text-center" id="main" style="margin-top:200px; width:800px; ">
-            <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <div class="panel-title" style="text-align:center">Zaloguj się</div>
-                        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Zapomniałeś hasło?</a></div>
-                    </div>
-                    <div style="padding-top:30px" class="panel-body">
-                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+        <!--Logowanie-->
+    <div class="container text-center" id="main" style="margin-top:200px; width:800px; ">
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title" style="text-align:center">Zaloguj się</div>
+                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#" onClick="$('#loginbox').hide(); $('#forgetPassBox').show()">Zapomniałeś hasło?</a></div>
+                </div>
+                <div style="padding-top:30px" class="panel-body">
+                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
 
-                        <form id="loginform" class="form-horizontal" role="form">
+                    <form id="loginform" class="form-horizontal" role="form">
 
-                            <div style="margin-bottom: 25px" class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="Wpisz login...">
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="Wpisz login...">
+                        </div>
+
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input id="login-password" type="password" class="form-control" name="password" placeholder="Wpisz hasło...">
+                        </div>
+                        <!--2705-->
+                        <!-- Button Login -->
+                        <div style="margin-top:10px; align-content:center" class="form-group">
+
+                            <div class="col-sm-12 controls">
+                                <a id="btn-login" href="#" class="btn btn-info">Login  </a>
                             </div>
+                        </div>
 
-                            <div style="margin-bottom: 25px" class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input id="login-password" type="password" class="form-control" name="password" placeholder="Wpisz hasło...">
+                        <!--Checkbox remember me-->
+                        <div class="input-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+                                </label>
                             </div>
-                            <!--2705-->
-                            <!-- Button Login -->
-                            <div style="margin-top:10px; align-content:center" class="form-group">
-
-                                <div class="col-sm-12 controls">
-                                    <a id="btn-login" href="#" class="btn btn-info">Login  </a>
+                        </div>
+                        <div class="form-group" id="zarejestrujSie">
+                            <div class="col-md-12 control">
+                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                                    <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+                                        Zarejestruj się!
+                                    </a>
                                 </div>
                             </div>
-
-                            <!--Checkbox remember me-->
-                            <div class="input-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12 control">
-                                    <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                        <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
-                                            Zarejestruj się!
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="background-image:url(../images/brandLogo.gif); width:50px; height:50px;"> </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div style=" width:50px; height:50px; background-image: url(../../images/0.png)"></div>
+                    </form>
                 </div>
             </div>
-
-            <!--signupbox-->
-            <div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <div class="panel-title">Sign Up</div>
-                        <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div>
-                    </div>
-                    <div class="panel-body">
-                        <form id="signupform" class="form-horizontal" role="form">
-                            <div id="signupalert" style="display:none" class="alert alert-danger">
-                                <p>Error:</p>
-                                <span></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="col-md-3 control-label">Email</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="email" placeholder="Email Address">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="firstname" class="col-md-3 control-label">First Name</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="firstname" placeholder="First Name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastname" class="col-md-3 control-label">Last Name</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="lastname" placeholder="Last Name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="col-md-3 control-label">Password</label>
-                                <div class="col-md-9">
-                                    <input type="password" class="form-control" name="passwd" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="icode" class="col-md-3 control-label">Invitation Code</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="icode" placeholder="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <!-- Button -->
-                                <div class="col-md-offset-3 col-md-9">
-                                    <button id="btn-signup" type="button" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
-                                    <span style="margin-left:8px;">or</span>
-                                </div>
-                            </div>
-                            <div style="border-top: 1px solid #999; padding-top:20px" class="form-group">
-                                <div class="col-md-offset-3 col-md-9">
-                                    <button id="btn-fbsignup" type="button" class="btn btn-primary"><i class="icon-facebook"></i>   Sign Up with Facebook</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
+
+
+
+        <!--Rejestracja-->
+        <div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Rejestracja</div>
+                    <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#forgetPassBox').hide(); $('#loginbox').show()">Zaloguj się</a></div>
+                </div>
+                <div class="panel-body">
+                    <form id="signupform" class="form-horizontal" role="form">
+                        <div id="signupalert" style="display:none" class="alert alert-danger">
+                            <p>Error:</p>
+                            <span></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-md-3 control-label">Email</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="email" placeholder="Wpisz email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="firstname" class="col-md-3 control-label">Imię</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="firstname" placeholder="Wpisz imię">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname" class="col-md-3 control-label">Nazwisko</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="lastname" placeholder="Wpisz nazwisko">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-md-3 control-label">Hasło</label>
+                            <div class="col-md-9">
+                                <input type="password" class="form-control" name="passwd" placeholder="Wpisz hasło">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="icode" class="col-md-3 control-label">Powtórz hasło</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="icode" placeholder="Wpisz hasło ponownie">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <!-- Button -->
+                            <div class="col-md-offset-1 col-md-9">
+                                <button id="btn-signup" type="button" class="btn btn-info"> &nbsp Sign Up</button>
+
+                            </div>
+                        </div>
+                        <div style="border-top: 1px solid #999; padding-top:20px" class="form-group">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--Zapomnienie Hasła-->
+        <div id="forgetPassBox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Rejestracja</div>
+                    <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#forgetPassBox').hide(); $('#loginbox').show()">Zaloguj się</a></div>
+                </div>
+                <div class="panel-body">
+                    <form id="signupform" class="form-horizontal" role="form">
+                        <div id="signupalert" style="display:none" class="alert alert-danger">
+                            <p>Error:</p>
+                            <span></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-md-3 control-label">Email</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="email" placeholder="Wpisz swój email...">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <!-- Button -->
+                            <div class="col-md-offset-1 col-md-9">
+                                <button id="btn-signup" type="button" class="btn btn-info"> &nbsp Dalej</button>
+
+                            </div>
+                        </div>
+                        <div style="border-top: 1px solid #999; padding-top:20px" class="form-group">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
 
