@@ -1,19 +1,16 @@
 ﻿body {
  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
  
 }
-
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
     white-space: normal;
 }
-
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
@@ -23,7 +20,7 @@ textarea {
 #particles-js {
     width: 100%;
     height: 100%;
-    background-color: #a2a2b3;
+    background-color: #92aff5;
     /*background-position: center;*/
     background-size: cover;
     background-position: 50% 50%;
@@ -47,8 +44,6 @@ textarea {
 .panel-heading a {
     color: white !important;
 }
-
-
 .panel-info {
     border-color: #777782 !important;
 }

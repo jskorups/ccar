@@ -16,6 +16,34 @@ namespace ccar.Controllers
             return View();
         }
 
+
+        #region Rejestracja
+        [HttpGet]
+        public ActionResult Register()
+        {
+            Login user = new Login();
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult Register(Login userNew)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    userNew.SaveToDataBase();
+                    return RedirectToAction("Logowanie");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return View(userNew);
+        }
+        #endregion
+        #region Logowanie
         //Logowanie
         [HttpGet]
         public ActionResult Logowanie()
@@ -38,13 +66,13 @@ namespace ccar.Controllers
                 return View();
             }
         }
-
-        //// Register
-        //[HttpGet]
-        //public ActionResult register()
-        //{
-        //    Login user = new Login();
-        //    return View(user);
-        //}
+        #endregion
+        #region Wylogowanie
+        public ActionResult Wylogowanie()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+        #endregion
     }
 }

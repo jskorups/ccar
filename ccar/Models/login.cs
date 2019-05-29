@@ -10,9 +10,21 @@ namespace ccar.Models
     {
         public string login { get; set; }
         public string email { get; set; }
-
-        [Required]
         public string password { get; set; }
+        public string guid  { get; set; }
+        public bool active { get; set; }
+
+
+        public void SaveToDataBase()
+        {
+            ccarEntities ent = new ccarEntities();
+            users userNew = new users();
+            userNew.login = login;
+            userNew.password = crypto.Hash(password);
+            userNew.email = email;
+            userNew.guid = guid;
+            userNew.active = active;
+        }
 
         public bool checkIfExist(string login, string password)
         {
