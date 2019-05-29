@@ -54,7 +54,7 @@ namespace ccar.Controllers
         public ActionResult Logowanie(string login, string password)
         {
             Login newlog = new Login();
-            password = crypto.Hash(password);
+          
             bool check = newlog.checkIfExist(login, password);
             if (check == true)
             {
