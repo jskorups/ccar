@@ -53,8 +53,8 @@ namespace ccar.Controllers
         [HttpPost]
         public ActionResult Logowanie(string login, string password)
         {
-            Login newlog = new Login();
-          
+            Login newlog = new Login();        
+            //zakryptowac haslo
             bool check = newlog.checkIfExist(login, password);
             if (check == true)
             {
