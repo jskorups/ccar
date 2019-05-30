@@ -29,7 +29,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="progress" Type="nvarchar" MaxLength="50" />
+          <Property Name="progress1" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="reasons">
           <Key>
@@ -43,7 +43,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="typeOfaction" Type="nvarchar" MaxLength="50" />
+          <Property Name="typeOfaction1" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -180,6 +180,7 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="progress1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="actions" Relationship="Self.FK_actions_progress" FromRole="progress" ToRole="actions" />
+          <Property Name="progress11" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="reasons">
           <Key>
@@ -196,6 +197,7 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="typeOfaction1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="actions" Relationship="Self.FK_actions_typeOfaction" FromRole="typeOfaction" ToRole="actions" />
+          <Property Name="typeOfaction11" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -328,8 +330,8 @@
           <EntitySetMapping Name="progress">
             <EntityTypeMapping TypeName="ccarModel.progress">
               <MappingFragment StoreEntitySet="progress">
+                <ScalarProperty Name="progress11" ColumnName="progress1" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="progress1" ColumnName="progress" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -344,8 +346,8 @@
           <EntitySetMapping Name="typeOfaction">
             <EntityTypeMapping TypeName="ccarModel.typeOfaction">
               <MappingFragment StoreEntitySet="typeOfaction">
+                <ScalarProperty Name="typeOfaction11" ColumnName="typeOfaction1" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="typeOfaction1" ColumnName="typeOfaction" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

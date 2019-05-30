@@ -24,6 +24,7 @@ namespace ccar.Controllers
             Login user = new Login();
             return View(user);
         }
+
         [HttpPost]
         public ActionResult Register(Login userNew)
         {
@@ -31,8 +32,17 @@ namespace ccar.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    userNew.active = false;
+                    Guid guidPotwierdzenie = Guid.NewGuid();
+                    userNew.guid = guidPotwierdzenie.ToString();
                     userNew.SaveToDataBase();
-                    return RedirectToAction("Logowanie");
+
+                    string url = System.Web.HttpRuntime.AppDomainAppVirtualPath + Url.Action("Aktywacja") + $"?kod={guidPotwierdzenie.ToString()}";
+                    string subject = "Link aktywacyjny";
+
+                    emailClass.sendMail(userNew.email, url, subject);
+                    return View("Zarejestrowano");
+
                 }
             }
             catch (Exception)

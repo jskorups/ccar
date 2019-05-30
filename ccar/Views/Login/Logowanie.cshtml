@@ -17,12 +17,15 @@
 
 </head>
 <body id="particles-js">
-    @using (Html.BeginForm())
-    {
+
+    <!--Logowanie-->
+    <div class="container text-center" id="main" style="margin-top:200px; width:800px; ">
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <!--Logowanie-->
-        <div class="container text-center" id="main" style="margin-top:200px; width:800px; ">
+
+
+        @using (Html.BeginForm())
+        {
             <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                 <div class="panel panel-info">
                     <div class="panel-heading">
@@ -81,132 +84,140 @@
                     </div>
                 </div>
             </div>
+        }
 
+        <!--Rejestracja-->
+        @Html.BeginForm("Register", "Login", FormMethod.Post)
+        {
+        <div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Rejestracja</div>
+                    <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#forgetPassBox').hide(); $('#loginbox').show()">Zaloguj się</a></div>
+                </div>
+                <div class="panel-body">
+                    <form id="signupform" class="form-horizontal" role="form">
+                        <div id="signupalert" style="display:none" class="alert alert-danger">
+                            <p>Error:</p>
+                            <span></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-md-3 control-label">Email</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="email" placeholder="Wpisz email">
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="firstname" class="col-md-3 control-label">Imię</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="firstname" placeholder="Wpisz imię">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname" class="col-md-3 control-label">Nazwisko</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="lastname" placeholder="Wpisz nazwisko">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-md-3 control-label">Hasło</label>
+                            <div class="col-md-9">
+                                <input type="password" class="form-control" name="passwd" placeholder="Wpisz hasło">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="icode" class="col-md-3 control-label">Powtórz hasło</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="icode" placeholder="Wpisz hasło ponownie">
+                            </div>
+                        </div>
+                        <div class="form-group">
 
-            <!--Rejestracja-->
-            <div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <div class="panel-title">Rejestracja</div>
-                        <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#forgetPassBox').hide(); $('#loginbox').show()">Zaloguj się</a></div>
-                    </div>
-                    <div class="panel-body">
-                        <form id="signupform" class="form-horizontal" role="form">
-                            <div id="signupalert" style="display:none" class="alert alert-danger">
-                                <p>Error:</p>
-                                <span></span>
+                            <!-- Button -->
+                            <div class="col-md-offset-1 col-md-9">
+                                <input id="btn-login" type="submit" value="Create" class="btn btn-info" />
+                                <button id="btn-signup" type="button" class="btn btn-info"> &nbsp Sign Up</button>
                             </div>
-                            <div class="form-group">
-                                <label for="email" class="col-md-3 control-label">Email</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="email" placeholder="Wpisz email">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="firstname" class="col-md-3 control-label">Imię</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="firstname" placeholder="Wpisz imię">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastname" class="col-md-3 control-label">Nazwisko</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="lastname" placeholder="Wpisz nazwisko">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="col-md-3 control-label">Hasło</label>
-                                <div class="col-md-9">
-                                    <input type="password" class="form-control" name="passwd" placeholder="Wpisz hasło">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="icode" class="col-md-3 control-label">Powtórz hasło</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="icode" placeholder="Wpisz hasło ponownie">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <!-- Button -->
-                                <div class="col-md-offset-1 col-md-9">
-                                    <button id="btn-signup" type="button" class="btn btn-info"> &nbsp Sign Up</button>
-                                </div>
-                            </div>
-                            <div style="border-top: 1px solid #999;" class="form-group"></div>
-                            <div style="float:right; position:center; background-size:cover; width:70px; height:70px; background-image: url(../../images/0.png)"></div>
-                        </form>
-                    </div>
+                        </div>
+                        <div style="border-top: 1px solid #999;" class="form-group"></div>
+                        <div style="float:right; position:center; background-size:cover; width:70px; height:70px; background-image: url(../../images/0.png)"></div>
+                    </form>
                 </div>
             </div>
-
-            <!--Zapomnienie Hasła-->
-            <div id="forgetPassBox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <div class="panel-title">Rejestracja</div>
-                        <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#forgetPassBox').hide(); $('#loginbox').show()">Zaloguj się</a></div>
-                    </div>
-                    <div class="panel-body">
-                        <form id="signupform" class="form-horizontal" role="form">
-                            <div id="signupalert" style="display:none" class="alert alert-danger">
-                                <p>Error:</p>
-                                <span></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="col-md-3 control-label">Email</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="email" placeholder="Wpisz swój email...">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <!-- Button -->
-                                <div class="col-md-offset-1 col-md-9">
-                                    <button id="btn-signup" type="button" class="btn btn-info"> &nbsp Dalej</button>
-
-                                </div>
-                            </div>
-                            <div style="border-top: 1px solid #999; padding:-10px;" class="form-group"></div>
-                            <div style="float:right; position:center; padding:-20px;  background-size:cover; width:50px; height:50px; background-image: url(../../images/0.png)"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
         </div>
+        }
 
 
-
-        @*<div class="form-horizontal">
-                <h4>Login</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.login, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.login, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.login, "", new { @class = "text-danger" })
-                    </div>
+        <!--Zapomnienie Hasła-->
+        @Html.BeginForm("???", "Login", FormMethod.Post)
+        {
+        <div id="forgetPassBox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Rejestracja</div>
+                    <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#forgetPassBox').hide(); $('#loginbox').show()">Zaloguj się</a></div>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                <div class="panel-body">
+                    <form id="signupform" class="form-horizontal" role="form">
+                        <div id="signupalert" style="display:none" class="alert alert-danger">
+                            <p>Error:</p>
+                            <span></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-md-3 control-label">Email</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="email" placeholder="Wpisz swój email...">
+                            </div>
+                        </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
+                        <div class="form-group">
+
+                            <!-- Button -->
+                            <div class="col-md-offset-1 col-md-9">
+                                <button id="btn-signup" type="button" class="btn btn-info"> &nbsp Dalej</button>
+
+                            </div>
+                        </div>
+                        <div style="border-top: 1px solid #999; padding:-10px;" class="form-group"></div>
+                        <div style="float:right; position:center; padding:-20px;  background-size:cover; width:50px; height:50px; background-image: url(../../images/0.png)"></div>
+                    </form>
                 </div>
-            </div>*@
-    }
+            </div>
+        </div>
+        }
+
+
+    </div>
+
+
+
+    @*<div class="form-horizontal">
+            <h4>Login</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.login, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.login, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.login, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>*@
+
 
 
 
