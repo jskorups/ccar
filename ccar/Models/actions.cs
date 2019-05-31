@@ -43,6 +43,6 @@ namespace ccar.Models
             //newAction.idInitiator
         }
 
-        public a
+      
     }
 }

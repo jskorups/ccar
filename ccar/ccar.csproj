@@ -168,7 +168,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ccarDaneEF.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="crypto.cs" />
     <Compile Include="emailClass.cs" />
@@ -227,6 +227,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -251,6 +252,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\particles.json" />
     <Content Include="Views\Login\Logowanie.cshtml" />
+    <Content Include="Views\Action\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
