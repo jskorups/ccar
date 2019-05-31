@@ -29,9 +29,9 @@ namespace ccar
         public string measureEffic { get; set; }
         public string dateOfEffic { get; set; }
     
-        public virtual progress progress { get; set; }
+        public virtual progressAction progressAction { get; set; }
         public virtual reasons reasons { get; set; }
-        public virtual typeOfaction typeOfaction { get; set; }
+        public virtual typeAction typeAction { get; set; }
         public virtual users users { get; set; }
         public virtual users users1 { get; set; }
     }

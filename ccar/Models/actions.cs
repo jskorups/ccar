@@ -42,5 +42,7 @@ namespace ccar.Models
             newAction.idReason = idReason;
             //newAction.idInitiator
         }
+
+        public a
     }
 }

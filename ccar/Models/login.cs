@@ -8,6 +8,10 @@ namespace ccar.Models
 {
     public class Login
     {
+
+        public string firstname { get; set; }
+        public string surname { get; set; }
+
         public string login { get; set; }
         public string email { get; set; }
         public string password { get; set; }

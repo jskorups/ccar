@@ -177,14 +177,14 @@
     </Compile>
     <Compile Include="Models\actions.cs" />
     <Compile Include="Models\Login.cs" />
-    <Compile Include="progress.cs">
+    <Compile Include="progressAction.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="reasons.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="typeOfaction.cs">
+    <Compile Include="typeAction.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="users.cs">

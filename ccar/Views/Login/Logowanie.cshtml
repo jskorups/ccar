@@ -25,75 +25,77 @@
 
 
         @using (Html.BeginForm())
-        {
-            <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <div class="panel-title" style="text-align:center">Zaloguj się</div>
-                        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#" onClick="$('#loginbox').hide(); $('#forgetPassBox').show()">Zapomniałeś hasło?</a></div>
-                    </div>
-                    <div style="padding-top:30px" class="panel-body">
-                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-
-                        <form id="loginform" class="form-horizontal" role="form">
-
-                            <!--login-->
-                            <div style="margin-bottom: 25px" class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                @Html.Editor("login", new { htmlAttributes = new { @class = "form-control", @id = "login-username", @type = "text", @name = "username", @value = "", @placeholder = "Wpisz login..." } })
-
-                            </div>
-
-
-                            <!--password-->
-                            <div style="margin-bottom: 25px" class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                @Html.Editor("password", new { htmlAttributes = new { @class = "form-control", @id = "login-password", @type = "password", @name = "password", @value = "", @placeholder = "Wpisz hasło..." } })
-
-                            </div>
-
-                            <!--2705-->
-                            <!-- Button Login -->
-                            <div style="margin-top:10px; align-content:center" class="form-group">
-
-                                <div class="col-sm-12 controls">
-                                    <input id="btn-login" type="submit" value="Create" class="btn btn-info" />
-                                    @*<a id="btn-login" type="submit" value="Create" href="#" class="btn btn-info">Login  </a>*@
-                                </div>
-                            </div>
-
-                            <!--Checkbox remember me-->
-                            <div class="input-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group" id="zarejestrujSie">
-                                <div class="col-md-12 control">
-                                    <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                        <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
-                                            Zarejestruj się!
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="float:right; position:center; background-size:cover; width:70px; height:70px; background-image: url(../../images/0.png)"></div>
-                        </form>
+    {
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title" style="text-align:center">Zaloguj się</div>
+                    <div style="float:right; font-size: 80%; position: relative; top:-10px">
+                        
+                        <a href="#" onClick="$('#loginbox').hide(); $('#forgetPassBox').show()">Zapomniałeś hasło?</a>
+                    @Html.Action("Register", "Login");
+                    
                     </div>
                 </div>
+                <div style="padding-top:30px" class="panel-body">
+                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
+                    <form id="loginform" class="form-horizontal" role="form">
+
+                        <!--login-->
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            @Html.Editor("login", new { htmlAttributes = new { @class = "form-control", @id = "login-username", @type = "text", @name = "username", @value = "", @placeholder = "Wpisz login..." } })
+                        </div>
+                        <!--password-->
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            @Html.Editor("password", new { htmlAttributes = new { @class = "form-control", @id = "login-password", @type = "password", @name = "password", @value = "", @placeholder = "Wpisz hasło..." } })
+
+                        </div>
+
+                        <!--2705-->
+                        <!-- Button Login -->
+                        <div style="margin-top:10px; align-content:center" class="form-group">
+
+                            <div class="col-sm-12 controls">
+                                <input id="btn-login" type="submit" value="Create" class="btn btn-info" />
+                                @*<a id="btn-login" type="submit" value="Create" href="#" class="btn btn-info">Login  </a>*@
+                            </div>
+                        </div>
+
+                        <!--Checkbox remember me-->
+                        <div class="input-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" id="zarejestrujSie">
+                            <div class="col-md-12 control">
+                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                                    <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+                                        Zarejestruj się!
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="float:right; position:center; background-size:cover; width:70px; height:70px; background-image: url(../../images/0.png)"></div>
+                    </form>
+                </div>
             </div>
-        }
+        </div>
+}
 
         <!--Rejestracja-->
-        @Html.BeginForm("Register", "Login", FormMethod.Post)
-        {
+        @using (Html.BeginForm("Register", "Logowanie", FormMethod.Post))
+    {
         <div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="panel-title">Rejestracja</div>
-                    <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#forgetPassBox').hide(); $('#loginbox').show()">Zaloguj się</a></div>
+                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a id="signinlink"  href="#" onclick="$('#signupbox').hide(); $('#forgetPassBox').hide(); $('#loginbox').show()">Zaloguj się</a></div>
                 </div>
                 <div class="panel-body">
                     <form id="signupform" class="form-horizontal" role="form">
@@ -101,57 +103,65 @@
                             <p>Error:</p>
                             <span></span>
                         </div>
+                        <!--email-->
                         <div class="form-group">
                             <label for="email" class="col-md-3 control-label">Email</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="email" placeholder="Wpisz email">
+                            <div class="col-md-9" style="margin-bottom: 25px">
+                                @Html.Editor("email", new { htmlAttributes = new { @class = "form-control", @id = "email-username", @type = "text", @name = "email", @value = "", @placeholder = "Wpisz email..." } })
+                                @*<input type="text" class="form-control" name="email" placeholder="Wpisz email">*@
                             </div>
                         </div>
-
+                        <!--firstname-->
                         <div class="form-group">
                             <label for="firstname" class="col-md-3 control-label">Imię</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="firstname" placeholder="Wpisz imię">
+                            <div class="col-md-9" style="margin-bottom: 25px">
+                                @Html.Editor("firstname", new { htmlAttributes = new { @class = "form-control", @id = "firstname-username", @type = "text", @name = "firstname", @value = "", @placeholder = "Wpisz imię..." } })
+                                @*<input type="text" class="form-control" name="firstname" placeholder="Wpisz imię">*@
                             </div>
                         </div>
+                        <!--surname-->
                         <div class="form-group">
-                            <label for="lastname" class="col-md-3 control-label">Nazwisko</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="lastname" placeholder="Wpisz nazwisko">
+                            <label for="surname" class="col-md-3 control-label">Nazwisko</label>
+                            <div class="col-md-9" style="margin-bottom: 25px">
+                                @Html.Editor("surname", new { htmlAttributes = new { @class = "form-control", @id = "surname-username", @type = "text", @name = "surname", @value = "", @placeholder = "Wpisz nazwisko..." } })
+                                @*<input type="text" class="form-control" name="surname" placeholder="Wpisz nazwisko">*@
                             </div>
                         </div>
+                        <!--password-->
                         <div class="form-group">
                             <label for="password" class="col-md-3 control-label">Hasło</label>
-                            <div class="col-md-9">
-                                <input type="password" class="form-control" name="passwd" placeholder="Wpisz hasło">
+                            <div class="col-md-9" style="margin-bottom: 25px">
+                                @Html.Editor("password", new { htmlAttributes = new { @class = "form-control", @id = "password-username", @type = "password", @name = "email", @value = "", @placeholder = "Wpisz login..." } })
+                                @*<input type="password" class="form-control" name="passwd" placeholder="Wpisz hasło">*@
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="icode" class="col-md-3 control-label">Powtórz hasło</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="icode" placeholder="Wpisz hasło ponownie">
+                            <div class="col-md-9" style="margin-bottom: 25px">
+                                @Html.Editor("passwordCOnfirm", new { htmlAttributes = new { @class = "form-control", @id = "passwordConfirm-username", @type = "text", @name = "email", @value = "", @placeholder = "Wpisz login..." } })
+                                @*<input type="text" class="form-control" name="icode" placeholder="Wpisz hasło ponownie">*@
                             </div>
                         </div>
-                        <div class="form-group">
 
+                        <div class="form-group">
                             <!-- Button -->
-                            <div class="col-md-offset-1 col-md-9">
-                                <input id="btn-login" type="submit" value="Create" class="btn btn-info" />
-                                <button id="btn-signup" type="button" class="btn btn-info"> &nbsp Sign Up</button>
+                            <div class="col-md-offset-1 col-md-9" style="border-top:1px solid#888;  padding-top:15px; margin-bottom: 25px">            
+                                <input id="btn-login" type="submit" value="Create" class="btn btn-info" formmethod="post" )" />
+                                @*<button id="btn-signup" type="button" class="btn btn-info"> &nbsp Sign Up</button>*@
                             </div>
                         </div>
-                        <div style="border-top: 1px solid #999;" class="form-group"></div>
+              
                         <div style="float:right; position:center; background-size:cover; width:70px; height:70px; background-image: url(../../images/0.png)"></div>
                     </form>
                 </div>
             </div>
         </div>
-        }
+}
 
 
         <!--Zapomnienie Hasła-->
-        @Html.BeginForm("???", "Login", FormMethod.Post)
-        {
+        @using (Html.BeginForm("PasswordResset", "Logowanie", FormMethod.Post))
+    {
         <div id="forgetPassBox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -166,26 +176,28 @@
                         </div>
                         <div class="form-group">
                             <label for="email" class="col-md-3 control-label">Email</label>
-                            <div class="col-md-9">
+                            <div class="col-md-9" ; style="margin-bottom: 25px">
                                 <input type="text" class="form-control" name="email" placeholder="Wpisz swój email...">
                             </div>
                         </div>
 
+
                         <div class="form-group">
+                            <div class="col-md-offset-1 col-md-9" style="border-top:1px solid#888;  padding-top:15px; margin-bottom: 25px">
+                                <!-- Button -->
+                                <div class="col-md-offset-1 col-md-9">
 
-                            <!-- Button -->
-                            <div class="col-md-offset-1 col-md-9">
-                                <button id="btn-signup" type="button" class="btn btn-info"> &nbsp Dalej</button>
-
+                                    <button id="btn-signup" type="button" class="btn btn-info"> &nbsp Dalej</button>
+                                </div>
                             </div>
                         </div>
-                        <div style="border-top: 1px solid #999; padding:-10px;" class="form-group"></div>
-                        <div style="float:right; position:center; padding:-20px;  background-size:cover; width:50px; height:50px; background-image: url(../../images/0.png)"></div>
+                        <div style="float:right; position:center; background-size:cover; width:50px; height:50px; background-image: url(../../images/0.png)"></div>
+             
                     </form>
                 </div>
             </div>
         </div>
-        }
+}
 
 
     </div>

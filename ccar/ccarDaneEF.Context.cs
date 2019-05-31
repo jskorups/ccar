@@ -26,9 +26,9 @@ namespace ccar
         }
     
         public virtual DbSet<actions> actions { get; set; }
-        public virtual DbSet<progress> progress { get; set; }
+        public virtual DbSet<progressAction> progressAction { get; set; }
         public virtual DbSet<reasons> reasons { get; set; }
-        public virtual DbSet<typeOfaction> typeOfaction { get; set; }
+        public virtual DbSet<typeAction> typeAction { get; set; }
         public virtual DbSet<users> users { get; set; }
     }
 }

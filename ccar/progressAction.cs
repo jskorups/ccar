@@ -12,17 +12,16 @@ namespace ccar
     using System;
     using System.Collections.Generic;
     
-    public partial class typeOfaction
+    public partial class progressAction
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public typeOfaction()
+        public progressAction()
         {
             this.actions = new HashSet<actions>();
         }
     
         public int id { get; set; }
-        public string typeOfaction1 { get; set; }
-        public string typeOfaction11 { get; set; }
+        public string progress { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<actions> actions { get; set; }

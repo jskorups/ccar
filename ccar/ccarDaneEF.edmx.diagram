@@ -5,16 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="edd59b1aa72f4b6f938d14cad0f56a44" Name="Diagram1">
-        <EntityTypeShape EntityType="ccarModel.actions" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ccarModel.progress" Width="1.5" PointX="6.125" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ccarModel.reasons" Width="1.5" PointX="6.625" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ccarModel.typeOfaction" Width="1.5" PointX="8.875" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="ccarModel.users" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <AssociationConnector Association="ccarModel.FK_actions_progress" ManuallyRouted="false" />
-        <AssociationConnector Association="ccarModel.FK_actions_reasons" ManuallyRouted="false" />
-        <AssociationConnector Association="ccarModel.FK_actions_typeOfaction" ManuallyRouted="false" />
-        <AssociationConnector Association="ccarModel.FK_actions_user1" ManuallyRouted="false" />
-        <AssociationConnector Association="ccarModel.FK_actions_users2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ccarModel.actions" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="ccarModel.progressAction" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ccarModel.reasons" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="ccarModel.typeAction" Width="1.5" PointX="0.75" PointY="10.375" />
+        <EntityTypeShape EntityType="ccarModel.users" Width="1.5" PointX="0.75" PointY="1.875" />
+        <AssociationConnector Association="ccarModel.FK_actions_progress" />
+        <AssociationConnector Association="ccarModel.FK_actions_reasons" />
+        <AssociationConnector Association="ccarModel.FK_actions_typeOfaction" />
+        <AssociationConnector Association="ccarModel.FK_actions_user1" />
+        <AssociationConnector Association="ccarModel.FK_actions_users2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
