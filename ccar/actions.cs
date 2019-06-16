@@ -17,22 +17,22 @@ namespace ccar
         public int id { get; set; }
         public int idReason { get; set; }
         public int idInitiator { get; set; }
-        public string originationDate { get; set; }
+        public Nullable<System.DateTime> originationDate { get; set; }
         public int idTypeOfAction { get; set; }
         public string problem { get; set; }
         public string rootCause { get; set; }
         public string correctiveAction { get; set; }
-        public int idResponsible { get; set; }
-        public string targetDate { get; set; }
+        public Nullable<int> idResponsible { get; set; }
+        public Nullable<System.DateTime> targetDate { get; set; }
         public Nullable<int> idProgress { get; set; }
-        public string completionDate { get; set; }
+        public Nullable<System.DateTime> completionDate { get; set; }
         public string measureEffic { get; set; }
         public string dateOfEffic { get; set; }
     
-        public virtual progressAction progressAction { get; set; }
         public virtual reasons reasons { get; set; }
-        public virtual typeAction typeAction { get; set; }
         public virtual users users { get; set; }
+        public virtual progress progress { get; set; }
+        public virtual typeOfaction typeOfaction { get; set; }
         public virtual users users1 { get; set; }
     }
 }
