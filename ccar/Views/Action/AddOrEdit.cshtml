@@ -1,0 +1,76 @@
+﻿@model ccar.Models.action
+
+@{
+    /**/
+
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+@using (Html.BeginForm("AddOrEdit", "Action", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.id)
+    <div class="form-group">
+        @Html.LabelFor(model => model.idReason, new { @class = "control-label" })
+        @Html.EditorFor(model => model.idReason, new { htmlAttributes = new { @class = "form-class" } });
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.idInitiator, new { @class = "control-label" })
+        @Html.EditorFor(model => model.idInitiator, new { htmlAttributes = new { @class = "form-class" } });
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.originationDate, new { @class = "control-label" })
+        @Html.EditorFor(model => model.originationDate, new { htmlAttributes = new { @class = "form-class" } });
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.originationDate, new { @class = "control-label" })
+        @Html.EditorFor(model => model.originationDate, new { htmlAttributes = new { @class = "form-class" } });
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.idTypeOfAction, new { @class = "control-label" })
+        @Html.EditorFor(model => model.idTypeOfAction, new { htmlAttributes = new { @class = "form-class" } });
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.problem, new { @class = "control-label" })
+        @Html.EditorFor(model => model.problem, new { htmlAttributes = new { @class = "form-class" } });
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.rootCause, new { @class = "control-label" })
+        @Html.EditorFor(model => model.rootCause, new { htmlAttributes = new { @class = "form-class" } });
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.correctiveAction, new { @class = "control-label" })
+        @Html.EditorFor(model => model.correctiveAction, new { htmlAttributes = new { @class = "form-class" } });
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.idResponsible, new { @class = "control-label" })
+        @Html.EditorFor(model => model.idResponsible, new { htmlAttributes = new { @class = "form-class" } });
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.targetDate, new { @class = "control-label" })
+        @Html.EditorFor(model => model.targetDate, new { htmlAttributes = new { @class = "form-class" } });
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.idProgress, new { @class = "control-label" })
+        @Html.EditorFor(model => model.idProgress, new { htmlAttributes = new { @class = "form-class" } });
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.completionDate, new { @class = "control-label" })
+        @Html.EditorFor(model => model.completionDate, new { htmlAttributes = new { @class = "form-class" } });
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.measureEffic, new { @class = "control-label" })
+        @Html.EditorFor(model => model.measureEffic, new { htmlAttributes = new { @class = "form-class" } });
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.dateOfEffic, new { @class = "control-label" })
+        @Html.EditorFor(model => model.dateOfEffic, new { htmlAttributes = new { @class = "form-class" } });
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+        <input type="reset" value="Reset" class="btn btn-warning" />
+    </div>
+}
