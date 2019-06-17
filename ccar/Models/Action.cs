@@ -38,7 +38,6 @@ namespace ccar.Models
         {
             List<actionView> actionList = aList.Select(x => new actionView() {id = x.id /*,Reason = x.Reason*/,
                 problem = x.problem, 
-            
                 initiator =  x.initiator,
                 originationDate = x.originationDate,
                 /*rootCause = x.rootCause, correctiveAction = x.correctiveAction,*/
