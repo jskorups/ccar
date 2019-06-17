@@ -1,0 +1,15 @@
+﻿SELECT     actions.id, reasons.reason, actions.originationDate, actions.problem, actions.rootCause, 
+actions.correctiveAction, actions.targetDate, actions.completionDate, 
+                      actions.measureEffic, actions.dateOfEffic
+FROM         actions INNER JOIN
+                      reasons ON actions.idReason = reasons.id
+                      
+                      
+                      
+                      
+SELECT     actions.id, actions.problem,  us.firstname  + ' ' + us.surname as 'initiator', actions.originationDate,
+ actions.targetDate, actions.completionDate,us2.firstname + ' ' + us2.surname as 'responsible', progress.progressValue          
+FROM         actions 
+JOIN users us ON  us.id = actions.idInitiator 
+JOIN users us2 ON  us2.id =  actions.idResponsible 
+JOIN progress ON  progress.id =  actions.idProgress 
