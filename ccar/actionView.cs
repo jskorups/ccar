@@ -15,14 +15,12 @@ namespace ccar
     public partial class actionView
     {
         public int id { get; set; }
-        public string Reason { get; set; }
-        public Nullable<System.DateTime> originationDate { get; set; }
         public string problem { get; set; }
-        public string rootCause { get; set; }
-        public string correctiveAction { get; set; }
+        public string initiator { get; set; }
+        public Nullable<System.DateTime> originationDate { get; set; }
         public Nullable<System.DateTime> targetDate { get; set; }
         public Nullable<System.DateTime> completionDate { get; set; }
-        public string measureEffic { get; set; }
-        public string dateOfEffic { get; set; }
+        public string responsible { get; set; }
+        public string progressValue { get; set; }
     }
 }

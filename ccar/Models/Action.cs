@@ -36,10 +36,20 @@ namespace ccar.Models
 
         public static List<actionView> fromActionsDB (List<actionView> aList)
         {
-            List<actionView> actionList = aList.Select(x => new actionView() {id = x.id, Reason = x.Reason, originationDate = x.originationDate,
-            problem = x.problem, rootCause = x.rootCause, correctiveAction = x.correctiveAction, targetDate = x.targetDate, completionDate = x.completionDate,
-            measureEffic = x.measureEffic , dateOfEffic = x.dateOfEffic}).ToList();
+            List<actionView> actionList = aList.Select(x => new actionView() {id = x.id /*,Reason = x.Reason*/,
+                problem = x.problem, 
+            
+                initiator =  x.initiator,
+                originationDate = x.originationDate,
+                /*rootCause = x.rootCause, correctiveAction = x.correctiveAction,*/
+                targetDate = x.targetDate,
+                completionDate = x.completionDate,
+                responsible = x.responsible,
+                progressValue = x.progressValue
+            /*, measureEffic = x.measureEffic , dateOfEffic = x.dateOfEffic*/}).ToList();
             return actionList;
+
+
 
         }
         //public Komputer(komputery comps)

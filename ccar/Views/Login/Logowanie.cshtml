@@ -33,7 +33,7 @@
                     <div style="float:right; font-size: 80%; position: relative; top:-10px">
                         
                         <a href="#" onClick="$('#loginbox').hide(); $('#forgetPassBox').show()">Zapomniałeś hasło?</a>
-                    @Html.Action("Register", "Login");
+                    @*@Html.Action("Register", "Login");*@
                     
                     </div>
                 </div>
@@ -59,7 +59,8 @@
                         <div style="margin-top:10px; align-content:center" class="form-group">
 
                             <div class="col-sm-12 controls">
-                                <input id="btn-login" type="submit" value="Create" class="btn btn-info" />
+                                @Html.ActionLink("Zaloguj się!", "Index", "Action")
+                                @*<input id="btn-login" type="submit" value="Create" class="btn btn-info" />*@
                                 @*<a id="btn-login" type="submit" value="Create" href="#" class="btn btn-info">Login  </a>*@
                             </div>
                         </div>
