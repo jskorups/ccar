@@ -50,9 +50,7 @@ namespace ccar.Controllers
                 ent.actions.Add(action.ConvertToActionsFromDb(Act));
                 ent.SaveChanges();
                 return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
-                
-
-
+                emailClass.sendMail(responsible.getEmailAdress(Act), "Utworzono nowe zadanie", "Nowe zadanie");
             }
             else
             {

@@ -179,7 +179,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\action.cs" />
-    <Compile Include="Models\initiator.cs" />
+    <Compile Include="Models\responsible.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Reason.cs" />
     <Compile Include="progress.cs">

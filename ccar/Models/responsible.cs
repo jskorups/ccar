@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ccar.Models
 {
-    public class initiator
+    public class responsible
     {
         public int id { get; set; }
         public string firstname { get; set; }
@@ -20,7 +20,7 @@ namespace ccar.Models
         {
             ccarEntities ent = new ccarEntities();
             var xo = ent.users.Where(x => x.id == act.id).FirstOrDefault();
-            return xo.email;
+             return xo.email;
         }
     }
 }
