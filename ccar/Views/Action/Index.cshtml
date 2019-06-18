@@ -19,6 +19,7 @@
             <th>Completion Date</th>
             <th>Rsponsible</th>
             <th>Progress</th>
+            <th>Actions</th>
 
 
             @*
@@ -37,7 +38,6 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 @section scripts{
-
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
     <script src="~/Scripts/moment.min.js"></script>
@@ -51,7 +51,7 @@
                     "datatype": "json"
                 },
                 "columns": [
-                    { "data": "Reason" },
+                    { "data": "reason" },
                     { "data": "problem" },
                     { "data": "initiator" },
                     {
@@ -68,7 +68,6 @@
                             if (value === null) return "";
                             return moment(value).format('DD/MM/YYYY');
                         }
-
                     },
                     {
                         "data": "completionDate",
@@ -79,7 +78,16 @@
 
                     },
                     { "data": "responsible" },
-                    { "data": "progressValue" }
+                    { "data": "progressValue" },
+
+                        {"data":"id" , "render" : function (data) {
+                        return "<a class='btn btn-default btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","action")/" + data + "')><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("+data+")><i class='fa fa-trash'></i> Delete</a>";
+                    },
+                        "orderable": false,
+                        "searchable":false,
+                        "width":"150px"
+                    }
+
                    
                     //{ "data": "idTypeOfAction" },
                     

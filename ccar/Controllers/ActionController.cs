@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ccar.Models;
+using System.Data.Entity;
 
 
 namespace ccar.Controllers
@@ -29,18 +30,41 @@ namespace ccar.Controllers
         [HttpGet]
        public ActionResult AddOrEdit(int id = 0)
         {
-            return View(new action());
+            if (id == 0){
+
+                return View(new action());
+            }
+            else
+            {
+                ccarEntities ent = new ccarEntities();
+                return View(ent.actions.Where(x => x.id == id).FirstOrDefault<actions>());
+            }
+           
         }
         [HttpPost]
         public ActionResult AddOrEdit(action Act)
         {
+            if(Act.id == 0)
+            {
+                ccarEntities ent = new ccarEntities();
+                ent.actions.Add(action.ConvertToActionsFromDb(Act));
+                ent.SaveChanges();
+                return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
+                
 
-            ccarEntities ent = new ccarEntities();
-            ent.actions.Add(action.ConvertToActionsFromDb(Act));
-            ent.SaveChanges();
-            emailClass email = new emailClass();
+
+            }
+            else
+            {
+                ccarEntities ent = new ccarEntities();
+                ent.Entry(Act).State = EntityState.Modified;
+                ent.SaveChanges();
+                return Json(new { succes = true, message = "Updated sucesfully" }, JsonRequestBehavior.AllowGet);
+            }
+         
+            //emailClass email = new emailClass();
             //emailClass.sendMail();
-            return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
+          
 
             /*
              1.pobrac adres mailowy na podtsawie ID act (w modelu initaiotor), get emailadress, zwraca maila

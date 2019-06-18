@@ -36,8 +36,10 @@ namespace ccar.Models
 
         public static List<actionView> fromActionsDB (List<actionView> aList)
         {
-            List<actionView> actionList = aList.Select(x => new actionView() {id = x.id /*,Reason = x.Reason*/,
+            List<actionView> actionList = aList.Select(x => new actionView() {
+                id = x.id ,
                 problem = x.problem, 
+                reason = x.reason,
                 initiator =  x.initiator,
                 originationDate = x.originationDate,
                 /*rootCause = x.rootCause, correctiveAction = x.correctiveAction,*/
