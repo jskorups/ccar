@@ -9,16 +9,16 @@ namespace ccar.Models
 {
     public class action
     {
-
+        
         // 1:1 from DB
         public int id { get; set; }
         [Required(ErrorMessage = "This Field is Required")]
         public int idReason { get; set; }
         public string Reason { get; set; }
         public int idInitiator { get; set; }
-  
-    
-        public DateTime originationDate { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? originationDate { get; set; }
         public int idTypeOfAction { get; set; }
         public string problem { get; set; }
         public string rootCause { get; set; }
@@ -98,7 +98,7 @@ namespace ccar.Models
             act.id = a.id;
             act.idReason = a.idReason;
             act.idInitiator = a.idInitiator;
-            act.originationDate = a.originationDate==null?DateTime.Now:Convert.ToDateTime(a.originationDate);
+            act.originationDate = a.originationDate/*==null?DateTime.Now:Convert.ToDateTime(a.originationDate)*/;
             act.idTypeOfAction = a.idTypeOfAction;
             act.problem = a.problem;
             act.rootCause = a.rootCause;

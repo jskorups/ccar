@@ -50,13 +50,13 @@ namespace ccar.Controllers
                 ccarEntities ent = new ccarEntities();
                 ent.actions.Add(action.ConvertToActionsFromDb(Act));
                 ent.SaveChanges();
-                emailClass.sendMail(responsible.getEmailAdress(Act.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
+                //emailClass.sendMail(responsible.getEmailAdress(Act.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
                 return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
             }
             else
             {
                 ccarEntities ent = new ccarEntities();
-                ent.Entry(Act).State = EntityState.Modified;
+                ent.Entry(action.ConvertToActionsFromDb(Act)).State = EntityState.Modified;
                 ent.SaveChanges();
                 return Json(new { succes = true, message = "Updated sucesfully" }, JsonRequestBehavior.AllowGet);
             }
@@ -71,6 +71,14 @@ namespace ccar.Controllers
            
              */
             
+        }
+        [HttpPost]
+        public ActionResult Delete (int id)
+        {
+            ccarEntities ent = new ccarEntities();
+            action act = action.ConvertFromEFtoModel(ent.actions.Where(x => x.id == id).FirstOrDefault());
+            ent.actions.Remove(action.ConvertToActionsFromDb(act));
+            return Json(new { succes = true, message = "Delete Sucessfully" }, JsonRequestBehavior.AllowGet);
         }
     }
 }

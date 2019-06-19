@@ -24,17 +24,17 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Login", "Logowanie", FormMethod.Post))
     {
         <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="panel-title" style="text-align:center">Zaloguj się</div>
                     <div style="float:right; font-size: 80%; position: relative; top:-10px">
-                        
+
                         <a href="#" onClick="$('#loginbox').hide(); $('#forgetPassBox').show()">Zapomniałeś hasło?</a>
-                    @*@Html.Action("Register", "Login");*@
-                    
+                        @*@Html.Action("Register", "Login");*@
+
                     </div>
                 </div>
                 <div style="padding-top:30px" class="panel-body">
@@ -51,7 +51,6 @@
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                             @Html.Editor("password", new { htmlAttributes = new { @class = "form-control", @id = "login-password", @type = "password", @name = "password", @value = "", @placeholder = "Wpisz hasło..." } })
-
                         </div>
 
                         <!--2705-->
@@ -59,8 +58,8 @@
                         <div style="margin-top:10px; align-content:center" class="form-group">
 
                             <div class="col-sm-12 controls">
-                                @Html.ActionLink("Zaloguj się!", "Index", "Action")
-                                @*<input id="btn-login" type="submit" value="Create" class="btn btn-info" />*@
+                                @*@Html.ActionLink("Zaloguj się!", "Index", "Action")*@
+                                <input id="btn-login" type="submit" value="Login" class="btn btn-info" />
                                 @*<a id="btn-login" type="submit" value="Create" href="#" class="btn btn-info">Login  </a>*@
                             </div>
                         </div>
@@ -132,14 +131,14 @@
                         <div class="form-group">
                             <label for="password" class="col-md-3 control-label">Hasło</label>
                             <div class="col-md-9" style="margin-bottom: 25px">
-                                @Html.Editor("password", new { htmlAttributes = new { @class = "form-control", @id = "password-username", @type = "password", @name = "email", @value = "", @placeholder = "Wpisz login..." } })
+                                @Html.Editor("password", new { htmlAttributes = new { @class = "form-control", @id = "password-username", @type = "password", @name = "email", @value = "", @*@placeholder = "Wpisz hasło..."*@ } })
                                 @*<input type="password" class="form-control" name="passwd" placeholder="Wpisz hasło">*@
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="icode" class="col-md-3 control-label">Powtórz hasło</label>
                             <div class="col-md-9" style="margin-bottom: 25px">
-                                @Html.Editor("passwordCOnfirm", new { htmlAttributes = new { @class = "form-control", @id = "passwordConfirm-username", @type = "text", @name = "email", @value = "", @placeholder = "Wpisz login..." } })
+                                @Html.Editor("passwordCOnfirm", new { htmlAttributes = new { @class = "form-control", @id = "passwordConfirm-username", @type = "password", @name = "email", @value = "", @*@placeholder = "Wpisz login..."*@ } })
                                 @*<input type="text" class="form-control" name="icode" placeholder="Wpisz hasło ponownie">*@
                             </div>
                         </div>
