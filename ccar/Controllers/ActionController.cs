@@ -37,7 +37,8 @@ namespace ccar.Controllers
             else
             {
                 ccarEntities ent = new ccarEntities();
-                return View(ent.actions.Where(x => x.id == id).FirstOrDefault<actions>());
+                actions test = ent.actions.Where(x => x.id == id).FirstOrDefault();
+                return View(action.ConvertFromEFtoModel(test));
             }
            
         }
@@ -49,8 +50,8 @@ namespace ccar.Controllers
                 ccarEntities ent = new ccarEntities();
                 ent.actions.Add(action.ConvertToActionsFromDb(Act));
                 ent.SaveChanges();
+                emailClass.sendMail(responsible.getEmailAdress(Act.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
                 return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
-                emailClass.sendMail(responsible.getEmailAdress(Act), "Utworzono nowe zadanie", "Nowe zadanie");
             }
             else
             {

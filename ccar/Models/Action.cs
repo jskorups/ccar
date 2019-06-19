@@ -16,9 +16,9 @@ namespace ccar.Models
         public int idReason { get; set; }
         public string Reason { get; set; }
         public int idInitiator { get; set; }
-        [DisplayFormat (ApplyFormatInEditMode = true, DataFormatString ="{yyyy-MM-dd HH:mm}" )]
-        [DataType(DataType.Date)]
-        public DateTime? originationDate { get; set; }
+  
+    
+        public DateTime originationDate { get; set; }
         public int idTypeOfAction { get; set; }
         public string problem { get; set; }
         public string rootCause { get; set; }
@@ -79,6 +79,26 @@ namespace ccar.Models
             act.idReason = a.idReason;
             act.idInitiator = a.idInitiator;
             act.originationDate = a.originationDate;
+            act.idTypeOfAction = a.idTypeOfAction;
+            act.problem = a.problem;
+            act.rootCause = a.rootCause;
+            act.correctiveAction = a.correctiveAction;
+            act.idResponsible = a.idResponsible;
+            act.targetDate = a.targetDate;
+            act.idProgress = a.idProgress;
+            act.completionDate = a.completionDate;
+            act.measureEffic = a.measureEffic;
+            act.dateOfEffic = a.dateOfEffic;
+            return act;
+        }
+
+        public static action ConvertFromEFtoModel (actions a)
+        {
+            action act = new action();
+            act.id = a.id;
+            act.idReason = a.idReason;
+            act.idInitiator = a.idInitiator;
+            act.originationDate = a.originationDate==null?DateTime.Now:Convert.ToDateTime(a.originationDate);
             act.idTypeOfAction = a.idTypeOfAction;
             act.problem = a.problem;
             act.rootCause = a.rootCause;

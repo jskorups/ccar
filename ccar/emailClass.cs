@@ -13,6 +13,10 @@ namespace ccar
     {
         public static void sendMail(string ToWho, string Body, string subject)
         {
+            if (ToWho == null || ToWho == string.Empty )
+            {
+                return;
+            }
             try
             {
                 System.Configuration.Configuration config = WebConfigurationManager.OpenWebConfiguration(

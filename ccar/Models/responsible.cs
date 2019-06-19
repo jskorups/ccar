@@ -16,11 +16,18 @@ namespace ccar.Models
              //2. sprawdzanie czy nie jest null i czy jest poprawny - w metodzie
 
 
-        public static string  getEmailAdress (action act)
+        public static string  getEmailAdress (int? userId)
         {
             ccarEntities ent = new ccarEntities();
-            var xo = ent.users.Where(x => x.id == act.id).FirstOrDefault();
-             return xo.email;
+            var xo = ent.users.Where(x => x.id == userId).FirstOrDefault();
+            if (xo != null){
+                return xo.email;
+            }
+            else
+            {
+                return "";
+            }
+            
         }
     }
 }
