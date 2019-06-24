@@ -1,4 +1,5 @@
-﻿SELECT     actions.id, reasons.reason, actions.originationDate, actions.problem, actions.rootCause, 
+﻿
+SELECT     actions.id, reasons.reason, actions.originationDate, actions.problem, actions.rootCause, 
 actions.correctiveAction, actions.targetDate, actions.completionDate, 
                       actions.measureEffic, actions.dateOfEffic
 FROM         actions INNER JOIN

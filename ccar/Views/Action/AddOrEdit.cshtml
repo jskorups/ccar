@@ -13,74 +13,73 @@
 {
     @Html.HiddenFor(model => model.id)
 
-    <div class="form-group row">
-        <div class="col-md-3 mb-3">
-            @Html.Label("Reason", new { @class = "control-label" })
-            @*@Html.EditorFor(model => model.idReason, new { htmlAttributes = new { @class = "form-control" } })*@
-            @Html.ValidationMessageFor(model => model.Reason)
-            @Html.DropDownListFor(model => model.idReason, new SelectList(ccar.Models.Reason.GetReasonList(), "id", "reason"), new { @class = "form-control" })
-        </div>
-        <div class="col-md-3 mb-3">
-            @Html.Label("Initiator", new { @class = "control-label" })
-            @Html.EditorFor(model => model.idInitiator, new { htmlAttributes = new { @class = "form-control" } })
-        </div>
-        <div class="col-md-3 mb-3">
+<div class="form-group row">
+    <div class="col-md-4 mb-4">
+        @Html.Label("Reason", new { @class = "control-label" })
+        @*@Html.EditorFor(model => model.idReason, new { htmlAttributes = new { @class = "form-control" } })*@
+        @Html.ValidationMessageFor(model => model.Reason)
+        @Html.DropDownListFor(model => model.idReason, new SelectList(ccar.Models.Reason.GetReasonList(), "id", "reason"), new { @class = "form-control" })
+    </div>
+    @*<div class="col-md-3 mb-3">
+        @Html.Label("Initiator", new { @class = "control-label" })*@
+    @*@Html.EditorFor(model => model.idInitiator, new { htmlAttributes = new { @class = "form-control" } })*@
+    @*@Html.DropDownListFor(model => model.idInitiator, new SelectList(ccar.Models.initiator.GetInitiatorsList(), "id", "name"), new { @class = "form-control" })
+        </div>*@
+    @*<div class="col-md-4 mb-4">
             @Html.Label("Origination Date", new { @class = "control-label" })
             @Html.EditorFor(model => model.originationDate, new { htmlAttributes = new { @class = "form-control" } })
 
-        </div>
-        <div class="col-md-3 mb-3">
-            @Html.Label("Type of action", new { @class = "control-label" })
-            @Html.EditorFor(model => model.idTypeOfAction, new { htmlAttributes = new { @class = "form-control" } })
-        </div>
+        </div>*@
+    <div class="col-md-4 mb-4">
+        @Html.Label("Type of action", new { @class = "control-label" })
+        @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(ccar.Models.typeOfAction.GetTypeOfActionList(), "id", "typeOfAction1"), new { @class = "form-control" })
+
     </div>
+    <div class="col-md-4 mb-4">
+        @Html.Label("Responsible", new { @class = "control-label" })
+        @*@Html.EditorFor(model => model.idResponsible, new { htmlAttributes = new { @class = "form-control" } })*@
+        @Html.DropDownListFor(model => model.idResponsible, new SelectList(ccar.Models.responsible.GetResponsibleList(), "id", "name"), new { @class = "form-control" })
+    </div>
+</div>
     <!--test-->
     <div class="form-group row">
-        <div class="form-group col-md-12">
+        <div class="col-md-4 mb-4">
             @Html.Label("Problem", new { @class = "control-label" })
-            @Html.EditorFor(model => model.problem, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.problem, new { htmlAttributes = new { @class = "form-control", @style = "height: 100px;" }})
         </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-md-12 mb-12">
+        <div class="col-md-4 mb-4">
             @Html.Label("Root Cause", new { @class = "control-label" })
-            @Html.EditorFor(model => model.rootCause, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.rootCause, new { htmlAttributes = new { @class = "form-control", @style = "height: 100px;" } })
 
         </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-md-12 mb-12">
+        <div class="col-md-4 mb-4">
             @Html.Label("Corrective Action", new { @class = "control-label" })
-            @Html.EditorFor(model => model.correctiveAction, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.correctiveAction, new { htmlAttributes = new { @class = "form-control", @style = "height: 100px;" } })
         </div>
     </div>
-
     <div class="form-group row">
-        <div class="col-md-3 mb-3">
-            @Html.Label("Responsible", new { @class = "control-label" })
-            @Html.EditorFor(model => model.idResponsible, new { htmlAttributes = new { @class = "form-control" } })
-        </div>
-        <div class="col-md-3 mb-3">
+      
+        <div class="col-md-4 mb-4">
             @Html.Label("Target date", new { @class = "control-label" })
             @Html.EditorFor(model => model.targetDate, new { htmlAttributes = new { @class = "form-control" } })
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-4 mb-4">
             @Html.Label("Progress", new { @class = "control-label" })
             @Html.EditorFor(model => model.idProgress, new { htmlAttributes = new { @class = "form-control" } })
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-4 mb-4">
             @Html.Label("Completion date", new { @class = "control-label" })
             @Html.EditorFor(model => model.completionDate, new { htmlAttributes = new { @class = "form-control" } })
         </div>
     </div>
 
     <div class="form-group row">
-      
-        <div class="col-md-3 mb-3">
+
+        <div class="col-md-4 mb-4">
             @Html.Label("Efficiency measure", new { @class = "control-label" })
             @Html.EditorFor(model => model.measureEffic, new { htmlAttributes = new { @class = "form-control" } })
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-4 mb-4">
             @Html.Label("Date of efficiency", new { @class = "control-label" })
             @Html.EditorFor(model => model.dateOfEffic, new { htmlAttributes = new { @class = "form-control" } })
         </div>

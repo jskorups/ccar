@@ -11,8 +11,6 @@ namespace ccar.Models
 
         public string firstname { get; set; }
         public string surname { get; set; }
-
-        public string login { get; set; }
         public string email { get; set; }
         public string password { get; set; }
         public string guid  { get; set; }
@@ -23,17 +21,18 @@ namespace ccar.Models
         {
             ccarEntities ent = new ccarEntities();
             users userNew = new users();
-            userNew.login = login;
+            userNew.firstname = firstname;
+            userNew.surname = surname;
             userNew.password = crypto.Hash(password);
             userNew.email = email;
             userNew.guid = guid;
             userNew.active = active;
         }
 
-        public bool checkIfExist(string login, string password)
+        public bool checkIfExist(string email, string password)
         {
             ccarEntities ent = new ccarEntities();
-            int intIfExist = ent.users.Count(x => x.login == login && x.password == password);
+            int intIfExist = ent.users.Count(x => x.email == email && x.password == password);
             if (intIfExist == 1)
             {
                 return true;

@@ -4,7 +4,8 @@
 }
 
 <h2>Actions CCAR</h2>
-<button id="addBtn" class="btn btn-outline-primary" onclick="PopupForm('@Url.Action("AddOrEdit","action")')"><i class="fa fa-plus-square"></i> Add new action</button>
+
+<button id="addBtn" class="btn btn-outline-primary" onclick="PopupForm('@Url.Action("AddOrEdit","action")')" @(User.Identity.IsAuthenticated  == true ? "disabled='disabled'" : "")><i class="fa fa-plus-square"></i> Add new action</button>
 
 
 
@@ -13,7 +14,6 @@
         <tr>
             <th>Reason</th>
             <th>Problem</th>
-            <th>Initiator</th>
             <th>Origination Date</th>
             <th>Target Date</th>
             <th>Completion Date</th>
@@ -52,8 +52,7 @@
                 },
                 "columns": [
                     { "data": "reason" },
-                    { "data": "problem" },
-                    { "data": "initiator" },
+                    { "data": "problem" },         
                     {
                         "data": "originationDate",
 
@@ -118,7 +117,7 @@
                         autoOpen: true,
                         resizable: false,
                         title: 'Fill Actions Details',
-                        height: 600,
+                        height: 500,
                         width: 1100,
                         close: function () {
                             Popup.dialog('destroy').remove();
@@ -152,7 +151,6 @@
             }
             return false;
         }
-
          function Delete(id) {
             if(confirm('Are You Sure to Delete this Employee Record ?'))
             {
@@ -175,8 +173,6 @@
                 });
             }
         }
-
-
         $.notify.addStyle('happyblue', {
             html: "<div>☺<span data-notify-text/>☺</div>",
             classes: {

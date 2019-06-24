@@ -4,11 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using ccar.Models;
+using System.Web.Security;
 
 namespace ccar.Models
 {
     public class action
     {
+        
         
         // 1:1 from DB
         public int id { get; set; }
@@ -38,9 +40,9 @@ namespace ccar.Models
         {
             List<actionView> actionList = aList.Select(x => new actionView() {
                 id = x.id ,
-                problem = x.problem, 
                 reason = x.reason,
-                initiator =  x.initiator,
+                problem = x.problem,
+                //initiator =  x.initiator,
                 originationDate = x.originationDate,
                 /*rootCause = x.rootCause, correctiveAction = x.correctiveAction,*/
                 targetDate = x.targetDate,
@@ -77,7 +79,7 @@ namespace ccar.Models
             actions act = new actions();
             act.id = a.id;
             act.idReason = a.idReason;
-            act.idInitiator = a.idInitiator;
+            //act.idInitiator = a.idInitiator;
             act.originationDate = a.originationDate;
             act.idTypeOfAction = a.idTypeOfAction;
             act.problem = a.problem;
@@ -94,11 +96,16 @@ namespace ccar.Models
 
         public static action ConvertFromEFtoModel (actions a)
         {
+            var dateAndTime = DateTime.Now;
+            var date = dateAndTime.Date;
+
             action act = new action();
             act.id = a.id;
             act.idReason = a.idReason;
-            act.idInitiator = a.idInitiator;
-            act.originationDate = a.originationDate/*==null?DateTime.Now:Convert.ToDateTime(a.originationDate)*/;
+            
+            //act.idInitiator = a.idInitiator;
+            act.originationDate = a.originationDate;
+            //act.originationDate = String.Format("{0:d/M/yyyy}",a.originationDate);
             act.idTypeOfAction = a.idTypeOfAction;
             act.problem = a.problem;
             act.rootCause = a.rootCause;

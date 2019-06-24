@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ccar.Models;
 using System.Data.Entity;
-
+using System.Web.Security;
 
 namespace ccar.Controllers
 {
@@ -20,6 +20,8 @@ namespace ccar.Controllers
         {
             using (ccarEntities ent = new ccarEntities())
             {
+            
+
                 List<actionView> actList = new List<actionView>();
 
                 actList = action.fromActionsDB(ent.actionView.ToList());
@@ -47,7 +49,9 @@ namespace ccar.Controllers
         {
             if(Act.id == 0)
             {
+          
                 ccarEntities ent = new ccarEntities();
+         
                 ent.actions.Add(action.ConvertToActionsFromDb(Act));
                 ent.SaveChanges();
                 //emailClass.sendMail(responsible.getEmailAdress(Act.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
@@ -76,9 +80,21 @@ namespace ccar.Controllers
         public ActionResult Delete (int id)
         {
             ccarEntities ent = new ccarEntities();
-            action act = action.ConvertFromEFtoModel(ent.actions.Where(x => x.id == id).FirstOrDefault());
-            ent.actions.Remove(action.ConvertToActionsFromDb(act));
+
+            actions act = ent.actions.Find(id);
+            ent.actions.Remove(act);
+            ent.SaveChanges();
+            //action act = action.ConvertFromEFtoModel(ent.actions.Where(x => x.id == id).FirstOrDefault());
+            //ent.actions.Remove(action.ConvertToActionsFromDb(act));
             return Json(new { succes = true, message = "Delete Sucessfully" }, JsonRequestBehavior.AllowGet);
+
+
+
+
+            //testowaEntities ent = new testowaEntities();
+            //komputery komp = ent.komputeries.Find(id);
+            //ent.komputeries.Remove(komp);
+            //ent.SaveChanges();
         }
     }
 }

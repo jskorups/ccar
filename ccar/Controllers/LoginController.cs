@@ -91,18 +91,21 @@ namespace ccar.Controllers
         [HttpGet]
         public ActionResult Logowanie()
         {
+           
+
             return View();
         }
         [HttpPost]
-        public ActionResult Logowanie(string login, string password)
+        public ActionResult Logowanie(string email, string password)
         {
             Login newlog = new Login();        
             //zakryptowac haslo
-            bool check = newlog.checkIfExist(login, password);
+            bool check = newlog.checkIfExist(email, password);
             if (check == true)
             {
-                FormsAuthentication.SetAuthCookie(login, false);
+                FormsAuthentication.SetAuthCookie(email, false);
                 return RedirectToAction("Index", "Action");
+                
             }
             else
             {

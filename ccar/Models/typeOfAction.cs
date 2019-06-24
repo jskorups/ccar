@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ccar.Models
 {
-    public class typeAction
+    public class typeOfAction
     {
         public int id { get; set; }
         public string typeOfAction1 { get; set; }
@@ -15,7 +15,7 @@ namespace ccar.Models
             List<typeOfaction> listTOA = toaList.Select(x => new typeOfaction() { id = x.id, typeOfaction1 = x.typeOfaction1}).ToList();
             return listTOA;
         }
-        public static List<typeOfaction> GetResponsibleList()
+        public static List<typeOfaction> GetTypeOfActionList()
         {
             ccarEntities ent = new ccarEntities();
             return fromTypeOfAction(ent.typeOfaction.ToList());
