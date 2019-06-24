@@ -1,0 +1,5 @@
+﻿1. dodac listy wybieralne do modala
+2. pobieranie dat przy edycji z bazy do datepickerow
+3. automatyczne ustawianie initiatora tego ktory jest zalogowany
+4. nie wyswietla sie user.identity.name
+5. wpisywanie do bazy danych daty dodania jako origination date z automatu
