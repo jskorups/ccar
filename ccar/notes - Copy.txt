@@ -2,4 +2,7 @@
 2. pobieranie dat przy edycji z bazy do datepickerow
 3. automatyczne ustawianie initiatora tego ktory jest zalogowany
 4. nie wyswietla sie user.identity.name
-5. wpisywanie do bazy danych daty dodania jako origination date z automatu
+5. ustawienie origination date jako teraz gdy 100% submit
+6. Oznaczanie komórki z określoną zawartością -  kolorem
+7.Dodac mozliwosc dodawania typeofaction
+8. Dodac mozliwosc dodawania reason

@@ -12,8 +12,8 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idReason" Type="int" Nullable="false" />
           <Property Name="idInitiator" Type="int" />
-          <Property Name="originationDate" Type="datetime2" Precision="0" />
-          <Property Name="idTypeOfAction" Type="int" Nullable="false" />
+          <Property Name="originationDate" Type="datetime" />
+          <Property Name="idTypeOfAction" Type="int" />
           <Property Name="problem" Type="nvarchar" MaxLength="50" />
           <Property Name="rootCause" Type="nvarchar" MaxLength="200" />
           <Property Name="correctiveAction" Type="nvarchar" MaxLength="200" />
@@ -28,14 +28,14 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="progressValue" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="reasons">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="reason" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="typeOfaction">
@@ -43,15 +43,16 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="typeOfaction" Type="nvarchar" MaxLength="50" />
+          <Property Name="typeOfaction1" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="firstname" Type="nvarchar" MaxLength="50" />
           <Property Name="surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" />
           <Property Name="password" Type="nvarchar" MaxLength="300" />
           <Property Name="email" Type="nvarchar" MaxLength="50" />
           <Property Name="guid" Type="nvarchar" MaxLength="200" />
@@ -67,7 +68,8 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="reason" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="problem" Type="nvarchar" MaxLength="50" />
-          <Property Name="originationDate" Type="datetime2" Precision="0" />
+          <Property Name="initiator" Type="nvarchar" MaxLength="101" />
+          <Property Name="originationDate" Type="datetime" />
           <Property Name="targetDate" Type="datetime" />
           <Property Name="completionDate" Type="datetime" />
           <Property Name="responsible" Type="nvarchar" MaxLength="101" />
@@ -98,7 +100,7 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_actions_typeOfaction">
-          <End Role="typeOfaction" Type="Self.typeOfaction" Multiplicity="1" />
+          <End Role="typeOfaction" Type="Self.typeOfaction" Multiplicity="0..1" />
           <End Role="actions" Type="Self.actions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="typeOfaction">
@@ -144,6 +146,7 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
     [actionView].[id] AS [id], 
     [actionView].[reason] AS [reason], 
     [actionView].[problem] AS [problem], 
+    [actionView].[initiator] AS [initiator], 
     [actionView].[originationDate] AS [originationDate], 
     [actionView].[targetDate] AS [targetDate], 
     [actionView].[completionDate] AS [completionDate], 
@@ -211,8 +214,8 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idReason" Type="Int32" Nullable="false" />
           <Property Name="idInitiator" Type="Int32" />
-          <Property Name="originationDate" Type="DateTime" Precision="0" />
-          <Property Name="idTypeOfAction" Type="Int32" Nullable="false" />
+          <Property Name="originationDate" Type="DateTime" Precision="3" />
+          <Property Name="idTypeOfAction" Type="Int32" />
           <Property Name="problem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="rootCause" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="correctiveAction" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -232,7 +235,7 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="progressValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="actions" Relationship="ccarModel.FK_actions_progress" FromRole="progress" ToRole="actions" />
         </EntityType>
@@ -240,7 +243,7 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="actions" Relationship="ccarModel.FK_actions_reasons" FromRole="reasons" ToRole="actions" />
         </EntityType>
@@ -256,9 +259,10 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="guid" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -274,7 +278,8 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="problem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="originationDate" Type="DateTime" Precision="0" />
+          <Property Name="initiator" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="originationDate" Type="DateTime" Precision="3" />
           <Property Name="targetDate" Type="DateTime" Precision="3" />
           <Property Name="completionDate" Type="DateTime" Precision="3" />
           <Property Name="responsible" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
@@ -305,7 +310,7 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_actions_typeOfaction">
-          <End Type="ccarModel.typeOfaction" Role="typeOfaction" Multiplicity="1" />
+          <End Type="ccarModel.typeOfaction" Role="typeOfaction" Multiplicity="0..1" />
           <End Type="ccarModel.actions" Role="actions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="typeOfaction">
@@ -385,7 +390,7 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
           <EntitySetMapping Name="typeOfaction">
             <EntityTypeMapping TypeName="ccarModel.typeOfaction">
               <MappingFragment StoreEntitySet="typeOfaction">
-                <ScalarProperty Name="typeOfaction1" ColumnName="typeOfaction" />
+                <ScalarProperty Name="typeOfaction1" ColumnName="typeOfaction1" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -397,6 +402,7 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
                 <ScalarProperty Name="guid" ColumnName="guid" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="surname" ColumnName="surname" />
                 <ScalarProperty Name="firstname" ColumnName="firstname" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -411,6 +417,7 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
                 <ScalarProperty Name="completionDate" ColumnName="completionDate" />
                 <ScalarProperty Name="targetDate" ColumnName="targetDate" />
                 <ScalarProperty Name="originationDate" ColumnName="originationDate" />
+                <ScalarProperty Name="initiator" ColumnName="initiator" />
                 <ScalarProperty Name="problem" ColumnName="problem" />
                 <ScalarProperty Name="reason" ColumnName="reason" />
                 <ScalarProperty Name="id" ColumnName="id" />

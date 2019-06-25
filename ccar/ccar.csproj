@@ -20,8 +20,10 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -173,6 +175,7 @@
     </Compile>
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\typeOfActionController.cs" />
     <Compile Include="crypto.cs" />
     <Compile Include="emailClass.cs" />
     <Compile Include="Global.asax.cs">
@@ -180,6 +183,7 @@
     </Compile>
     <Compile Include="Models\action.cs" />
     <Compile Include="Models\initiator.cs" />
+    <Compile Include="Models\Progress.cs" />
     <Compile Include="Models\responsible.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Reason.cs" />
@@ -316,6 +320,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\typeOfAction\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

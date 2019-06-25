@@ -21,7 +21,7 @@ namespace ccar.Models
 
         [DataType(DataType.Date)]
         public DateTime? originationDate { get; set; }
-        public int idTypeOfAction { get; set; }
+        public int? idTypeOfAction { get; set; }
         public string problem { get; set; }
         public string rootCause { get; set; }
         public string correctiveAction { get; set; }
@@ -80,7 +80,7 @@ namespace ccar.Models
             act.id = a.id;
             act.idReason = a.idReason;
             //act.idInitiator = a.idInitiator;
-            act.originationDate = a.originationDate;
+            act.originationDate = DateTime.Now;
             act.idTypeOfAction = a.idTypeOfAction;
             act.problem = a.problem;
             act.rootCause = a.rootCause;
