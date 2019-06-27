@@ -6,3 +6,6 @@
 6. Oznaczanie komórki z określoną zawartością -  kolorem
 7.Dodac mozliwosc dodawania typeofaction
 8. Dodac mozliwosc dodawania reason
+9. Dodac required dla pol
+10. if dla completion date wzgledem progresu - gdzie umiescic?
+11. Target date nie moze byc < niz origination date

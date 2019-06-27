@@ -79,7 +79,7 @@ namespace ccar.Models
             actions act = new actions();
             act.id = a.id;
             act.idReason = a.idReason;
-            //act.idInitiator = a.idInitiator;
+            act.idInitiator = 1;
             act.originationDate = DateTime.Now;
             act.idTypeOfAction = a.idTypeOfAction;
             act.problem = a.problem;
@@ -88,7 +88,12 @@ namespace ccar.Models
             act.idResponsible = a.idResponsible;
             act.targetDate = a.targetDate;
             act.idProgress = a.idProgress;
-            act.completionDate = a.completionDate;
+            if (a.idProgress == 5)
+            {
+                act.completionDate = DateTime.Now;
+            }
+         
+          
             act.measureEffic = a.measureEffic;
             act.dateOfEffic = a.dateOfEffic;
             return act;
