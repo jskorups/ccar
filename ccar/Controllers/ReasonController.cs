@@ -9,7 +9,7 @@ namespace ccar.Controllers
     public class ReasonController : Controller
     {
         // GET: Reason
-        public ActionResult Index()
+        public ActionResult AddOrEditRsn()
         {
             return View();
         }

@@ -1,8 +1,32 @@
-﻿
+﻿@model ccar.Models.Reason
+
 @{
-    ViewBag.Title = "AddOrEdit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    /**/
+
+    Layout = null;
 }
 
-<h2>AddOrEdit</h2>
+<!DOCTYPE html>
 
+
+@using (Html.BeginForm("AddOrEditRsn", "Reason", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.id)
+
+    <div class="form-group row">
+        <div class="col-md-1 mb-1">
+            @Html.Label("Ayyyyyyyyyyyyyydd", new { @class = "control-label" })
+        </div>
+
+        <div class="col-md-3 mb-3">
+            @Html.Label("Responsible", new { @class = "control-label" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-12 mb-12 text-center">
+            <input type="submit" value="Submit" class="btn btn-success" style="width:200px; height:50px" />
+            <input type="reset" value="Reset" class="btn btn-danger" style="width:200px; height:50px" />
+        </div>
+    </div>
+}

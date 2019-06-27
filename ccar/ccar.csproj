@@ -175,6 +175,7 @@
     </Compile>
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ReasonController.cs" />
     <Compile Include="Controllers\typeOfActionController.cs" />
     <Compile Include="crypto.cs" />
     <Compile Include="emailClass.cs" />
@@ -317,6 +318,7 @@
     <Content Include="Views\Login\Logowanie.cshtml" />
     <Content Include="Views\Action\Index.cshtml" />
     <Content Include="Views\Action\AddOrEdit.cshtml" />
+    <Content Include="Views\Reason\AddOrEditRsn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
