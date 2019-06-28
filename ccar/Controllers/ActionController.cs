@@ -14,6 +14,9 @@ namespace ccar.Controllers
         [Authorize]
         public ActionResult Index()
         {
+
+            
+
             return View();
         }
 
@@ -56,6 +59,7 @@ namespace ccar.Controllers
             try
             {
                 Act.Save();
+               
             }
             catch (Exception ex)
             {
@@ -74,27 +78,15 @@ namespace ccar.Controllers
 
         }
 
-
         [HttpPost]
         [Authorize]
         public ActionResult Delete (int id)
         {
             ccarEntities ent = new ccarEntities();
-
             actions act = ent.actions.Find(id);
             ent.actions.Remove(act);
             ent.SaveChanges();
-            //action act = action.ConvertFromEFtoModel(ent.actions.Where(x => x.id == id).FirstOrDefault());
-            //ent.actions.Remove(action.ConvertToActionsFromDb(act));
             return Json(new { succes = true, message = "Delete Sucessfully" }, JsonRequestBehavior.AllowGet);
-
-
-
-
-            //testowaEntities ent = new testowaEntities();
-            //komputery komp = ent.komputeries.Find(id);
-            //ent.komputeries.Remove(komp);
-            //ent.SaveChanges();
         }
     }
 }

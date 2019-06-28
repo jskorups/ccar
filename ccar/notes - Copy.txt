@@ -1,7 +1,7 @@
-﻿1. dodac listy wybieralne do modala
+﻿1. dodac listy wybieralne do modala										- DONE
 2. pobieranie dat przy edycji z bazy do datepickerow
 3. automatyczne ustawianie initiatora tego ktory jest zalogowany
-4. nie wyswietla sie user.identity.name
+4. nie wyswietla sie user.identity.name									- DONE
 5. ustawienie origination date jako teraz gdy 100% submit
 6. Oznaczanie komórki z określoną zawartością -  kolorem
 7.Dodac mozliwosc dodawania typeofaction

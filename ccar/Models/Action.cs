@@ -7,6 +7,7 @@ using ccar.Models;
 using System.Web.Security;
 using System.Data.Entity;
 
+
 namespace ccar.Models
 {
     public class action
@@ -22,7 +23,7 @@ namespace ccar.Models
 
         [DataType(DataType.Date)]
         public DateTime? originationDate { get; set; }
-        public int idTypeOfAction { get; set; }
+        public int? idTypeOfAction { get; set; }
         public string problem { get; set; }
         public string rootCause { get; set; }
         public string correctiveAction { get; set; }
@@ -89,12 +90,7 @@ namespace ccar.Models
             act.idResponsible = a.idResponsible;
             act.targetDate = a.targetDate;
             act.idProgress = a.idProgress;
-            if (a.idProgress == 5)
-            {
-                act.completionDate = DateTime.Now;
-            }
-         
-          
+            act.completionDate = a.completionDate;
             act.measureEffic = a.measureEffic;
             act.dateOfEffic = a.dateOfEffic;
             return act;
@@ -124,13 +120,22 @@ namespace ccar.Models
             act.dateOfEffic = a.dateOfEffic;
             return act;
         }
-
+       
         public virtual void Save()
         {
             if (this.id == 0)
             {
+                
 
                 ccarEntities ent = new ccarEntities();
+
+
+                var userName = System.Web.HttpContext.Current.User.Identity.Name;
+                this.idInitiator = ent.users.Where(x => x.email == userName).Select(x => x.id).ToString();
+                this.idInitiator = ent.users.Where(x => x.email == userName).Select(x => x.id).ToString();
+
+                //this.idInitiator == ent.users.Where(s => s.email == )
+
 
                 ent.actions.Add(action.ConvertToActionsFromDb(this));
                 ent.SaveChanges();
@@ -139,6 +144,11 @@ namespace ccar.Models
             }
             else
             {
+                if (this.idProgress == 5)
+                {
+                    this.completionDate = DateTime.Now;
+                }
+
                 ccarEntities ent = new ccarEntities();
                 ent.Entry(action.ConvertToActionsFromDb(this)).State = EntityState.Modified;
                 ent.SaveChanges();

@@ -10,12 +10,13 @@ namespace ccar.Controllers
 {
     public class LoginController : Controller
     {
+        
         // GET: Login
         public ActionResult Index()
         {
             return View();
         }
-
+        
         #region Rejestracja
         [HttpGet]
         public ActionResult Register()

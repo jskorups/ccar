@@ -76,6 +76,17 @@ textarea {
     color: white;
     background-color: blue;
 }
+.selected {
+    background-color: green !important;
+}
+
+.bad {
+    background-color: red !important;
+}
+#ui-id-1 {
+    background-color: aqua !important;
+} 
+
 
 
 
