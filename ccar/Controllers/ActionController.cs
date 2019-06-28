@@ -11,12 +11,14 @@ namespace ccar.Controllers
 {
     public class ActionController : Controller
     {
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
-      public ActionResult GetData()
+        [Authorize]
+        public ActionResult GetData()
         {
             using (ccarEntities ent = new ccarEntities())
             {
@@ -30,7 +32,8 @@ namespace ccar.Controllers
         }
 
         [HttpGet]
-       public ActionResult AddOrEdit(int id = 0)
+        [Authorize]
+        public ActionResult AddOrEdit(int id = 0)
         {
             if (id == 0){
 
@@ -44,39 +47,36 @@ namespace ccar.Controllers
             }
            
         }
+
+
         [HttpPost]
+        [Authorize]
         public ActionResult AddOrEdit(action Act)
         {
-            if(Act.id == 0)
+            try
             {
-          
-                ccarEntities ent = new ccarEntities();
-         
-                ent.actions.Add(action.ConvertToActionsFromDb(Act));
-                ent.SaveChanges();
-                //emailClass.sendMail(responsible.getEmailAdress(Act.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
-                return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
+                Act.Save();
             }
-            else
+            catch (Exception ex)
             {
-                ccarEntities ent = new ccarEntities();
-                ent.Entry(action.ConvertToActionsFromDb(Act)).State = EntityState.Modified;
-                ent.SaveChanges();
-                return Json(new { succes = true, message = "Updated sucesfully" }, JsonRequestBehavior.AllowGet);
+                return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
-         
+            return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
             //emailClass email = new emailClass();
             //emailClass.sendMail();
-          
+
 
             /*
              1.pobrac adres mailowy na podtsawie ID act (w modelu initaiotor), get emailadress, zwraca maila
              2. sprawdzanie czy nie jest null i czy jest poprawny - w metodzie
            
              */
-            
+
         }
+
+
         [HttpPost]
+        [Authorize]
         public ActionResult Delete (int id)
         {
             ccarEntities ent = new ccarEntities();

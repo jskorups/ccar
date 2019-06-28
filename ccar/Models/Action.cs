@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using ccar.Models;
 using System.Web.Security;
+using System.Data.Entity;
 
 namespace ccar.Models
 {
@@ -21,7 +22,7 @@ namespace ccar.Models
 
         [DataType(DataType.Date)]
         public DateTime? originationDate { get; set; }
-        public int? idTypeOfAction { get; set; }
+        public int idTypeOfAction { get; set; }
         public string problem { get; set; }
         public string rootCause { get; set; }
         public string correctiveAction { get; set; }
@@ -124,7 +125,26 @@ namespace ccar.Models
             return act;
         }
 
+        public virtual void Save()
+        {
+            if (this.id == 0)
+            {
 
+                ccarEntities ent = new ccarEntities();
+
+                ent.actions.Add(action.ConvertToActionsFromDb(this));
+                ent.SaveChanges();
+                //emailClass.sendMail(responsible.getEmailAdress(Act.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
+               // return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                ccarEntities ent = new ccarEntities();
+                ent.Entry(action.ConvertToActionsFromDb(this)).State = EntityState.Modified;
+                ent.SaveChanges();
+               // return Json(new { succes = true, message = "Updated sucesfully" }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
     }
 }
