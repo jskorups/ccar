@@ -9,3 +9,4 @@
 9. Dodac required dla pol
 10. if dla completion date wzgledem progresu - gdzie umiescic?
 11. Target date nie moze byc < niz origination date
+12. Podczas update, sejvuje idinitiator jako NULL 

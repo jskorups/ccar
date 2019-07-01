@@ -19,11 +19,11 @@ namespace ccar.Models
         [Required(ErrorMessage = "This Field is Required")]
         public int idReason { get; set; }
         public string Reason { get; set; }
-        public int idInitiator { get; set; }
+        public int? idInitiator { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime? originationDate { get; set; }
-        public int? idTypeOfAction { get; set; }
+        public int idTypeOfAction { get; set; }
         public string problem { get; set; }
         public string rootCause { get; set; }
         public string correctiveAction { get; set; }
@@ -42,9 +42,9 @@ namespace ccar.Models
         {
             List<actionView> actionList = aList.Select(x => new actionView() {
                 id = x.id ,
+                initiator =  x.initiator,
                 reason = x.reason,
                 problem = x.problem,
-                //initiator =  x.initiator,
                 originationDate = x.originationDate,
                 /*rootCause = x.rootCause, correctiveAction = x.correctiveAction,*/
                 targetDate = x.targetDate,
@@ -81,7 +81,7 @@ namespace ccar.Models
             actions act = new actions();
             act.id = a.id;
             act.idReason = a.idReason;
-            act.idInitiator = 1;
+            act.idInitiator = a.idInitiator;
             act.originationDate = DateTime.Now;
             act.idTypeOfAction = a.idTypeOfAction;
             act.problem = a.problem;
@@ -104,8 +104,8 @@ namespace ccar.Models
             action act = new action();
             act.id = a.id;
             act.idReason = a.idReason;
-            
-            //act.idInitiator = a.idInitiator;
+
+            act.idInitiator = a.idInitiator;
             act.originationDate = a.originationDate;
             //act.originationDate = String.Format("{0:d/M/yyyy}",a.originationDate);
             act.idTypeOfAction = a.idTypeOfAction;
@@ -129,30 +129,24 @@ namespace ccar.Models
 
                 ccarEntities ent = new ccarEntities();
 
-
-                var userName = System.Web.HttpContext.Current.User.Identity.Name;
-                this.idInitiator = ent.users.Where(x => x.email == userName).Select(x => x.id).ToString();
-                this.idInitiator = ent.users.Where(x => x.email == userName).Select(x => x.id).ToString();
-
-                //this.idInitiator == ent.users.Where(s => s.email == )
-
-
+                this.idInitiator = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.id).SingleOrDefault();
                 ent.actions.Add(action.ConvertToActionsFromDb(this));
                 ent.SaveChanges();
                 //emailClass.sendMail(responsible.getEmailAdress(Act.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
-               // return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
+  
             }
             else
             {
+              
+
+                ccarEntities ent = new ccarEntities();
                 if (this.idProgress == 5)
                 {
                     this.completionDate = DateTime.Now;
                 }
-
-                ccarEntities ent = new ccarEntities();
                 ent.Entry(action.ConvertToActionsFromDb(this)).State = EntityState.Modified;
                 ent.SaveChanges();
-               // return Json(new { succes = true, message = "Updated sucesfully" }, JsonRequestBehavior.AllowGet);
+  
             }
         }
 
