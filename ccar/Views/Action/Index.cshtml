@@ -56,7 +56,6 @@
                     { "data": "problem" },
                     {
                         "data": "originationDate",
-
                         "render": function (value) {
                             if (value === null) return "";
                             return moment(value).format('DD/MM/YYYY');
@@ -176,7 +175,7 @@
                     type: "POST",
                     url: '@Url.Action("Delete","Action")/' + id,
                     success: function (data) {
-                        if (data.success)
+                        //if (data.success)
                         {
                             dataTable.ajax.reload();
 

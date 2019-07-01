@@ -7,9 +7,9 @@
       <Diagram DiagramId="edd59b1aa72f4b6f938d14cad0f56a44" Name="Diagram1">
         <EntityTypeShape EntityType="ccarModel.actions" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="ccarModel.progress" Width="1.5" PointX="0.75" PointY="8.125" />
-        <EntityTypeShape EntityType="ccarModel.reasons" Width="1.5" PointX="0.75" PointY="10.375" />
-        <EntityTypeShape EntityType="ccarModel.typeOfaction" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="ccarModel.users" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="ccarModel.reasons" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ccarModel.typeOfaction" Width="1.5" PointX="0.75" PointY="10.375" />
+        <EntityTypeShape EntityType="ccarModel.users" Width="1.5" PointX="0.75" PointY="2" />
         <EntityTypeShape EntityType="ccarModel.actionView" Width="1.5" PointX="5.75" PointY="0.75" />
         <AssociationConnector Association="ccarModel.FK_actions_progress" />
         <AssociationConnector Association="ccarModel.FK_actions_reasons" />

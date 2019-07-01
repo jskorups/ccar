@@ -1,12 +1,22 @@
 ﻿1. dodac listy wybieralne do modala										- DONE
 2. pobieranie dat przy edycji z bazy do datepickerow
-3. automatyczne ustawianie initiatora tego ktory jest zalogowany
+3. automatyczne ustawianie initiatora tego ktory jest zalogowany		- DONE
 4. nie wyswietla sie user.identity.name									- DONE
-5. ustawienie origination date jako teraz gdy 100% submit
+5. ustawienie completion date jako teraz gdy 100% submit				- DONE
 6. Oznaczanie komórki z określoną zawartością -  kolorem
-7.Dodac mozliwosc dodawania typeofaction
+7. Dodac mozliwosc dodawania typeofaction
 8. Dodac mozliwosc dodawania reason
 9. Dodac required dla pol
-10. if dla completion date wzgledem progresu - gdzie umiescic?
+10. if dla completion date wzgledem progresu - gdzie umiescic?			- DONE
 11. Target date nie moze byc < niz origination date
 12. Podczas update, sejvuje idinitiator jako NULL 
+
+daty
+13. zablokowac target date wczesniej niz dzisiaj 
+14. 
+
+
+TO DO MANDATORy
+
+usunac kolumne login z DB
+typeofaction ma byc typeofaction1

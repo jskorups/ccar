@@ -56,7 +56,7 @@ namespace ccar.Controllers
             try
             {
                 Act.Save();
-               
+
             }
             catch (Exception ex)
             {
@@ -64,9 +64,9 @@ namespace ccar.Controllers
             }
 
             return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
-           
-            
-            
+
+
+
             //emailClass email = new emailClass();
             //emailClass.sendMail();
             /*
@@ -81,6 +81,7 @@ namespace ccar.Controllers
         [Authorize]
         public ActionResult Delete (int id)
         {
+
             ccarEntities ent = new ccarEntities();
             actions act = ent.actions.Find(id);
             ent.actions.Remove(act);

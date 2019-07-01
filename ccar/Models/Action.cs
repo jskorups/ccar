@@ -84,7 +84,7 @@ namespace ccar.Models
             act.id = a.id;
             act.idReason = a.idReason;
             act.idInitiator = a.idInitiator;
-            act.originationDate = DateTime.Now;
+            act.originationDate = a.originationDate;
             act.idTypeOfAction = a.idTypeOfAction;
             act.problem = a.problem;
             act.rootCause = a.rootCause;
@@ -126,7 +126,10 @@ namespace ccar.Models
             {
 
                 ccarEntities ent = new ccarEntities();
+
                 this.idInitiator = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.id).SingleOrDefault();
+                this.originationDate = DateTime.Now;
+
                 ent.actions.Add(action.ConvertToActionsFromDb(this));
                 ent.SaveChanges();
                 //emailClass.sendMail(responsible.getEmailAdress(Act.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
@@ -135,20 +138,18 @@ namespace ccar.Models
             else
             {
                 ccarEntities ent = new ccarEntities();
+
                 if (this.idProgress == 5)
                 {
                     this.completionDate = DateTime.Now;
                 }
-                //if (this.idInitiator != null)
-                //{
-                //    ent.Entry(this).State = EntityState.Modified;
-                //    ent.Entry(this).Property(x => x.idInitiator).IsModified = false;
-                //    ent.Entry(action.ConvertToActionsFromDb(this)).State = EntityState.Modified;
-                //    ent.SaveChanges();
 
-                //}
+
+                ent.Entry(action.ConvertToActionsFromDb(this)).State = EntityState.Modified;
+                    ent.SaveChanges();
+
+                }
             }
 
         }
     }
-}
