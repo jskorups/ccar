@@ -92,8 +92,7 @@ namespace ccar.Controllers
         [HttpGet]
         public ActionResult Logowanie()
         {
-           
-
+          
             return View();
         }
         [HttpPost]

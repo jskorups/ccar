@@ -20,14 +20,10 @@
             @Html.ValidationMessageFor(model => model.Reason)
             @Html.DropDownListFor(model => model.idReason, new SelectList(ccar.Models.Reason.GetReasonList(), "id", "reason"), new { @class = "form-control" })
         </div>
-
         <div class="col-md-1 mb-1">
             @Html.Label("Add", new { @class = "control-label" })
             <button type="button" class="btn btn-default" style="display:block; background-color:darkmagenta" onclick="PopupForm('@Url.Action("AddOrEditRsn","Reason")')"> <span class="glyphicon glyphicon-plus" style="color:white; background-color:darkmagenta" aria-hidden="true"></span></button>
         </div>
-
-
-
         @*<div class="col-md-3 mb-3">
             @Html.Label("Initiator", new { @class = "control-label" })*@
         @*@Html.EditorFor(model => model.idInitiator, new { htmlAttributes = new { @class = "form-control" } })*@
@@ -87,10 +83,10 @@
             @*@Html.EditorFor(model => model.idProgress, new { htmlAttributes = new { @class = "form-control" } })*@
             @Html.DropDownListFor(model => model.idProgress, new SelectList(ccar.Models.Progress.GetProgressList(), "id", "progressValue"), new { @class = "form-control" })
         </div>
-        <div class="col-md-4 mb-4">
+        @*<div class="col-md-4 mb-4">
             @Html.Label("Completion date", new { @class = "control-label" })
             @Html.EditorFor(model => model.completionDate, new { htmlAttributes = new { @class = "form-control" } })
-        </div>
+        </div>*@
     </div>
 
     <div class="form-group row">
@@ -111,7 +107,7 @@
             <input type="reset" value="Reset" class="btn btn-danger" style="width:150px; height:40px" />
         </div>
     </div>
-}
+
 
 <link href="~/Content/Site.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

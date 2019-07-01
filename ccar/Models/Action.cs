@@ -12,8 +12,8 @@ namespace ccar.Models
 {
     public class action
     {
-        
-        
+
+
         // 1:1 from DB
         public int id { get; set; }
         [Required(ErrorMessage = "This Field is Required")]
@@ -23,7 +23,7 @@ namespace ccar.Models
 
         [DataType(DataType.Date)]
         public DateTime? originationDate { get; set; }
-        public int idTypeOfAction { get; set; }
+        public int? idTypeOfAction { get; set; }
         public string problem { get; set; }
         public string rootCause { get; set; }
         public string correctiveAction { get; set; }
@@ -38,11 +38,12 @@ namespace ccar.Models
 
 
 
-        public static List<actionView> fromActionsDB (List<actionView> aList)
+        public static List<actionView> fromActionsDB(List<actionView> aList)
         {
-            List<actionView> actionList = aList.Select(x => new actionView() {
-                id = x.id ,
-                initiator =  x.initiator,
+            List<actionView> actionList = aList.Select(x => new actionView()
+            {
+                id = x.id,
+                initiator = x.initiator,
                 reason = x.reason,
                 problem = x.problem,
                 originationDate = x.originationDate,
@@ -51,7 +52,8 @@ namespace ccar.Models
                 completionDate = x.completionDate,
                 responsible = x.responsible,
                 progressValue = x.progressValue
-            /*, measureEffic = x.measureEffic , dateOfEffic = x.dateOfEffic*/}).ToList();
+                /*, measureEffic = x.measureEffic , dateOfEffic = x.dateOfEffic*/
+            }).ToList();
             return actionList;
 
 
@@ -96,18 +98,15 @@ namespace ccar.Models
             return act;
         }
 
-        public static action ConvertFromEFtoModel (actions a)
+        public static action ConvertFromEFtoModel(actions a)
         {
-            var dateAndTime = DateTime.Now;
-            var date = dateAndTime.Date;
+   
 
             action act = new action();
             act.id = a.id;
             act.idReason = a.idReason;
-
             act.idInitiator = a.idInitiator;
             act.originationDate = a.originationDate;
-            //act.originationDate = String.Format("{0:d/M/yyyy}",a.originationDate);
             act.idTypeOfAction = a.idTypeOfAction;
             act.problem = a.problem;
             act.rootCause = a.rootCause;
@@ -120,35 +119,36 @@ namespace ccar.Models
             act.dateOfEffic = a.dateOfEffic;
             return act;
         }
-       
-        public virtual void Save()
+
+        public void Save()
         {
             if (this.id == 0)
             {
-                
 
                 ccarEntities ent = new ccarEntities();
-
                 this.idInitiator = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.id).SingleOrDefault();
                 ent.actions.Add(action.ConvertToActionsFromDb(this));
                 ent.SaveChanges();
                 //emailClass.sendMail(responsible.getEmailAdress(Act.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
-  
+
             }
             else
             {
-              
-
                 ccarEntities ent = new ccarEntities();
                 if (this.idProgress == 5)
                 {
                     this.completionDate = DateTime.Now;
                 }
-                ent.Entry(action.ConvertToActionsFromDb(this)).State = EntityState.Modified;
-                ent.SaveChanges();
-  
-            }
-        }
+                //if (this.idInitiator != null)
+                //{
+                //    ent.Entry(this).State = EntityState.Modified;
+                //    ent.Entry(this).Property(x => x.idInitiator).IsModified = false;
+                //    ent.Entry(action.ConvertToActionsFromDb(this)).State = EntityState.Modified;
+                //    ent.SaveChanges();
 
+                //}
+            }
+
+        }
     }
 }

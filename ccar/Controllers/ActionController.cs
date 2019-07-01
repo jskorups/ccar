@@ -15,8 +15,7 @@ namespace ccar.Controllers
         public ActionResult Index()
         {
 
-            
-
+           
             return View();
         }
 
@@ -24,9 +23,7 @@ namespace ccar.Controllers
         public ActionResult GetData()
         {
             using (ccarEntities ent = new ccarEntities())
-            {
-            
-
+            {        
                 List<actionView> actList = new List<actionView>();
 
                 actList = action.fromActionsDB(ent.actionView.ToList());
@@ -65,11 +62,13 @@ namespace ccar.Controllers
             {
                 return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
+
             return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
+           
+            
+            
             //emailClass email = new emailClass();
             //emailClass.sendMail();
-
-
             /*
              1.pobrac adres mailowy na podtsawie ID act (w modelu initaiotor), get emailadress, zwraca maila
              2. sprawdzanie czy nie jest null i czy jest poprawny - w metodzie
