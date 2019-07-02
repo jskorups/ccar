@@ -181,7 +181,9 @@
 
                             $.notify(data.message, {
                                 globalPosition: "top center",
-                                className: "success"
+                                //className: "danger",
+                                type: "danger"
+                               
                             })
 
                         }
@@ -190,21 +192,21 @@
                 });
             }
         }
-        $.notify.addStyle('happyblue', {
-            html: "<div>☺<span data-notify-text/>☺</div>",
-            classes: {
-                base: {
-                    "width":"500px",
-                    "white-space": "nowrap",
-                    "background-color": "lightblue",
-                    "padding": "5px"
-                },
-                superblue: {
-                    "color": "white",
-                    "background-color": "blue"
-                }
-            }
-        });
+        //$.notify.addStyle('happyblue', {
+        //    html: "<div>☺<span data-notify-text/>☺</div>",
+        //    classes: {
+        //        base: {
+        //            "width":"500px",
+        //            "white-space": "nowrap",
+        //            "background-color": "lightblue",
+        //            "padding": "5px"
+        //        },
+        //        superblue: {
+        //            "color": "white",
+        //            "background-color": "blue"
+        //        }
+        //    }
+        //});
  
     </script>
 

@@ -35,7 +35,8 @@ namespace ccar.Controllers
         [Authorize]
         public ActionResult AddOrEdit(int id = 0)
         {
-            if (id == 0){
+            if (id == 0)
+            {
 
                 return View(new action());
             }
@@ -45,7 +46,7 @@ namespace ccar.Controllers
                 actions test = ent.actions.Where(x => x.id == id).FirstOrDefault();
                 return View(action.ConvertFromEFtoModel(test));
             }
-           
+
         }
 
 

@@ -319,10 +319,10 @@
     <Content Include="Views\Action\Index.cshtml" />
     <Content Include="Views\Action\AddOrEdit.cshtml" />
     <Content Include="Views\Reason\AddOrEditRsn.cshtml" />
+    <Content Include="Views\typeOfAction\AddOrEditToA.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\typeOfAction\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

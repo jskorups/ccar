@@ -9,7 +9,7 @@ namespace ccar.Controllers
     public class typeOfActionController : Controller
     {
         // GET: typeOfAction
-        public ActionResult Index()
+        public ActionResult AddOrEditToA()
         {
             return View();
         }

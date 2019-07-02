@@ -24,5 +24,27 @@ namespace ccar.Models
             return fromReason(ent.reasons.ToList());
         }
 
+        public static reasons ConvertToReasonsFromDb(Reason r)
+        {
+            reasons rea = new reasons();
+            rea.id = r.id;
+            rea.reason = r.reason;
+
+            return rea;
+        }
+
+
+
+
+        public void Save()
+        {
+            if (this.id == 0)
+            {
+                ccarEntities ent = new ccarEntities();
+                ent.reasons.Add(Reason.ConvertToReasonsFromDb(this));
+            }
+        }
+
     }
+
 }

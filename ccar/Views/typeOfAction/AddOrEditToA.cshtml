@@ -1,4 +1,4 @@
-﻿@model ccar.Models.Reason
+﻿@model ccar.Models.typeOfAction
 
 @{
     /**/
@@ -9,26 +9,26 @@
 <!DOCTYPE html>
 
 
-@using (Html.BeginForm("AddOrEditRsn", "Reason", FormMethod.Post))
+@using (Html.BeginForm("AddOrEditToA", "typeOfAction", FormMethod.Post))
 {
     @Html.HiddenFor(model => model.id)
 
-<div class="form-group row">
-    <div class="col-md-3 mb-3 " style="align-content:center; margin:auto">
-    </div>
-    <div class="col-md-6 mb-6 " style="align-content:center; margin:auto">
-        @Html.Label("Reason", new { @class = "control-label" })
-        @Html.EditorFor(model => model.reason, new { htmlAttributes = new { @class = "form-control" } })
-    </div>
-    <div class="col-md-3 mb-3 " style="align-content:center; margin:auto">
-    
-    </div>
-</div>
-
-    <div class="form-group row">
-        <div class="col-md-12 mb-12 text-center">
-            <input type="submit" value="Submit" class="btn btn-success" style="width:150px; height:40px" />
-            <input type="reset" value="Reset" class="btn btn-danger" style="width:150px; height:40px" />
+    <div class="form-group container">
+        <div class="row">
+            <div class="col-md-3 mb-3 " style="align-content:center; margin:auto">
+            </div>
+            <div class="col-md-6 mb-6 " style="align-content:center; text-align:center; margin-bottom:15px;">
+                @Html.Label("Type of action", new { @class = "control-label" })
+                @Html.EditorFor(model => model.typeOfAction1, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="col-md-3 mb-3 " style="align-content:center; margin:auto">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-12 mb-12 text-center">
+                <input type="submit" value="Submit" class="btn btn-success" style="width:150px; height:40px" />
+                <input type="reset" value="Reset" class="btn btn-danger" style="width:150px; height:40px" />
+            </div>
         </div>
     </div>
 }

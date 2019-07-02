@@ -8,7 +8,7 @@ namespace ccar.Controllers
 {
     public class ReasonController : Controller
     {
-        // GET: Reason
+        [HttpGet]
         public ActionResult AddOrEditRsn()
         {
             return View();
