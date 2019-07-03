@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ccar.Models
 {
-    public class Reason
+    public class ReasonModel
     {
         // 1:1 from DB
         public int id { get; set; }
@@ -13,18 +13,28 @@ namespace ccar.Models
 
      
         // List of reasons
-        public static List<Reason> fromReason (List<reasons> rList)
+        public static List<ReasonModel> fromReason (List<reasons> rList)
         {
-            List<Reason> listReason = rList.Select(x => new Reason() { id = x.id, reason = x.reason }).ToList();
+            List<ReasonModel> listReason = rList.Select(x => new ReasonModel() { id = x.id, reason = x.reason }).ToList();
             return listReason;
         }
-        public static List<Reason> GetReasonList()
+        public static List<ReasonModel> GetReasonList()
         {
             ccarEntities ent = new ccarEntities();
             return fromReason(ent.reasons.ToList());
         }
 
-        public static reasons ConvertToReasonsFromDb(Reason r)
+        public ReasonModel()
+        {
+       
+        }
+
+        public ReasonModel(string Reason)
+        {
+            reason = Reason;
+        }
+
+        public static reasons ConvertFromModelToDB(ReasonModel r)
         {
             reasons rea = new reasons();
             rea.id = r.id;
@@ -33,15 +43,21 @@ namespace ccar.Models
             return rea;
         }
 
-
-
+        public static ReasonModel ConvertFromDbToModel (reasons r)
+        {
+          
+            ReasonModel rea = new ReasonModel();
+            rea.id = r.id;
+            rea.reason = r.reason;
+            return rea;
+        }
 
         public void Save()
         {
             if (this.id == 0)
             {
                 ccarEntities ent = new ccarEntities();
-                ent.reasons.Add(Reason.ConvertToReasonsFromDb(this));
+                ent.reasons.Add(ReasonModel.ConvertFromModelToDB(this));
             }
         }
 

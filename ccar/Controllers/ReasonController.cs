@@ -3,15 +3,80 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ccar.Models;
 
 namespace ccar.Controllers
 {
     public class ReasonController : Controller
     {
+        //GET REASON
         [HttpGet]
         public ActionResult AddOrEditRsn()
         {
-            return View();
+            return View("Create");
         }
+        // Reason List
+        [HttpGet]
+        public ActionResult ReasonList()
+        {
+            List<ReasonModel> reas = new List<ReasonModel>();
+            ccarEntities ent = new ccarEntities();
+            reas = ReasonModel.fromReason(ent.reasons.ToList());
+            return View(reas);
+        }
+        // Create
+        [HttpGet]
+        public ActionResult Create()
+        {
+            ReasonModel r = new ReasonModel();
+            return View(r);
+        }
+
+        //Create post
+        [HttpPost]
+        public ActionResult Create(ReasonModel r)
+        {
+            if (ModelState.IsValid)
+            {
+                ccarEntities ent = new ccarEntities();
+                ent.reasons.Add(ReasonModel.ConvertFromModelToDB(r));
+                ent.SaveChanges();
+                return RedirectToAction("ReasonList");
+            }
+            return View(r);
+        }
+        //Edit
+        public ActionResult Edit(int id)
+        {
+            ccarEntities ent = new ccarEntities();
+            ReasonModel rea = ReasonModel.ConvertFromDbToModel(ent.reasons.Where(x => x.id == id).FirstOrDefault());
+            return View(rea);
+        }
+        // Edit post
+        [HttpPost]
+        public ActionResult Edit (ReasonModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ccarEntities ent = new ccarEntities();
+                reasons rea = ent.reasons.Where(x => x.id == model.id).FirstOrDefault();
+
+                rea.id = model.id;
+                rea.reason = model.reason;
+                ent.SaveChanges();
+                return RedirectToAction("ReasonList");
+            }
+            return View(model);
+            
+        }
+        
+
+
+
+
+
     }
+
+
+
 }
