@@ -69,6 +69,31 @@ namespace ccar.Controllers
             return View(model);
             
         }
+
+        // Delete Get
+        [HttpGet]
+        public ActionResult Delete (int id)
+        {
+            ccarEntities ent = new ccarEntities();
+            ReasonModel rea = ReasonModel.ConvertFromDbToModel(ent.reasons.Where(x => x.id == id).FirstOrDefault());
+            return View(rea);
+        }
+
+
+        // Delete Post
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        [HttpGet]
+
+        public ActionResult DeleteConfirmed (int id)
+        {
+            ccarEntities ent = new ccarEntities();
+            reasons rea = ent.reasons.Find(id);
+            ent.reasons.Remove(rea);
+            return RedirectToAction("ReasonList");
+
+
+        }
         
 
 
