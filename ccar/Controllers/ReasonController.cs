@@ -81,21 +81,36 @@ namespace ccar.Controllers
 
 
         // Delete Post
+
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [HttpGet]
 
         public ActionResult DeleteConfirmed (int id)
         {
-            ccarEntities ent = new ccarEntities();
-            reasons rea = ent.reasons.Find(id);
-            ent.reasons.Remove(rea);
+            try
+            {
+                ccarEntities ent = new ccarEntities();
+                reasons rea = ent.reasons.Find(id);
+                ent.reasons.Remove(rea);
+                ent.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("DeleteRefused");
+
+            }
+  
             return RedirectToAction("ReasonList");
 
 
         }
-        
 
+        [HttpGet]
+        public ActionResult DeleteRefused()
+        {
+            return View();
+        }
 
 
 

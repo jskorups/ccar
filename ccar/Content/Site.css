@@ -83,8 +83,12 @@ textarea {
 .bad {
     background-color: red !important;
 }
-
-
+#edit {
+    background-color: darkseagreen 
+}
+#delete{
+    background-color:indianred;
+}
 
 
 
