@@ -23,17 +23,14 @@ namespace ccar.Models
             ccarEntities ent = new ccarEntities();
             return fromReason(ent.reasons.ToList());
         }
-
         public ReasonModel()
         {
        
         }
-
         public ReasonModel(string Reason)
         {
             reason = Reason;
         }
-
         public static reasons ConvertFromModelToDB(ReasonModel r)
         {
             reasons rea = new reasons();
@@ -42,7 +39,6 @@ namespace ccar.Models
 
             return rea;
         }
-
         public static ReasonModel ConvertFromDbToModel (reasons r)
         {
           
@@ -60,7 +56,6 @@ namespace ccar.Models
                 ent.reasons.Add(ReasonModel.ConvertFromModelToDB(this));
             }
         }
-
     }
 
 }

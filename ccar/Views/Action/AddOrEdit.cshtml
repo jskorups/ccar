@@ -26,37 +26,46 @@
 
             <div class="col-md-1 mb-1">
                 @Html.Label("Add", new { @class = "control-label" })
-                <button type="button" class="btn btn-default" style="display:block; background-color:darkmagenta" onclick="PopupForm('@Url.Action("AddOrEditRsn","Reason")')"> <span class="glyphicon glyphicon-plus" style="color:white; background-color:darkmagenta" aria-hidden="true"></span></button>
+                <button type="button" class="btn btn-default" style="display:block; background-color:darkmagenta" onclick="PopupForm('@Url.Action("AddOrEditRsn2","Reason")')"> <span class="glyphicon glyphicon-plus" style="color:white; background-color:darkmagenta" aria-hidden="true"></span></button>
             </div>
-                <div class="col-md-1 mb-1">
-                    @Html.Label("Add", new { @class = "control-label" })
-                    <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-                </div>
-                @*<div class="col-md-3 mb-3">
+            <div class="col-md-1 mb-1" style="margin-left:-45px;">
+                @Html.Label("More", new { @class = "control-label" })
+                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+            </div>
+            @*<div class="col-md-3 mb-3">
         @Html.Label("Initiator", new { @class = "control-label" })*@
-                @*@Html.EditorFor(model => model.idInitiator, new { htmlAttributes = new { @class = "form-control" } })*@
-                @*@Html.DropDownListFor(model => model.idInitiator, new SelectList(ccar.Models.initiator.GetInitiatorsList(), "id", "name"), new { @class = "form-control" })
+            @*@Html.EditorFor(model => model.idInitiator, new { htmlAttributes = new { @class = "form-control" } })*@
+            @*@Html.DropDownListFor(model => model.idInitiator, new SelectList(ccar.Models.initiator.GetInitiatorsList(), "id", "name"), new { @class = "form-control" })
         </div>*@
-                @*<div class="col-md-4 mb-4">
+            @*<div class="col-md-4 mb-4">
             @Html.Label("Origination Date", new { @class = "control-label" })
             @Html.EditorFor(model => model.originationDate, new { htmlAttributes = new { @class = "form-control" } })
 
         </div>*@
-                <div class="col-md-3 mb-3">
-                    @Html.Label("Type of action", new { @class = "control-label" })
-                    @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(ccar.Models.typeOfAction.GetTypeOfActionList(), "id", "typeOfAction1"), new { @class = "form-control" })
-                </div>
-                <div class="col-md-1 mb-1">
-                    @Html.Label("Add", new { @class = "control-label" })
-                    <button type="button" class="btn btn-default" style="display:block; background-color:darkmagenta" onclick="ToaForm('@Url.Action("AddOrEditToA","typeOfAction")')"> <span class="glyphicon glyphicon-plus" style="color:white; background-color:darkmagenta" aria-hidden="true"></span></button>
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    @Html.Label("Responsible", new { @class = "control-label" })
-                    @*@Html.EditorFor(model => model.idResponsible, new { htmlAttributes = new { @class = "form-control" } })*@
-                    @Html.DropDownListFor(model => model.idResponsible, new SelectList(ccar.Models.responsible.GetResponsibleList(), "id", "name"), new { @class = "form-control" })
-                </div>
+            <div class="col-md-2 mb-3">
+                @Html.Label("Type of action", new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(ccar.Models.typeOfActionModel.GetTypeOfActionList(), "id", "typeOfAction1"), new { @class = "form-control" })
             </div>
+            <div class="col-md-1 mb-1">
+                @Html.Label("Add", new { @class = "control-label" })
+                <button type="button" class="btn btn-default" style="display:block; background-color:darkmagenta" onclick="ToaForm('@Url.Action("AddOrEditToA","typeOfAction")')"> <span class="glyphicon glyphicon-plus" style="color:white; background-color:darkmagenta" aria-hidden="true"></span></button>
+            </div>
+            <div class="col-md-1 mb-1 " style="margin-left:-45px;">
+                @Html.Label("More", new { @class = "control-label" })
+                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+            </div>
+
+            <div class="col-md-2 mb-3">
+                @Html.Label("Responsible", new { @class = "control-label" })
+                @*@Html.EditorFor(model => model.idResponsible, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownListFor(model => model.idResponsible, new SelectList(ccar.Models.responsible.GetResponsibleList(), "id", "name"), new { @class = "form-control" })
+            </div>
+            <div class="col-md-1 mb-1">
+                @Html.Label("Add", new { @class = "control-label" })
+                <button type="button" class="btn btn-default" style="display:block; background-color:darkmagenta" onclick="ToaForm('@Url.Action("AddOrEditToA","typeOfAction")')"> <span class="glyphicon glyphicon-plus" style="color:white; background-color:darkmagenta" aria-hidden="true"></span></button>
+            </div>
+
+        </div>
     </div>
 
     <div class="form-group container">

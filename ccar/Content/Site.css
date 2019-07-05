@@ -60,6 +60,14 @@ textarea {
     width: 200px !important;
     font-size: 18px !important;
 }
+#addBtn2 {
+    margin-bottom: 10px !important;
+    background-color: deepskyblue !important;
+    color: white !important;
+    height: 50px !important;
+    width: 250px !important;
+    font-size: 18px !important;
+}
 .vertical-center {
     min-height: 100%; /* Fallback for browsers do NOT support vh unit */
     min-height: 100vh; /* These two lines are counted as one :-)       */

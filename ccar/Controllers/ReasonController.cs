@@ -15,6 +15,12 @@ namespace ccar.Controllers
         {
             return View("Create");
         }
+
+        [HttpGet]
+        public ActionResult AddOrEditRsn2()
+        {
+            return View("AddOrEditRsn");
+        }
         // Reason List
         [HttpGet]
         public ActionResult ReasonList()
@@ -79,10 +85,7 @@ namespace ccar.Controllers
             return View(rea);
         }
 
-
         // Delete Post
-
-
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
 
@@ -100,10 +103,7 @@ namespace ccar.Controllers
                 return RedirectToAction("DeleteRefused");
 
             }
-  
             return RedirectToAction("ReasonList");
-
-
         }
 
         [HttpGet]

@@ -187,8 +187,8 @@
     <Compile Include="Models\Progress.cs" />
     <Compile Include="Models\responsible.cs" />
     <Compile Include="Models\Login.cs" />
-    <Compile Include="Models\Reason.cs" />
-    <Compile Include="Models\typeOfAction.cs" />
+    <Compile Include="Models\ReasonModel.cs" />
+    <Compile Include="Models\typeOfActionModel.cs" />
     <Compile Include="progress.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
@@ -326,6 +326,10 @@
     <Content Include="Views\Reason\Delete.cshtml" />
     <Content Include="Views\Reason\DeleteConfirmed.cshtml" />
     <Content Include="Views\Reason\DeleteRefused.cshtml" />
+    <Content Include="Views\typeOfAction\ToAlist.cshtml" />
+    <Content Include="Views\typeOfAction\Create.cshtml" />
+    <Content Include="Views\typeOfAction\Edit.cshtml" />
+    <Content Include="Views\typeOfAction\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

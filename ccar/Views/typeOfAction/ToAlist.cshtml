@@ -1,23 +1,17 @@
 ﻿@model IEnumerable<ccar.Models.typeOfActionModel>
-
 @{
     ViewBag.Title = "ToAlist";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/Content/Site.css" rel="stylesheet" />
-
 </head>
 <h2>ReasonList</h2>
 <p>
-
     @*@Html.ActionLink("Create New", "Create")*@
-    <button id="addBtn" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Create", "typeOfAction")'"><i class="fa fa-plus-square"></i> Add new reason</button>
-
+    <button id="addBtn2" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Create", "typeOfAction")'"><i class="fa fa-plus-square"></i> Add new type of action</button>
 </p>
-
 <div class="container">
     <div class="row">
         <div class="col-md-1">
@@ -28,12 +22,11 @@
             <table class="table">
                 <tr>
                     <th>
-                        Reason
+                        Type of action
                         @*@Html.DisplayNameFor(model => model.reason)*@
                     </th>
                     <th></th>
                 </tr>
-
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -43,7 +36,7 @@
                         <td>
 
                             <button id="edit" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Edit", "typeOfAction", new { id = item.id })'"><i class="fa fa-edit"></i>   Edit</button>
-                            <button id="delete" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Delete", "Reason", new { id = item.id })'"><i class="fa fa-trash"></i>   Delete</button>
+                            <button id="delete" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Delete", "typeOfAction", new { id = item.id })'"><i class="fa fa-trash"></i>   Delete</button>
 
 
                             @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
