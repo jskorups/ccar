@@ -9,7 +9,8 @@
 <!DOCTYPE html>
 
 
-@using (Html.BeginForm("AddOrEditRsn", "Reason", FormMethod.Post))
+
+@using (Html.BeginForm("AddOrEdit", "Action", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
 {
     @Html.HiddenFor(model => model.id)
 
@@ -24,11 +25,56 @@
             <div class="col-md-3 mb-3 " style="align-content:center; margin:auto">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="row">
             <div class="col-md-12 mb-12 text-center">
                 <input type="submit" value="Submit" class="btn btn-success" style="width:150px; height:40px" />
                 <input type="reset" value="Reset" class="btn btn-danger" style="width:150px; height:40px" />
             </div>
         </div>
     </div>
+
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script>
+
+
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        //if (data.success) {
+                            Popup.dialog('close');
+                            dataTable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+
+                            })
+
+                        //}
+                    }
+                });
+            }
+            return false;
+        }
+
+
+
+    </script>
+
+
 }
+
+
