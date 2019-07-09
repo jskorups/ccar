@@ -97,6 +97,14 @@ textarea {
 #delete{
     background-color:indianred;
 }
-
+.text-danger {
+    color: red !important;
+}
+/*.field-validation-error {
+    color: red !important;
+}*/
+.koko {
+    color: red !important;
+}
 
 

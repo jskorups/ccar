@@ -15,6 +15,10 @@
     @Html.HiddenFor(model => model.originationDate)
     @Html.HiddenFor(model => model.idInitiator)
 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @id = "koko"})
+
+
     <div class="form-group container">
         <div class="row">
             <div class="col-md-3 mb-3">
@@ -33,15 +37,15 @@
                 <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
             </div>
             @*<div class="col-md-3 mb-3">
-        @Html.Label("Initiator", new { @class = "control-label" })*@
+                @Html.Label("Initiator", new { @class = "control-label" })*@
             @*@Html.EditorFor(model => model.idInitiator, new { htmlAttributes = new { @class = "form-control" } })*@
             @*@Html.DropDownListFor(model => model.idInitiator, new SelectList(ccar.Models.initiator.GetInitiatorsList(), "id", "name"), new { @class = "form-control" })
-        </div>*@
+                </div>*@
             @*<div class="col-md-4 mb-4">
-            @Html.Label("Origination Date", new { @class = "control-label" })
-            @Html.EditorFor(model => model.originationDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.Label("Origination Date", new { @class = "control-label" })
+                    @Html.EditorFor(model => model.originationDate, new { htmlAttributes = new { @class = "form-control" } })
 
-        </div>*@
+                </div>*@
             <div class="col-md-2 mb-3">
                 @Html.Label("Type of action", new { @class = "control-label" })
                 @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(ccar.Models.typeOfActionModel.GetTypeOfActionList(), "id", "typeOfAction1"), new { @class = "form-control" })
@@ -71,17 +75,27 @@
     <div class="form-group container">
         <div class="row">
             <div class="col-md-4 mb-4">
-                @Html.Label("Problem", new { @class = "control-label" })
+
+
+                @*@Html.Label("problem", new { @class = "control-label" })
+        @Html.ValidationMessageFor(m => m.problem, "wtf???", new { htmlAttributes = new { @class = "form-control" } })*@
                 @*@Html.EditorFor(model => model.problem, new { htmlAttributes = new { @class = "form-control" } })*@
 
-                @Html.TextAreaFor(model => model.problem, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.TextAreaFor(model => model.problem, 5, 39, new { htmlAttributes = new { @class = "form-control" } })*@
                 @*@Html.TextAreaFor(model => model.problem, new { htmlAttributes = new { @class = "form-control" } })*@
 
+
+                @Html.Label("problem", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.problem, null, new { @class = "koko" })
+                @Html.TextAreaFor(model => model.problem, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
+
+
+
             </div>
-            <div class="col-md-4 mb-4">
-                @Html.Label("Root Cause", new { @class = "control-label" })
-                @Html.TextAreaFor(model => model.rootCause, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.EditorFor(model => model.rootCause, new { htmlAttributes = new { @class = "form-control", @style = "height: 100px;" } })*@
+        <div class="col-md-4 mb-4">
+            @Html.Label("Root Cause", new { @class = "control-label" })
+            @Html.TextAreaFor(model => model.rootCause, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.EditorFor(model => model.rootCause, new { htmlAttributes = new { @class = "form-control", @style = "height: 100px;" } })*@
 
             </div>
             <div class="col-md-4 mb-4">

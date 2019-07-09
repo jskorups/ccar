@@ -12,6 +12,8 @@ namespace ccar.Controllers
     public class ActionController : Controller
     {
         [Authorize]
+
+        [HttpGet]
         public ActionResult Index()
         {
 
@@ -20,6 +22,8 @@ namespace ccar.Controllers
         }
 
         [Authorize]
+
+        [HttpGet]
         public ActionResult GetData()
         {
             using (ccarEntities ent = new ccarEntities())
@@ -50,8 +54,9 @@ namespace ccar.Controllers
         }
 
 
-        [HttpPost]
+      
         [Authorize]
+        [HttpPost]
         public ActionResult AddOrEdit(action Act)
         {
             try
@@ -78,8 +83,9 @@ namespace ccar.Controllers
 
         }
 
-        [HttpPost]
+       
         [Authorize]
+        [HttpPost]
         public ActionResult Delete (int id)
         {
 

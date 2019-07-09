@@ -24,6 +24,8 @@ namespace ccar.Models
         [DataType(DataType.Date)]
         public DateTime? originationDate { get; set; }
         public int? idTypeOfAction { get; set; }
+
+        [Required(ErrorMessage = "Please enter problem")]
         public string problem { get; set; }
         public string rootCause { get; set; }
         public string correctiveAction { get; set; }
