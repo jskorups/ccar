@@ -16,17 +16,28 @@
     @Html.HiddenFor(model => model.idInitiator)
 
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @id = "koko"})
+    @Html.ValidationSummary(true, "", new { @id = "koko" })
 
 
     <div class="form-group container">
         <div class="row">
             <div class="col-md-3 mb-3">
                 @Html.Label("Reason", new { @class = "control-label" })
+
+
+                @Html.ValidationMessageFor(model => model.idReason, null, new { @class = "koko" })
+
+
                 @*@Html.EditorFor(model => model.idReason, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Reason)
-                @Html.DropDownListFor(model => model.idReason, new SelectList(ccar.Models.ReasonModel.GetReasonList(), "id", "reason"), new { @class = "form-control" })
+                @{
+                    var listTemp = (ccar.Models.ReasonModel.GetReasonList());
+                    listTemp.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
+                }
+
+                @Html.DropDownListFor(model => model.idReason, new SelectList(listTemp, "id", "reason"), new { @class = "form-control" })
             </div>
+
 
             <div class="col-md-1 mb-1">
                 @Html.Label("Add", new { @class = "control-label" })
@@ -78,7 +89,7 @@
 
 
                 @*@Html.Label("problem", new { @class = "control-label" })
-        @Html.ValidationMessageFor(m => m.problem, "wtf???", new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(m => m.problem, "wtf???", new { htmlAttributes = new { @class = "form-control" } })*@
                 @*@Html.EditorFor(model => model.problem, new { htmlAttributes = new { @class = "form-control" } })*@
 
                 @*@Html.TextAreaFor(model => model.problem, 5, 39, new { htmlAttributes = new { @class = "form-control" } })*@
@@ -92,10 +103,10 @@
 
 
             </div>
-        <div class="col-md-4 mb-4">
-            @Html.Label("Root Cause", new { @class = "control-label" })
-            @Html.TextAreaFor(model => model.rootCause, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
-            @*@Html.EditorFor(model => model.rootCause, new { htmlAttributes = new { @class = "form-control", @style = "height: 100px;" } })*@
+            <div class="col-md-4 mb-4">
+                @Html.Label("Root Cause", new { @class = "control-label" })
+                @Html.TextAreaFor(model => model.rootCause, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.rootCause, new { htmlAttributes = new { @class = "form-control", @style = "height: 100px;" } })*@
 
             </div>
             <div class="col-md-4 mb-4">

@@ -117,7 +117,7 @@ namespace ccar.Controllers
         public ActionResult Wylogowanie()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Logowanie", "Login");
         }
         #endregion
     }

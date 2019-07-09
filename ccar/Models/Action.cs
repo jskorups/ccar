@@ -16,7 +16,8 @@ namespace ccar.Models
 
         // 1:1 from DB
         public int id { get; set; }
-        [Required(ErrorMessage = "This Field is Required")]
+
+        [Range(1, float.MaxValue, ErrorMessage = "Please enter reason")]
         public int idReason { get; set; }
         public string Reason { get; set; }
         public int? idInitiator { get; set; }

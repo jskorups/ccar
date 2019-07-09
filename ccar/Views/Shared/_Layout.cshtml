@@ -42,10 +42,10 @@
                         </ul>
                     </li>
                     <li><a href="components.html">Dummy</a></li>
-                    <li>@Html.ActionLink("Zalogowany jako "+User.Identity.Name, "Logowanie", "Login")</li>
+                    <li>@Html.ActionLink("Zalogowany jako " + User.Identity.Name, "Logowanie", "Login")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-
+                        <li>@Html.ActionLink("Wyloguj ","Wylogowanie", "Login")</li>
                     }
                 </ul>
             </nav>

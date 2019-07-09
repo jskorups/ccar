@@ -67,7 +67,7 @@ namespace ccar.Controllers
                 ccarEntities ent = new ccarEntities();
                 reasons rea = ent.reasons.Where(x => x.id == model.id).FirstOrDefault();
 
-                rea.id = model.id;
+                rea.id = Convert.ToInt32(model.id==null?0:model.id);
                 rea.reason = model.reason;
                 ent.SaveChanges();
                 return RedirectToAction("ReasonList");

@@ -8,7 +8,7 @@ namespace ccar.Models
     public class ReasonModel
     {
         // 1:1 from DB
-        public int id { get; set; }
+        public int? id { get; set; }
         public string reason { get; set; }
 
      
@@ -34,7 +34,7 @@ namespace ccar.Models
         public static reasons ConvertFromModelToDB(ReasonModel r)
         {
             reasons rea = new reasons();
-            rea.id = r.id;
+            rea.id = Convert.ToInt32(r.id==null?0:r.id);
             rea.reason = r.reason;
 
             return rea;
