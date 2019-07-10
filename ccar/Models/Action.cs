@@ -17,7 +17,7 @@ namespace ccar.Models
         // 1:1 from DB
         public int id { get; set; }
 
-        [Range(1, float.MaxValue, ErrorMessage = "Please enter reason")]
+        [Range(1, float.MaxValue, ErrorMessage = "Required")]
         public int idReason { get; set; }
         public string Reason { get; set; }
         public int? idInitiator { get; set; }
@@ -26,7 +26,7 @@ namespace ccar.Models
         public DateTime? originationDate { get; set; }
         public int? idTypeOfAction { get; set; }
 
-        [Required(ErrorMessage = "Please enter problem")]
+        [Required(ErrorMessage = "Required")]
         public string problem { get; set; }
         public string rootCause { get; set; }
         public string correctiveAction { get; set; }
@@ -36,7 +36,10 @@ namespace ccar.Models
         public int? idProgress { get; set; }
         [DataType(DataType.Date)]
         public DateTime? completionDate { get; set; }
+
+        [Required(ErrorMessage = "Required")]
         public string measureEffic { get; set; }
+        [Required(ErrorMessage = "Required")]
         public string dateOfEffic { get; set; }
 
 
@@ -135,7 +138,7 @@ namespace ccar.Models
 
                 ent.actions.Add(action.ConvertToActionsFromDb(this));
                 ent.SaveChanges();
-                //emailClass.sendMail(responsible.getEmailAdress(Act.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
+                emailClass.sendMail(responsible.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
 
             }
             else

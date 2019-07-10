@@ -22,20 +22,17 @@
     <div class="form-group container">
         <div class="row">
             <div class="col-md-3 mb-3">
-                @Html.Label("Reason", new { @class = "control-label" })
-
-
+                @Html.Label("Reason*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.idReason, null, new { @class = "koko" })
 
+                @*zmodyfikowana lista do reson*@
+                @{
+                    var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
+                    listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
+                }
+                @Html.DropDownListFor(model => model.idReason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control" })
 
                 @*@Html.EditorFor(model => model.idReason, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.ValidationMessageFor(model => model.Reason)
-                @{
-                    var listTemp = (ccar.Models.ReasonModel.GetReasonList());
-                    listTemp.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
-                }
-
-                @Html.DropDownListFor(model => model.idReason, new SelectList(listTemp, "id", "reason"), new { @class = "form-control" })
             </div>
 
 
@@ -58,9 +55,21 @@
 
                 </div>*@
             <div class="col-md-2 mb-3">
-                @Html.Label("Type of action", new { @class = "control-label" })
-                @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(ccar.Models.typeOfActionModel.GetTypeOfActionList(), "id", "typeOfAction1"), new { @class = "form-control" })
+                @Html.Label("Type of action*", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.idTypeOfAction, null, new { @class = "koko" })
+
+                @*zmodyfikowana lista do type of action*@
+
+                @{
+        var listTempToA = (ccar.Models.typeOfActionModel.GetTypeOfActionList());
+        listTempToA.Add(new ccar.Models.typeOfActionModel() { id = 0, typeOfAction1 = null });
+                }
+
+                @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(listTempToA.OrderBy(x=>x.id), "id", "typeOfAction1"), new { @class = "form-control" })
+
             </div>
+
+
             <div class="col-md-1 mb-1">
                 @Html.Label("Add", new { @class = "control-label" })
                 <button type="button" class="btn btn-default" style="display:block; background-color:darkmagenta" onclick="ToaForm('@Url.Action("AddOrEditToA2","typeOfAction")')"> <span class="glyphicon glyphicon-plus" style="color:white; background-color:darkmagenta" aria-hidden="true"></span></button>
@@ -71,9 +80,18 @@
             </div>
 
             <div class="col-md-2 mb-3">
-                @Html.Label("Responsible", new { @class = "control-label" })
+                @Html.Label("Responsible*", new { @class = "control-label" })
                 @*@Html.EditorFor(model => model.idResponsible, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.DropDownListFor(model => model.idResponsible, new SelectList(ccar.Models.responsible.GetResponsibleList(), "id", "name"), new { @class = "form-control" })
+                @*@Html.DropDownListFor(model => model.idResponsible, new SelectList(ccar.Models.responsible.GetResponsibleList(), "id", "name"), new { @class = "form-control" })*@
+
+                @*zmodyfikowana lista do users*@
+
+                @{
+                    var listOfUser = (ccar.Models.responsible.GetResponsibleList());
+                    listOfUser.Add(new ccar.Models.responsible() { id = 0, email = null, firstname = null, surname = null, name = null });
+                }
+                @Html.DropDownListFor(model => model.idResponsible, new SelectList(listOfUser.OrderBy(x => x.id), "id", "name"), new { @class = "form-control" })
+
             </div>
             <div class="col-md-1 mb-1">
                 @Html.Label("Add", new { @class = "control-label" })
@@ -96,7 +114,7 @@
                 @*@Html.TextAreaFor(model => model.problem, new { htmlAttributes = new { @class = "form-control" } })*@
 
 
-                @Html.Label("problem", new { @class = "control-label" })
+                @Html.Label("Problem*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.problem, null, new { @class = "koko" })
                 @Html.TextAreaFor(model => model.problem, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
 
@@ -121,7 +139,7 @@
     <div class="form-group container">
         <div class="row">
             <div class="col-md-4 mb-4">
-                @Html.Label("Target date", new { @class = "control-label" })
+                @Html.Label("Target date*", new { @class = "control-label" })
                 @Html.EditorFor(model => model.targetDate, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="col-md-4 mb-4">
@@ -139,11 +157,13 @@
     <div class="form-group container">
         <div class="row">
             <div class="col-md-4 mb-4">
-                @Html.Label("Efficiency measure", new { @class = "control-label" })
+                @Html.Label("Efficiency measure*", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.measureEffic, null, new { @class = "koko" })
                 @Html.EditorFor(model => model.measureEffic, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="col-md-4 mb-4">
-                @Html.Label("Date of efficiency", new { @class = "control-label" })
+                @Html.Label("Date of efficiency*", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.dateOfEffic, null, new { @class = "koko" })
                 @Html.EditorFor(model => model.dateOfEffic, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
@@ -157,6 +177,23 @@
             </div>
         </div>
     </div>
+
+
+
+    <div class="form-group container">
+        <div class="row">
+            <div class="col-md-5 mb-5 text-center">
+            </div>
+            <div class="col-md-5 mb-5 text-center">
+            </div>
+            <div class="col-md-2 mb-2 text-center">
+                <span style="color:red; font-style:oblique;">* Required</span>
+            </div>
+
+
+        </div>
+    </div>
+
 
 
     <link href="~/Content/Site.css" rel="stylesheet" />
