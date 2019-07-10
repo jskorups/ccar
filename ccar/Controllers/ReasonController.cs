@@ -21,6 +21,16 @@ namespace ccar.Controllers
         {
             return View("AddOrEditRsn");
         }
+
+
+        [HttpGet]
+        public ActionResult AddOrEditRsnPartial()
+        {
+            return View("RsnPartialAdd");
+        }
+
+
+
         // Reason List
         [HttpGet]
         public ActionResult ReasonList()
