@@ -330,7 +330,7 @@
     <Content Include="Views\typeOfAction\Create.cshtml" />
     <Content Include="Views\typeOfAction\Edit.cshtml" />
     <Content Include="Views\typeOfAction\Delete.cshtml" />
-    <Content Include="Views\Reason\RsnPartialAdd.cshtml" />
+    <Content Include="Views\Action\RsnPartialAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

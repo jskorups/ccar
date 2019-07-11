@@ -13,7 +13,7 @@
 
 daty
 13. zablokowac target date wczesniej niz dzisiaj 
-14. 
+14. Gdy 
 
 
 TO DO MANDATORy

@@ -60,6 +60,7 @@ namespace ccar.Controllers
                 return RedirectToAction("ReasonList");
             }
             return View(r);
+            return PartialView("NameOfPartialView");
         }
         //Edit
         public ActionResult Edit(int id)

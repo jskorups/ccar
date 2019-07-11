@@ -21,39 +21,22 @@
 
     <div class="form-group container">
         <div class="row">
-            <div class="col-md-3 mb-3">
-                @Html.Label("Reason*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.idReason, null, new { @class = "koko" })
 
-                @*zmodyfikowana lista do reson*@
-                @{
-                    var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
-                    listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
-                }
-                @Html.DropDownListFor(model => model.idReason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control" })
-
-                @*@Html.EditorFor(model => model.idReason, new { htmlAttributes = new { @class = "form-control" } })*@
+            <div id="dvCategoryResults">
+                @{Html.RenderPartial("RsnPartialAdd");}
             </div>
 
 
-            <div class="col-md-1 mb-1">
-                @Html.Label("Add", new { @class = "control-label" })
-                <button type="button" class="btn btn-default" style="display:block; background-color:darkmagenta" onclick="PopupForm('@Url.Action("AddOrEditRsnPartial","Reason")')"> <span class="glyphicon glyphicon-plus" style="color:white; background-color:darkmagenta" aria-hidden="true"></span></button>
-            </div>
-            <div class="col-md-1 mb-1" style="margin-left:-45px;">
-                @Html.Label("More", new { @class = "control-label" })
-                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-            </div>
             @*<div class="col-md-3 mb-3">
-                @Html.Label("Initiator", new { @class = "control-label" })*@
+        @Html.Label("Initiator", new { @class = "control-label" })*@
             @*@Html.EditorFor(model => model.idInitiator, new { htmlAttributes = new { @class = "form-control" } })*@
             @*@Html.DropDownListFor(model => model.idInitiator, new SelectList(ccar.Models.initiator.GetInitiatorsList(), "id", "name"), new { @class = "form-control" })
-                </div>*@
+        </div>*@
             @*<div class="col-md-4 mb-4">
-                    @Html.Label("Origination Date", new { @class = "control-label" })
-                    @Html.EditorFor(model => model.originationDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.Label("Origination Date", new { @class = "control-label" })
+            @Html.EditorFor(model => model.originationDate, new { htmlAttributes = new { @class = "form-control" } })
 
-                </div>*@
+        </div>*@
             <div class="col-md-2 mb-3">
                 @Html.Label("Type of action*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.idTypeOfAction, null, new { @class = "koko" })
@@ -61,11 +44,11 @@
                 @*zmodyfikowana lista do type of action*@
 
                 @{
-        var listTempToA = (ccar.Models.typeOfActionModel.GetTypeOfActionList());
-        listTempToA.Add(new ccar.Models.typeOfActionModel() { id = 0, typeOfAction1 = null });
+            var listTempToA = (ccar.Models.typeOfActionModel.GetTypeOfActionList());
+            listTempToA.Add(new ccar.Models.typeOfActionModel() { id = 0, typeOfAction1 = null });
                 }
 
-                @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(listTempToA.OrderBy(x=>x.id), "id", "typeOfAction1"), new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(listTempToA.OrderBy(x => x.id), "id", "typeOfAction1"), new { @class = "form-control" })
 
             </div>
 
@@ -87,8 +70,8 @@
                 @*zmodyfikowana lista do users*@
 
                 @{
-                    var listOfUser = (ccar.Models.responsible.GetResponsibleList());
-                    listOfUser.Add(new ccar.Models.responsible() { id = 0, email = null, firstname = null, surname = null, name = null });
+            var listOfUser = (ccar.Models.responsible.GetResponsibleList());
+            listOfUser.Add(new ccar.Models.responsible() { id = 0, email = null, firstname = null, surname = null, name = null });
                 }
                 @Html.DropDownListFor(model => model.idResponsible, new SelectList(listOfUser.OrderBy(x => x.id), "id", "name"), new { @class = "form-control" })
 

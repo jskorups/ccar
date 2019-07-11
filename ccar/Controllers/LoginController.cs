@@ -24,6 +24,9 @@ namespace ccar.Controllers
             Login user = new Login();
             return View(user);
         }
+        #endregion
+
+
         #region Old version
         [HttpPost]
         public ActionResult Register(Login userNew)
@@ -86,7 +89,7 @@ namespace ccar.Controllers
         //}
         #endregion
 
-        #endregion
+  
         #region Logowanie
         //Logowanie
         [HttpGet]
@@ -119,6 +122,13 @@ namespace ccar.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Logowanie", "Login");
         }
+        #endregion
+
+
+        #region
+
+
+
         #endregion
     }
 }
