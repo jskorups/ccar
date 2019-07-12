@@ -17,7 +17,7 @@ namespace ccar.Controllers
         public ActionResult Index()
         {
 
-           
+
             return View();
         }
 
@@ -27,12 +27,23 @@ namespace ccar.Controllers
         public ActionResult GetData()
         {
             using (ccarEntities ent = new ccarEntities())
-            {        
+            {
                 List<actionView> actList = new List<actionView>();
 
                 actList = action.fromActionsDB(ent.actionView.ToList());
-                return Json(new { data = actList }, JsonRequestBehavior.AllowGet); 
+                return Json(new { data = actList }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        [HttpGet]
+        public ActionResult GetDataWithDone()
+        {
+            using (ccarEntities ent = new ccarEntities())
+            {
+               
+            }
+
+
         }
 
         [HttpGet]

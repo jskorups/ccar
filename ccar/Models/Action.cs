@@ -24,15 +24,20 @@ namespace ccar.Models
 
         [DataType(DataType.Date)]
         public DateTime? originationDate { get; set; }
+
+        [Range(1, float.MaxValue, ErrorMessage = "Required")]
         public int? idTypeOfAction { get; set; }
 
         [Required(ErrorMessage = "Required")]
         public string problem { get; set; }
         public string rootCause { get; set; }
         public string correctiveAction { get; set; }
+        [Range(1, float.MaxValue, ErrorMessage = "Required")]
         public int? idResponsible { get; set; }
         [DataType(DataType.Date)]
         public DateTime? targetDate { get; set; }
+
+        [Range(1, float.MaxValue, ErrorMessage = "Required")]
         public int? idProgress { get; set; }
         [DataType(DataType.Date)]
         public DateTime? completionDate { get; set; }
@@ -61,10 +66,12 @@ namespace ccar.Models
                 /*, measureEffic = x.measureEffic , dateOfEffic = x.dateOfEffic*/
             }).ToList();
             return actionList;
-
-
-
         }
+
+        public static 
+
+
+
         //public Komputer(komputery comps)
         //{
         //    Firma = comps.firma;
@@ -138,7 +145,7 @@ namespace ccar.Models
 
                 ent.actions.Add(action.ConvertToActionsFromDb(this));
                 ent.SaveChanges();
-                emailClass.sendMail(responsible.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
+                //emailClass.sendMail(responsible.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
 
             }
             else

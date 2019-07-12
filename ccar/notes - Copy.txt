@@ -13,7 +13,7 @@
 
 daty
 13. zablokowac target date wczesniej niz dzisiaj 
-14. 
+14. ddoac przycisk aby pokazywac tylko zrobione (100%) w tabeli - 
 
 
 TO DO MANDATORy
