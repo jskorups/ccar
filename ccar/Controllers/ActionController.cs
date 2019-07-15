@@ -17,6 +17,12 @@ namespace ccar.Controllers
         public ActionResult Index()
         {
 
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Index2()
+        {
 
             return View();
         }
@@ -36,15 +42,27 @@ namespace ccar.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetDataWithDone()
+        public ActionResult GetData2()
         {
             using (ccarEntities ent = new ccarEntities())
             {
-               
+                List<actionViewDone> actList = new List<actionViewDone>();
+
+                actList = action.fromActionsDB2(ent.actionViewDone.ToList());
+                return Json(new { data = actList }, JsonRequestBehavior.AllowGet);
             }
-
-
         }
+
+        //[HttpGet]
+        //public ActionResult GetDataWithDone()
+        //{
+        //    using (ccarEntities ent = new ccarEntities())
+        //    {
+
+        //    }
+
+
+        //}
 
         [HttpGet]
         [Authorize]
@@ -64,8 +82,6 @@ namespace ccar.Controllers
 
         }
 
-
-      
         [Authorize]
         [HttpPost]
         public ActionResult AddOrEdit(action Act)

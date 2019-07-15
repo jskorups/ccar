@@ -23,11 +23,11 @@
             <th>Actions</th>
 
             @*
-        <th>Type of Action</th>
-        <th>Root Cause</th>
-        <th>Corrective Action</th>
-        <th>Efficiency measure</th>
-        <th>Date of Efficiency</th>*@
+                <th>Type of Action</th>
+                <th>Root Cause</th>
+                <th>Corrective Action</th>
+                <th>Efficiency measure</th>
+                <th>Date of Efficiency</th>*@
         </tr>
     </thead>
 </table>
@@ -36,14 +36,24 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+
 
 @section scripts{
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+
+
     <script src="~/Scripts/moment.min.js"></script>
     <script>
         var Popup, dataTable;
         $(document).ready(function () {
+
+
+            "initComplete": function(settings, json) {
+                alert('DataTables has finished its initialisation.');
           dataTable =   $("#actionTable").DataTable({
                 "ajax": {
                     "url": "/Action/GetData",
@@ -82,8 +92,8 @@
                         {"data":"id" , "render" : function (data) {
                             return "<a class='btn btn-default btn-sm' onclick=Kespa('@Url.Action("AddOrEdit","action")/" + data + "')><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("+data+")><i class='fa fa-trash'></i> Delete</a>";
                     },
-                        "orderable": false,
-                        "searchable":false,
+                            "orderable": true,
+                            "searchable": true,
                         "width":"150px"
                     }
 
@@ -98,10 +108,14 @@
                 ],
                 "language": {
                     "emptyTable" : "No data found, Pleas click on <b> Add New Button</b>"
-                }
+              }
+
+
 
             })
         });
+
+        
 
         function Kespa(url) {
             var formDiv = $('<div/>');
@@ -113,7 +127,7 @@
                         autoOpen: true,
                         resizable: false,
                         title: 'Fill Actions Details',
-                        height: 520,  
+                        height: 520,
                         width: 1100,
                         close: function () {
                             Popup.dialog('destroy').remove();
@@ -183,7 +197,7 @@
                                 globalPosition: "top center",
                                 //className: "danger",
                                 type: "danger"
-                               
+
                             })
 
                         }
@@ -207,7 +221,7 @@
         //        }
         //    }
         //});
- 
+
     </script>
 
 

@@ -41,7 +41,7 @@
                             <li><a href="portfolio.html">List of Users</a></li>
                         </ul>
                     </li>
-                    <li><a href="components.html">Dummy</a></li>
+                    <li>@Html.ActionLink("Done", "Index2", "Action")</li>
                     <li>@Html.ActionLink("Zalogowany jako " + User.Identity.Name, "Logowanie", "Login")</li>
                     @if (User.Identity.IsAuthenticated)
                     {

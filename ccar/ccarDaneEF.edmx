@@ -74,6 +74,23 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
           <Property Name="responsible" Type="nvarchar" MaxLength="101" />
           <Property Name="progressValue" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="actionViewDone">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="reason" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="reason" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="problem" Type="nvarchar" MaxLength="50" />
+          <Property Name="initiator" Type="nvarchar" MaxLength="101" />
+          <Property Name="originationDate" Type="datetime" />
+          <Property Name="targetDate" Type="datetime" />
+          <Property Name="completionDate" Type="datetime" />
+          <Property Name="responsible" Type="nvarchar" MaxLength="101" />
+          <Property Name="progressValue" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK_actions_progress">
           <End Role="progress" Type="Self.progress" Multiplicity="0..1" />
           <End Role="actions" Type="Self.actions" Multiplicity="*" />
@@ -153,6 +170,19 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
     [actionView].[progressValue] AS [progressValue]
     FROM [dbo].[actionView] AS [actionView]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="actionViewDone" EntityType="Self.actionViewDone" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [actionViewDone].[id] AS [id], 
+    [actionViewDone].[reason] AS [reason], 
+    [actionViewDone].[problem] AS [problem], 
+    [actionViewDone].[initiator] AS [initiator], 
+    [actionViewDone].[originationDate] AS [originationDate], 
+    [actionViewDone].[targetDate] AS [targetDate], 
+    [actionViewDone].[completionDate] AS [completionDate], 
+    [actionViewDone].[responsible] AS [responsible], 
+    [actionViewDone].[progressValue] AS [progressValue]
+    FROM [dbo].[actionViewDone] AS [actionViewDone]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_actions_progress" Association="Self.FK_actions_progress">
             <End Role="progress" EntitySet="progress" />
             <End Role="actions" EntitySet="actions" />
@@ -185,6 +215,7 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
           <EntitySet Name="typeOfaction" EntityType="ccarModel.typeOfaction" />
           <EntitySet Name="users" EntityType="ccarModel.users" />
           <EntitySet Name="actionView" EntityType="ccarModel.actionView" />
+          <EntitySet Name="actionViewDone" EntityType="ccarModel.actionViewDone" />
           <AssociationSet Name="FK_actions_progress" Association="ccarModel.FK_actions_progress">
             <End Role="progress" EntitySet="progress" />
             <End Role="actions" EntitySet="actions" />
@@ -269,6 +300,21 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
           <NavigationProperty Name="actions1" Relationship="ccarModel.FK_actions_users1" FromRole="users" ToRole="actions" />
         </EntityType>
         <EntityType Name="actionView">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="reason" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="problem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="initiator" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="originationDate" Type="DateTime" Precision="3" />
+          <Property Name="targetDate" Type="DateTime" Precision="3" />
+          <Property Name="completionDate" Type="DateTime" Precision="3" />
+          <Property Name="responsible" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="progressValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="actionViewDone">
           <Key>
             <PropertyRef Name="id" />
             <PropertyRef Name="reason" />
@@ -409,6 +455,21 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
           <EntitySetMapping Name="actionView">
             <EntityTypeMapping TypeName="ccarModel.actionView">
               <MappingFragment StoreEntitySet="actionView">
+                <ScalarProperty Name="progressValue" ColumnName="progressValue" />
+                <ScalarProperty Name="responsible" ColumnName="responsible" />
+                <ScalarProperty Name="completionDate" ColumnName="completionDate" />
+                <ScalarProperty Name="targetDate" ColumnName="targetDate" />
+                <ScalarProperty Name="originationDate" ColumnName="originationDate" />
+                <ScalarProperty Name="initiator" ColumnName="initiator" />
+                <ScalarProperty Name="problem" ColumnName="problem" />
+                <ScalarProperty Name="reason" ColumnName="reason" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="actionViewDone">
+            <EntityTypeMapping TypeName="ccarModel.actionViewDone">
+              <MappingFragment StoreEntitySet="actionViewDone">
                 <ScalarProperty Name="progressValue" ColumnName="progressValue" />
                 <ScalarProperty Name="responsible" ColumnName="responsible" />
                 <ScalarProperty Name="completionDate" ColumnName="completionDate" />

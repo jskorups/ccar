@@ -31,5 +31,6 @@ namespace ccar
         public virtual DbSet<typeOfaction> typeOfaction { get; set; }
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<actionView> actionView { get; set; }
+        public virtual DbSet<actionViewDone> actionViewDone { get; set; }
     }
 }

@@ -155,6 +155,9 @@
     <Compile Include="actionView.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="actionViewDone.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -330,6 +333,7 @@
     <Content Include="Views\typeOfAction\Create.cshtml" />
     <Content Include="Views\typeOfAction\Edit.cshtml" />
     <Content Include="Views\typeOfAction\Delete.cshtml" />
+    <Content Include="Views\Action\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

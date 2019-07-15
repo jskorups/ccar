@@ -67,8 +67,28 @@ namespace ccar.Models
             }).ToList();
             return actionList;
         }
+            
 
-        public static 
+        public static List<actionViewDone> fromActionsDB2(List<actionViewDone> aList)
+        {
+            List<actionViewDone> actionList = aList.Select(x => new actionViewDone()
+            {
+                id = x.id,
+                initiator = x.initiator,
+                reason = x.reason,
+                problem = x.problem,
+                originationDate = x.originationDate,
+                /*rootCause = x.rootCause, correctiveAction = x.correctiveAction,*/
+                targetDate = x.targetDate,
+                completionDate = x.completionDate,
+                responsible = x.responsible,
+                progressValue = x.progressValue
+                /*, measureEffic = x.measureEffic , dateOfEffic = x.dateOfEffic*/
+            }).ToList();
+            return actionList;
+        }
+
+
 
 
 
