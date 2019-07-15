@@ -1,0 +1,215 @@
+﻿
+@{
+    ViewBag.Title = "action List";
+}
+
+<h2>Actions CCAR</h2>
+
+
+
+
+
+<table id="actionTable" class="table table-striped table-bordered" style="width:1600px;">
+    <thead>
+        <tr>
+            <th>Initiator</th>
+            <th>Reason</th>
+            <th>Problem</th>
+            <th>Origination Date</th>
+            <th>Target Date</th>
+            <th>Completion Date</th>
+            <th>Rsponsible</th>
+            <th>Progress</th>
+            <th>Actions</th>
+
+            @*
+                <th>Type of Action</th>
+                <th>Root Cause</th>
+                <th>Corrective Action</th>
+                <th>Efficiency measure</th>
+                <th>Date of Efficiency</th>*@
+        </tr>
+    </thead>
+</table>
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script>
+        var Popup, dataTable;
+        $(document).ready(function () {
+          dataTable =   $("#actionTable").DataTable({
+                "ajax": {
+                    "url": "/Action/GetData2",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+              "columns": [
+                    { "data": "initiator" },
+                    { "data": "reason" },
+                    { "data": "problem" },
+                    {
+                        "data": "originationDate",
+                        "render": function (value) {
+                            if (value === null) return "";
+                            return moment(value).format('DD/MM/YYYY');
+                        }
+                    },
+                    {
+                        "data": "targetDate",
+                        "render": function (value) {
+                            if (value === null) return "";
+                            return moment(value).format('DD/MM/YYYY');
+                        }
+                    },
+                    {
+                        "data": "completionDate",
+                        "render": function (value) {
+                            if (value === null) return "";
+                            return moment(value).format('DD/MM/YYYY');
+                        }
+
+                    },
+                    { "data": "responsible" },
+                    { "data": "progressValue" },
+
+                        {"data":"id" , "render" : function (data) {
+                            return "<a class='btn btn-default btn-sm' onclick=Kespa('@Url.Action("AddOrEdit","action")/" + data + "')><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("+data+")><i class='fa fa-trash'></i> Delete</a>";
+                    },
+                        "orderable": false,
+                        "searchable":false,
+                        "width":"150px"
+                    }
+
+
+                    //{ "data": "idTypeOfAction" },
+
+                    //{ "data": "rootCause" },
+                    //{ "data": "correctiveAction" },
+
+                    //{ "data": "measureEffic" },
+                    //{ "data": "dateOfEffic" }
+                ],
+                "language": {
+                    "emptyTable" : "No data found, Pleas click on <b> Add New Button</b>"
+                }
+
+            })
+        });
+
+        function Kespa(url) {
+            var formDiv = $('<div/>');
+            $.get(url)
+                .done(function (response) {
+                    formDiv.html(response);
+
+                    Popup = formDiv.dialog({
+                        autoOpen: true,
+                        resizable: false,
+                        title: 'Fill Actions Details',
+                        height: 520,
+                        width: 1100,
+                        close: function () {
+                            Popup.dialog('destroy').remove();
+                        }
+
+                    });
+                });
+        }
+
+
+        function PopupForm(url) {
+            var formDiv = $('<div/>');
+            $.get(url)
+                .done(function (response) {
+                    formDiv.html(response);
+
+                    Popup = formDiv.dialog({
+                        autoOpen: true,
+                        resizable: false,
+                        title: 'Fill Actijjjjjjjons Details',
+                        height: 300,
+                        width: 1100,
+                        close: function () {
+                            Popup.dialog('destroy').remove();
+                        }
+
+                    });
+                });
+        }
+
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        //if (data.success) {
+                            Popup.dialog('close');
+                            dataTable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: 'superblue',
+                                style: 'happyblue'
+                            })
+
+                        //}
+                    }
+                });
+            }
+            return false;
+        }
+         function Delete(id) {
+            if(confirm('Are You Sure to Delete this Employee Record ?'))
+            {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Delete","Action")/' + id,
+                    success: function (data) {
+                        //if (data.success)
+                        {
+                            dataTable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                //className: "danger",
+                                type: "danger"
+
+                            })
+
+                        }
+                    }
+
+                });
+            }
+        }
+        //$.notify.addStyle('happyblue', {
+        //    html: "<div>☺<span data-notify-text/>☺</div>",
+        //    classes: {
+        //        base: {
+        //            "width":"500px",
+        //            "white-space": "nowrap",
+        //            "background-color": "lightblue",
+        //            "padding": "5px"
+        //        },
+        //        superblue: {
+        //            "color": "white",
+        //            "background-color": "blue"
+        //        }
+        //    }
+        //});
+
+    </script>
+
+
+}
+
