@@ -21,6 +21,16 @@ namespace ccar.Controllers
         {
             return View("AddOrEditRsn");
         }
+
+
+        [HttpGet]
+        public ActionResult AddOrEditRsnPartial()
+        {
+            return View("RsnPartialAdd");
+        }
+
+
+
         // Reason List
         [HttpGet]
         public ActionResult ReasonList()
@@ -50,6 +60,7 @@ namespace ccar.Controllers
                 return RedirectToAction("ReasonList");
             }
             return View(r);
+            return PartialView("NameOfPartialView");
         }
         //Edit
         public ActionResult Edit(int id)
