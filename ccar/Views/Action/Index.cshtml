@@ -10,6 +10,7 @@
 
 
 <table id="actionTable" class="table table-striped table-bordered" style="width:1600px;">
+    
     <thead>
         <tr>
             <th>Initiator</th>
@@ -19,7 +20,7 @@
             <th>Target Date</th>
             <th>Completion Date</th>
             <th>Rsponsible</th>
-            <th>Progress</th>
+            <th id="score">Progress<br></th>
             <th>Actions</th>
 
             @*
@@ -37,6 +38,7 @@
 <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+@*<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />*@
 
 
 
@@ -50,11 +52,35 @@
     <script>
         var Popup, dataTable;
         $(document).ready(function () {
+                dataTable =  $('#actionTable').DataTable({
+                initComplete: function () {
+                    this.api().columns([0,1,3,4,6,7,9]).every(function () {
+                        var column = this;
+                        var select = $('<select><option value="">Show all</option></select>')
+                            .appendTo($(column.header()))
+                            .on('change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
+
+                                $(select).click(function (e) {
+                                    e.stopPropagation();
+                                    e.columns.orderable = false;
+                                    e.columns.sort = false;
+                                });
+
+                                column
+                                    .search(val ? '^' + val + '$' : '', true, false)
+                                    .draw();
+                            });
+                        column.cells('', column[0]).render('display').sort().unique().each(function (d, j) {
+                            //select.append('<option value="' + d + '">' + d + '</option>')
+                            select.append('<option value="' + d + '">' + d.substr(0, 30) + '</option>')
+                        });
+                    });
+                    },
 
 
-            "initComplete": function(settings, json) {
-                alert('DataTables has finished its initialisation.');
-          dataTable =   $("#actionTable").DataTable({
                 "ajax": {
                     "url": "/Action/GetData",
                     "type": "GET",
@@ -95,7 +121,8 @@
                             "orderable": true,
                             "searchable": true,
                         "width":"150px"
-                    }
+                  },
+
 
 
                     //{ "data": "idTypeOfAction" },
@@ -108,14 +135,12 @@
                 ],
                 "language": {
                     "emptyTable" : "No data found, Pleas click on <b> Add New Button</b>"
-              }
-
-
-
+              }  
             })
+         
         });
 
-        
+
 
         function Kespa(url) {
             var formDiv = $('<div/>');
@@ -161,14 +186,26 @@
         function SubmitForm(form) {
             $.validator.unobtrusive.parse(form);
             if ($(form).valid()) {
-                $.ajax({
-                    type: "POST",
-                    url: form.action,
+                //$.ajax({
+                //    type: "POST",
+                //    url: form.action,
+                //    data: $(form).serialize(),
+                //    success: function (data) {
+                //        //if (data.success) {
+                //            Popup.dialog('close');
+                //            dataTable.ajax.reload();
+
+                jQuery.ajax({
+                    URL: form.action,
                     data: $(form).serialize(),
+                    dataType: "json",
+                    type: "POST",
                     success: function (data) {
-                        //if (data.success) {
-                            Popup.dialog('close');
-                            dataTable.ajax.reload();
+                        Popup.dialog('close');
+               dataTable.ajax.reload();
+                    
+
+
 
                             $.notify(data.message, {
                                 globalPosition: "top center",

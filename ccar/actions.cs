@@ -15,8 +15,8 @@ namespace ccar
     public partial class actions
     {
         public int id { get; set; }
-        public int idReason { get; set; }
         public Nullable<int> idInitiator { get; set; }
+        public int idReason { get; set; }
         public Nullable<System.DateTime> originationDate { get; set; }
         public Nullable<int> idTypeOfAction { get; set; }
         public string problem { get; set; }
@@ -33,6 +33,5 @@ namespace ccar
         public virtual reasons reasons { get; set; }
         public virtual typeOfaction typeOfaction { get; set; }
         public virtual users users { get; set; }
-        public virtual users users1 { get; set; }
     }
 }
