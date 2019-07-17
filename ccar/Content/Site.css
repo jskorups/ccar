@@ -177,5 +177,23 @@ table.dataTable thead .sorting_asc_disabled,
 table.dataTable thead .sorting_desc_disabled {
     background-position: 100% 10px;
 }
+.vGood {
+    background-color: #9f0 !important;
+}
 
+.good {
+    background-color: #cf0 !important;
+}
+
+.avg {
+    background-color: #fd0 !important;
+}
+
+.poor {
+    background-color: #fa0 !important;
+}
+
+.vPoor {
+    background-color: #f30 !important;
+}
 
