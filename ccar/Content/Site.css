@@ -177,6 +177,8 @@ table.dataTable thead .sorting_asc_disabled,
 table.dataTable thead .sorting_desc_disabled {
     background-position: 100% 10px;
 }
+
+
 .vGood {
     background-color: #9f0 !important;
 }
@@ -196,4 +198,3 @@ table.dataTable thead .sorting_desc_disabled {
 .vPoor {
     background-color: #f30 !important;
 }
-
