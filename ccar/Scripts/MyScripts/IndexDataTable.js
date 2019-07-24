@@ -6,10 +6,6 @@ $(document).ready(function () {
         initComplete: function () {
             colorCells();
             this.api().columns([0, 1, 3, 4, 6, 7, 9]).every(function () {
-
-
-
-
                 var column = this;
                 var select = $('<select><option value="">Show all</option></select>')
                     .appendTo($(column.header()))
@@ -18,11 +14,7 @@ $(document).ready(function () {
                             $(this).val()
                         );
 
-                        $(select).click(function (e) {
-                            e.stopPropagation();
-                            e.columns.orderable = false;
-                            e.columns.sort = false;
-                        });
+                   
 
                         column
                             .search(val ? '^' + val + '$' : '', true, false)
@@ -38,6 +30,7 @@ $(document).ready(function () {
             });
 
         },
+
         "ajax": {
             "url": "/Action/GetData",
             "type": "GET",
@@ -74,14 +67,12 @@ $(document).ready(function () {
 
             {
                 "data": "id", "render": function (data) {
-                    return "<a class='btn btn-default btn-sm' onclick=Kespa('" + $('#DataUrl').val()+"/"+data+"')><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ", '"+$('#DeleteUrl').val()+"')><i class='fa fa-trash'></i> Delete</a>";
+                    return "<a class='btn btn-default btn-sm' onclick=Kespa('" + $('#DataUrl').val() + "/" + data + "')><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete('" + data + "','" + $('#DeleteUrl').val()+"')><i class='fa fa-trash'></i> Delete</a>";
                 },
                 "orderable": false,
                 "searchable": true,
                 "width": "150px"
             },
-
-
 
             //{ "data": "idTypeOfAction" },
 
@@ -200,7 +191,7 @@ function Delete(id, urlForDelete) {
                 //if (data.success)
                 {
                     dataTable.ajax.reload();
-
+               
                     $.notify(data.message, {
                         globalPosition: "top center",
                         //className: "danger",
