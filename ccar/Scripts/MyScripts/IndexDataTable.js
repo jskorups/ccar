@@ -4,7 +4,7 @@ var Popup, dataTable;
 $(document).ready(function () {
     dataTable = $('#actionTable').DataTable({
         initComplete: function () {
-            colorCells();
+            
             this.api().columns([0, 1, 3, 4, 6, 7, 9]).every(function () {
                 var column = this;
                 var select = $('<select><option value="">Show all</option></select>')
@@ -14,8 +14,7 @@ $(document).ready(function () {
                             $(this).val()
                         );
 
-                   
-
+                  
                         column
                             .search(val ? '^' + val + '$' : '', true, false)
                             .draw();
@@ -29,6 +28,9 @@ $(document).ready(function () {
                 });
             });
 
+        },
+        drawCallback: function () {
+            colorCells();
         },
 
         "ajax": {
