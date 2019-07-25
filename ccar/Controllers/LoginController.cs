@@ -21,7 +21,7 @@ namespace ccar.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-            Login user = new Login();
+            LoginModel user = new LoginModel();
             return View(user);
         }
         #endregion
@@ -29,7 +29,7 @@ namespace ccar.Controllers
 
         #region Old version
         [HttpPost]
-        public ActionResult Register(Login userNew)
+        public ActionResult Register(LoginModel userNew)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace ccar.Controllers
         [HttpPost]
         public ActionResult Logowanie(string email, string password)
         {
-            Login newlog = new Login();        
+            LoginModel newlog = new LoginModel();        
             //zakryptowac haslo
             bool check = newlog.checkIfExist(email, password);
             if (check == true)
@@ -125,10 +125,5 @@ namespace ccar.Controllers
         #endregion
 
 
-        #region
-
-
-
-        #endregion
     }
 }

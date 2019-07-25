@@ -4,11 +4,17 @@
     ViewBag.Title = "UsersList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/Site.css" rel="stylesheet" />
 
+</head>
 <h2>UsersList</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Create New", "Create")*@   
+    <button id="addBtn" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Create", "Users")'"><i class="fa fa-plus-square"></i> Add new reason</button>
+
 </p>
 <table class="table">
     <tr>

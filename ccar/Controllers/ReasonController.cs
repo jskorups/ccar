@@ -16,22 +16,20 @@ namespace ccar.Controllers
             return View("Create");
         }
 
-        [HttpGet]
-        public ActionResult AddOrEditRsn2()
-        {
-            return View("AddOrEditRsn");
-        }
+        //[HttpGet]
+        //public ActionResult AddOrEditRsn2()
+        //{
+        //    return View("AddOrEditRsn");
+        //}
 
-
-        [HttpGet]
-        public ActionResult AddOrEditRsnPartial()
-        {
-            return View("RsnPartialAdd");
-        }
-
-
-
+        //[HttpGet]
+        //public ActionResult AddOrEditRsnPartial()
+        //{
+        //    return View("RsnPartialAdd");
+        //}
         // Reason List
+
+
         [HttpGet]
         public ActionResult ReasonList()
         {
@@ -60,7 +58,7 @@ namespace ccar.Controllers
                 return RedirectToAction("ReasonList");
             }
             return View(r);
-            return PartialView("NameOfPartialView");
+         
         }
         //Edit
         public ActionResult Edit(int id)
@@ -83,8 +81,7 @@ namespace ccar.Controllers
                 ent.SaveChanges();
                 return RedirectToAction("ReasonList");
             }
-            return View(model);
-            
+            return View(model);        
         }
 
         // Delete Get

@@ -179,18 +179,18 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReasonController.cs" />
     <Compile Include="Controllers\typeOfActionController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="crypto.cs" />
     <Compile Include="emailClass.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\action.cs" />
-    <Compile Include="Models\initiator.cs" />
-    <Compile Include="Models\Progress.cs" />
-    <Compile Include="Models\responsible.cs" />
-    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\ActionModel.cs" />
+    <Compile Include="Models\ProgressModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ReasonModel.cs" />
-    <Compile Include="Models\typeOfActionModel.cs" />
+    <Compile Include="Models\TypeOfActionModel.cs" />
     <Compile Include="progress.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
@@ -336,6 +336,10 @@
     <Content Include="Views\typeOfAction\Edit.cshtml" />
     <Content Include="Views\typeOfAction\Delete.cshtml" />
     <Content Include="Views\Action\Index2.cshtml" />
+    <Content Include="Views\Users\UsersList.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

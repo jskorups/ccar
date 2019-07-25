@@ -198,3 +198,11 @@ table.dataTable thead .sorting_desc_disabled {
 .vPoor {
     background-color: #f30 !important;
 }
+td.details-control {
+    background: url('../resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+
+tr.shown td.details-control {
+    background: url('../resources/details_close.png') no-repeat center center;
+}

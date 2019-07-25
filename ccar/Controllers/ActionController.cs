@@ -36,7 +36,7 @@ namespace ccar.Controllers
             {
                 List<actionView> actList = new List<actionView>();
 
-                actList = action.fromActionsDB(ent.actionView.ToList());
+                actList = ActionModel.fromActionsDB(ent.actionView.ToList());
                 return Json(new { data = actList }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -48,7 +48,7 @@ namespace ccar.Controllers
             {
                 List<actionViewDone> actList = new List<actionViewDone>();
 
-                actList = action.fromActionsDB2(ent.actionViewDone.ToList());
+                actList = ActionModel.fromActionsDB2(ent.actionViewDone.ToList());
                 return Json(new { data = actList }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -71,20 +71,20 @@ namespace ccar.Controllers
             if (id == 0)
             {
 
-                return View(new action());
+                return View(new ActionModel());
             }
             else
             {
                 ccarEntities ent = new ccarEntities();
                 actions test = ent.actions.Where(x => x.id == id).FirstOrDefault();
-                return View(action.ConvertFromEFtoModel(test));
+                return View(ActionModel.ConvertFromEFtoModel(test));
             }
 
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddOrEdit(action Act)
+        public ActionResult AddOrEdit(ActionModel Act)
         {
             try
             {

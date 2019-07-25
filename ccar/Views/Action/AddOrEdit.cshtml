@@ -1,4 +1,4 @@
-﻿@model ccar.Models.action
+﻿@model ccar.Models.ActionModel
 
 @{
     /**/
@@ -32,6 +32,7 @@
                 }
                 @Html.DropDownListFor(model => model.idReason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control" })
 
+
                 @*@Html.EditorFor(model => model.idReason, new { htmlAttributes = new { @class = "form-control" } })*@
             </div>
 
@@ -62,8 +63,8 @@
                 @*zmodyfikowana lista do type of action*@
 
                 @{
-                    var listTempToA = (ccar.Models.typeOfActionModel.GetTypeOfActionList());
-                    listTempToA.Add(new ccar.Models.typeOfActionModel() { id = 0, typeOfAction1 = null });
+                    var listTempToA = (ccar.Models.TypeOfActionModel.GetTypeOfActionList());
+                    listTempToA.Add(new ccar.Models.TypeOfActionModel() { id = 0, typeOfAction1 = null });
                 }
 
                 @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(listTempToA.OrderBy(x => x.id), "id", "typeOfAction1"), new { @class = "form-control" })
@@ -88,15 +89,15 @@
                 @*zmodyfikowana lista do users*@
 
                 @{
-                    var listOfUser = (ccar.Models.responsible.GetResponsibleList());
-                    listOfUser.Add(new ccar.Models.responsible() { id = 0, email = null, firstname = null, surname = null, name = null });
+                    var listOfUser = (ccar.Models.UserModel.getUsersList());
+                    listOfUser.Add(new ccar.Models.UserModel() { id = 0, email = null, firstname = null, surname = null, name = null });
                 }
                 @Html.DropDownListFor(model => model.idResponsible, new SelectList(listOfUser.OrderBy(x => x.id), "id", "name"), new { @class = "form-control" })
 
             </div>
             <div class="col-md-1 mb-1 " style="margin-left:-20px;">
                 @Html.Label("More", new { @class = "control-label" })
-                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ToAlist", "typeOfAction")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("UsersList", "Users")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
             </div>
 
         </div>
@@ -150,8 +151,8 @@
 
 
                 @{
-                    var listOfProg = (ccar.Models.Progress.GetProgressList());
-                    listOfProg.Add(new ccar.Models.Progress() { id = 0, progressValue = null });
+                    var listOfProg = (ccar.Models.ProgressModel.GetProgressList());
+                    listOfProg.Add(new ccar.Models.ProgressModel() { id = 0, progressValue = null });
                 }
                 @Html.DropDownListFor(model => model.idProgress, new SelectList(listOfProg.OrderBy(x => x.id), "id", "progressValue"), new { @class = "form-control" })
             </div>

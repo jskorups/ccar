@@ -10,7 +10,7 @@ using System.Data.Entity;
 
 namespace ccar.Models
 {
-    public class action
+    public class ActionModel
     {
 
 
@@ -111,7 +111,7 @@ namespace ccar.Models
         //}
 
 
-        public static actions ConvertToActionsFromDb(action a)
+        public static actions ConvertToActionsFromDb(ActionModel a)
         {
             actions act = new actions();
             act.id = a.id;
@@ -131,11 +131,11 @@ namespace ccar.Models
             return act;
         }
 
-        public static action ConvertFromEFtoModel(actions a)
+        public static ActionModel ConvertFromEFtoModel(actions a)
         {
    
 
-            action act = new action();
+            ActionModel act = new ActionModel();
             act.id = a.id;
             act.idReason = a.idReason;
             act.idInitiator = a.idInitiator;
@@ -163,7 +163,7 @@ namespace ccar.Models
                 this.idInitiator = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.id).SingleOrDefault();
                 this.originationDate = DateTime.Now;
 
-                ent.actions.Add(action.ConvertToActionsFromDb(this));
+                ent.actions.Add(ActionModel.ConvertToActionsFromDb(this));
                 ent.SaveChanges();
                 //emailClass.sendMail(responsible.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
 
@@ -178,7 +178,7 @@ namespace ccar.Models
                 }
 
 
-                ent.Entry(action.ConvertToActionsFromDb(this)).State = EntityState.Modified;
+                ent.Entry(ActionModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
                     ent.SaveChanges();
 
                 }

@@ -25,9 +25,9 @@ namespace ccar.Controllers
         [HttpGet]
         public ActionResult ToAlist()
         {
-            List<typeOfActionModel> toa = new List<typeOfActionModel>();
+            List<TypeOfActionModel> toa = new List<TypeOfActionModel>();
             ccarEntities ent = new ccarEntities();
-            toa = typeOfActionModel.fromTypeOfAction(ent.typeOfaction.ToList());
+            toa = TypeOfActionModel.fromTypeOfAction(ent.typeOfaction.ToList());
             return View(toa);
 
         }
@@ -35,18 +35,18 @@ namespace ccar.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            typeOfActionModel t = new typeOfActionModel();
+            TypeOfActionModel t = new TypeOfActionModel();
             return View(t);
         }
 
         //Create post
         [HttpPost]
-        public ActionResult Create(typeOfActionModel t)
+        public ActionResult Create(TypeOfActionModel t)
         {
             if (ModelState.IsValid)
             {
                 ccarEntities ent = new ccarEntities();
-                ent.typeOfaction.Add(typeOfActionModel.ConvertFromModelToDB(t));
+                ent.typeOfaction.Add(TypeOfActionModel.ConvertFromModelToDB(t));
                 ent.SaveChanges();
                 return RedirectToAction("ToAlist");
             }
@@ -57,12 +57,12 @@ namespace ccar.Controllers
         public ActionResult Edit(int id)
         {
             ccarEntities ent = new ccarEntities();
-            typeOfActionModel toa = typeOfActionModel.ConvertFromDBtoModel(ent.typeOfaction.Where(x => x.id == id).FirstOrDefault());
+            TypeOfActionModel toa = TypeOfActionModel.ConvertFromDBtoModel(ent.typeOfaction.Where(x => x.id == id).FirstOrDefault());
             return View(toa);
         }
         //Edit post
         [HttpPost]
-        public ActionResult Edit (typeOfActionModel model)
+        public ActionResult Edit (TypeOfActionModel model)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace ccar.Controllers
         public ActionResult Delete(int id)
         {
             ccarEntities ent = new ccarEntities();
-            typeOfActionModel toa = typeOfActionModel.ConvertFromDBtoModel(ent.typeOfaction.Where(x => x.id == id).FirstOrDefault());
+            TypeOfActionModel toa = TypeOfActionModel.ConvertFromDBtoModel(ent.typeOfaction.Where(x => x.id == id).FirstOrDefault());
             return View(toa);
         }
 
