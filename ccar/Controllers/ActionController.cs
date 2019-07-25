@@ -89,6 +89,8 @@ namespace ccar.Controllers
             try
             {
                 Act.Save();
+                //var email = responsible.getEmailAdress(Act.idResponsible);
+                //emailClass.sendMail(email, "Bablabla", "sdjklhsljkdjflksdf");
 
             }
             catch (Exception ex)
@@ -99,8 +101,6 @@ namespace ccar.Controllers
             return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
 
 
-
-            //emailClass email = new emailClass();
             //emailClass.sendMail();
             /*
              1.pobrac adres mailowy na podtsawie ID act (w modelu initaiotor), get emailadress, zwraca maila
