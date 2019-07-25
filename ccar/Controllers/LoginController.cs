@@ -43,7 +43,7 @@ namespace ccar.Controllers
                     string url = System.Web.HttpRuntime.AppDomainAppVirtualPath + Url.Action("Aktywacja") + $"?kod={guidPotwierdzenie.ToString()}";
                     string subject = "Link aktywacyjny";
 
-                    //emailClass.sendMail(userNew.email, url, subject);
+                    emailClass.sendMail(userNew.email, url, subject);
                     return View("Zarejestrowano");
                 }
             }

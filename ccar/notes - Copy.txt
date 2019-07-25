@@ -3,27 +3,18 @@
 3. automatyczne ustawianie initiatora tego ktory jest zalogowany		- DONE
 4. nie wyswietla sie user.identity.name									- DONE
 5. ustawienie completion date jako teraz gdy 100% submit				- DONE
-6. Oznaczanie komórki z określoną zawartością -  kolorem				- DONE
-7. Dodac mozliwosc dodawania typeofaction								- DONE
-8. Dodac mozliwosc dodawania reason										- DONE
-9. Dodac required dla pol												- DONE
+6. Oznaczanie komórki z określoną zawartością -  kolorem
+7. Dodac mozliwosc dodawania typeofaction
+8. Dodac mozliwosc dodawania reason
+9. Dodac required dla pol
 10. if dla completion date wzgledem progresu - gdzie umiescic?			- DONE
 11. Target date nie moze byc < niz origination date
 12. Podczas update, sejvuje idinitiator jako NULL						- DONE
 
 daty
 13. zablokowac target date wczesniej niz dzisiaj 
-14. ddoac przycisk aby pokazywac tylko zrobione (100%) w tabeli -		- DONE
+14. ddoac przycisk aby pokazywac tylko zrobione (100%) w tabeli - 
 
 
-15. Odswiezac dropdownlisty z th po kazdej akcji dodania				- DONE
+15. Odswiezac dropdownlisty z th po kazdej akcji dodania
 16. Kolrowac komórki podczas ładowania strony oraz rozwiajnia dropdownlist z liczbą pozycji (entries) - DONE
-
-______________________________________________
-usunac ordering w tabelach
-stworzyc mozliwosc dodawania responsible
-wysylanie maila poprzez outlook
-kolorwac takze przy zamykaniu 
-kolorowac przy kasowaniu
-dodać podstrony do roznych spotkań?
-rozwijanie szczegółów dla rekordów zgodnie z manulem do dattable

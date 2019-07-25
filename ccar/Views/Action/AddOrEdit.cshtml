@@ -348,8 +348,8 @@
                     success: function (data) {
                         //if (data.success) {
                             Popup.dialog('close');
-                        dataTable.ajax.reload();
-                        
+                            dataTable.ajax.reload();
+
                             $.notify(data.message, {
                                 globalPosition: "top center",
                                 className: "success"
@@ -362,18 +362,6 @@
             }
             return false;
         }
-        function colorCells() {
-            $("td:contains('%')").each(function (index) {
-                var scale = [['vPoor', '10%'], ['poor', '45%'], ['avg', '50%'], ['good', '75%'], ['vGood', '100%']];
-                var score = $(this).text();
-                for (var i = 0; i < scale.length; i++) {
-                    if (score <= scale[i][1]) {
-                        $(this).addClass(scale[i][0]);
-                    }
-                }
-            });
-        };
-
          function Delete(id) {
             if(confirm('Are You Sure to Delete this Action Record ?'))
             {
