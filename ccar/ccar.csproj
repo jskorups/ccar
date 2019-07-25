@@ -298,6 +298,7 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\MyScripts\IndexDataTable.js" />
     <Content Include="Scripts\notify.min.js" />
     <Content Include="Scripts\particles.js" />
     <Content Include="Scripts\respond.js" />
