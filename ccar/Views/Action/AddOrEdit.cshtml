@@ -142,6 +142,7 @@
         <div class="row">
             <div class="col-md-4 mb-4">
                 @Html.Label("Target date*", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.targetDate, null, new { @class = "koko" })
                 @Html.EditorFor(model => model.targetDate, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="col-md-4 mb-4">

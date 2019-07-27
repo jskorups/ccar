@@ -34,7 +34,10 @@ namespace ccar.Models
         public string correctiveAction { get; set; }
         [Range(1, float.MaxValue, ErrorMessage = "Required")]
         public int? idResponsible { get; set; }
+
         [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Required")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? targetDate { get; set; }
 
         [Range(1, float.MaxValue, ErrorMessage = "Required")]

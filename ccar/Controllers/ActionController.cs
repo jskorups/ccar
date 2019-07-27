@@ -82,6 +82,12 @@ namespace ccar.Controllers
 
         }
 
+        public PartialViewResult EditDeletePartial(int id, string cos)
+        {
+            ViewBag.id = id;
+            return PartialView();
+        }
+
         [Authorize]
         [HttpPost]
         public ActionResult AddOrEdit(ActionModel Act)

@@ -68,8 +68,18 @@ $(document).ready(function () {
             { "data": "progressValue" },
 
             {
-                "data": "id", "render": function (data) {
-                    return "<a class='btn btn-default btn-sm' onclick=Kespa('" + $('#DataUrl').val() + "/" + data + "')><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete('" + data + "','" + $('#DeleteUrl').val()+"')><i class='fa fa-trash'></i> Delete</a>";
+                "data": "id", "render": function (dane) {
+                    
+                    // return "<a class='btn btn-default btn-sm' onclick=Kespa('" + $('#DataUrl').val() + "/" + data + "')><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete('" + data + "','" + $('#DeleteUrl').val()+"')><i class='fa fa-trash'></i> Delete</a>";
+                    //var htmlEdit;
+                    //$.get("/Action/EditDeletePartial", function (data) {
+                     
+                    //    htmlEdit = data;
+                    //});
+                    //alert(htmlEdit);
+                    //return htmlEdit;
+                    var msg = $.ajax({ type: "GET", data: { test: 1, cos: "test" }, url: "/Action/EditDeletePartial?id="+dane, async: false }).responseText;
+                    return msg;
                 },
                 "orderable": false,
                 "searchable": true,
