@@ -82,7 +82,7 @@ namespace ccar.Controllers
 
         }
 
-        public PartialViewResult EditDeletePartial(int id, string cos)
+        public PartialViewResult EditDeletePartial(int id)
         {
             ViewBag.id = id;
             return PartialView();

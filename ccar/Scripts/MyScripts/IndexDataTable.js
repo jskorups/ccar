@@ -5,7 +5,7 @@ $(document).ready(function () {
     dataTable = $('#actionTable').DataTable({
         initComplete: function () {
             
-            this.api().columns([0, 1, 3, 4, 6, 7, 9]).every(function () {
+            this.api().columns([ 1,2, 3, 4,5, 7,8]).every(function () {
                 var column = this;
                 var select = $('<select><option value="">Show all</option></select>')
                     .appendTo($(column.header()))
@@ -39,6 +39,14 @@ $(document).ready(function () {
             "datatype": "json"
         },
         "columns": [
+
+            {
+                "className": 'details-control',
+                "render": function () {
+                    return '<i class="fa fa-plus-square" aria-hidden="true"></i>';
+                },
+                width: "15px"
+            },
             { "data": "initiator" },
             { "data": "reason" },
             { "data": "problem" },
@@ -78,13 +86,13 @@ $(document).ready(function () {
                     //});
                     //alert(htmlEdit);
                     //return htmlEdit;
-                    var msg = $.ajax({ type: "GET", data: { test: 1, cos: "test" }, url: "/Action/EditDeletePartial?id="+dane, async: false }).responseText;
+                    var msg = $.ajax({ type: "GET", url: "/Action/EditDeletePartial?id="+dane, async: false }).responseText;
                     return msg;
                 },
                 "orderable": false,
                 "searchable": true,
                 "width": "150px"
-            },
+            }
 
             //{ "data": "idTypeOfAction" },
 
@@ -100,10 +108,56 @@ $(document).ready(function () {
         "pageLength": 100
 
     });
+    // Add event listener for opening and closing details
+    $('#actionTable tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var tdi = tr.find("i.fa");
+        var row = dataTable.row(tr);
 
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+            tdi.first().removeClass('fa-minus-square');
+            tdi.first().addClass('fa-plus-square');
+        }
+        else {
+            // Open this row
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+            tdi.first().removeClass('fa-plus-square');
+            tdi.first().addClass('fa-minus-square');
+        }
+    });
 
-
+    dataTable.on("user-select", function (e, dt, type, cell, originalEvent) {
+        if ($(cell.node()).hasClass("details-control")) {
+            e.preventDefault();
+        }
+    });
 });
+
+
+
+function format(d) {
+
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<tr>' +
+        '<td>Full name:</td>' +
+        '<td>dfdf</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Extension number:</td>' +
+        '<td>dfdf</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Extra info:</td>' +
+        '<td>And any further details here (images etc)...</td>' +
+        '</tr>' +
+        '</table>';
+}
+
 
 function colorCells() {
     $("td:contains('%')").each(function (index) {
@@ -115,7 +169,7 @@ function colorCells() {
             }
         }
     });
-};
+}
 
 function Kespa(url) {
     var formDiv = $('<div />');
@@ -186,7 +240,7 @@ function SubmitForm(form) {
                     globalPosition: "top center",
                     className: 'superblue',
                     style: 'happyblue'
-                })
+                });
 
                 //}
             }
@@ -209,7 +263,7 @@ function Delete(id, urlForDelete) {
                         //className: "danger",
                         type: "danger"
 
-                    })
+                    });
 
                 }
             }
