@@ -6,7 +6,8 @@ using System.Web;
 using ccar.Models;
 using System.Web.Security;
 using System.Data.Entity;
-
+using System.Globalization;
+using System.Threading;
 
 namespace ccar.Models
 {
@@ -21,6 +22,7 @@ namespace ccar.Models
         public int idReason { get; set; }
         public string Reason { get; set; }
         public int? idInitiator { get; set; }
+        public string Initiator { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime? originationDate { get; set; }
@@ -57,9 +59,9 @@ namespace ccar.Models
             List<actionView> actionList = aList.Select(x => new actionView()
             {
                 id = x.id,
-                initiator = x.initiator,
                 reason = x.reason,
                 problem = x.problem,
+                Initiator = x.Initiator,
                 originationDate = x.originationDate,
                 /*rootCause = x.rootCause, correctiveAction = x.correctiveAction,*/
                 targetDate = x.targetDate,
@@ -77,7 +79,7 @@ namespace ccar.Models
             List<actionViewDone> actionList = aList.Select(x => new actionViewDone()
             {
                 id = x.id,
-                initiator = x.initiator,
+                Initiator = x.Initiator,
                 reason = x.reason,
                 problem = x.problem,
                 originationDate = x.originationDate,
@@ -120,6 +122,7 @@ namespace ccar.Models
             act.id = a.id;
             act.idReason = a.idReason;
             act.idInitiator = a.idInitiator;
+            act.Initiator = a.Initiator;
             act.originationDate = a.originationDate;
             act.idTypeOfAction = a.idTypeOfAction;
             act.problem = a.problem;
@@ -142,6 +145,7 @@ namespace ccar.Models
             act.id = a.id;
             act.idReason = a.idReason;
             act.idInitiator = a.idInitiator;
+            act.Initiator = a.Initiator;
             act.originationDate = a.originationDate;
             act.idTypeOfAction = a.idTypeOfAction;
             act.problem = a.problem;
@@ -163,8 +167,17 @@ namespace ccar.Models
 
                 ccarEntities ent = new ccarEntities();
 
-                this.idInitiator = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.id).SingleOrDefault();
+
+                //this.idInitiator = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.id).SingleOrDefault();
+                //this.originationDate = DateTime.Now;
+   
+                string Replaced = System.Environment.UserName.Replace('.', ' ');
+                CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+                TextInfo textInfo = cultureInfo.TextInfo;
+
                 this.originationDate = DateTime.Now;
+                this.Initiator = (textInfo.ToTitleCase(Replaced));
+                this.idInitiator = 1;
 
                 ent.actions.Add(ActionModel.ConvertToActionsFromDb(this));
                 ent.SaveChanges();
@@ -180,6 +193,11 @@ namespace ccar.Models
                     this.completionDate = DateTime.Now;
                 }
 
+                string Replaced = System.Environment.UserName.Replace('.', ' ');
+                CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+                TextInfo textInfo = cultureInfo.TextInfo;
+
+                this.Initiator = (textInfo.ToTitleCase(Replaced));
 
                 ent.Entry(ActionModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
                     ent.SaveChanges();

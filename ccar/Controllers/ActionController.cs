@@ -97,7 +97,9 @@ namespace ccar.Controllers
                 Act.Save();
                 //var email = responsible.getEmailAdress(Act.idResponsible);
                 //emailClass.sendMail(email, "Bablabla", "sdjklhsljkdjflksdf");
-
+                var email = UserModel.getEmailAdress(Act.idResponsible);
+                emailClass.CreateMailItem(email, "Problem: "+ Act.problem + System.Environment.NewLine + "Target date: " + Act.targetDate, "Utworzono nowe zadanie dla Ciebie w CCAR");
+     
             }
             catch (Exception ex)
             {

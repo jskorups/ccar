@@ -27,7 +27,6 @@ $(document).ready(function () {
                     e.stopPropagation();
                 });
             });
-
         },
         drawCallback: function () {
             colorCells();
@@ -47,7 +46,7 @@ $(document).ready(function () {
                 },
                 width: "15px"
             },
-            { "data": "initiator" },
+            { "data": "Initiator" },
             { "data": "reason" },
             { "data": "problem" },
             {
@@ -140,7 +139,6 @@ $(document).ready(function () {
 
 
 function format(d) {
-
     // `d` is the original data object for the row
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
@@ -157,6 +155,8 @@ function format(d) {
         '</tr>' +
         '</table>';
 }
+
+
 
 
 function colorCells() {
