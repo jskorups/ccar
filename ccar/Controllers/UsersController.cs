@@ -25,6 +25,14 @@ namespace ccar.Controllers
         }
 
         [HttpGet]
+        public ActionResult DropDownListOfUsers()
+        {
+            ccarEntities ent = new ccarEntities();
+            ViewBag.DepartmentList = new SelectList(ent.users.ToList(), "id", "firstname" + "surname", "department", 1);
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult Create()
         {
             UserModel us = new UserModel();

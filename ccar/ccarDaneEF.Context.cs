@@ -32,5 +32,7 @@ namespace ccar
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<actionView> actionView { get; set; }
         public virtual DbSet<actionViewDone> actionViewDone { get; set; }
+        public virtual DbSet<meetingMinutes> meetingMinutes { get; set; }
+        public virtual DbSet<meetingMinutesCategory> meetingMinutesCategory { get; set; }
     }
 }

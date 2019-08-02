@@ -1,25 +1,23 @@
 ﻿@model ccar.Models.ActionModel
-
-
-    <table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">
+    <table cellpadding="1" cellspacing="0" border="0" style="padding-left:50px;font-size:13px; padding:0px;">
         <tr>
-            <td>@Html.DisplayNameFor(model => model.idTypeOfAction)</td>
-            <td>@Html.DisplayFor(model => model.idTypeOfAction)</td>
+            <td>Type of action</td>
+            <td>@Html.DisplayFor(model => model.idTypeOfAction )</td>
         </tr>
         <tr>
-            <td>@Html.DisplayNameFor(model => model.rootCause)</td>
+            <td>Root cause</td>
             <td>@Html.DisplayFor(model => model.rootCause)</td>
         </tr>
         <tr>
-            <td>@Html.DisplayNameFor(model => model.correctiveAction)</td>
+            <td>Corrective action</td>
             <td>@Html.DisplayFor(model => model.correctiveAction)</td>
         </tr>
         <tr>
-            <td>@Html.DisplayNameFor(model => model.measureEffic)</td>
+            <td>Measure efficiency</td>
             <td>@Html.DisplayFor(model => model.measureEffic)</td>
         </tr>
         <tr>
-            <td>@Html.DisplayNameFor(model => model.dateOfEffic)</td>
+            <td>Date of efficiency</td>
             <td>@Html.DisplayFor(model => model.dateOfEffic)</td>
         </tr>
     </table>

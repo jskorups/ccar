@@ -88,6 +88,13 @@ namespace ccar.Controllers
             return PartialView();
         }
 
+        public ActionResult RowDetailsPartial (int id)
+        {
+            ccarEntities ent = new ccarEntities();
+            actions rowDetail = ent.actions.Where(x => x.id == id).FirstOrDefault();
+            return View(ActionModel.ConvertFromEFtoModel(rowDetail));
+        }
+
         [Authorize]
         [HttpPost]
         public ActionResult AddOrEdit(ActionModel Act)

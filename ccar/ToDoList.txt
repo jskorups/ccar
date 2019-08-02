@@ -1,5 +1,23 @@
-﻿1. dodac listy wybieralne do modala										- DONE
-2. pobieranie dat przy edycji z bazy do datepickerow
+﻿1. Mozliwosc edycji działu dla responsible
+2. Dodawanie luznych notatek ze spotkan - Meeting minutes
+- Link do dodwania
+- Link do listy
+- Mozliwosc wybierania kategorii przy dodawaniu
+- Mozliwosc kasowania
+- Lista obecnosci??
+
+
+3. Kasowanie  uzytkowników, ostrzeznie jelsi istieją i porbujemy skasowac - > przjescie do Delete Refused
+4. Wyszukiwarka do uzytkowników / grupowanie w działy ??
+
+___________________________________________________________________________________________
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+1. dodac listy wybieralne do modala										- DONE
+2. pobieranie dat przy edycji z bazy do datepickerow					- DONE
 3. automatyczne ustawianie initiatora tego ktory jest zalogowany		- DONE
 4. nie wyswietla sie user.identity.name									- DONE
 5. ustawienie completion date jako teraz gdy 100% submit				- DONE
@@ -20,10 +38,10 @@ daty
 16. Kolrowac komórki podczas ładowania strony oraz rozwiajnia dropdownlist z liczbą pozycji (entries) - DONE
 
 ______________________________________________
-usunac ordering w tabelach
-stworzyc mozliwosc dodawania responsible
-wysylanie maila poprzez outlook
-kolorwac takze przy zamykaniu 
-kolorowac przy kasowaniu
-dodać podstrony do roznych spotkań?
-rozwijanie szczegółów dla rekordów zgodnie z manulem do dattable
+usunac ordering w tabelach												- DONE
+stworzyc mozliwosc dodawania responsible								- DONE
+wysylanie maila poprzez outlook											- DONE
+kolorwac takze przy zamykaniu											- DONE
+kolorowac przy kasowaniu												- DONE
+dodać podstrony do roznych spotkań?										- DONE
+rozwijanie szczegółów dla rekordów zgodnie z manulem do dattable		- DONE

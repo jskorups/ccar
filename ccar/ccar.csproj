@@ -177,6 +177,7 @@
     </Compile>
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MeetingMinutesController.cs" />
     <Compile Include="Controllers\ReasonController.cs" />
     <Compile Include="Controllers\typeOfActionController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -185,7 +186,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="meetingMinutes.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="meetingMinutesCategory.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ActionModel.cs" />
+    <Compile Include="Models\MeetingMinutesModel.cs" />
     <Compile Include="Models\ProgressModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -265,7 +273,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\0.png" />
     <Content Include="images\brandLogo.gif" />
-    <Content Include="notes - Copy.txt" />
+    <Content Include="ToDoList.txt" />
     <Content Include="notes.txt" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -341,6 +349,8 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Action\EditDeletePartial.cshtml" />
+    <Content Include="Views\Action\RowDetailsPartial.cshtml" />
+    <Content Include="Views\MeetingMinutes\MeetingMinutesList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
