@@ -41,9 +41,8 @@ $(document).ready(function () {
 
             {
                 "className": 'details-control',
-                "render": function () {
-                    return '<i class="fa fa-plus-square" aria-hidden="true"></i>';
-                },
+                "data": null,
+                "defaultContent": "",
                 width: "15px"
             },
             { "data": "Initiator" },
@@ -107,35 +106,78 @@ $(document).ready(function () {
         "pageLength": 100
 
     });
+
+
     // Add event listener for opening and closing details
-    $('#actionTable tbody').on('click', 'td.details-control', function () {
-        var tr = $(this).closest('tr');
-        var tdi = tr.find("i.fa");
-        var row = dataTable.row(tr);
+//    $('#actionTable tbody').on('click', 'td.details-control', function () {
+//        var tr = $(this).closest('tr');
+//        var tdi = tr.find("i.fa");
+//        var row = dataTable.row(tr);
 
-        if (row.child.isShown()) {
-            // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
-            tdi.first().removeClass('fa-minus-square');
-            tdi.first().addClass('fa-plus-square');
-        }
-        else {
-            // Open this row
-            row.child(format(row.data())).show();
-            tr.addClass('shown');
-            tdi.first().removeClass('fa-plus-square');
-            tdi.first().addClass('fa-minus-square');
-        }
-    });
+//        if (row.child.isShown()) {
+//            // This row is already open - close it
+//            row.child.hide();
+//            tr.removeClass('shown');
+//            tdi.first().removeClass('fa-minus-square');
+//            tdi.first().addClass('fa-plus-square');
+//        }
+//        else {
+//            // Open this row
+//            row.child(format(row.data())).show();
+//            tr.addClass('shown');
+//            tdi.first().removeClass('fa-plus-square');
+//            tdi.first().addClass('fa-minus-square');
+//        }
+//    });
 
-    dataTable.on("user-select", function (e, dt, type, cell, originalEvent) {
-        if ($(cell.node()).hasClass("details-control")) {
-            e.preventDefault();
+//    dataTable.on("user-select", function (e, dt, type, cell, originalEvent) {
+//        if ($(cell.node()).hasClass("details-control")) {
+//            e.preventDefault();
+//        }
+//    });
+//});
+
+
+//////////////////////////////////////////////////////
+
+
+// Array to track the ids of the details displayed rows
+var detailRows = [];
+
+$('#example tbody').on('click', 'tr td.details-control', function () {
+    var tr = $(this).closest('tr');
+    var row = dt.row(tr);
+    var idx = $.inArray(tr.attr('id'), detailRows);
+
+    if (row.child.isShown()) {
+        tr.removeClass('details');
+        row.child.hide();
+
+        // Remove from the 'open' array
+        detailRows.splice(idx, 1);
+    }
+    else {
+        tr.addClass('details');
+        row.child(format(row.data())).show();
+
+        // Add to the 'open' array
+        if (idx === -1) {
+            detailRows.push(tr.attr('id'));
         }
-    });
+    }
 });
 
+// On each draw, loop over the `detailRows` array and show any child rows
+dt.on('draw', function () {
+    $.each(detailRows, function (i, id) {
+        $('#' + id + ' td.details-control').trigger('click');
+    });
+});
+} );
+
+
+
+//////////////////////////////////////////////////////
 
 
 function format(d) {

@@ -201,15 +201,17 @@ table.dataTable thead .sorting_desc_disabled {
     background-color: #f30 !important;
 }
 td.details-control {
-    text-align: center;
-    color: forestgreen;
+    background: url('../images/details_open.png') no-repeat center center;
     cursor: pointer;
+
 }
 
-tr.shown td.details-control {
-    text-align: center;
-    color: red;
+tr.details td.details-control {
+    background: url('../images/details_close.png') no-repeat center center;
 }
+
+
+
 
 /* Dropdownlist with search */
 

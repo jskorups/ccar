@@ -273,6 +273,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\0.png" />
     <Content Include="images\brandLogo.gif" />
+    <Content Include="images\details_close.png" />
+    <Content Include="images\details_open.png" />
     <Content Include="ToDoList.txt" />
     <Content Include="notes.txt" />
     <Content Include="Scripts\app.js" />
