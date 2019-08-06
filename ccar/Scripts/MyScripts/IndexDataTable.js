@@ -238,42 +238,43 @@ function PopupForm(url) {
         });
 }
 
-function SubmitForm(form) {
-    $.validator.unobtrusive.parse(form);
-    if ($(form).valid()) {
-        //$.ajax({
-        //    type: "POST",
-        //    url: form.action,
-        //    data: $(form).serialize(),
-        //    success: function (data) {
-        //        //if (data.success) {
-        //            Popup.dialog('close');
-        //            dataTable.ajax.reload();
+//function SubmitForm(form) {
+//    $.validator.unobtrusive.parse(form);
+//    if ($(form).valid()) {
+//        //$.ajax({
+//        //    type: "POST",
+//        //    url: form.action,
+//        //    data: $(form).serialize(),
+//        //    success: function (data) {
+//        //        //if (data.success) {
+//        //            Popup.dialog('close');
+//        //            dataTable.ajax.reload();
 
-        jQuery.ajax({
-            URL: form.action,
-            data: $(form).serialize(),
-            dataType: "json",
-            type: "POST",
-            success: function (data) {
-                Popup.dialog('close');
-                dataTable.ajax.reload();
+//        jQuery.ajax({
+//            URL: form.action,
+//            data: $(form).serialize(),
+//            dataType: "json",
+//            type: "POST",
+//            success: function (data) {
+//                Popup.dialog('close');
+//                alert();
+//                dataTable.ajax.reload();
 
 
 
 
-                $.notify(data.message, {
-                    globalPosition: "top center",
-                    className: 'superblue',
-                    style: 'happyblue'
-                });
+//                $.notify(data.message, {
+//                    globalPosition: "top center",
+//                    className: 'superblue',
+//                    style: 'happyblue'
+//                });
 
-                //}
-            }
-        });
-    }
-    return false;
-}
+//                //}
+//            }
+//        });
+//    }
+//    return false;
+//}
 function Delete(id, urlForDelete) {
     if (confirm('Are You Sure to Delete this Employee Record ?')) {
         $.ajax({

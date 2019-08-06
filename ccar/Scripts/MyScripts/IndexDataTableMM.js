@@ -97,9 +97,6 @@ $(document).ready(function () {
 
 
 
-
-
-
 function Kespa(url) {
     var formDiv = $('<div />');
     $.get(url)
@@ -109,7 +106,7 @@ function Kespa(url) {
             Popup = formDiv.dialog({
                 autoOpen: true,
                 resizable: false,
-                title: 'Fill Actions Details',
+                title: 'Fill Meeting Details',
                 height: 520,
                 width: 1100,
                 close: function () {

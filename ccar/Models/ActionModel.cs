@@ -30,6 +30,8 @@ namespace ccar.Models
         [Range(1, float.MaxValue, ErrorMessage = "Required")]
         public int? idTypeOfAction { get; set; }
 
+        public string TypeOfAction { get { return GetTypeOfAction(this.idTypeOfAction.Value); } }
+
         [Required(ErrorMessage = "Required")]
         public string problem { get; set; }
         public string rootCause { get; set; }
@@ -53,6 +55,12 @@ namespace ccar.Models
         public string dateOfEffic { get; set; }
 
 
+        public string GetTypeOfAction(int id)
+        {
+            ccarEntities ent = new ccarEntities();
+            string toa = ent.typeOfaction.Where(x => x.id == id).Select(x => x.typeOfaction1).SingleOrDefault();
+            return toa;
+        }
 
         public static List<actionView> fromActionsDB(List<actionView> aList)
         {

@@ -201,32 +201,7 @@
         </div>
     </div>
 
-
-
     <script>
-
-
-        //function Kespa(url) {
-        //    var formDiv = $('<div/>');
-        //    $.get(url)
-        //        .done(function (response) {
-        //            formDiv.html(response);
-
-        //            Popup = formDiv.dialog({
-        //                autoOpen: true,
-        //                resizable: false,
-        //                title: 'Fill Actions Details',
-        //                height: 500,
-        //                width: 1100,
-        //                close: function () {
-        //                    Popup.dialog('destroy').remove();
-        //                }
-
-        //            });
-        //        });
-        //}
-
-
         function PopupForm(url) {
             var formDiv = $('<div/>');
             $.get(url)
@@ -246,9 +221,6 @@
                     });
                 });
         }
-
-
-
         function SubmitForm(form) {
             $.validator.unobtrusive.parse(form);
             if ($(form).valid()) {
@@ -258,7 +230,8 @@
                     data: $(form).serialize(),
                     success: function (data) {
                         //if (data.success) {
-                            Popup.dialog('close');
+                        Popup.dialog('close');
+                        alert();
                         dataTable.ajax.reload();
                         
                             $.notify(data.message, {
@@ -273,11 +246,6 @@
             }
             return false;
         }
-
-
-
     </script>
-
-
 }
 

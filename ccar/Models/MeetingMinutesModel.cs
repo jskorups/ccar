@@ -14,7 +14,10 @@ namespace ccar.Models
     public class MeetingMinutesDatesModel
     {
         public int id { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime? Date { get; set; }
+        [Required(ErrorMessage = "Required")]
         public int? projectId { get; set; }
 
 

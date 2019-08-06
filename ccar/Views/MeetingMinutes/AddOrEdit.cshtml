@@ -1,8 +1,134 @@
-﻿
+﻿@model ccar.Models.MeetingMinutesDatesModel
 @{
-    ViewBag.Title = "AddOrEdit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+                /**/
 
-<h2>AddOrEdit</h2>
+                /**/
+
+                Layout = null;
+}
+@using (Html.BeginForm("AddOrEdit", "MeetingMinutes", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+{
+
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @id = "koko" })
+
+
+
+    <div class="form-group container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                @Html.Label("Target date*", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.Date, null, new { @class = "koko" })
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="form-group container">
+        <div class="row">
+            <div class="col-md-12 mb-12 text-center">
+                <input type="submit" value="Submit" class="btn btn-success" style="width:250px; height:40px" />
+                <input type="reset" value="Reset" class="btn btn-danger" style="width:250px; height:40px" />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group container">
+        <div class="row">
+            <div class="col-md-5 mb-5 text-center">
+            </div>
+            <div class="col-md-5 mb-5 text-center">
+            </div>
+            <div class="col-md-2 mb-2 text-center">
+                <span style="color:red; font-style:oblique;">* Required</span>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    <script>
+
+
+        //function Kespa(url) {
+        //    var formDiv = $('<div/>');
+        //    $.get(url)
+        //        .done(function (response) {
+        //            formDiv.html(response);
+
+        //            Popup = formDiv.dialog({
+        //                autoOpen: true,
+        //                resizable: false,
+        //                title: 'Fill Actions Details',
+        //                height: 500,
+        //                width: 1100,
+        //                close: function () {
+        //                    Popup.dialog('destroy').remove();
+        //                }
+
+        //            });
+        //        });
+        //}
+
+
+        function PopupForm(url) {
+            var formDiv = $('<div/>');
+            $.get(url)
+                .done(function (response) {
+                    formDiv.html(response);
+
+                    Popup = formDiv.dialog({
+                        autoOpen: true,
+                        resizable: false,
+                        title: 'Add reason',
+                        height: 200,
+                        width: 450,
+                        close: function () {
+                            Popup.dialog('destroy').remove();
+                        }
+
+                    });
+                });
+        }
+
+
+
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        //if (data.success) {
+                        Popup.dialog('close');
+                        alert();
+                        dataTable.ajax.reload();
+
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "success"
+
+                        })
+
+                        //}
+                    }
+                });
+            }
+            return false;
+        }
+
+
+
+    </script>
+
+
+}
 
