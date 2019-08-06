@@ -1,0 +1,34 @@
+﻿
+<script src="~/Scripts/MyScripts/IndexDataTableMM.js"></script>
+
+
+
+<h2>Meeting Minutes</h2>
+
+<button id="addBtn" class="btn btn-outline-primary" onclick="Kespa('@Url.Action("AddOrEdit","MeetingMinutes")')" )><i class="fa fa-plus-square"></i> Add new action</button>
+@*<button  class="btn btn-outline-primary" onclick="blab()" )><i class="fa fa-plus-square"></i> kek</button>*@
+
+
+<body>
+    <table id="meetingMinutesTable" class="table table-striped table-bordered" style="width:1600px;">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Date</th>
+                <th>ProjectName</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>Date</th>
+                <th>ProjectName</th>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+
+<input type="hidden" id="DataUrl" value="@Url.Action("AddOrEdit","MeetingMinutes")" />
+<input type="hidden" id="DeleteUrl" value="@Url.Action("Delete","MeetingMinutes")" />
+
