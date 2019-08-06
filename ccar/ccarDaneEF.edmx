@@ -25,21 +25,6 @@
           <Property Name="measureEffic" Type="nvarchar" MaxLength="50" />
           <Property Name="dateOfEffic" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="meetingMinutes">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="Contents" Type="nvarchar" MaxLength="50" />
-          <Property Name="CategoryId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="meetingMinutesCategory">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="CategoryType" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="progress">
           <Key>
             <PropertyRef Name="id" />
@@ -108,18 +93,6 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Property Name="responsible" Type="nvarchar" MaxLength="101" />
           <Property Name="progressValue" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__meetingMi__Categ__6477ECF3">
-          <End Role="meetingMinutesCategory" Type="Self.meetingMinutesCategory" Multiplicity="1" />
-          <End Role="meetingMinutes" Type="Self.meetingMinutes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="meetingMinutesCategory">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="meetingMinutes">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_actions_progress">
           <End Role="progress" Type="Self.progress" Multiplicity="0..1" />
           <End Role="actions" Type="Self.actions" Multiplicity="*" />
@@ -182,8 +155,6 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
         </Association>
         <EntityContainer Name="ccarModelStoreContainer">
           <EntitySet Name="actions" EntityType="Self.actions" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="meetingMinutes" EntityType="Self.meetingMinutes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="meetingMinutesCategory" EntityType="Self.meetingMinutesCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="progress" EntityType="Self.progress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="reasons" EntityType="Self.reasons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="typeOfaction" EntityType="Self.typeOfaction" Schema="dbo" store:Type="Tables" />
@@ -214,10 +185,6 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
     [actionViewDone].[progressValue] AS [progressValue]
     FROM [dbo].[actionViewDone] AS [actionViewDone]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__meetingMi__Categ__6477ECF3" Association="Self.FK__meetingMi__Categ__6477ECF3">
-            <End Role="meetingMinutesCategory" EntitySet="meetingMinutesCategory" />
-            <End Role="meetingMinutes" EntitySet="meetingMinutes" />
-          </AssociationSet>
           <AssociationSet Name="FK_actions_progress" Association="Self.FK_actions_progress">
             <End Role="progress" EntitySet="progress" />
             <End Role="actions" EntitySet="actions" />
@@ -270,12 +237,6 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <AssociationSet Name="FK_actions_users1" Association="ccarModel.FK_actions_users1">
             <End Role="users" EntitySet="users" />
             <End Role="actions" EntitySet="actions" />
-          </AssociationSet>
-          <EntitySet Name="meetingMinutes" EntityType="ccarModel.meetingMinutes" />
-          <EntitySet Name="meetingMinutesCategory" EntityType="ccarModel.meetingMinutesCategory" />
-          <AssociationSet Name="FK__meetingMi__Categ__6477ECF3" Association="ccarModel.FK__meetingMi__Categ__6477ECF3">
-            <End Role="meetingMinutesCategory" EntitySet="meetingMinutesCategory" />
-            <End Role="meetingMinutes" EntitySet="meetingMinutes" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="actions">
@@ -432,35 +393,6 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="meetingMinutes">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="Contents" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="meetingMinutesCategory" Relationship="ccarModel.FK__meetingMi__Categ__6477ECF3" FromRole="meetingMinutes" ToRole="meetingMinutesCategory" />
-        </EntityType>
-        <EntityType Name="meetingMinutesCategory">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="CategoryType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="meetingMinutes" Relationship="ccarModel.FK__meetingMi__Categ__6477ECF3" FromRole="meetingMinutesCategory" ToRole="meetingMinutes" />
-        </EntityType>
-        <Association Name="FK__meetingMi__Categ__6477ECF3">
-          <End Type="ccarModel.meetingMinutesCategory" Role="meetingMinutesCategory" Multiplicity="1" />
-          <End Type="ccarModel.meetingMinutes" Role="meetingMinutes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="meetingMinutesCategory">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="meetingMinutes">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -556,24 +488,7 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="meetingMinutes">
-            <EntityTypeMapping TypeName="ccarModel.meetingMinutes">
-              <MappingFragment StoreEntitySet="meetingMinutes">
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="Contents" ColumnName="Contents" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="meetingMinutesCategory">
-            <EntityTypeMapping TypeName="ccarModel.meetingMinutesCategory">
-              <MappingFragment StoreEntitySet="meetingMinutesCategory">
-                <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

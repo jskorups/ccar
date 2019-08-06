@@ -4,8 +4,8 @@ var Popup, dataTable;
 $(document).ready(function () {
     dataTable = $('#actionTable').DataTable({
         initComplete: function () {
-            
-            this.api().columns([ 1,2, 3, 4,5, 7,8]).every(function () {
+
+            this.api().columns([1, 2, 3, 4, 5, 7, 8]).every(function () {
                 var column = this;
                 var select = $('<select><option value="">Show all</option></select>')
                     .appendTo($(column.header()))
@@ -13,8 +13,6 @@ $(document).ready(function () {
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val()
                         );
-
-                  
                         column
                             .search(val ? '^' + val + '$' : '', true, false)
                             .draw();
@@ -74,16 +72,16 @@ $(document).ready(function () {
 
             {
                 "data": "id", "render": function (dane) {
-                    
+
                     // return "<a class='btn btn-default btn-sm' onclick=Kespa('" + $('#DataUrl').val() + "/" + data + "')><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete('" + data + "','" + $('#DeleteUrl').val()+"')><i class='fa fa-trash'></i> Delete</a>";
                     //var htmlEdit;
                     //$.get("/Action/EditDeletePartial", function (data) {
-                     
+
                     //    htmlEdit = data;
                     //});
                     //alert(htmlEdit);
                     //return htmlEdit;
-                    var msg = $.ajax({ type: "GET", url: "/Action/EditDeletePartial?id="+dane, async: false }).responseText;
+                    var msg = $.ajax({ type: "GET", url: "/Action/EditDeletePartial?id=" + dane, async: false }).responseText;
                     return msg;
                 },
                 "orderable": false,
@@ -109,7 +107,7 @@ $(document).ready(function () {
 
 
     $('#actionTable tbody').on('click', 'td.details-control', function () {
-    
+
         var tr = $(this).closest('tr');
         var tdi = tr.find("i.fa");
         var row = dataTable.row(tr);
@@ -118,13 +116,13 @@ $(document).ready(function () {
             // This row is already open - close it
             row.child.hide();
             tr.removeClass('shown');
-     
+
         }
         else {
             // Open this row
             row.child(format(row.data())).show();
             tr.addClass('shown');
-        
+
         }
     });
 
@@ -285,7 +283,7 @@ function Delete(id, urlForDelete) {
                 //if (data.success)
                 {
                     dataTable.ajax.reload();
-               
+
                     $.notify(data.message, {
                         globalPosition: "top center",
                         //className: "danger",

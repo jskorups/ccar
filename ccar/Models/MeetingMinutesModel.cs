@@ -1,35 +1,85 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using ccar.Models;
+using System.Web.Security;
+using System.Data.Entity;
+using System.Globalization;
+using System.Threading;
 
 namespace ccar.Models
 {
-    public class MeetingMinutesModel
+    public class MeetingMinutesDatesModel
     {
         public int id { get; set; }
-        public string Contents { get; set; }
-        public int CategoryId { get; set; }
+        public DateTime? Date { get; set; }
+        public int? projectId { get; set; }
 
 
 
 
         // List of meetings
-        public static List<MeetingMinutesModel> GetListOfFromDB(List<meetingMinutes> mList)
+        public static List<mmDatesView> fromMMDatesView(List<mmDatesView> mList)
         {
-            List<MeetingMinutesModel> meetingList = mList.Select(x => new MeetingMinutesModel() { id = x.id, CategoryId = x.CategoryId, Contents = x.Contents }).ToList();
-            return meetingList;
+            List<mmDatesView> mmDatesList = mList.Select(x => new mmDatesView()
+            {
+                id = x.id,
+                Date = x.Date,
+                ProjectName = x.ProjectName
+            }).ToList();
+            return mmDatesList;
         }
-        public static List<MeetingMinutesModel> getMinutesList()
+
+        public static meetingMinutesDates COnvertToMMDfromDB(MeetingMinutesDatesModel m)
         {
-            ccarEntities ent = new ccarEntities();
-            return GetListOfFromDB(ent.meetingMinutes.ToList());
+            meetingMinutesDates mmD = new meetingMinutesDates();
+            mmD.id = m.id;
+            mmD.Date = m.Date;
+            mmD.projectId = m.projectId;
+            return mmD;
+        }
+
+        public static MeetingMinutesDatesModel ConvertFromEFtoModel(meetingMinutesDates m)
+        {
+
+
+            MeetingMinutesDatesModel mmD = new MeetingMinutesDatesModel();
+            mmD.id = m.id;
+            mmD.Date = m.Date;
+            mmD.projectId = m.projectId;
+            return mmD;
+
         }
 
 
+        public void Save()
+        {
+            if (this.id == 0)
+            {
 
-    }
-
+                ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
 
   
+                this.Date = DateTime.Now;
+
+                ent.meetingMinutesDates.Add(MeetingMinutesDatesModel.COnvertToMMDfromDB(this));
+                ent.SaveChanges();
+                //emailClass.sendMail(responsible.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
+
+            }
+            else
+            {
+                ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
+
+                ent.Entry(MeetingMinutesDatesModel.COnvertToMMDfromDB(this)).State = EntityState.Modified;
+                ent.SaveChanges();
+
+            }
+        }
+    }
 }
+
+
+

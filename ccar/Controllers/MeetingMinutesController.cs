@@ -9,13 +9,64 @@ namespace ccar.Controllers
 {
     public class MeetingMinutesController : Controller
     {
-        // GET: MeetingMinutes
-        public ActionResult MeetingMinutesList()
+        [HttpGet]
+        public ActionResult Index()
         {
-           List<MeetingMinutesModel> meMin = new List<MeetingMinutesModel>();
-            ccarEntities ent = new ccarEntities();
-            meMin = MeetingMinutesModel.GetListOfFromDB(ent.meetingMinutes.ToList());
-            return View(meMin);
+
+            return View();
         }
+
+        [HttpGet]
+        public ActionResult GetData()
+        {
+            using (ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities())
+            {
+                List<mmDatesView> mmDlist = new List<mmDatesView>();
+
+                mmDlist = MeetingMinutesDatesModel.fromMMDatesView(ent.mmDatesView.ToList());
+                return Json(new { data = mmDlist }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult AddOrEdit(int id = 0)
+        {
+            if (id == 0)
+            {
+
+                return View(new MeetingMinutesDatesModel());
+            }
+            else
+            {
+                ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
+                meetingMinutesDates test = ent.meetingMinutesDates.Where(x => x.id == id).FirstOrDefault();
+                return View(MeetingMinutesDatesModel.ConvertFromEFtoModel(test));
+            }
+
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddOrEdit(MeetingMinutesDatesModel mmD)
+        {
+            try
+            {
+                mmD.Save();
+            }
+            catch (Exception ex)
+            {
+                return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+
+
+
     }
 }

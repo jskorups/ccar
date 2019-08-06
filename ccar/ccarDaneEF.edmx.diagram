@@ -11,15 +11,12 @@
         <EntityTypeShape EntityType="ccarModel.typeOfaction" Width="1.5" PointX="0.75" PointY="10.5" />
         <EntityTypeShape EntityType="ccarModel.users" Width="1.5" PointX="0.75" PointY="2.125" />
         <EntityTypeShape EntityType="ccarModel.actionView" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ccarModel.actionViewDone" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ccarModel.actionViewDone" Width="1.5" PointX="5.25" PointY="3.875" />
         <AssociationConnector Association="ccarModel.FK_actions_progress" />
         <AssociationConnector Association="ccarModel.FK_actions_reasons" />
         <AssociationConnector Association="ccarModel.FK_actions_typeOfaction" />
         <AssociationConnector Association="ccarModel.FK_actions_users" />
         <AssociationConnector Association="ccarModel.FK_actions_users1" />
-        <EntityTypeShape EntityType="ccarModel.meetingMinutes" Width="1.5" PointX="10.625" PointY="0.875" />
-        <EntityTypeShape EntityType="ccarModel.meetingMinutesCategory" Width="1.5" PointX="8.375" PointY="1" />
-        <AssociationConnector Association="ccarModel.FK__meetingMi__Categ__6477ECF3" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

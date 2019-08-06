@@ -175,6 +175,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ccarDaneEF.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ccarMMdaneEF.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ccarMMdaneEF.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ccarMMdaneEF.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ccarMMdaneEF.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ccarMMdaneEF.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MeetingMinutesController.cs" />
@@ -186,11 +201,35 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="meetingMinutes.cs">
-      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    <Compile Include="MeetingMinutesAttendanceList.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="meetingMinutesCategory.cs">
-      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    <Compile Include="MeetingMinutesAttendanceStatus.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="meetingMinutesDates.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MeetingMinutesPriority.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MeetingMinutesProjects.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MeetingMinutesProtocol.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MeetingMinutesStatus.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MeetingMinutesTypeOfSubject.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mmDatesView.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mMusers.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ActionModel.cs" />
     <Compile Include="Models\MeetingMinutesModel.cs" />
@@ -223,6 +262,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ccarDaneEF.edmx</DependentUpon>
       <LastGenOutput>ccarDaneEF.cs</LastGenOutput>
+    </Content>
+    <Content Include="ccarMMdaneEF.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ccarMMdaneEF.edmx</DependentUpon>
+      <LastGenOutput>ccarMMdaneEF.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ccarMMdaneEF.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ccarMMdaneEF.edmx</DependentUpon>
+      <LastGenOutput>ccarMMdaneEF.cs</LastGenOutput>
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -275,6 +324,7 @@
     <Content Include="images\brandLogo.gif" />
     <Content Include="images\details_close.png" />
     <Content Include="images\details_open.png" />
+    <Content Include="Scripts\MyScripts\IndexDataTableMM.js" />
     <Content Include="ToDoList.txt" />
     <Content Include="notes.txt" />
     <Content Include="Scripts\app.js" />
@@ -289,6 +339,13 @@
     </EntityDeploy>
     <Content Include="ccarDaneEF.edmx.diagram">
       <DependentUpon>ccarDaneEF.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="ccarMMdaneEF.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ccarMMdaneEF.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="ccarMMdaneEF.edmx.diagram">
+      <DependentUpon>ccarMMdaneEF.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
@@ -352,7 +409,8 @@
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Action\EditDeletePartial.cshtml" />
     <Content Include="Views\Action\RowDetailsPartial.cshtml" />
-    <Content Include="Views\MeetingMinutes\MeetingMinutesList.cshtml" />
+    <Content Include="Views\MeetingMinutes\Index.cshtml" />
+    <Content Include="Views\MeetingMinutes\AddOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
