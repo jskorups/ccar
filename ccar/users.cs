@@ -18,7 +18,6 @@ namespace ccar
         public users()
         {
             this.actions = new HashSet<actions>();
-            this.actions1 = new HashSet<actions>();
         }
     
         public int id { get; set; }
@@ -28,11 +27,8 @@ namespace ccar
         public string email { get; set; }
         public string guid { get; set; }
         public Nullable<bool> active { get; set; }
-        public string department { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<actions> actions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<actions> actions1 { get; set; }
     }
 }

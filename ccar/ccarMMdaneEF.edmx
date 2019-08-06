@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ccarMeetingMinutesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ccarMeetingMinutesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="MeetingMinutesAttendanceList">
           <Key>
             <PropertyRef Name="id" />
@@ -285,7 +285,6 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.mmDatesView' does not have 
           <EntitySet Name="MeetingMinutesStatus" EntityType="ccarMeetingMinutesModel.MeetingMinutesStatus" />
           <EntitySet Name="MeetingMinutesTypeOfSubject" EntityType="ccarMeetingMinutesModel.MeetingMinutesTypeOfSubject" />
           <EntitySet Name="mMusers" EntityType="ccarMeetingMinutesModel.mMusers" />
-          <EntitySet Name="mmDatesView" EntityType="ccarMeetingMinutesModel.mmDatesView" />
           <AssociationSet Name="FK_MeetingMinutesAttendanceList_MeetingMinutesAttendanceStatus" Association="ccarMeetingMinutesModel.FK_MeetingMinutesAttendanceList_MeetingMinutesAttendanceStatus">
             <End Role="MeetingMinutesAttendanceStatus" EntitySet="MeetingMinutesAttendanceStatus" />
             <End Role="MeetingMinutesAttendanceList" EntitySet="MeetingMinutesAttendanceList" />
@@ -326,6 +325,7 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.mmDatesView' does not have 
             <End Role="mMusers" EntitySet="mMusers" />
             <End Role="MeetingMinutesProtocol" EntitySet="MeetingMinutesProtocol" />
           </AssociationSet>
+          <EntitySet Name="mmDatesView" EntityType="ccarMeetingMinutesModel.mmDatesView" />
         </EntityContainer>
         <EntityType Name="MeetingMinutesAttendanceList">
           <Key>
@@ -423,15 +423,6 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.mmDatesView' does not have 
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MeetingMinutesAttendanceList" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesAttendanceList_mMusers" FromRole="mMusers" ToRole="MeetingMinutesAttendanceList" />
           <NavigationProperty Name="MeetingMinutesProtocol" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_mMusers" FromRole="mMusers" ToRole="MeetingMinutesProtocol" />
-        </EntityType>
-        <EntityType Name="mmDatesView">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="ProjectName" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_MeetingMinutesAttendanceList_MeetingMinutesAttendanceStatus">
           <End Type="ccarMeetingMinutesModel.MeetingMinutesAttendanceStatus" Role="MeetingMinutesAttendanceStatus" Multiplicity="1" />
@@ -553,6 +544,15 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.mmDatesView' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="mmDatesView">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="ProjectName" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

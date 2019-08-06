@@ -6,8 +6,6 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
-
 
 @using (Html.BeginForm("AddOrEdit", "Action", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
 {
@@ -208,25 +206,25 @@
     <script>
 
 
-        function Kespa(url) {
-            var formDiv = $('<div/>');
-            $.get(url)
-                .done(function (response) {
-                    formDiv.html(response);
+        //function Kespa(url) {
+        //    var formDiv = $('<div/>');
+        //    $.get(url)
+        //        .done(function (response) {
+        //            formDiv.html(response);
 
-                    Popup = formDiv.dialog({
-                        autoOpen: true,
-                        resizable: false,
-                        title: 'Fill Actions Details',
-                        height: 500,
-                        width: 1100,
-                        close: function () {
-                            Popup.dialog('destroy').remove();
-                        }
+        //            Popup = formDiv.dialog({
+        //                autoOpen: true,
+        //                resizable: false,
+        //                title: 'Fill Actions Details',
+        //                height: 500,
+        //                width: 1100,
+        //                close: function () {
+        //                    Popup.dialog('destroy').remove();
+        //                }
 
-                    });
-                });
-        }
+        //            });
+        //        });
+        //}
 
 
         function PopupForm(url) {

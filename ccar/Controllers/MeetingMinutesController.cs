@@ -22,7 +22,7 @@ namespace ccar.Controllers
             using (ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities())
             {
                 List<mmDatesView> mmDlist = new List<mmDatesView>();
-
+                var test = ent.mmDatesView.ToList();
                 mmDlist = MeetingMinutesDatesModel.fromMMDatesView(ent.mmDatesView.ToList());
                 return Json(new { data = mmDlist }, JsonRequestBehavior.AllowGet);
             }
