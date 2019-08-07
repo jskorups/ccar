@@ -108,7 +108,7 @@ function Kespa(url) {
                 resizable: false,
                 title: 'Fill Meeting Details',
                 height: 520,
-                width: 1100,
+                width: 700,
                 close: function () {
                     Popup.dialog('destroy').remove();
                 }

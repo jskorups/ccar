@@ -10,6 +10,7 @@ namespace ccar.Models
         public int id { get; set; }
         public string typeOfAction1 { get; set; }
 
+
         public static List<TypeOfActionModel> fromTypeOfAction(List<typeOfaction> toaList)
         {
             List<TypeOfActionModel> listTOA = toaList.Select(x => new TypeOfActionModel() { id = x.id, typeOfAction1 = x.typeOfaction1}).ToList();
