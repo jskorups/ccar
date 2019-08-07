@@ -201,17 +201,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="meetingMinutes.cs">
-      <DependentUpon>ccarDaneEF.tt</DependentUpon>
-    </Compile>
     <Compile Include="MeetingMinutesAttendanceList.cs">
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="MeetingMinutesAttendanceStatus.cs">
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="meetingMinutesCategory.cs">
-      <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="meetingMinutesDates.cs">
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
