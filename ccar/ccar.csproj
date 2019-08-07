@@ -22,7 +22,7 @@
     <IISExpressSSLPort>
     </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -193,7 +193,8 @@
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MeetingMinutesController.cs" />
-    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\MeetingMinutesUsersController.cs" />
+    <Compile Include="Controllers\MeetingMinutesProjectController.cs" />
     <Compile Include="Controllers\ReasonController.cs" />
     <Compile Include="Controllers\typeOfActionController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -234,6 +235,7 @@
     </Compile>
     <Compile Include="Models\ActionModel.cs" />
     <Compile Include="Models\MeetingMinutesDatesModel.cs" />
+    <Compile Include="Models\MeetingMinutesUsersModel.cs" />
     <Compile Include="Models\ProgressModel.cs" />
     <Compile Include="Models\MeetingMinutesProjectModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -421,6 +423,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\MeetingMinutesUsers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

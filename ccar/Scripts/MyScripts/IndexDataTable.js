@@ -179,7 +179,7 @@ $(document).ready(function () {
 function format(d) {
     // `d` is the original data object for the row
     var rowDetail = $.ajax({ type: "GET", url: "/Action/RowDetailsPartial?id=" + d.id, async: false }).responseText;
-    return rowDetail
+    return rowDetail;
 }
 
 
@@ -217,7 +217,6 @@ function Kespa(url) {
         });
 }
 
-
 function PopupForm(url) {
     var formDiv = $('<div />');
     $.get(url)
@@ -237,44 +236,6 @@ function PopupForm(url) {
             });
         });
 }
-
-//function SubmitForm(form) {
-//    $.validator.unobtrusive.parse(form);
-//    if ($(form).valid()) {
-//        //$.ajax({
-//        //    type: "POST",
-//        //    url: form.action,
-//        //    data: $(form).serialize(),
-//        //    success: function (data) {
-//        //        //if (data.success) {
-//        //            Popup.dialog('close');
-//        //            dataTable.ajax.reload();
-
-//        jQuery.ajax({
-//            URL: form.action,
-//            data: $(form).serialize(),
-//            dataType: "json",
-//            type: "POST",
-//            success: function (data) {
-//                Popup.dialog('close');
-//                alert();
-//                dataTable.ajax.reload();
-
-
-
-
-//                $.notify(data.message, {
-//                    globalPosition: "top center",
-//                    className: 'superblue',
-//                    style: 'happyblue'
-//                });
-
-//                //}
-//            }
-//        });
-//    }
-//    return false;
-//}
 function Delete(id, urlForDelete) {
     if (confirm('Are You Sure to Delete this Employee Record ?')) {
         $.ajax({
@@ -298,19 +259,4 @@ function Delete(id, urlForDelete) {
         });
     }
 }
-        //$.notify.addStyle('happyblue', {
-        //    html: "<div>☺<span data-notify-text/>☺</div>",
-        //    classes: {
-        //        base: {
-        //            "width":"500px",
-        //            "white-space": "nowrap",
-        //            "background-color": "lightblue",
-        //            "padding": "5px"
-        //        },
-        //        superblue: {
-        //            "color": "white",
-        //            "background-color": "blue"
-        //        }
-        //    }
-        //});
-
+ 

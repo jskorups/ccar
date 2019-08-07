@@ -13,25 +13,24 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @id = "koko" })
 
-
-
-
-
-
     <div class="form-group container">
         <div class="row">
 
-            <div class="col-md-6 mb-6">
-                @Html.Label("Target date*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.Date, null, new { @class = "koko" })
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+            @*<div class="col-md-6 mb-6">
+            @Html.Label("Target date*", new { @class = "control-label" })
+            @Html.ValidationMessageFor(model => model.Date, null, new { @class = "koko" })
+            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+        </div>*@
+
+            <div class="col-md-2 mb-2">
             </div>
-            <div class="col-md-4 mb-4">
+
+            <div class="col-md-7 mb-11">
                 @Html.Label("Project*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.projectId, null, new { @class = "koko" })
                 @{
-            var listProjects = (ccar.Models.MeetingMinutesProjectModel.GetProjectList());
-            listProjects.Add(new ccar.Models.MeetingMinutesProjectModel() { id = 0, ProjectName = null });
+                    var listProjects = (ccar.Models.MeetingMinutesProjectModel.GetProjectList());
+                    listProjects.Add(new ccar.Models.MeetingMinutesProjectModel() { id = 0, ProjectName = null });
                 }
                 @Html.DropDownListFor(model => model.projectId, new SelectList(listProjects.OrderBy(x => x.id), "id", "ProjectName"), new { @class = "form-control" })
             </div>
@@ -41,10 +40,12 @@
                 @Html.Label("More", new { @class = "control-label" })
                 <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ProjectList", "Project")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
             </div>
+
+            <div class="col-md-2 mb-2">
+            </div>
+
         </div>
-    </div>
-
-
+        </div>
     <div class="form-group container">
         <div class="row">
             <div class="col-md-12 mb-12 text-center" style="width:100%;">
@@ -53,8 +54,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="form-group container">
         <div class="row">
             <div class="col-md-5 mb-5 text-center">
@@ -69,12 +68,8 @@
         </div>
     </div>
 
-
-
     <script>
-
-
-        //function Kespa(url) {
+       //function Kespa(url) {
         //    var formDiv = $('<div/>');
         //    $.get(url)
         //        .done(function (response) {
@@ -93,8 +88,6 @@
         //            });
         //        });
         //}
-
-
         function PopupForm(url) {
             var formDiv = $('<div/>');
             $.get(url)
@@ -114,9 +107,6 @@
                     });
                 });
         }
-
-
-
         function SubmitForm(form) {
             $.validator.unobtrusive.parse(form);
             if ($(form).valid()) {
@@ -127,7 +117,6 @@
                     success: function (data) {
                         //if (data.success) {
                         Popup.dialog('close');
-                        alert();
                         dataTable.ajax.reload();
 
                         $.notify(data.message, {
@@ -142,9 +131,6 @@
             }
             return false;
         }
-
-
-
     </script>
 
 

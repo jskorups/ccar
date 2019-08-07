@@ -89,11 +89,11 @@ $(document).ready(function () {
 
 
 
-//function format(d) {
+function format(d) {
      
-//    var rowDetail = $.ajax({ type: "GET", url: "/Action/RowDetailsPartial?id=" + d.id, async: false }).responseText;
-//    return rowDetail
-//}
+    var rowDetail = $.ajax({ type: "GET", url: "/Action/RowDetailsPartial?id=" + d.id, async: false }).responseText;
+    return rowDetail;
+}
 
 
 
@@ -197,19 +197,4 @@ function Delete(id, urlForDelete) {
         });
     }
 }
-        //$.notify.addStyle('happyblue', {
-        //    html: "<div>☺<span data-notify-text/>☺</div>",
-        //    classes: {
-        //        base: {
-        //            "width":"500px",
-        //            "white-space": "nowrap",
-        //            "background-color": "lightblue",
-        //            "padding": "5px"
-        //        },
-        //        superblue: {
-        //            "color": "white",
-        //            "background-color": "blue"
-        //        }
-        //    }
-        //});
-
+      

@@ -27,8 +27,6 @@ namespace ccar.Controllers
                 return Json(new { data = mmDlist }, JsonRequestBehavior.AllowGet);
             }
         }
-
-
         [HttpGet]
         [Authorize]
         public ActionResult AddOrEdit(int id = 0)
@@ -46,8 +44,6 @@ namespace ccar.Controllers
             }
 
         }
-
-
         [Authorize]
         [HttpPost]
         public ActionResult AddOrEdit(MeetingMinutesDatesModel mmD)

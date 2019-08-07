@@ -202,25 +202,7 @@
     </div>
 
     <script>
-        function PopupForm(url) {
-            var formDiv = $('<div/>');
-            $.get(url)
-                .done(function (response) {
-                    formDiv.html(response);
-
-                    Popup = formDiv.dialog({
-                        autoOpen: true,
-                        resizable: false,
-                        title: 'Add reason',
-                        height: 200,
-                        width: 450,
-                        close: function () {
-                            Popup.dialog('destroy').remove();
-                        }
-
-                    });
-                });
-        }
+   
         function SubmitForm(form) {
             $.validator.unobtrusive.parse(form);
             if ($(form).valid()) {
@@ -231,7 +213,6 @@
                     success: function (data) {
                         //if (data.success) {
                         Popup.dialog('close');
-                        alert();
                         dataTable.ajax.reload();
                         
                             $.notify(data.message, {
