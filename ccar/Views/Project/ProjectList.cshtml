@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ccar.Models.MeetingMinutesProjectModel>
+
+@{
+    ViewBag.Title = "ProjectList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container" style="margin-top:60px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table">
+                <tr>
+<button id="addBtn" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Create", "Project")'"><i class="fa fa-plus-square"></i> Add new project</button>
+                </tr>            
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProjectName)
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+    {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+}
+
+            </table>
+        </div>
+    </div> 
+</div>
+
+
