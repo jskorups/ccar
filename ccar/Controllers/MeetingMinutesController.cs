@@ -33,7 +33,6 @@ namespace ccar.Controllers
         {
             if (id == 0)
             {
-
                 return View(new MeetingMinutesDatesModel());
             }
             else

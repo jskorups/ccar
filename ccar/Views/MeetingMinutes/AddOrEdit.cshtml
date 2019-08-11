@@ -9,7 +9,7 @@
 @using (Html.BeginForm("AddOrEdit", "MeetingMinutes", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
 {
 
-
+    
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @id = "koko" })
 
@@ -26,13 +26,8 @@
             </div>
 
             <div class="col-md-7 mb-11">
-                @Html.Label("Project*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.projectId, null, new { @class = "koko" })
-                @{
-                    var listProjects = (ccar.Models.MeetingMinutesProjectModel.GetProjectList());
-                    listProjects.Add(new ccar.Models.MeetingMinutesProjectModel() { id = 0, ProjectName = null });
-                }
-                @Html.DropDownListFor(model => model.projectId, new SelectList(listProjects.OrderBy(x => x.id), "id", "ProjectName"), new { @class = "form-control" })
+
+                @Html.DropDownListFor(model => model.projectId, ccar.Models.MeetingMinutesDatesModel.projectList, new { @class = "form-control" })
             </div>
 
 

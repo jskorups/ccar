@@ -45,3 +45,27 @@ kolorwac takze przy zamykaniu											- DONE
 kolorowac przy kasowaniu												- DONE
 dodać podstrony do roznych spotkań?										- DONE
 rozwijanie szczegółów dla rekordów zgodnie z manulem do dattable		- DONE
+
+___________________________________________________________________________________
+
+
+1. Utworz view model 
+
+- lista users
+- nowa wlasciowsc bedaca statusem
+
+- metoda opbierajaca statusy
+
+2. 
+
+
+public actionresult EditUsersMinutes()
+{
+   return view(List<MojViemodel>)
+}
+
+[httppost
+public actionresult EditUsersMinutes(mojviewmodel[] model)
+{
+   return view(List<MojViemodel>)
+}

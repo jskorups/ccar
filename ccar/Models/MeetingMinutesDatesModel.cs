@@ -8,6 +8,7 @@ using System.Web.Security;
 using System.Data.Entity;
 using System.Globalization;
 using System.Threading;
+using System.Web.Mvc;
 
 namespace ccar.Models
 {
@@ -20,8 +21,15 @@ namespace ccar.Models
         [Required(ErrorMessage = "Required")]
         public int? projectId { get; set; }
 
+        public static SelectList projectList { get { return GetProjectList(); } }
 
-
+     
+        private static SelectList GetProjectList()
+        {
+            ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
+            var projectlist = ent.MeetingMinutesProjects.ToList();
+            return new SelectList(projectlist, "id", "projectName");
+        }
 
         // List of meetings
         public static List<mmDatesView> fromMMDatesView(List<mmDatesView> mList)
@@ -31,6 +39,9 @@ namespace ccar.Models
                 id = x.id,
                 Date = x.Date,
                 ProjectName = x.ProjectName
+
+
+
             }).ToList();
             return mmDatesList;
         }
