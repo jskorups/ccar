@@ -22,7 +22,7 @@
     <IISExpressSSLPort>
     </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -193,8 +193,9 @@
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MeetingMinutesController.cs" />
-    <Compile Include="Controllers\MeetingMinutesUsersController.cs" />
+    <Compile Include="Controllers\MeetingMinutesDatesDetailsController.cs" />
     <Compile Include="Controllers\MeetingMinutesProjectController.cs" />
+    <Compile Include="Controllers\MeetingMinutesUserController.cs" />
     <Compile Include="Controllers\ReasonController.cs" />
     <Compile Include="Controllers\typeOfActionController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -235,6 +236,7 @@
     </Compile>
     <Compile Include="Models\ActionModel.cs" />
     <Compile Include="Models\MeetingMinutesDatesModel.cs" />
+    <Compile Include="Models\MeetingMinutesDatesDetails.cs" />
     <Compile Include="Models\MeetingMinutesUsersModel.cs" />
     <Compile Include="Models\ProgressModel.cs" />
     <Compile Include="Models\MeetingMinutesProjectModel.cs" />
@@ -420,10 +422,14 @@
     <Content Include="Views\Project\Delete.cshtml" />
     <Content Include="Views\Project\Edit.cshtml" />
     <Content Include="Views\Project\EditDeletePartial.cshtml" />
+    <Content Include="Views\MeetingMinutesDatesDetails\MeetingMinutesDetails.cshtml" />
+    <Content Include="Views\MeetingMinutesUser\UsersList.cshtml" />
+    <Content Include="Views\MeetingMinutesUser\Create.cshtml" />
+    <Content Include="Views\MeetingMinutesUser\Edit.cshtml" />
+    <Content Include="Views\MeetingMinutesUser\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\MeetingMinutesUsers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,10 +1,14 @@
-﻿@model ccar.Models.MeetingMinutesDatesModel
-@{
-    /**/
+﻿
 
-    /**/
 
-    Layout = null;
+
+@*@model ccar.Models.MeetingMinutesDatesModel
+@{*@
+@*/**/
+
+/**/*@
+
+    @*Layout = null;
 }
 @using (Html.BeginForm("AddOrEdit", "MeetingMinutes", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
 {
@@ -21,47 +25,55 @@
             @Html.ValidationMessageFor(model => model.Date, null, new { @class = "koko" })
             @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
         </div>*@
-
-            <div class="col-md-2 mb-2">
-            </div>
-
-            <div class="col-md-7 mb-11">
-
-                @Html.DropDownListFor(model => model.projectId, ccar.Models.MeetingMinutesDatesModel.projectList, new { @class = "form-control" })
-            </div>
-
-
-            <div class="col-md-1 mb-1 " style="margin-left:0;">
-                @Html.Label("More", new { @class = "control-label" })
-                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ProjectList", "Project")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-            </div>
-
-            <div class="col-md-2 mb-2">
-            </div>
-
-        </div>
-        </div>
-    <div class="form-group container">
-        <div class="row">
-            <div class="col-md-12 mb-12 text-center" style="width:100%;">
-                <input type="submit" value="Submit" class="btn btn-success" style="width:250px; height:40px" />
-                <input type="reset" value="Reset" class="btn btn-danger" style="width:250px; height:40px" />
-            </div>
-        </div>
-    </div>
-    <div class="form-group container">
-        <div class="row">
-            <div class="col-md-5 mb-5 text-center">
-            </div>
-            <div class="col-md-5 mb-5 text-center">
-            </div>
-            <div class="col-md-2 mb-2 text-center">
-                <span style="color:red; font-style:oblique;">* Required</span>
-            </div>
-
-
-        </div>
-    </div>
+@*//*@         @{
+//      Html.RenderPartial("UserstList");
+//          }*@
+//          <div class="col-md-2 mb-2">
+//          </div>
+// //
+//       <div class="col-md-3 mb-11">
+//
+//              @Html.DropDownListFor(model => model.projectId, ccar.Models.MeetingMinutesDatesModel.projectList, new { @class = "form-control" })
+//          </div>
+//
+// //          <div class="col-md-3 mb-11">
+//
+// //              @Html.DropDownListFor(model => model.projectId, ccar.Models.MeetingMinutesDatesModel.attendanceStatusList, new { @class = "form-control" })
+//       </div>
+//
+//
+//          <div class="col-md-1 mb-1 " style="margin-left:0;">
+// //              @Html.Label("More", new { @class = "control-label" })
+//           <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ProjectList", "MeetingMinutesProject")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+// //          </div>
+//
+// //          <div class="col-md-2 mb-2">
+//       </div>
+//
+//      </div>
+//      </div>
+//  <div class="form-group container">
+//      <div class="row">
+//          <div class="col-md-12 mb-12 text-center" style="width:100%;">
+//              <input type="submit" value="Submit" class="btn btn-success" style="width:250px; height:40px" />
+//              <input type="reset" value="Reset" class="btn btn-danger" style="width:250px; height:40px" />
+//          </div>
+//      </div>
+//  </div>
+//  <div class="form-group container">
+//      <div class="row">
+//          <div class="col-md-5 mb-5 text-center">
+//          </div>
+//          <div class="col-md-5 mb-5 text-center">
+//          </div>
+//          <div class="col-md-2 mb-2 text-center">
+//              <span style="color:red; font-style:oblique;">* Required</span>
+//          </div>
+//
+//
+//      </div>
+//  </div>
+//
 
     <script>
        //function Kespa(url) {

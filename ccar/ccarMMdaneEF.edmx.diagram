@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4c754e4e876a44e1a615acf175533e83" Name="Diagram1">
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingMinutesAttendanceList" Width="1.5" PointX="6" PointY="4.75" />
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingMinutesAttendanceStatus" Width="1.5" PointX="3.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.meetingMinutesDates" Width="1.5" PointX="3.75" PointY="9.125" />
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingMinutesPriority" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingMinutesAttendanceList" Width="2.875" PointX="6" PointY="4.75" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingMinutesAttendanceStatus" Width="2.375" PointX="3" PointY="0.5" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.meetingMinutesDates" Width="2.875" PointX="3.75" PointY="9.125" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingMinutesPriority" Width="2.375" PointX="0.75" PointY="1.75" />
         <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingMinutesProjects" Width="1.5" PointX="1.5" PointY="9.25" />
         <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingMinutesProtocol" Width="1.5" PointX="3" PointY="3.625" />
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingMinutesStatus" Width="1.5" PointX="0.75" PointY="12.125" />
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingMinutesTypeOfSubject" Width="1.5" PointX="0.75" PointY="14.5" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingMinutesStatus" Width="2.25" PointX="0.75" PointY="12.125" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingMinutesTypeOfSubject" Width="2.625" PointX="0.75" PointY="14.5" />
         <EntityTypeShape EntityType="ccarMeetingMinutesModel.mMusers" Width="1.5" PointX="0.75" PointY="4.875" />
         <AssociationConnector Association="ccarMeetingMinutesModel.FK_MeetingMinutesAttendanceList_MeetingMinutesAttendanceStatus" />
         <AssociationConnector Association="ccarMeetingMinutesModel.FK_MeetingMinutesAttendanceList_meetingMinutesDates" />

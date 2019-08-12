@@ -22,6 +22,11 @@ namespace ccar.Models
         // wlasciwosci od meeting minutes project list
         public static SelectList projectList { get { return GetProjectList(); } }
 
+
+
+
+
+
         // get attendance status list
         public static SelectList GetAttendanceStatusList()
         {

@@ -25,9 +25,11 @@
 
                 @*zmodyfikowana lista do reson*@
                 @{
-                    var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
-                    listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
+        var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
+        listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
                 }
+                @Html.DropDownListFor(model => model.idReason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control" })
+
                 @Html.DropDownListFor(model => model.idReason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control" })
 
 

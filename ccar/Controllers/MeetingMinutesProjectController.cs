@@ -66,6 +66,8 @@ namespace ccar.Controllers
             }
             return View(model);
         }
+
+        //delete
         [HttpGet]
         public ActionResult Delete(int id)
         {
@@ -73,9 +75,11 @@ namespace ccar.Controllers
             MeetingMinutesProjectModel pro = MeetingMinutesProjectModel.ConvertFromDbToModel(ent.MeetingMinutesProjects.Where(x=>x.id == id).FirstOrDefault());
             return View(pro);
         }
+
         [HttpPost][ActionName("Delete")]
         [ValidateAntiForgeryToken]
 
+        //delete post
         public ActionResult DeleteConfirmed (int id)
         {
             try

@@ -14,24 +14,18 @@ namespace ccar.Models
 {
     public class MeetingMinutesDatesModel
     {
-        public int id { get; set; }
 
+        // wlasciwosci od meeting minutes dates
+        public int id { get; set; }
         [DataType(DataType.Date)]
         public DateTime? Date { get; set; }
         [Required(ErrorMessage = "Required")]
         public int? projectId { get; set; }
 
-        public static SelectList projectList { get { return GetProjectList(); } }
+      
+      
 
-     
-        private static SelectList GetProjectList()
-        {
-            ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
-            var projectlist = ent.MeetingMinutesProjects.ToList();
-            return new SelectList(projectlist, "id", "projectName");
-        }
-
-        // List of meetings
+        // get meeting minutes list
         public static List<mmDatesView> fromMMDatesView(List<mmDatesView> mList)
         {
             List<mmDatesView> mmDatesList = mList.Select(x => new mmDatesView()
