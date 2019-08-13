@@ -23,8 +23,6 @@ namespace ccar.Models
         public int? projectId { get; set; }
 
       
-      
-
         // get meeting minutes list
         public static List<mmDatesView> fromMMDatesView(List<mmDatesView> mList)
         {
@@ -40,7 +38,7 @@ namespace ccar.Models
             return mmDatesList;
         }
 
-        public static meetingMinutesDates COnvertToMMDfromDB(MeetingMinutesDatesModel m)
+        public static meetingMinutesDates convertFromDbToMOdel(MeetingMinutesDatesModel m)
         {
             meetingMinutesDates mmD = new meetingMinutesDates();
             mmD.id = m.id;
@@ -49,16 +47,13 @@ namespace ccar.Models
             return mmD;
         }
 
-        public static MeetingMinutesDatesModel ConvertFromEFtoModel(meetingMinutesDates m)
+        public static MeetingMinutesDatesModel convertFromModelToDb(meetingMinutesDates m)
         {
-
-
             MeetingMinutesDatesModel mmD = new MeetingMinutesDatesModel();
             mmD.id = m.id;
             mmD.Date = m.Date;
             mmD.projectId = m.projectId;
             return mmD;
-
         }
 
 
@@ -69,19 +64,17 @@ namespace ccar.Models
 
                 ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
 
-  
                 this.Date = DateTime.Now;
 
-                ent.meetingMinutesDates.Add(MeetingMinutesDatesModel.COnvertToMMDfromDB(this));
+                ent.meetingMinutesDates.Add(MeetingMinutesDatesModel.convertFromDbToMOdel(this));
                 ent.SaveChanges();
                 //emailClass.sendMail(responsible.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
-
             }
             else
             {
                 ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
 
-                ent.Entry(MeetingMinutesDatesModel.COnvertToMMDfromDB(this)).State = EntityState.Modified;
+                ent.Entry(MeetingMinutesDatesModel.convertFromDbToMOdel(this)).State = EntityState.Modified;
                 ent.SaveChanges();
 
             }

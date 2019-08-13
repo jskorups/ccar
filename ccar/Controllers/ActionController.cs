@@ -29,6 +29,8 @@ namespace ccar.Controllers
 
         [Authorize]
 
+
+        // get list with not done
         [HttpGet]
         public ActionResult GetData()
         {
@@ -41,6 +43,7 @@ namespace ccar.Controllers
             }
         }
 
+        // get list with done 100%
         [HttpGet]
         public ActionResult GetData2()
         {
@@ -53,24 +56,13 @@ namespace ccar.Controllers
             }
         }
 
-        //[HttpGet]
-        //public ActionResult GetDataWithDone()
-        //{
-        //    using (ccarEntities ent = new ccarEntities())
-        //    {
-
-        //    }
-
-
-        //}
-
+        // get edit or add
         [HttpGet]
         [Authorize]
         public ActionResult AddOrEdit(int id = 0)
         {
             if (id == 0)
             {
-
                 return View(new ActionModel());
             }
             else
@@ -79,15 +71,16 @@ namespace ccar.Controllers
                 actions test = ent.actions.Where(x => x.id == id).FirstOrDefault();
                 return View(ActionModel.ConvertFromEFtoModel(test));
             }
-
         }
 
+        // get partial view for edit or delete
         public PartialViewResult EditDeletePartial(int id)
         {
             ViewBag.id = id;
             return PartialView();
         }
 
+        // get details for row
         public ActionResult RowDetailsPartial (int id)
         {
             ccarEntities ent = new ccarEntities();
@@ -95,6 +88,7 @@ namespace ccar.Controllers
             return View(ActionModel.ConvertFromEFtoModel(rowDetail));
         }
 
+        // post do add or edit
         [Authorize]
         [HttpPost]
         public ActionResult AddOrEdit(ActionModel Act)
@@ -105,32 +99,18 @@ namespace ccar.Controllers
                 //var email = responsible.getEmailAdress(Act.idResponsible);
                 //emailClass.sendMail(email, "Bablabla", "sdjklhsljkdjflksdf");
                 //var email = UserModel.getEmailAdress(Act.idResponsible);
-                //emailClass.CreateMailItem(email, "Problem: "+ Act.problem + System.Environment.NewLine + "Target date: " + Act.targetDate, "Utworzono nowe zadanie dla Ciebie w CCAR");
-     
+                //emailClass.CreateMailItem(email, "Problem: "+ Act.problem + System.Environment.NewLine + "Target date: " + Act.targetDate, "Utworzono nowe zadanie dla Ciebie w CCAR");    
             }
             catch (Exception ex)
             {
                 return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
-
             return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
-
-
-            //emailClass.sendMail();
-            /*
-             1.pobrac adres mailowy na podtsawie ID act (w modelu initaiotor), get emailadress, zwraca maila
-             2. sprawdzanie czy nie jest null i czy jest poprawny - w metodzie
-           
-             */
-
-        }
-
-       
+        }      
         [Authorize]
         [HttpPost]
         public ActionResult Delete (int id)
         {
-
             ccarEntities ent = new ccarEntities();
             actions act = ent.actions.Find(id);
             ent.actions.Remove(act);

@@ -415,7 +415,7 @@
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Action\EditDeletePartial.cshtml" />
     <Content Include="Views\Action\RowDetailsPartial.cshtml" />
-    <Content Include="Views\MeetingMinutes\Index.cshtml" />
+    <Content Include="Views\MeetingMinutesDatesDetails\Index.cshtml" />
     <Content Include="Views\MeetingMinutes\AddOrEdit.cshtml" />
     <Content Include="Views\Project\ProjectList.cshtml" />
     <Content Include="Views\Project\Create.cshtml" />

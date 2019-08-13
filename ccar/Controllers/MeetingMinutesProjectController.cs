@@ -17,7 +17,6 @@ namespace ccar.Controllers
             proList = MeetingMinutesProjectModel.fromProjectDB(ent.MeetingMinutesProjects.ToList());
             return View(proList);
         }
-
         // Create
         [HttpGet]
         public ActionResult Create()
@@ -25,8 +24,6 @@ namespace ccar.Controllers
             MeetingMinutesProjectModel p = new MeetingMinutesProjectModel();
             return View(p);
         }
-
-
         //Create post
         [HttpPost]
         public ActionResult Create(MeetingMinutesProjectModel r)
@@ -41,8 +38,6 @@ namespace ccar.Controllers
             return View(r);
 
         }
-
-
         //Edit
         public ActionResult Edit(int id)
         {

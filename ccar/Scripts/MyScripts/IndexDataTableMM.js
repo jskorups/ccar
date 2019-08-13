@@ -31,7 +31,7 @@ $(document).ready(function () {
         //},
 
         "ajax": {
-            "url": "/MeetingMinutes/GetData",
+            "url": "/MeetingMinutesDatesDetails/GetData",
             "type": "GET",
             "datatype": "json"
         },
@@ -107,8 +107,8 @@ function Kespa(url) {
                 autoOpen: true,
                 resizable: false,
                 title: 'Fill Meeting Details',
-                height: 520,
-                width: 700,
+                height: 620,
+                width: 750,
                 close: function () {
                     Popup.dialog('destroy').remove();
                 }
