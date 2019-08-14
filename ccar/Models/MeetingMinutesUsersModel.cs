@@ -12,6 +12,16 @@ namespace ccar.Models
         public string surname { get; set; }
         public string email { get; set; }
 
+        public string name { get { return firstname + " " + surname; } }
+        public string attendancestatus { get; set; }
+
+
+
+
+        public static List<MeetingMinutesUsersModel> fromMeetingUsers()
+        {
+
+        }
 
         public static List<MeetingMinutesUsersModel> fromUsersDB (List<mMusers> uList)
         {

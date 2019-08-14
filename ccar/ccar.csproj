@@ -236,7 +236,7 @@
     </Compile>
     <Compile Include="Models\ActionModel.cs" />
     <Compile Include="Models\MeetingMinutesDatesModel.cs" />
-    <Compile Include="Models\MeetingMinutesDatesDetails.cs" />
+    <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\MeetingMinutesUsersModel.cs" />
     <Compile Include="Models\ProgressModel.cs" />
     <Compile Include="Models\MeetingMinutesProjectModel.cs" />

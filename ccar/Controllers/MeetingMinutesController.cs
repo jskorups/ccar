@@ -16,7 +16,7 @@ namespace ccar.Controllers
         //{
         //    if (id == 0)
         //    {
-        //        return View(new MeetingMinutesDatesDetails());
+        //        return View(new Meeting());
         //    }
         //    else
         //    {

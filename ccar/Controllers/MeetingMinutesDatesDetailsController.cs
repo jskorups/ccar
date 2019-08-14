@@ -21,13 +21,13 @@ namespace ccar.Controllers
         [HttpGet]
         public ActionResult MeetingMinutesDetails()
         {
-            List<MeetingMinutesDatesDetails> proList = new List<MeetingMinutesDatesDetails>();
+            List<Meeting> proList = new List<Meeting>();
             ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
-            proList = MeetingMinutesDatesDetails.fromMMUsersDB(ent.mMusers.ToList());
+            proList = Meeting.fromMMUsersDB(ent.mMusers.ToList());
             return View(proList);
         }
         //[HttpPost]
-        //public ActionResult MeetingMinutes (MeetingMinutesDatesDetails model)
+        //public ActionResult MeetingMinutes (Meeting model)
         //{
         //    try
         //    {
@@ -62,7 +62,7 @@ namespace ccar.Controllers
         {
             if (id == 0)
             {
-                return View(new MeetingMinutesDatesDetails());
+                return View(new Meeting());
             }
             else
             {
@@ -76,7 +76,7 @@ namespace ccar.Controllers
         // post do add or edit
         [Authorize]
         [HttpPost]
-        public ActionResult AddOrEdit(MeetingMinutesDatesDetails mmDD)
+        public ActionResult AddOrEdit(Meeting mmDD)
         {
             try
             {
