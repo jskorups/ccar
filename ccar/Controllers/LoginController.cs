@@ -107,7 +107,7 @@ namespace ccar.Controllers
             if (check == true)
             {
                 FormsAuthentication.SetAuthCookie(email, false);
-                return RedirectToAction("Index", "Action");
+                return RedirectToAction("Index", "Home");
                 
             }
             else

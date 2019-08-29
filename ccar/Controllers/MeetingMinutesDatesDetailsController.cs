@@ -23,7 +23,7 @@ namespace ccar.Controllers
         {
             List<Meeting> proList = new List<Meeting>();
             ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
-            proList = Meeting.fromMMUsersDB(ent.mMusers.ToList());
+            //proList = Meeting.fromMMUsersDB(ent.mMusers.ToList());
             return View(proList);
         }
         //[HttpPost]

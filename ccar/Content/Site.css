@@ -214,3 +214,16 @@ tr.shown td.details-control {
 #meetingMinutesTable {
     width: 900px !important;
 }
+.my-4 {
+    margin-top: 60px !important;
+}
+.navbar-brand {
+    height:60px;
+    width:60px;
+    padding:-20px;
+    background: url('../images/brandLogo.gif') no-repeat center center;
+    background-size:cover;
+}
+#ccar {
+    background-image: url('../images/checklist.png');
+}

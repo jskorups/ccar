@@ -44,8 +44,8 @@ namespace ccar.Models
         public Meeting(int id)
         {
             this.meetingId = id;
-            users = MeetingMinutesUsersModel.GetUsersList(id);
-            //users = MeetingMinutesUsersModel.GetUsersList();
+            //users = MeetingMinutesUsersModel.GetUsersList(id);
+            ////users = MeetingMinutesUsersModel.GetUsersList();
         }
 
 
@@ -107,42 +107,42 @@ namespace ccar.Models
 
 
         // List of reasons
-        public static List<Meeting> fromMMUsersDB(List<mMusers> uList)
-        {
-            List<Meeting> usersList = uList.Select(x => new Meeting() { meetingId = x.id, firstname = x.firstname, surname = x.surname, email = x.email }).ToList();
-            return usersList;
-        }
-        public static List<Meeting> GetReasonList()
-        {
-            ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
-            return fromMMUsersDB(ent.mMusers.ToList());
-        }
+        //public static List<Meeting> fromMMUsersDB(List<mMusers> uList)
+        //{
+        //    //List<Meeting> usersList = uList.Select(x => new Meeting() { meetingId = x.id, firstname = x.firstname, surname = x.surname, email = x.email }).ToList();
+        //    //return usersList;
+        //}
+        //public static List<Meeting> GetReasonList()
+        //{
+        //    ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
+        //    //return fromMMUsersDB(ent.mMusers.ToList());
+        //}
 
 
         public void Save()
         {
-            if (this.id == 0)
-            {
+            //if (this.id == 0)
+            //{
 
-                ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
-                this.Date = DateTime.Now;
+            //    ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
+            //    this.Date = DateTime.Now;
 
-                ent.meetingMinutesDates.Add(Meeting.ConvertFrom(this));
-                ent.SaveChanges();
-
-
+            //    ent.meetingMinutesDates.Add(Meeting.ConvertFrom(this));
+            //    ent.SaveChanges();
 
 
-                //emailClass.sendMail(responsible.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
-            }
-            else
-            {
-                //ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
 
-                //ent.Entry(Meeting.convertFromDbToMOdel(this)).State = EntityState.Modified;
-                //ent.SaveChanges();
 
-            }
+            //    //emailClass.sendMail(responsible.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
+            //}
+            //else
+            //{
+            //    //ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
+
+            //    //ent.Entry(Meeting.convertFromDbToMOdel(this)).State = EntityState.Modified;
+            //    //ent.SaveChanges();
+
+            //}
         }
 
 

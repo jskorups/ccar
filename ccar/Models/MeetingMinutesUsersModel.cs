@@ -18,10 +18,10 @@ namespace ccar.Models
 
 
 
-        public static List<MeetingMinutesUsersModel> fromMeetingUsers()
-        {
+        //public static List<MeetingMinutesUsersModel> fromMeetingUsers()
+        //{
 
-        }
+        //}
 
         public static List<MeetingMinutesUsersModel> fromUsersDB (List<mMusers> uList)
         {
