@@ -17,50 +17,28 @@
     @Html.ValidationSummary(true, "", new { @id = "koko" })
 
 
-    <div class="form-group container">
+    <div class="form-group container" >
         <div class="row">
-            <div class="col-md-4 mb-4">
+            <div class="col-md-3 mb-3" >
                 @Html.Label("Reason*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.idReason, null, new { @class = "koko" })
 
-                @*zmodyfikowana lista do reson*@
+              
                 @{
         var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
         listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
                 }
                 @Html.DropDownListFor(model => model.idReason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control" })
 
-                @Html.DropDownListFor(model => model.idReason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control" })
-
-
-                @*@Html.EditorFor(model => model.idReason, new { htmlAttributes = new { @class = "form-control" } })*@
             </div>
-
-
-            @*<div class="col-md-1 mb-1">
-                    @Html.Label("Add", new { @class = "control-label" })
-                    <button type="button" class="btn btn-default" style="display:block; background-color:darkmagenta" onclick="PopupForm('@Url.Action("AddOrEditRsn2","Reason")')"> <span class="glyphicon glyphicon-plus" style="color:white; background-color:darkmagenta" aria-hidden="true"></span></button>
-                </div>*@
-            <div class="col-md-1 mb-1" style="margin-left:-60px;">
+            <div class="col-md-1 mb-1" style="margin-left:-20px;">
                 @Html.Label("More", new { @class = "control-label" })
                 <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
             </div>
-            @*<div class="col-md-3 mb-3">
-                @Html.Label("Initiator", new { @class = "control-label" })*@
-            @*@Html.EditorFor(model => model.idInitiator, new { htmlAttributes = new { @class = "form-control" } })*@
-            @*@Html.DropDownListFor(model => model.idInitiator, new SelectList(ccar.Models.initiator.GetInitiatorsList(), "id", "name"), new { @class = "form-control" })
-                </div>*@
-            @*<div class="col-md-4 mb-4">
-                    @Html.Label("Origination Date", new { @class = "control-label" })
-                    @Html.EditorFor(model => model.originationDate, new { htmlAttributes = new { @class = "form-control" } })
-
-                </div>*@
-            <div class="col-md-4 mb-4" style="margin-left:-20px;">
+            <div class="col-md-3 mb-3" style="margin-left:-20px;">
 
                 @Html.Label("Type of action*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.idTypeOfAction, null, new { @class = "koko" })
-
-                @*zmodyfikowana lista do type of action*@
 
                 @{
                     var listTempToA = (ccar.Models.TypeOfActionModel.GetTypeOfActionList());
@@ -70,12 +48,7 @@
                 @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(listTempToA.OrderBy(x => x.id), "id", "typeOfAction1"), new { @class = "form-control" })
             </div>
 
-
-            @*<div class="col-md-1 mb-1">
-                    @Html.Label("Add", new { @class = "control-label" })
-                    <button type="button" class="btn btn-default" style="display:block; background-color:darkmagenta" onclick="ToaForm('@Url.Action("AddOrEditToA2","typeOfAction")')"> <span class="glyphicon glyphicon-plus" style="color:white; background-color:darkmagenta" aria-hidden="true"></span></button>
-                </div>*@
-            <div class="col-md-1 mb-1 " style="margin-left:-60px;">
+            <div class="col-md-1 mb-1 " style="margin-left:-20px;">
                 @Html.Label("More", new { @class = "control-label" })
                 <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ToAlist", "typeOfAction")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
             </div>
@@ -83,11 +56,6 @@
             <div class="col-md-3 mb-3" style="margin-left:-20px;">
                 @Html.Label("Responsible*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.idResponsible, null, new { @class = "koko" })
-                @*@Html.EditorFor(model => model.idResponsible, new { htmlAttributes = new { @class = "form-control" } })*@
-                @*@Html.DropDownListFor(model => model.idResponsible, new SelectList(ccar.Models.responsible.GetResponsibleList(), "id", "name"), new { @class = "form-control" })*@
-
-                @*zmodyfikowana lista do users*@
-
                 @{
                     var listOfUser = (ccar.Models.UserModel.getUsersList());
                     listOfUser.Add(new ccar.Models.UserModel() { id = 0, email = null, firstname = null, surname = null, name = null });
@@ -107,33 +75,18 @@
         <div class="row">
             <div class="col-md-4 mb-4">
 
-
-                @*@Html.Label("problem", new { @class = "control-label" })
-                    @Html.ValidationMessageFor(m => m.problem, "wtf???", new { htmlAttributes = new { @class = "form-control" } })*@
-                @*@Html.EditorFor(model => model.problem, new { htmlAttributes = new { @class = "form-control" } })*@
-
-                @*@Html.TextAreaFor(model => model.problem, 5, 39, new { htmlAttributes = new { @class = "form-control" } })*@
-                @*@Html.TextAreaFor(model => model.problem, new { htmlAttributes = new { @class = "form-control" } })*@
-
-
-                @Html.Label("Problem*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.problem, null, new { @class = "koko" })
+                @Html.Label("Probelm description", new { @class = "control-label" })
                 @Html.TextAreaFor(model => model.problem, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
-
-
 
             </div>
             <div class="col-md-4 mb-4">
                 @Html.Label("Root Cause", new { @class = "control-label" })
                 @Html.TextAreaFor(model => model.rootCause, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.EditorFor(model => model.rootCause, new { htmlAttributes = new { @class = "form-control", @style = "height: 100px;" } })*@
 
             </div>
             <div class="col-md-4 mb-4">
                 @Html.Label("Corrective Action", new { @class = "control-label" })
-
-                @Html.TextAreaFor(model => model.correctiveAction, 4, 39, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.EditorFor(model => model.correctiveAction, new { htmlAttributes = new { @class = "form-control", @style = "height: 100px;" } })*@
+                @Html.TextAreaFor(model => model.correctiveAction, 5, 39, new { htmlAttributes = new { @class = "form-control" } })            
             </div>
         </div>
     </div>
@@ -148,19 +101,12 @@
             <div class="col-md-4 mb-4">
                 @Html.Label("Progress*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.idProgress, null, new { @class = "koko" })
-                @*@Html.EditorFor(model => model.idProgress, new { htmlAttributes = new { @class = "form-control" } })*@
-
-
                 @{
                     var listOfProg = (ccar.Models.ProgressModel.GetProgressList());
                     listOfProg.Add(new ccar.Models.ProgressModel() { id = 0, progressValue = null });
                 }
                 @Html.DropDownListFor(model => model.idProgress, new SelectList(listOfProg.OrderBy(x => x.id), "id", "progressValue"), new { @class = "form-control" })
             </div>
-            @*<div class="col-md-4 mb-4">
-                    @Html.Label("Completion date", new { @class = "control-label" })
-                    @Html.EditorFor(model => model.completionDate, new { htmlAttributes = new { @class = "form-control" } })
-                </div>*@
         </div>
     </div>
     <div class="form-group container">
@@ -186,8 +132,6 @@
             </div>
         </div>
     </div>
-
-
 
     <div class="form-group container">
         <div class="row">

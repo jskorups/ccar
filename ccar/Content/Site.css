@@ -55,7 +55,7 @@ textarea {
 #addBtn {
     margin-bottom: 30px !important;
     margin-bottom: 40px !important;
-    background-color: forestgreen !important;
+    background-color: lightskyblue !important;
     color: white !important;
     height: 50px !important;
     width: 200px !important;
@@ -215,7 +215,8 @@ tr.shown td.details-control {
     width: 900px !important;
 }
 .my-4 {
-    margin-top: 60px !important;
+    margin-top: 0px !important;
+    height: 290px;
 }
 .navbar-brand {
     height:60px;

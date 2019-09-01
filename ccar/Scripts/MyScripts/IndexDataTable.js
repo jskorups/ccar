@@ -207,8 +207,8 @@ function Kespa(url) {
                 autoOpen: true,
                 resizable: false,
                 title: 'Fill Actions Details',
-                height: 550,
-                width: 1100,
+                height: 600,
+                width: 1200,
                 close: function () {
                     Popup.dialog('destroy').remove();
                 }

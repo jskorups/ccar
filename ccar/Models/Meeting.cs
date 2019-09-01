@@ -11,11 +11,6 @@ namespace ccar.Models
     public class Meeting
         // poprzednio MeetingMinutesDatesDetails
     {
-    
-
-
-
-
 
         // inna nazwa niz w DB
         public int meetingId { get; set; }
