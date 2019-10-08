@@ -5,7 +5,7 @@ $(document).ready(function () {
     dataTable = $('#actionTable').DataTable({
         initComplete: function () {
 
-            this.api().columns([1, 2, 3, 4, 5, 7, 8]).every(function () {
+            this.api().columns([1, 2, 3, 4, 5,6, 7, 8]).every(function () {
                 var column = this;
                 var select = $('<select><option value="">Show all</option></select>')
                     .appendTo($(column.header()))
@@ -59,14 +59,14 @@ $(document).ready(function () {
                     return moment(value).format('DD/MM/YYYY');
                 }
             },
-            {
-                "data": "completionDate",
-                "render": function (value) {
-                    if (value === null) return "";
-                    return moment(value).format('DD/MM/YYYY');
-                }
+            //{
+            //    "data": "completionDate",
+            //    "render": function (value) {
+            //        if (value === null) return "";
+            //        return moment(value).format('DD/MM/YYYY');
+            //    }
 
-            },
+            //},
             { "data": "responsible" },
             { "data": "progressValue" },
 
@@ -184,15 +184,28 @@ function format(d) {
 
 
 
+//var scale = [['vPoor', '10%'], ['poor', '45%'], ['avg', '50%'], ['good', '75%'], ['vGood', '100%']];
+//var score = $(this).text();
+//for (var i = 0; i < scale.length; i++) {
+//    if (score <= scale[i][1]) {
+//        $(this).addClass(scale[i][0]);
+
+
 
 function colorCells() {
     $("td:contains('%')").each(function (index) {
-        var scale = [['vPoor', '10%'], ['poor', '45%'], ['avg', '50%'], ['good', '75%'], ['vGood', '100%']];
+        var scale = [['begin', '10%'], ['inprogres', '50%'], ['done', '100%']];
         var score = $(this).text();
         for (var i = 0; i < scale.length; i++) {
-            if (score <= scale[i][1]) {
-                $(this).addClass(scale[i][0]);
+            //if (score = scale[i][0]) {
+            //    $(this).addClass(scale[0][i]);
+            //}
+            if (score = scale[i][1]) {
+                $(this).addClass(scale[1][i]);
             }
+            else {
+                $(this).addClass(scale[0][i]);
+            }   
         }
     });
 }

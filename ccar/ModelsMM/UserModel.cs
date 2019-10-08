@@ -12,16 +12,13 @@ namespace ccar.ModelsMM
         public string surname { get; set; }
         public string email { get; set; }
 
-        public string name { get { return firstname + " " + surname; } }
-        public string attendancestatus { get; set; }
-
-
+     
         //public static List<MeetingMinutesUsersModel> fromMeetingUsers()
         //{
 
         //}
 
-        public static List<UserModel> fromUsersDB(List<mMusers> uList)
+        public static List<UserModel> fromUsersDB(List<User> uList)
         {
             List<UserModel> usersList = uList.Select(x => new UserModel { id = x.id, firstname = x.firstname, surname = x.surname }).ToList();
             return usersList;
@@ -30,7 +27,7 @@ namespace ccar.ModelsMM
         public static List<UserModel> GetUsersList()
         {
             ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
-            return fromUsersDB(ent.mMusers.ToList());
+            return fromUsersDB(ent.User.ToList());
         }
 
         public UserModel()
@@ -38,16 +35,16 @@ namespace ccar.ModelsMM
 
         }
 
-        public static mMusers COnvertFromModelToDB(UserModel mod)
+        public static User COnvertFromModelToDB(UserModel mod)
         {
-            mMusers m = new mMusers();
+            User m = new User();
             m.id = mod.id;
             m.firstname = mod.firstname;
             m.surname = mod.surname;
             m.email = mod.email;
             return m;
         }
-        public static UserModel COnvertFromDbToModel(mMusers mod)
+        public static UserModel COnvertFromDbToModel(User mod)
         {
             UserModel m = new UserModel();
             m.id = mod.id;
@@ -62,7 +59,7 @@ namespace ccar.ModelsMM
             if (this.id == 0)
             {
                 ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
-                ent.mMusers.Add(COnvertFromModelToDB(this));
+                ent.User.Add(COnvertFromModelToDB(this));
             }
 
 

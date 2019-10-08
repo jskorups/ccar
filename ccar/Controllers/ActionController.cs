@@ -79,6 +79,11 @@ namespace ccar.Controllers
             ViewBag.id = id;
             return PartialView();
         }
+        public PartialViewResult EditDeletePartialDone(int id)
+        {
+            ViewBag.id = id;
+            return PartialView();
+        }
 
         // get details for row
         public ActionResult RowDetailsPartial (int id)
@@ -96,10 +101,10 @@ namespace ccar.Controllers
             try
             {
                 Act.Save();
-                //var email = responsible.getEmailAdress(Act.idResponsible);
-                //emailClass.sendMail(email, "Bablabla", "sdjklhsljkdjflksdf");
                 //var email = UserModel.getEmailAdress(Act.idResponsible);
-                //emailClass.CreateMailItem(email, "Problem: "+ Act.problem + System.Environment.NewLine + "Target date: " + Act.targetDate, "Utworzono nowe zadanie dla Ciebie w CCAR");    
+                //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
+                var email = UserModel.getEmailAdress(Act.idResponsible);
+                emailClass.CreateMailItem(email, "Problem: " + Act.problem + System.Environment.NewLine + "Target date: " + Act.targetDate, "Utworzono nowe zadanie dla Ciebie w CCAR");
             }
             catch (Exception ex)
             {

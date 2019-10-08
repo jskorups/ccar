@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ccar</RootNamespace>
     <AssemblyName>ccar</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -27,6 +27,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,12 +54,10 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -66,11 +65,8 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -112,6 +108,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -190,13 +187,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ccarMMdaneEF.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ControllersMM\MeetingController.cs" />
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\MeetingMinutesController.cs" />
-    <Compile Include="Controllers\MeetingMinutesDatesDetailsController.cs" />
-    <Compile Include="Controllers\MeetingMinutesProjectController.cs" />
-    <Compile Include="Controllers\MeetingMinutesUserController.cs" />
+    <Compile Include="ControllersMM\MeetingMinutesDatesDetailsController.cs" />
+    <Compile Include="ControllersMM\MeetingMinutesProjectController.cs" />
+    <Compile Include="ControllersMM\MeetingMinutesUserController.cs" />
     <Compile Include="Controllers\ReasonController.cs" />
     <Compile Include="Controllers\typeOfActionController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -205,55 +202,49 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MeetingMinutesAttendanceList.cs">
+    <Compile Include="Meeting.cs">
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="MeetingMinutesAttendanceStatus.cs">
+    <Compile Include="MeetingsView.cs">
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="meetingMinutesDates.cs">
-      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MeetingMinutesPriority.cs">
-      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MeetingMinutesProjects.cs">
-      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MeetingMinutesProtocol.cs">
-      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MeetingMinutesStatus.cs">
-      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MeetingMinutesTypeOfSubject.cs">
-      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="mmDatesView.cs">
-      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="mMusers.cs">
-      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
-    </Compile>
+    <Compile Include="ModelsMM\AttendanceStatusModel.cs" />
+    <Compile Include="ModelsMM\ProjectModel.cs" />
+    <Compile Include="ModelsMM\UserModel.cs" />
     <Compile Include="Models\ActionModel.cs" />
-    <Compile Include="Models\MeetingMinutesDatesModel.cs" />
-    <Compile Include="Models\Meeting.cs" />
-    <Compile Include="Models\MeetingMinutesUsersModel.cs" />
+    <Compile Include="ModelsMM\MeetingModel.cs" />
     <Compile Include="Models\ProgressModel.cs" />
-    <Compile Include="Models\MeetingMinutesProjectModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ReasonModel.cs" />
     <Compile Include="Models\TypeOfActionModel.cs" />
+    <Compile Include="Priority.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="progress.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Projects.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocol.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="reasons.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Status.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="typeOfaction.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TypeOfSubject.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="users.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
@@ -341,6 +332,7 @@
     <Content Include="images\top.png" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\MyScripts\IndexDataTableDone.js" />
     <Content Include="Scripts\MyScripts\IndexDataTableMM.js" />
     <Content Include="ToDoList.txt" />
     <Content Include="notes.txt" />
@@ -364,6 +356,8 @@
     <Content Include="ccarMMdaneEF.edmx.diagram">
       <DependentUpon>ccarMMdaneEF.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -425,19 +419,15 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Action\EditDeletePartial.cshtml" />
-    <Content Include="Views\Action\RowDetailsPartial.cshtml" />
-    <Content Include="Views\MeetingMinutesDatesDetails\Index.cshtml" />
-    <Content Include="Views\MeetingMinutes\AddOrEdit.cshtml" />
     <Content Include="Views\Project\ProjectList.cshtml" />
     <Content Include="Views\Project\Create.cshtml" />
     <Content Include="Views\Project\Delete.cshtml" />
     <Content Include="Views\Project\Edit.cshtml" />
     <Content Include="Views\Project\EditDeletePartial.cshtml" />
-    <Content Include="Views\MeetingMinutesDatesDetails\MeetingMinutesDetails.cshtml" />
-    <Content Include="Views\MeetingMinutesUser\UsersList.cshtml" />
-    <Content Include="Views\MeetingMinutesUser\Create.cshtml" />
-    <Content Include="Views\MeetingMinutesUser\Edit.cshtml" />
-    <Content Include="Views\MeetingMinutesUser\Delete.cshtml" />
+    <Content Include="Views\Action\RowDetailsPartial.cshtml" />
+    <Content Include="Views\Meeting\Index.cshtml" />
+    <Content Include="Views\Action\EditDeletePartialDone.cshtml" />
+    <Content Include="Views\Users\DeleteRefused.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

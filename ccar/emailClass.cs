@@ -26,7 +26,7 @@ namespace ccar
                 mailItem.Body = body;
                 mailItem.Importance = Outlook.OlImportance.olImportanceHigh;
                 mailItem.Display(false);
-            mailItem.Send();
+                mailItem.Send();
             }
         }
        

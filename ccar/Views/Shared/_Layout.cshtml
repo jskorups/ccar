@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SLS task</title>
+    <title>SLS CCAR</title>
 
     <script src="~/Scripts/jquery-1.12.4.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
@@ -36,7 +36,7 @@
 
 
     <!-- Custom styles for this template -->
-    <link href="css/heroic-features.css" rel="stylesheet">
+    @*<link href="css/heroic-features.css" rel="stylesheet">*@
 
 </head>
 <body>
@@ -54,13 +54,10 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">
-                            Home
-                            <span class="sr-only">(current)</span>
-                        </a>
+                        <a href="@Url.Action("Index", "Home")" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Abougt</a>
+                        <a href="@Url.Action("Index", "Meeting")" class="nav-link">Meetings</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Services</a>
@@ -68,6 +65,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+
                 </ul>
             </div>
         </div>

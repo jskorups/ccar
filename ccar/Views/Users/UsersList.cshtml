@@ -9,49 +9,51 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
 
 </head>
-<h2>UsersList</h2>
 
-<p>
-    @*@Html.ActionLink("Create New", "Create")*@   
-    <button id="addBtn" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Create", "Users")'"><i class="fa fa-plus-square"></i> Add new user</button>
 
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.firstname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.surname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th></th>
-    </tr>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10" style="margin-left:-210px;">
+           
+            
+            <h2>UsersList</h2>
+            <p>
+                @*@Html.ActionLink("Create New", "Create")*@
+                <button id="addBtn" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Create", "Users")'"><i class="fa fa-plus-square"></i> Add new user</button>
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.Label("Firstname")
+                    </th>
+                    <th>
+                        @Html.Label("Lastname")
+                    </th>
+                    <th>
+                        @Html.Label("Email")
+                    </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.firstname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.surname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
 }
-
-</table>
+            </table>
+        </div>
+    </div>
+</div>

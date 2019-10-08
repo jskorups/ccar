@@ -4,26 +4,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
-<h2>ReasonList</h2>
-<p>
-    @*@Html.ActionLink("Create New", "Create")*@
-    <button id="addBtn2" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Create", "typeOfAction")'"><i class="fa fa-plus-square"></i> Add new type of action</button>
-</p>
-<div class="container">
+
+<div class="container movedLeft">
     <div class="row">
-        <div class="col-md-1">
-
-        </div>
-
         <div class="col-md-8">
+            <h2>Type of action list</h2>
+            <p>
+                <button id="addBtn2" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Create", "typeOfAction")'"><i class="fa fa-plus-square"></i> Add new type of action</button>
+            </p>
             <table class="table">
                 <tr>
                     <th>
                         Type of action
-                        @*@Html.DisplayNameFor(model => model.reason)*@
                     </th>
                     <th></th>
                 </tr>
@@ -34,24 +31,14 @@
                             @Html.DisplayFor(modelItem => item.typeOfAction1)
                         </td>
                         <td>
-
                             <button id="edit" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Edit", "typeOfAction", new { id = item.id })'"><i class="fa fa-edit"></i>   Edit</button>
                             <button id="delete" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Delete", "typeOfAction", new { id = item.id })'"><i class="fa fa-trash"></i>   Delete</button>
-
-
-                            @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.id })*@
                         </td>
                     </tr>
                 }
             </table>
         </div>
-
         <div class="col-md-2">
-
         </div>
-
-
     </div>
 </div>

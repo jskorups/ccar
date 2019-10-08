@@ -25,15 +25,13 @@ namespace ccar
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<MeetingMinutesAttendanceList> MeetingMinutesAttendanceList { get; set; }
-        public virtual DbSet<MeetingMinutesAttendanceStatus> MeetingMinutesAttendanceStatus { get; set; }
-        public virtual DbSet<meetingMinutesDates> meetingMinutesDates { get; set; }
-        public virtual DbSet<MeetingMinutesPriority> MeetingMinutesPriority { get; set; }
-        public virtual DbSet<MeetingMinutesProjects> MeetingMinutesProjects { get; set; }
-        public virtual DbSet<MeetingMinutesProtocol> MeetingMinutesProtocol { get; set; }
-        public virtual DbSet<MeetingMinutesStatus> MeetingMinutesStatus { get; set; }
-        public virtual DbSet<MeetingMinutesTypeOfSubject> MeetingMinutesTypeOfSubject { get; set; }
-        public virtual DbSet<mMusers> mMusers { get; set; }
-        public virtual DbSet<mmDatesView> mmDatesView { get; set; }
+        public virtual DbSet<Meeting> Meeting { get; set; }
+        public virtual DbSet<Priority> Priority { get; set; }
+        public virtual DbSet<Projects> Projects { get; set; }
+        public virtual DbSet<Protocol> Protocol { get; set; }
+        public virtual DbSet<Status> Status { get; set; }
+        public virtual DbSet<TypeOfSubject> TypeOfSubject { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<MeetingsView> MeetingsView { get; set; }
     }
 }

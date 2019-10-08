@@ -5,45 +5,30 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ccarMeetingMinutesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="MeetingMinutesAttendanceList">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="muserId" Type="int" Nullable="false" />
-          <Property Name="meetingId" Type="int" Nullable="false" />
-          <Property Name="statusId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="MeetingMinutesAttendanceStatus">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="statusAttendance" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="meetingMinutesDates">
+        <EntityType Name="Meeting">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="datetime" />
           <Property Name="projectId" Type="int" />
+          <Property Name="presentUsers" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="MeetingMinutesPriority">
+        <EntityType Name="Priority">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MeetingMinutesPriority" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="MeetingMinutesProjects">
+        <EntityType Name="Projects">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProjectName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="MeetingMinutesProtocol">
+        <EntityType Name="Protocol">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -52,28 +37,29 @@
           <Property Name="priorityId" Type="int" />
           <Property Name="originationDate" Type="datetime" />
           <Property Name="typeOfSubjectId" Type="int" />
-          <Property Name="Problem" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="2000" />
           <Property Name="responsibleId" Type="int" />
-          <Property Name="support" Type="nvarchar" MaxLength="50" />
+          <Property Name="supportId" Type="nvarchar" MaxLength="50" />
           <Property Name="targetDate" Type="datetime" />
-          <Property Name="statusId" Type="int" />
+          <Property Name="idProgress" Type="int" />
           <Property Name="comments" Type="nvarchar" MaxLength="1000" />
+          <Property Name="meetingId" Type="int" />
         </EntityType>
-        <EntityType Name="MeetingMinutesStatus">
+        <EntityType Name="Status">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="MeetingMinutesTypeOfSubject">
+        <EntityType Name="TypeOfSubject">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TypeOfSubject" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="mMusers">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -83,192 +69,160 @@
           <Property Name="email" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ccarMeetingMinutes.dbo.mmDatesView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="mmDatesView">
+warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MeetingsView">
           <Key>
             <PropertyRef Name="id" />
             <PropertyRef Name="ProjectName" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" />
+          <Property Name="presentUsers" Type="nvarchar(max)" />
           <Property Name="ProjectName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_MeetingMinutesAttendanceList_MeetingMinutesAttendanceStatus">
-          <End Role="MeetingMinutesAttendanceStatus" Type="Self.MeetingMinutesAttendanceStatus" Multiplicity="1" />
-          <End Role="MeetingMinutesAttendanceList" Type="Self.MeetingMinutesAttendanceList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MeetingMinutesAttendanceStatus">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MeetingMinutesAttendanceList">
-              <PropertyRef Name="statusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesAttendanceList_meetingMinutesDates">
-          <End Role="meetingMinutesDates" Type="Self.meetingMinutesDates" Multiplicity="1" />
-          <End Role="MeetingMinutesAttendanceList" Type="Self.MeetingMinutesAttendanceList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="meetingMinutesDates">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MeetingMinutesAttendanceList">
-              <PropertyRef Name="meetingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesAttendanceList_mMusers">
-          <End Role="mMusers" Type="Self.mMusers" Multiplicity="1" />
-          <End Role="MeetingMinutesAttendanceList" Type="Self.MeetingMinutesAttendanceList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="mMusers">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MeetingMinutesAttendanceList">
-              <PropertyRef Name="muserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_meetingMinutesDates_MeetingMinutesProjects">
-          <End Role="MeetingMinutesProjects" Type="Self.MeetingMinutesProjects" Multiplicity="0..1" />
-          <End Role="meetingMinutesDates" Type="Self.meetingMinutesDates" Multiplicity="*" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+          <End Role="Meeting" Type="Self.Meeting" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MeetingMinutesProjects">
+            <Principal Role="Projects">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="meetingMinutesDates">
+            <Dependent Role="Meeting">
               <PropertyRef Name="projectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesPriority">
-          <End Role="MeetingMinutesPriority" Type="Self.MeetingMinutesPriority" Multiplicity="0..1" />
-          <End Role="MeetingMinutesProtocol" Type="Self.MeetingMinutesProtocol" Multiplicity="*" />
+          <End Role="Priority" Type="Self.Priority" Multiplicity="0..1" />
+          <End Role="Protocol" Type="Self.Protocol" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MeetingMinutesPriority">
+            <Principal Role="Priority">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="MeetingMinutesProtocol">
+            <Dependent Role="Protocol">
               <PropertyRef Name="priorityId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesProjects">
-          <End Role="MeetingMinutesProjects" Type="Self.MeetingMinutesProjects" Multiplicity="1" />
-          <End Role="MeetingMinutesProtocol" Type="Self.MeetingMinutesProtocol" Multiplicity="*" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="Protocol" Type="Self.Protocol" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MeetingMinutesProjects">
+            <Principal Role="Projects">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="MeetingMinutesProtocol">
+            <Dependent Role="Protocol">
               <PropertyRef Name="projectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesProtocol">
-          <End Role="MeetingMinutesProtocol" Type="Self.MeetingMinutesProtocol" Multiplicity="1" />
-          <End Role="MeetingMinutesProtocol1" Type="Self.MeetingMinutesProtocol" Multiplicity="0..1" />
+          <End Role="Protocol" Type="Self.Protocol" Multiplicity="1" />
+          <End Role="Protocol1" Type="Self.Protocol" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="MeetingMinutesProtocol">
+            <Principal Role="Protocol">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="MeetingMinutesProtocol1">
+            <Dependent Role="Protocol1">
               <PropertyRef Name="id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesStatus">
-          <End Role="MeetingMinutesStatus" Type="Self.MeetingMinutesStatus" Multiplicity="0..1" />
-          <End Role="MeetingMinutesProtocol" Type="Self.MeetingMinutesProtocol" Multiplicity="*" />
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Protocol" Type="Self.Protocol" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MeetingMinutesStatus">
+            <Principal Role="Status">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="MeetingMinutesProtocol">
-              <PropertyRef Name="statusId" />
+            <Dependent Role="Protocol">
+              <PropertyRef Name="idProgress" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject">
-          <End Role="MeetingMinutesTypeOfSubject" Type="Self.MeetingMinutesTypeOfSubject" Multiplicity="0..1" />
-          <End Role="MeetingMinutesProtocol" Type="Self.MeetingMinutesProtocol" Multiplicity="*" />
+          <End Role="TypeOfSubject" Type="Self.TypeOfSubject" Multiplicity="0..1" />
+          <End Role="Protocol" Type="Self.Protocol" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MeetingMinutesTypeOfSubject">
+            <Principal Role="TypeOfSubject">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="MeetingMinutesProtocol">
+            <Dependent Role="Protocol">
               <PropertyRef Name="typeOfSubjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MeetingMinutesProtocol_mMusers">
-          <End Role="mMusers" Type="Self.mMusers" Multiplicity="0..1" />
-          <End Role="MeetingMinutesProtocol" Type="Self.MeetingMinutesProtocol" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Protocol" Type="Self.Protocol" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="mMusers">
+            <Principal Role="User">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="MeetingMinutesProtocol">
+            <Dependent Role="Protocol">
               <PropertyRef Name="responsibleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Protocol_Meeting">
+          <End Role="Meeting" Type="Self.Meeting" Multiplicity="0..1" />
+          <End Role="Protocol" Type="Self.Protocol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meeting">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Protocol">
+              <PropertyRef Name="meetingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ccarMeetingMinutesModelStoreContainer">
-          <EntitySet Name="MeetingMinutesAttendanceList" EntityType="Self.MeetingMinutesAttendanceList" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MeetingMinutesAttendanceStatus" EntityType="Self.MeetingMinutesAttendanceStatus" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="meetingMinutesDates" EntityType="Self.meetingMinutesDates" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MeetingMinutesPriority" EntityType="Self.MeetingMinutesPriority" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MeetingMinutesProjects" EntityType="Self.MeetingMinutesProjects" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MeetingMinutesProtocol" EntityType="Self.MeetingMinutesProtocol" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MeetingMinutesStatus" EntityType="Self.MeetingMinutesStatus" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MeetingMinutesTypeOfSubject" EntityType="Self.MeetingMinutesTypeOfSubject" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="mMusers" EntityType="Self.mMusers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="mmDatesView" EntityType="Self.mmDatesView" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="Meeting" EntityType="Self.Meeting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Priority" EntityType="Self.Priority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Protocol" EntityType="Self.Protocol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfSubject" EntityType="Self.TypeOfSubject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeetingsView" EntityType="Self.MeetingsView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [mmDatesView].[id] AS [id], 
-    [mmDatesView].[Date] AS [Date], 
-    [mmDatesView].[ProjectName] AS [ProjectName]
-    FROM [dbo].[mmDatesView] AS [mmDatesView]</DefiningQuery>
+    [MeetingsView].[id] AS [id], 
+    [MeetingsView].[Date] AS [Date], 
+    [MeetingsView].[presentUsers] AS [presentUsers], 
+    [MeetingsView].[ProjectName] AS [ProjectName]
+    FROM [dbo].[MeetingsView] AS [MeetingsView]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_MeetingMinutesAttendanceList_MeetingMinutesAttendanceStatus" Association="Self.FK_MeetingMinutesAttendanceList_MeetingMinutesAttendanceStatus">
-            <End Role="MeetingMinutesAttendanceStatus" EntitySet="MeetingMinutesAttendanceStatus" />
-            <End Role="MeetingMinutesAttendanceList" EntitySet="MeetingMinutesAttendanceList" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesAttendanceList_meetingMinutesDates" Association="Self.FK_MeetingMinutesAttendanceList_meetingMinutesDates">
-            <End Role="meetingMinutesDates" EntitySet="meetingMinutesDates" />
-            <End Role="MeetingMinutesAttendanceList" EntitySet="MeetingMinutesAttendanceList" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesAttendanceList_mMusers" Association="Self.FK_MeetingMinutesAttendanceList_mMusers">
-            <End Role="mMusers" EntitySet="mMusers" />
-            <End Role="MeetingMinutesAttendanceList" EntitySet="MeetingMinutesAttendanceList" />
-          </AssociationSet>
           <AssociationSet Name="FK_meetingMinutesDates_MeetingMinutesProjects" Association="Self.FK_meetingMinutesDates_MeetingMinutesProjects">
-            <End Role="MeetingMinutesProjects" EntitySet="MeetingMinutesProjects" />
-            <End Role="meetingMinutesDates" EntitySet="meetingMinutesDates" />
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Meeting" EntitySet="Meeting" />
           </AssociationSet>
           <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesPriority" Association="Self.FK_MeetingMinutesProtocol_MeetingMinutesPriority">
-            <End Role="MeetingMinutesPriority" EntitySet="MeetingMinutesPriority" />
-            <End Role="MeetingMinutesProtocol" EntitySet="MeetingMinutesProtocol" />
+            <End Role="Priority" EntitySet="Priority" />
+            <End Role="Protocol" EntitySet="Protocol" />
           </AssociationSet>
           <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesProjects" Association="Self.FK_MeetingMinutesProtocol_MeetingMinutesProjects">
-            <End Role="MeetingMinutesProjects" EntitySet="MeetingMinutesProjects" />
-            <End Role="MeetingMinutesProtocol" EntitySet="MeetingMinutesProtocol" />
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Protocol" EntitySet="Protocol" />
           </AssociationSet>
           <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesProtocol" Association="Self.FK_MeetingMinutesProtocol_MeetingMinutesProtocol">
-            <End Role="MeetingMinutesProtocol" EntitySet="MeetingMinutesProtocol" />
-            <End Role="MeetingMinutesProtocol1" EntitySet="MeetingMinutesProtocol" />
+            <End Role="Protocol" EntitySet="Protocol" />
+            <End Role="Protocol1" EntitySet="Protocol" />
           </AssociationSet>
           <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesStatus" Association="Self.FK_MeetingMinutesProtocol_MeetingMinutesStatus">
-            <End Role="MeetingMinutesStatus" EntitySet="MeetingMinutesStatus" />
-            <End Role="MeetingMinutesProtocol" EntitySet="MeetingMinutesProtocol" />
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Protocol" EntitySet="Protocol" />
           </AssociationSet>
           <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject" Association="Self.FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject">
-            <End Role="MeetingMinutesTypeOfSubject" EntitySet="MeetingMinutesTypeOfSubject" />
-            <End Role="MeetingMinutesProtocol" EntitySet="MeetingMinutesProtocol" />
+            <End Role="TypeOfSubject" EntitySet="TypeOfSubject" />
+            <End Role="Protocol" EntitySet="Protocol" />
           </AssociationSet>
           <AssociationSet Name="FK_MeetingMinutesProtocol_mMusers" Association="Self.FK_MeetingMinutesProtocol_mMusers">
-            <End Role="mMusers" EntitySet="mMusers" />
-            <End Role="MeetingMinutesProtocol" EntitySet="MeetingMinutesProtocol" />
+            <End Role="User" EntitySet="User" />
+            <End Role="Protocol" EntitySet="Protocol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Protocol_Meeting" Association="Self.FK_Protocol_Meeting">
+            <End Role="Meeting" EntitySet="Meeting" />
+            <End Role="Protocol" EntitySet="Protocol" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -276,105 +230,76 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.mmDatesView' does not have 
     <edmx:ConceptualModels>
       <Schema Namespace="ccarMeetingMinutesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ccarMeetingMinutesEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="MeetingMinutesAttendanceList" EntityType="ccarMeetingMinutesModel.MeetingMinutesAttendanceList" />
-          <EntitySet Name="MeetingMinutesAttendanceStatus" EntityType="ccarMeetingMinutesModel.MeetingMinutesAttendanceStatus" />
-          <EntitySet Name="meetingMinutesDates" EntityType="ccarMeetingMinutesModel.meetingMinutesDates" />
-          <EntitySet Name="MeetingMinutesPriority" EntityType="ccarMeetingMinutesModel.MeetingMinutesPriority" />
-          <EntitySet Name="MeetingMinutesProjects" EntityType="ccarMeetingMinutesModel.MeetingMinutesProjects" />
-          <EntitySet Name="MeetingMinutesProtocol" EntityType="ccarMeetingMinutesModel.MeetingMinutesProtocol" />
-          <EntitySet Name="MeetingMinutesStatus" EntityType="ccarMeetingMinutesModel.MeetingMinutesStatus" />
-          <EntitySet Name="MeetingMinutesTypeOfSubject" EntityType="ccarMeetingMinutesModel.MeetingMinutesTypeOfSubject" />
-          <EntitySet Name="mMusers" EntityType="ccarMeetingMinutesModel.mMusers" />
-          <AssociationSet Name="FK_MeetingMinutesAttendanceList_MeetingMinutesAttendanceStatus" Association="ccarMeetingMinutesModel.FK_MeetingMinutesAttendanceList_MeetingMinutesAttendanceStatus">
-            <End Role="MeetingMinutesAttendanceStatus" EntitySet="MeetingMinutesAttendanceStatus" />
-            <End Role="MeetingMinutesAttendanceList" EntitySet="MeetingMinutesAttendanceList" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesAttendanceList_meetingMinutesDates" Association="ccarMeetingMinutesModel.FK_MeetingMinutesAttendanceList_meetingMinutesDates">
-            <End Role="meetingMinutesDates" EntitySet="meetingMinutesDates" />
-            <End Role="MeetingMinutesAttendanceList" EntitySet="MeetingMinutesAttendanceList" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesAttendanceList_mMusers" Association="ccarMeetingMinutesModel.FK_MeetingMinutesAttendanceList_mMusers">
-            <End Role="mMusers" EntitySet="mMusers" />
-            <End Role="MeetingMinutesAttendanceList" EntitySet="MeetingMinutesAttendanceList" />
-          </AssociationSet>
+          <EntitySet Name="Meeting" EntityType="ccarMeetingMinutesModel.Meeting" />
+          <EntitySet Name="Priority" EntityType="ccarMeetingMinutesModel.Priority" />
+          <EntitySet Name="Projects" EntityType="ccarMeetingMinutesModel.Projects" />
+          <EntitySet Name="Protocol" EntityType="ccarMeetingMinutesModel.Protocol" />
+          <EntitySet Name="Status" EntityType="ccarMeetingMinutesModel.Status" />
+          <EntitySet Name="TypeOfSubject" EntityType="ccarMeetingMinutesModel.TypeOfSubject" />
+          <EntitySet Name="User" EntityType="ccarMeetingMinutesModel.User" />
+          <EntitySet Name="MeetingsView" EntityType="ccarMeetingMinutesModel.MeetingsView" />
           <AssociationSet Name="FK_meetingMinutesDates_MeetingMinutesProjects" Association="ccarMeetingMinutesModel.FK_meetingMinutesDates_MeetingMinutesProjects">
-            <End Role="MeetingMinutesProjects" EntitySet="MeetingMinutesProjects" />
-            <End Role="meetingMinutesDates" EntitySet="meetingMinutesDates" />
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Meeting" EntitySet="Meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Protocol_Meeting" Association="ccarMeetingMinutesModel.FK_Protocol_Meeting">
+            <End Role="Meeting" EntitySet="Meeting" />
+            <End Role="Protocol" EntitySet="Protocol" />
           </AssociationSet>
           <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesPriority" Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesPriority">
-            <End Role="MeetingMinutesPriority" EntitySet="MeetingMinutesPriority" />
-            <End Role="MeetingMinutesProtocol" EntitySet="MeetingMinutesProtocol" />
+            <End Role="Priority" EntitySet="Priority" />
+            <End Role="Protocol" EntitySet="Protocol" />
           </AssociationSet>
           <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesProjects" Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProjects">
-            <End Role="MeetingMinutesProjects" EntitySet="MeetingMinutesProjects" />
-            <End Role="MeetingMinutesProtocol" EntitySet="MeetingMinutesProtocol" />
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Protocol" EntitySet="Protocol" />
           </AssociationSet>
           <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesProtocol" Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProtocol">
-            <End Role="MeetingMinutesProtocol" EntitySet="MeetingMinutesProtocol" />
-            <End Role="MeetingMinutesProtocol1" EntitySet="MeetingMinutesProtocol" />
+            <End Role="Protocol" EntitySet="Protocol" />
+            <End Role="Protocol1" EntitySet="Protocol" />
           </AssociationSet>
           <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesStatus" Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesStatus">
-            <End Role="MeetingMinutesStatus" EntitySet="MeetingMinutesStatus" />
-            <End Role="MeetingMinutesProtocol" EntitySet="MeetingMinutesProtocol" />
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Protocol" EntitySet="Protocol" />
           </AssociationSet>
           <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject" Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject">
-            <End Role="MeetingMinutesTypeOfSubject" EntitySet="MeetingMinutesTypeOfSubject" />
-            <End Role="MeetingMinutesProtocol" EntitySet="MeetingMinutesProtocol" />
+            <End Role="TypeOfSubject" EntitySet="TypeOfSubject" />
+            <End Role="Protocol" EntitySet="Protocol" />
           </AssociationSet>
           <AssociationSet Name="FK_MeetingMinutesProtocol_mMusers" Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_mMusers">
-            <End Role="mMusers" EntitySet="mMusers" />
-            <End Role="MeetingMinutesProtocol" EntitySet="MeetingMinutesProtocol" />
+            <End Role="User" EntitySet="User" />
+            <End Role="Protocol" EntitySet="Protocol" />
           </AssociationSet>
-          <EntitySet Name="mmDatesView" EntityType="ccarMeetingMinutesModel.mmDatesView" />
         </EntityContainer>
-        <EntityType Name="MeetingMinutesAttendanceList">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="muserId" Type="Int32" Nullable="false" />
-          <Property Name="meetingId" Type="Int32" Nullable="false" />
-          <Property Name="statusId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="MeetingMinutesAttendanceStatus" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesAttendanceList_MeetingMinutesAttendanceStatus" FromRole="MeetingMinutesAttendanceList" ToRole="MeetingMinutesAttendanceStatus" />
-          <NavigationProperty Name="meetingMinutesDates" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesAttendanceList_meetingMinutesDates" FromRole="MeetingMinutesAttendanceList" ToRole="meetingMinutesDates" />
-          <NavigationProperty Name="mMusers" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesAttendanceList_mMusers" FromRole="MeetingMinutesAttendanceList" ToRole="mMusers" />
-        </EntityType>
-        <EntityType Name="MeetingMinutesAttendanceStatus">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="statusAttendance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="MeetingMinutesAttendanceList" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesAttendanceList_MeetingMinutesAttendanceStatus" FromRole="MeetingMinutesAttendanceStatus" ToRole="MeetingMinutesAttendanceList" />
-        </EntityType>
-        <EntityType Name="meetingMinutesDates">
+        <EntityType Name="Meeting">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="projectId" Type="Int32" />
-          <NavigationProperty Name="MeetingMinutesAttendanceList" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesAttendanceList_meetingMinutesDates" FromRole="meetingMinutesDates" ToRole="MeetingMinutesAttendanceList" />
-          <NavigationProperty Name="MeetingMinutesProjects" Relationship="ccarMeetingMinutesModel.FK_meetingMinutesDates_MeetingMinutesProjects" FromRole="meetingMinutesDates" ToRole="MeetingMinutesProjects" />
+          <Property Name="presentUsers" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Projects" Relationship="ccarMeetingMinutesModel.FK_meetingMinutesDates_MeetingMinutesProjects" FromRole="Meeting" ToRole="Projects" />
+          <NavigationProperty Name="Protocol" Relationship="ccarMeetingMinutesModel.FK_Protocol_Meeting" FromRole="Meeting" ToRole="Protocol" />
         </EntityType>
-        <EntityType Name="MeetingMinutesPriority">
+        <EntityType Name="Priority">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MeetingMinutesPriority1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="MeetingMinutesProtocol" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesPriority" FromRole="MeetingMinutesPriority" ToRole="MeetingMinutesProtocol" />
+          <Property Name="MeetingMinutesPriority" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Protocol" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesPriority" FromRole="Priority" ToRole="Protocol" />
         </EntityType>
-        <EntityType Name="MeetingMinutesProjects">
+        <EntityType Name="Projects">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="meetingMinutesDates" Relationship="ccarMeetingMinutesModel.FK_meetingMinutesDates_MeetingMinutesProjects" FromRole="MeetingMinutesProjects" ToRole="meetingMinutesDates" />
-          <NavigationProperty Name="MeetingMinutesProtocol" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProjects" FromRole="MeetingMinutesProjects" ToRole="MeetingMinutesProtocol" />
+          <NavigationProperty Name="Meeting" Relationship="ccarMeetingMinutesModel.FK_meetingMinutesDates_MeetingMinutesProjects" FromRole="Projects" ToRole="Meeting" />
+          <NavigationProperty Name="Protocol" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProjects" FromRole="Projects" ToRole="Protocol" />
         </EntityType>
-        <EntityType Name="MeetingMinutesProtocol">
+        <EntityType Name="Protocol">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -383,37 +308,39 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.mmDatesView' does not have 
           <Property Name="priorityId" Type="Int32" />
           <Property Name="originationDate" Type="DateTime" Precision="3" />
           <Property Name="typeOfSubjectId" Type="Int32" />
-          <Property Name="Problem" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="responsibleId" Type="Int32" />
-          <Property Name="support" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="supportId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="targetDate" Type="DateTime" Precision="3" />
-          <Property Name="statusId" Type="Int32" />
+          <Property Name="idProgress" Type="Int32" />
           <Property Name="comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="MeetingMinutesPriority" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesPriority" FromRole="MeetingMinutesProtocol" ToRole="MeetingMinutesPriority" />
-          <NavigationProperty Name="MeetingMinutesProjects" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProjects" FromRole="MeetingMinutesProtocol" ToRole="MeetingMinutesProjects" />
-          <NavigationProperty Name="MeetingMinutesProtocol1" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProtocol" FromRole="MeetingMinutesProtocol" ToRole="MeetingMinutesProtocol1" />
-          <NavigationProperty Name="MeetingMinutesProtocol2" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProtocol" FromRole="MeetingMinutesProtocol1" ToRole="MeetingMinutesProtocol" />
-          <NavigationProperty Name="MeetingMinutesStatus" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesStatus" FromRole="MeetingMinutesProtocol" ToRole="MeetingMinutesStatus" />
-          <NavigationProperty Name="MeetingMinutesTypeOfSubject" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject" FromRole="MeetingMinutesProtocol" ToRole="MeetingMinutesTypeOfSubject" />
-          <NavigationProperty Name="mMusers" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_mMusers" FromRole="MeetingMinutesProtocol" ToRole="mMusers" />
+          <Property Name="meetingId" Type="Int32" />
+          <NavigationProperty Name="Meeting" Relationship="ccarMeetingMinutesModel.FK_Protocol_Meeting" FromRole="Protocol" ToRole="Meeting" />
+          <NavigationProperty Name="Priority" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesPriority" FromRole="Protocol" ToRole="Priority" />
+          <NavigationProperty Name="Projects" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProjects" FromRole="Protocol" ToRole="Projects" />
+          <NavigationProperty Name="Protocol1" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProtocol" FromRole="Protocol" ToRole="Protocol1" />
+          <NavigationProperty Name="Protocol2" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProtocol" FromRole="Protocol1" ToRole="Protocol" />
+          <NavigationProperty Name="Status" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesStatus" FromRole="Protocol" ToRole="Status" />
+          <NavigationProperty Name="TypeOfSubject" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject" FromRole="Protocol" ToRole="TypeOfSubject" />
+          <NavigationProperty Name="User" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_mMusers" FromRole="Protocol" ToRole="User" />
         </EntityType>
-        <EntityType Name="MeetingMinutesStatus">
+        <EntityType Name="Status">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="MeetingMinutesProtocol" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesStatus" FromRole="MeetingMinutesStatus" ToRole="MeetingMinutesProtocol" />
+          <Property Name="Status1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Protocol" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesStatus" FromRole="Status" ToRole="Protocol" />
         </EntityType>
-        <EntityType Name="MeetingMinutesTypeOfSubject">
+        <EntityType Name="TypeOfSubject">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TypeOfSubject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="MeetingMinutesProtocol" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject" FromRole="MeetingMinutesTypeOfSubject" ToRole="MeetingMinutesProtocol" />
+          <Property Name="TypeOfSubject1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Protocol" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject" FromRole="TypeOfSubject" ToRole="Protocol" />
         </EntityType>
-        <EntityType Name="mMusers">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -421,196 +348,156 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.mmDatesView' does not have 
           <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="MeetingMinutesAttendanceList" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesAttendanceList_mMusers" FromRole="mMusers" ToRole="MeetingMinutesAttendanceList" />
-          <NavigationProperty Name="MeetingMinutesProtocol" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_mMusers" FromRole="mMusers" ToRole="MeetingMinutesProtocol" />
+          <NavigationProperty Name="Protocol" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_mMusers" FromRole="User" ToRole="Protocol" />
         </EntityType>
-        <Association Name="FK_MeetingMinutesAttendanceList_MeetingMinutesAttendanceStatus">
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesAttendanceStatus" Role="MeetingMinutesAttendanceStatus" Multiplicity="1" />
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesAttendanceList" Role="MeetingMinutesAttendanceList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MeetingMinutesAttendanceStatus">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MeetingMinutesAttendanceList">
-              <PropertyRef Name="statusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesAttendanceList_meetingMinutesDates">
-          <End Type="ccarMeetingMinutesModel.meetingMinutesDates" Role="meetingMinutesDates" Multiplicity="1" />
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesAttendanceList" Role="MeetingMinutesAttendanceList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="meetingMinutesDates">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MeetingMinutesAttendanceList">
-              <PropertyRef Name="meetingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesAttendanceList_mMusers">
-          <End Type="ccarMeetingMinutesModel.mMusers" Role="mMusers" Multiplicity="1" />
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesAttendanceList" Role="MeetingMinutesAttendanceList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="mMusers">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MeetingMinutesAttendanceList">
-              <PropertyRef Name="muserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_meetingMinutesDates_MeetingMinutesProjects">
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesProjects" Role="MeetingMinutesProjects" Multiplicity="0..1" />
-          <End Type="ccarMeetingMinutesModel.meetingMinutesDates" Role="meetingMinutesDates" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MeetingMinutesProjects">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="meetingMinutesDates">
-              <PropertyRef Name="projectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesPriority">
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesPriority" Role="MeetingMinutesPriority" Multiplicity="0..1" />
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesProtocol" Role="MeetingMinutesProtocol" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MeetingMinutesPriority">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MeetingMinutesProtocol">
-              <PropertyRef Name="priorityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesProjects">
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesProjects" Role="MeetingMinutesProjects" Multiplicity="1" />
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesProtocol" Role="MeetingMinutesProtocol" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MeetingMinutesProjects">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MeetingMinutesProtocol">
-              <PropertyRef Name="projectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesProtocol">
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesProtocol" Role="MeetingMinutesProtocol" Multiplicity="1" />
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesProtocol" Role="MeetingMinutesProtocol1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="MeetingMinutesProtocol">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MeetingMinutesProtocol1">
-              <PropertyRef Name="id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesStatus">
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesStatus" Role="MeetingMinutesStatus" Multiplicity="0..1" />
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesProtocol" Role="MeetingMinutesProtocol" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MeetingMinutesStatus">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MeetingMinutesProtocol">
-              <PropertyRef Name="statusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject">
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesTypeOfSubject" Role="MeetingMinutesTypeOfSubject" Multiplicity="0..1" />
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesProtocol" Role="MeetingMinutesProtocol" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MeetingMinutesTypeOfSubject">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MeetingMinutesProtocol">
-              <PropertyRef Name="typeOfSubjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesProtocol_mMusers">
-          <End Type="ccarMeetingMinutesModel.mMusers" Role="mMusers" Multiplicity="0..1" />
-          <End Type="ccarMeetingMinutesModel.MeetingMinutesProtocol" Role="MeetingMinutesProtocol" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="mMusers">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MeetingMinutesProtocol">
-              <PropertyRef Name="responsibleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="mmDatesView">
+        <EntityType Name="MeetingsView">
           <Key>
             <PropertyRef Name="id" />
             <PropertyRef Name="ProjectName" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="presentUsers" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <Association Name="FK_meetingMinutesDates_MeetingMinutesProjects">
+          <End Type="ccarMeetingMinutesModel.Projects" Role="Projects" Multiplicity="0..1" />
+          <End Type="ccarMeetingMinutesModel.Meeting" Role="Meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Meeting">
+              <PropertyRef Name="projectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Protocol_Meeting">
+          <End Type="ccarMeetingMinutesModel.Meeting" Role="Meeting" Multiplicity="0..1" />
+          <End Type="ccarMeetingMinutesModel.Protocol" Role="Protocol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meeting">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Protocol">
+              <PropertyRef Name="meetingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesPriority">
+          <End Type="ccarMeetingMinutesModel.Priority" Role="Priority" Multiplicity="0..1" />
+          <End Type="ccarMeetingMinutesModel.Protocol" Role="Protocol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priority">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Protocol">
+              <PropertyRef Name="priorityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesProjects">
+          <End Type="ccarMeetingMinutesModel.Projects" Role="Projects" Multiplicity="1" />
+          <End Type="ccarMeetingMinutesModel.Protocol" Role="Protocol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Protocol">
+              <PropertyRef Name="projectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesProtocol">
+          <End Type="ccarMeetingMinutesModel.Protocol" Role="Protocol" Multiplicity="1" />
+          <End Type="ccarMeetingMinutesModel.Protocol" Role="Protocol1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Protocol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Protocol1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesStatus">
+          <End Type="ccarMeetingMinutesModel.Status" Role="Status" Multiplicity="0..1" />
+          <End Type="ccarMeetingMinutesModel.Protocol" Role="Protocol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Protocol">
+              <PropertyRef Name="idProgress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject">
+          <End Type="ccarMeetingMinutesModel.TypeOfSubject" Role="TypeOfSubject" Multiplicity="0..1" />
+          <End Type="ccarMeetingMinutesModel.Protocol" Role="Protocol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfSubject">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Protocol">
+              <PropertyRef Name="typeOfSubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MeetingMinutesProtocol_mMusers">
+          <End Type="ccarMeetingMinutesModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="ccarMeetingMinutesModel.Protocol" Role="Protocol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Protocol">
+              <PropertyRef Name="responsibleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ccarMeetingMinutesModelStoreContainer" CdmEntityContainer="ccarMeetingMinutesEntities">
-          <EntitySetMapping Name="MeetingMinutesAttendanceList">
-            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.MeetingMinutesAttendanceList">
-              <MappingFragment StoreEntitySet="MeetingMinutesAttendanceList">
-                <ScalarProperty Name="statusId" ColumnName="statusId" />
-                <ScalarProperty Name="meetingId" ColumnName="meetingId" />
-                <ScalarProperty Name="muserId" ColumnName="muserId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MeetingMinutesAttendanceStatus">
-            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.MeetingMinutesAttendanceStatus">
-              <MappingFragment StoreEntitySet="MeetingMinutesAttendanceStatus">
-                <ScalarProperty Name="statusAttendance" ColumnName="statusAttendance" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="meetingMinutesDates">
-            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.meetingMinutesDates">
-              <MappingFragment StoreEntitySet="meetingMinutesDates">
+          <EntitySetMapping Name="Meeting">
+            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.Meeting">
+              <MappingFragment StoreEntitySet="Meeting">
+                <ScalarProperty Name="presentUsers" ColumnName="presentUsers" />
                 <ScalarProperty Name="projectId" ColumnName="projectId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MeetingMinutesPriority">
-            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.MeetingMinutesPriority">
-              <MappingFragment StoreEntitySet="MeetingMinutesPriority">
-                <ScalarProperty Name="MeetingMinutesPriority1" ColumnName="MeetingMinutesPriority" />
+          <EntitySetMapping Name="Priority">
+            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.Priority">
+              <MappingFragment StoreEntitySet="Priority">
+                <ScalarProperty Name="MeetingMinutesPriority" ColumnName="MeetingMinutesPriority" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MeetingMinutesProjects">
-            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.MeetingMinutesProjects">
-              <MappingFragment StoreEntitySet="MeetingMinutesProjects">
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.Projects">
+              <MappingFragment StoreEntitySet="Projects">
                 <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MeetingMinutesProtocol">
-            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.MeetingMinutesProtocol">
-              <MappingFragment StoreEntitySet="MeetingMinutesProtocol">
+          <EntitySetMapping Name="Protocol">
+            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.Protocol">
+              <MappingFragment StoreEntitySet="Protocol">
+                <ScalarProperty Name="meetingId" ColumnName="meetingId" />
                 <ScalarProperty Name="comments" ColumnName="comments" />
-                <ScalarProperty Name="statusId" ColumnName="statusId" />
+                <ScalarProperty Name="idProgress" ColumnName="idProgress" />
                 <ScalarProperty Name="targetDate" ColumnName="targetDate" />
-                <ScalarProperty Name="support" ColumnName="support" />
+                <ScalarProperty Name="supportId" ColumnName="supportId" />
                 <ScalarProperty Name="responsibleId" ColumnName="responsibleId" />
-                <ScalarProperty Name="Problem" ColumnName="Problem" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="typeOfSubjectId" ColumnName="typeOfSubjectId" />
                 <ScalarProperty Name="originationDate" ColumnName="originationDate" />
                 <ScalarProperty Name="priorityId" ColumnName="priorityId" />
@@ -619,25 +506,25 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.mmDatesView' does not have 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MeetingMinutesStatus">
-            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.MeetingMinutesStatus">
-              <MappingFragment StoreEntitySet="MeetingMinutesStatus">
-                <ScalarProperty Name="Status" ColumnName="Status" />
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Status1" ColumnName="Status" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MeetingMinutesTypeOfSubject">
-            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.MeetingMinutesTypeOfSubject">
-              <MappingFragment StoreEntitySet="MeetingMinutesTypeOfSubject">
-                <ScalarProperty Name="TypeOfSubject" ColumnName="TypeOfSubject" />
+          <EntitySetMapping Name="TypeOfSubject">
+            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.TypeOfSubject">
+              <MappingFragment StoreEntitySet="TypeOfSubject">
+                <ScalarProperty Name="TypeOfSubject1" ColumnName="TypeOfSubject" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="mMusers">
-            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.mMusers">
-              <MappingFragment StoreEntitySet="mMusers">
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.User">
+              <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="surname" ColumnName="surname" />
                 <ScalarProperty Name="firstname" ColumnName="firstname" />
@@ -645,10 +532,11 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.mmDatesView' does not have 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="mmDatesView">
-            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.mmDatesView">
-              <MappingFragment StoreEntitySet="mmDatesView">
+          <EntitySetMapping Name="MeetingsView">
+            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.MeetingsView">
+              <MappingFragment StoreEntitySet="MeetingsView">
                 <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="presentUsers" ColumnName="presentUsers" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

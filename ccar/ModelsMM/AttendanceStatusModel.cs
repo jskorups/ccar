@@ -7,7 +7,7 @@ namespace ccar.ModelsMM
 {
     public class AttendanceStatusModel
     {
-        public int statusAttendanceId { get; set; }
-        public int statudAttendanceName  { get; set; }
+        public int StatusAttendanceId { get; set; }
+        public int StatudAttendanceName  { get; set; }
     }
 }

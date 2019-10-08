@@ -5,31 +5,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    @*<h4>ReasonModel</h4>*@
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Reason to delete:
-            @*@Html.DisplayNameFor(model => model.reason)*@
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.reason)
-        </dd>
 
-    </dl>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> <br />
+<div class="container movedLeft">
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Are you sure you want to delete this?</h3>
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        Reason to delete:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.reason)
+                    </dd>
+                </dl>
+                @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> <br />
+            </div>
+            @Html.ActionLink("Back to List", "ReasonList")
+}
+            </div>
         </div>
-        @Html.ActionLink("Back to List", "ToAlist")
-    }
+    </div>
 </div>

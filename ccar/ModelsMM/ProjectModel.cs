@@ -11,16 +11,21 @@ namespace ccar.ModelsMM
         public string ProjectName { get; set; }
 
 
-        public static List<ProjectModel> fromProjectDB(List<MeetingMinutesProjects> pList)
+        public static List<ProjectModel> fromProjectDB(List<Projects> pList)
         {
-            List<ProjectModel> proList = pList.Select(x => new ProjectModel { id = x.id, ProjectName = x.ProjectName }).ToList();
+            List<ProjectModel> proList = pList.
+                Select
+                (x => new ProjectModel
+                { id = x.id,
+              ProjectName = x.ProjectName }).ToList();
+
             return proList;
         }
 
         public static List<ProjectModel> GetProjectList()
         {
             ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
-            return fromProjectDB(ent.MeetingMinutesProjects.ToList());
+            return fromProjectDB(ent.Projects.ToList());
         }
         public ProjectModel()
         {
@@ -31,14 +36,14 @@ namespace ccar.ModelsMM
         {
             projectName = ProjectName;
         }
-        public static MeetingMinutesProjects ConvertFromModelToDB(ProjectModel p)
+        public static Projects ConvertFromModelToDB(ProjectModel p)
         {
-            MeetingMinutesProjects pro = new MeetingMinutesProjects();
+            Projects pro = new Projects();
             pro.id = p.id;
             pro.ProjectName = p.ProjectName;
             return pro;
         }
-        public static ProjectModel ConvertFromDbToModel(MeetingMinutesProjects p)
+        public static ProjectModel ConvertFromDbToModel(Projects p)
         {
 
             ProjectModel pro = new ProjectModel();
@@ -52,7 +57,7 @@ namespace ccar.ModelsMM
             if (this.id == 0)
             {
                 ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
-                ent.MeetingMinutesProjects.Add(ProjectModel.ConvertFromModelToDB(this));
+                ent.Projects.Add(ProjectModel.ConvertFromModelToDB(this));
             }
         }
     }

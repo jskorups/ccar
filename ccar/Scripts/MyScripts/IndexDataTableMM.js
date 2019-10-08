@@ -3,7 +3,7 @@
 var Popup, dataTable;
 
 $(document).ready(function () {
-    dataTable = $('#meetingMinutesTable').DataTable({
+    dataTable = $('#Meeting').DataTable({
         initComplete: function () {
             this.api().columns([ 1,2]).every(function () {
                 var column = this;
@@ -31,7 +31,7 @@ $(document).ready(function () {
         //},
 
         "ajax": {
-            "url": "/MeetingMinutesDatesDetails/GetData",
+            "url": "/Meeting/GetData",
             "type": "GET",
             "datatype": "json"
         },

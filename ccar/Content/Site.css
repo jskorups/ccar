@@ -61,6 +61,32 @@ textarea {
     width: 200px !important;
     font-size: 18px !important;
 }
+#backBtn {
+    margin-bottom: 30px !important;
+    margin-bottom: 40px !important;
+    background-color: lightsalmon !important;
+    color: white !important;
+    height: 50px !important;
+    width: 200px !important;
+    font-size: 18px !important;
+}
+#completedBtn {
+    margin-bottom: 30px !important;
+    margin-bottom: 40px !important;
+    background-color: lightgreen !important;
+    color: white !important;
+    height: 50px !important;
+    width: 200px !important;
+    font-size: 18px !important;
+}
+@media (min-width: 768px) {
+    .navbar-brand.abs {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        text-align: center;
+    }
+}
 #addBtn2 {
     margin-bottom: 10px !important;
     background-color: deepskyblue !important;
@@ -93,10 +119,12 @@ textarea {
     background-color: red !important;
 }
 #edit {
-    background-color: darkseagreen 
+    background-color: darkseagreen;
+    color:whitesmoke;
 }
-#delete{
-    background-color:indianred;
+#delete {
+    background-color: indianred;
+    color: whitesmoke;
 }
 .text-danger {
     color: red !important;
@@ -181,8 +209,16 @@ table.dataTable thead .sorting_desc_disabled {
 .navbar-toggle {
     width: 800px !important;
 }
-
-.vGood {
+.begin {
+    background-color: #fb1818 !important;
+}
+.inprogres {
+    background-color: #efb410 !important;
+}
+.done {
+    background-color: #cf0 !important;
+}
+/*.vGood {
     background-color: #9f0 !important;
 }
 
@@ -200,7 +236,7 @@ table.dataTable thead .sorting_desc_disabled {
 
 .vPoor {
     background-color: #f30 !important;
-}
+}*/
 td.details-control {
     background: url('../images/details_open.png') no-repeat center center;
     cursor: pointer;
@@ -227,4 +263,17 @@ tr.shown td.details-control {
 }
 #ccar {
     background-image: url('../images/checklist.png');
+}
+.movedLeft {
+    margin-left:60px;
+}
+ul.nav.nav-tabs {
+    margin: 0px;
+}
+ul.nav.nav-tabs li:not(.active) a{
+    background-color:lightskyblue;
+    color: grey;
+}
+ul.nav.nav-tabs li.active a {
+    border-top: 3px solid #fbdf33
 }

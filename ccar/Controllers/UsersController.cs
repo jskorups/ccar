@@ -82,7 +82,7 @@ namespace ccar.Controllers
             UserModel user = UserModel.ConvertFromDbToModel(ent.users.Where(x => x.id == id).FirstOrDefault());
             return View(user);
         }
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

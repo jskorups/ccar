@@ -189,7 +189,7 @@ namespace ccar.Models
 
                 ent.actions.Add(ActionModel.ConvertToActionsFromDb(this));
                 ent.SaveChanges();
-                //emailClass.sendMail(responsible.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
+                //emailClass.CreateMailItem(UserModel.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
 
             }
             else
