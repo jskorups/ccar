@@ -210,10 +210,10 @@ table.dataTable thead .sorting_desc_disabled {
     width: 800px !important;
 }
 .begin {
-    background-color: #fb1818 !important;
+    background-color: red !important;
 }
 .inprogres {
-    background-color: #efb410 !important;
+    background-color: #f3b010 !important;
 }
 .done {
     background-color: #cf0 !important;

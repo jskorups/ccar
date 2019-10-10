@@ -195,16 +195,17 @@ function format(d) {
 function colorCells() {
     $("td:contains('%')").each(function (index) {
         var scale = [['begin', '10%'], ['inprogres', '50%'], ['done', '100%']];
+        console.log([scale]);
         var score = $(this).text();
         for (var i = 0; i < scale.length; i++) {
             //if (score = scale[i][0]) {
             //    $(this).addClass(scale[0][i]);
             //}
-            if (score = scale[i][1]) {
-                $(this).addClass(scale[1][i]);
+            if (score === scale[i][0]) {
+                $(this).addClass(scale[1][0]);
             }
-            else {
-                $(this).addClass(scale[0][i]);
+            else if (score === scale[i][1]) {
+                $(this).addClass(scale[1][1]);
             }   
         }
     });

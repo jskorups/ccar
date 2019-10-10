@@ -16,19 +16,42 @@ namespace ccar
     {
 
             public static void CreateMailItem(string to, string body, string subject)
+        {
+            try
             {
-                //Outlook.MailItem mailItem = (Outlook.MailItem)
-                // this.Application.CreateItem(Outlook.OlItemType.olMailItem);
-                Outlook.Application app = new Outlook.Application();
-                Outlook.MailItem mailItem = app.CreateItem(Outlook.OlItemType.olMailItem);
-                mailItem.Subject = subject;
-                mailItem.To = to;
-                mailItem.Body = body;
-                mailItem.Importance = Outlook.OlImportance.olImportanceHigh;
-                mailItem.Display(false);
-                mailItem.Send();
+                MailMessage mail = new MailMessage();
+                SmtpClient smtpserver = new SmtpClient("172.25.120.139", 25);
+
+                smtpserver.UseDefaultCredentials = false; 
+                mail.From = new MailAddress("ccar@system.com");
+                mail.To.Add(to);
+                mail.Subject = subject;
+                mail.Body = body;
+                mail.Priority = MailPriority.High;
+                smtpserver.EnableSsl = false;
+                smtpserver.Timeout = 60000;
+                smtpserver.Send(mail);
             }
+            catch (Exception exp)
+            {
+                Console.Write(exp.Message);
+               
+            }
+              
+            #region
+            //Outlook.MailItem mailItem = (Outlook.MailItem)
+            // this.Application.CreateItem(Outlook.OlItemType.olMailItem);
+            //Outlook.Application app = new Outlook.Application();
+            //    Outlook.MailItem mailItem = app.CreateItem(Outlook.OlItemType.olMailItem);
+            //    mailItem.Subject = subject;
+            //    mailItem.To = to;
+            //    mailItem.Body = body;
+            //    mailItem.Importance = Outlook.OlImportance.olImportanceHigh;
+            //    mailItem.Display(false);
+            //    mailItem.Send();
+            #endregion
         }
+    }
        
 
     

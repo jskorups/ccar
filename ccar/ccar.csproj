@@ -205,6 +205,9 @@
     <Compile Include="Meeting.cs">
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="MeetingMinutesDates.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="MeetingsView.cs">
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>

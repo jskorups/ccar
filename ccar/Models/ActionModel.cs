@@ -176,16 +176,16 @@ namespace ccar.Models
                 ccarEntities ent = new ccarEntities();
 
 
-                //this.idInitiator = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.id).SingleOrDefault();
-                //this.originationDate = DateTime.Now;
-   
+                this.idInitiator = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.id).SingleOrDefault();
+                this.originationDate = DateTime.Now;
+
                 string Replaced = System.Environment.UserName.Replace('.', ' ');
                 CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
                 TextInfo textInfo = cultureInfo.TextInfo;
 
                 this.originationDate = DateTime.Now;
-                this.Initiator = (textInfo.ToTitleCase(Replaced));
-                this.idInitiator = 1;
+                //this.Initiator = (textInfo.ToTitleCase(Replaced));
+                //this.idInitiator = 1;
 
                 ent.actions.Add(ActionModel.ConvertToActionsFromDb(this));
                 ent.SaveChanges();

@@ -98,18 +98,33 @@ namespace ccar.Controllers
         [HttpPost]
         public ActionResult AddOrEdit(ActionModel Act)
         {
-            try
+            if (Act.id == 0)
             {
-                Act.Save();
-                //var email = UserModel.getEmailAdress(Act.idResponsible);
-                //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
-                var email = UserModel.getEmailAdress(Act.idResponsible);
-                emailClass.CreateMailItem(email, "Problem: " + Act.problem + System.Environment.NewLine + "Target date: " + Act.targetDate, "Utworzono nowe zadanie dla Ciebie w CCAR");
+                try
+                {
+                    Act.Save();
+                    //var email = UserModel.getEmailAdress(Act.idResponsible);
+                    //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
+                    var email = UserModel.getEmailAdress(Act.idResponsible);
+                    emailClass.CreateMailItem(email, "Problem: " + Act.problem + System.Environment.NewLine + "Target date: " + Act.targetDate, "Utworzono nowe zadanie dla Ciebie w CCAR");
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
             }
-            catch (Exception ex)
+            else if (Act.id != 0)
             {
-                return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                try
+                {
+                    Act.Save();
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
             }
+           
             return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
         }      
         [Authorize]
