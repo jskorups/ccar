@@ -27,6 +27,13 @@ namespace ccar.ControllersMM
                 return Json(new { data = meetingsList }, JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpGet]
+        public ActionResult AddOrEditMeeting()
+        {
+            return View();
+        }
+
+
 
 
     }

@@ -277,3 +277,20 @@ ul.nav.nav-tabs li:not(.active) a{
 ul.nav.nav-tabs li.active a {
     border-top: 3px solid #fbdf33
 }
+.row {
+    margin-top: 40px;
+    padding: 0 10px;
+}
+.clickable {
+    cursor: pointer;
+}
+.panel-heading span {
+    margin-top: -20px;
+    font-size: 15px;
+}
+.meetings {
+   color: black;
+}
+select {
+    margin-left: 10px !important;
+}

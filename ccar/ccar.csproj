@@ -431,6 +431,7 @@
     <Content Include="Views\Meeting\Index.cshtml" />
     <Content Include="Views\Action\EditDeletePartialDone.cshtml" />
     <Content Include="Views\Users\DeleteRefused.cshtml" />
+    <Content Include="Views\Meeting\AddOrEditMeeting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
