@@ -123,7 +123,7 @@ function AddNew(url) {
                 resizable: false,
                 title: 'Fill Meeting Details',
                 height: 620,
-                width: 750,
+                width: 1200,
                 close: function () {
                     Popup.dialog('destroy').remove();
                 }

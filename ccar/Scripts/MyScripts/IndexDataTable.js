@@ -5,7 +5,7 @@ $(document).ready(function () {
     dataTable = $('#actionTable').DataTable({
         initComplete: function () {
 
-            this.api().columns([1, 2, 3, 4, 5,6, 7, 8]).every(function () {
+            this.api().columns([1, 2, 4, 5,6, 7]).every(function () {
                 var column = this;
                 var select = $('<select><option value="">Show all</option></select>')
                     .appendTo($(column.header()))
@@ -224,7 +224,7 @@ function Kespa(url) {
                 autoOpen: true,
                 resizable: false,
                 title: 'Fill Actions Details',
-                height: 600,
+                height: 650,
                 width: 1200,
                 close: function () {
                     Popup.dialog('destroy').remove();
