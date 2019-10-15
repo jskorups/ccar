@@ -10,9 +10,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idReason" Type="int" Nullable="false" />
           <Property Name="idInitiator" Type="int" />
           <Property Name="Initiator" Type="nvarchar" MaxLength="50" />
+          <Property Name="idReason" Type="int" Nullable="false" />
           <Property Name="originationDate" Type="datetime" />
           <Property Name="idTypeOfAction" Type="int" />
           <Property Name="problem" Type="nvarchar" MaxLength="50" />
@@ -25,18 +25,11 @@
           <Property Name="measureEffic" Type="nvarchar" MaxLength="50" />
           <Property Name="dateOfEffic" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="MeetingMinutesDates">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MeetingMinutesDay" Type="datetime" />
-        </EntityType>
         <EntityType Name="progress">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="progressValue" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="reasons">
@@ -57,14 +50,13 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="firstname" Type="nvarchar" MaxLength="50" />
           <Property Name="surname" Type="nvarchar" MaxLength="50" />
           <Property Name="password" Type="nvarchar" MaxLength="300" />
           <Property Name="email" Type="nvarchar" MaxLength="50" />
           <Property Name="guid" Type="nvarchar" MaxLength="200" />
           <Property Name="active" Type="bit" />
-          <Property Name="department" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -74,9 +66,9 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
             <PropertyRef Name="reason" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Initiator" Type="nvarchar" MaxLength="50" />
           <Property Name="reason" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="problem" Type="nvarchar" MaxLength="50" />
-          <Property Name="Initiator" Type="nvarchar" MaxLength="101" />
           <Property Name="originationDate" Type="datetime" />
           <Property Name="targetDate" Type="datetime" />
           <Property Name="completionDate" Type="datetime" />
@@ -91,9 +83,9 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             <PropertyRef Name="reason" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Initiator" Type="nvarchar" MaxLength="101" />
           <Property Name="reason" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="problem" Type="nvarchar" MaxLength="50" />
-          <Property Name="Initiator" Type="nvarchar" MaxLength="50" />
           <Property Name="originationDate" Type="datetime" />
           <Property Name="targetDate" Type="datetime" />
           <Property Name="completionDate" Type="datetime" />
@@ -136,18 +128,6 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_actions_users">
-          <End Role="users" Type="Self.users" Multiplicity="0..1" />
-          <End Role="actions" Type="Self.actions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="actions">
-              <PropertyRef Name="idInitiator" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_actions_users1">
           <End Role="users" Type="Self.users" Multiplicity="0..1" />
           <End Role="actions" Type="Self.actions" Multiplicity="*" />
@@ -162,7 +142,6 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
         </Association>
         <EntityContainer Name="ccarModelStoreContainer">
           <EntitySet Name="actions" EntityType="Self.actions" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MeetingMinutesDates" EntityType="Self.MeetingMinutesDates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="progress" EntityType="Self.progress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="reasons" EntityType="Self.reasons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="typeOfaction" EntityType="Self.typeOfaction" Schema="dbo" store:Type="Tables" />
@@ -170,9 +149,9 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <EntitySet Name="actionView" EntityType="Self.actionView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [actionView].[id] AS [id], 
+    [actionView].[Initiator] AS [Initiator], 
     [actionView].[reason] AS [reason], 
     [actionView].[problem] AS [problem], 
-    [actionView].[Initiator] AS [Initiator], 
     [actionView].[originationDate] AS [originationDate], 
     [actionView].[targetDate] AS [targetDate], 
     [actionView].[completionDate] AS [completionDate], 
@@ -183,9 +162,9 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <EntitySet Name="actionViewDone" EntityType="Self.actionViewDone" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [actionViewDone].[id] AS [id], 
+    [actionViewDone].[Initiator] AS [Initiator], 
     [actionViewDone].[reason] AS [reason], 
     [actionViewDone].[problem] AS [problem], 
-    [actionViewDone].[Initiator] AS [Initiator], 
     [actionViewDone].[originationDate] AS [originationDate], 
     [actionViewDone].[targetDate] AS [targetDate], 
     [actionViewDone].[completionDate] AS [completionDate], 
@@ -205,10 +184,6 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             <End Role="typeOfaction" EntitySet="typeOfaction" />
             <End Role="actions" EntitySet="actions" />
           </AssociationSet>
-          <AssociationSet Name="FK_actions_users" Association="Self.FK_actions_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="actions" EntitySet="actions" />
-          </AssociationSet>
           <AssociationSet Name="FK_actions_users1" Association="Self.FK_actions_users1">
             <End Role="users" EntitySet="users" />
             <End Role="actions" EntitySet="actions" />
@@ -220,7 +195,6 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
       <Schema Namespace="ccarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ccarEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="actions" EntityType="ccarModel.actions" />
-          <EntitySet Name="MeetingMinutesDates" EntityType="ccarModel.MeetingMinutesDates" />
           <EntitySet Name="progress" EntityType="ccarModel.progress" />
           <EntitySet Name="reasons" EntityType="ccarModel.reasons" />
           <EntitySet Name="typeOfaction" EntityType="ccarModel.typeOfaction" />
@@ -239,10 +213,6 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             <End Role="typeOfaction" EntitySet="typeOfaction" />
             <End Role="actions" EntitySet="actions" />
           </AssociationSet>
-          <AssociationSet Name="FK_actions_users" Association="ccarModel.FK_actions_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="actions" EntitySet="actions" />
-          </AssociationSet>
           <AssociationSet Name="FK_actions_users1" Association="ccarModel.FK_actions_users1">
             <End Role="users" EntitySet="users" />
             <End Role="actions" EntitySet="actions" />
@@ -253,9 +223,9 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idReason" Type="Int32" Nullable="false" />
           <Property Name="idInitiator" Type="Int32" />
           <Property Name="Initiator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idReason" Type="Int32" Nullable="false" />
           <Property Name="originationDate" Type="DateTime" Precision="3" />
           <Property Name="idTypeOfAction" Type="Int32" />
           <Property Name="problem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -270,21 +240,13 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <NavigationProperty Name="progress" Relationship="ccarModel.FK_actions_progress" FromRole="actions" ToRole="progress" />
           <NavigationProperty Name="reasons" Relationship="ccarModel.FK_actions_reasons" FromRole="actions" ToRole="reasons" />
           <NavigationProperty Name="typeOfaction" Relationship="ccarModel.FK_actions_typeOfaction" FromRole="actions" ToRole="typeOfaction" />
-          <NavigationProperty Name="users" Relationship="ccarModel.FK_actions_users" FromRole="actions" ToRole="users" />
-          <NavigationProperty Name="users1" Relationship="ccarModel.FK_actions_users1" FromRole="actions" ToRole="users" />
-        </EntityType>
-        <EntityType Name="MeetingMinutesDates">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MeetingMinutesDay" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="users" Relationship="ccarModel.FK_actions_users1" FromRole="actions" ToRole="users" />
         </EntityType>
         <EntityType Name="progress">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="progressValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="actions" Relationship="ccarModel.FK_actions_progress" FromRole="progress" ToRole="actions" />
         </EntityType>
@@ -308,16 +270,14 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="guid" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="active" Type="Boolean" />
-          <Property Name="department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="actions" Relationship="ccarModel.FK_actions_users" FromRole="users" ToRole="actions" />
-          <NavigationProperty Name="actions1" Relationship="ccarModel.FK_actions_users1" FromRole="users" ToRole="actions" />
+          <NavigationProperty Name="actions" Relationship="ccarModel.FK_actions_users1" FromRole="users" ToRole="actions" />
         </EntityType>
         <EntityType Name="actionView">
           <Key>
@@ -325,9 +285,9 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             <PropertyRef Name="reason" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Initiator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="problem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Initiator" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
           <Property Name="originationDate" Type="DateTime" Precision="3" />
           <Property Name="targetDate" Type="DateTime" Precision="3" />
           <Property Name="completionDate" Type="DateTime" Precision="3" />
@@ -340,9 +300,9 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             <PropertyRef Name="reason" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Initiator" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
           <Property Name="reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="problem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Initiator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="originationDate" Type="DateTime" Precision="3" />
           <Property Name="targetDate" Type="DateTime" Precision="3" />
           <Property Name="completionDate" Type="DateTime" Precision="3" />
@@ -385,18 +345,6 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_actions_users">
-          <End Type="ccarModel.users" Role="users" Multiplicity="0..1" />
-          <End Type="ccarModel.actions" Role="actions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="actions">
-              <PropertyRef Name="idInitiator" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_actions_users1">
           <End Type="ccarModel.users" Role="users" Multiplicity="0..1" />
           <End Type="ccarModel.actions" Role="actions" Multiplicity="*" />
@@ -429,17 +377,9 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
                 <ScalarProperty Name="problem" ColumnName="problem" />
                 <ScalarProperty Name="idTypeOfAction" ColumnName="idTypeOfAction" />
                 <ScalarProperty Name="originationDate" ColumnName="originationDate" />
+                <ScalarProperty Name="idReason" ColumnName="idReason" />
                 <ScalarProperty Name="Initiator" ColumnName="Initiator" />
                 <ScalarProperty Name="idInitiator" ColumnName="idInitiator" />
-                <ScalarProperty Name="idReason" ColumnName="idReason" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MeetingMinutesDates">
-            <EntityTypeMapping TypeName="ccarModel.MeetingMinutesDates">
-              <MappingFragment StoreEntitySet="MeetingMinutesDates">
-                <ScalarProperty Name="MeetingMinutesDay" ColumnName="MeetingMinutesDay" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -471,7 +411,6 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="ccarModel.users">
               <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="department" ColumnName="department" />
                 <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="guid" ColumnName="guid" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -490,9 +429,9 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
                 <ScalarProperty Name="completionDate" ColumnName="completionDate" />
                 <ScalarProperty Name="targetDate" ColumnName="targetDate" />
                 <ScalarProperty Name="originationDate" ColumnName="originationDate" />
-                <ScalarProperty Name="Initiator" ColumnName="Initiator" />
                 <ScalarProperty Name="problem" ColumnName="problem" />
                 <ScalarProperty Name="reason" ColumnName="reason" />
+                <ScalarProperty Name="Initiator" ColumnName="Initiator" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -505,9 +444,9 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
                 <ScalarProperty Name="completionDate" ColumnName="completionDate" />
                 <ScalarProperty Name="targetDate" ColumnName="targetDate" />
                 <ScalarProperty Name="originationDate" ColumnName="originationDate" />
-                <ScalarProperty Name="Initiator" ColumnName="Initiator" />
                 <ScalarProperty Name="problem" ColumnName="problem" />
                 <ScalarProperty Name="reason" ColumnName="reason" />
+                <ScalarProperty Name="Initiator" ColumnName="Initiator" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

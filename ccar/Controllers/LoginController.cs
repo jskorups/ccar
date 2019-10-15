@@ -112,6 +112,7 @@ namespace ccar.Controllers
             }
             else
             {
+                ModelState.AddModelError("email", "Nie znaleziono użytkownika");
                 return View();
             }
         }

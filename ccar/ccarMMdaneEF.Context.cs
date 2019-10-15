@@ -26,6 +26,7 @@ namespace ccar
         }
     
         public virtual DbSet<Meeting> Meeting { get; set; }
+        public virtual DbSet<MeetingUsers> MeetingUsers { get; set; }
         public virtual DbSet<Priority> Priority { get; set; }
         public virtual DbSet<Projects> Projects { get; set; }
         public virtual DbSet<Protocol> Protocol { get; set; }

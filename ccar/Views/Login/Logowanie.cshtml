@@ -21,7 +21,7 @@
     <!--Logowanie-->
     <div class="container text-center" id="main" style="margin-top:200px; width:800px; ">
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
         @using (Html.BeginForm("Logowanie", "Login", FormMethod.Post))
         {
             <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -44,6 +44,7 @@
                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 @Html.Editor("email", new { htmlAttributes = new { @class = "form-control", @id = "email-username", @type = "text", @name = "email", @value = "", @placeholder = "Wpisz email..." } })
+                                @Html.ValidationMessageFor(model => model.email, null, new { @class = "koko" })
                             </div>
                             <!--password-->
                             <div style="margin-bottom: 25px" class="input-group">

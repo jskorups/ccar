@@ -205,13 +205,14 @@
     <Compile Include="Meeting.cs">
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="MeetingMinutesDates.cs">
-      <DependentUpon>ccarDaneEF.tt</DependentUpon>
-    </Compile>
     <Compile Include="MeetingsView.cs">
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="MeetingUsers.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelsMM\AttendanceStatusModel.cs" />
+    <Compile Include="ModelsMM\MMViewModels\AddMeetingViewModel.cs" />
     <Compile Include="ModelsMM\ProjectModel.cs" />
     <Compile Include="ModelsMM\UserModel.cs" />
     <Compile Include="Models\ActionModel.cs" />

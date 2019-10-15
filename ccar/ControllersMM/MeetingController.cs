@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ccar.Models;
+using ccar.ModelsMM.MMViewModels;
 
 namespace ccar.ControllersMM
 {
@@ -30,7 +31,8 @@ namespace ccar.ControllersMM
         [HttpGet]
         public ActionResult AddOrEditMeeting()
         {
-            return View();
+            AddMeetingViewModel adVM = new AddMeetingViewModel(); ;
+            return View(adVM);
         }
 
 
