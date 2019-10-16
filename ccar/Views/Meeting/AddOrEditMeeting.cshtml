@@ -10,26 +10,35 @@
 @using (Html.BeginForm("AddOrEditMeeting", "Meeting", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
 {
     @*@Html.HiddenFor(model => model.id)
-    @Html.HiddenFor(model => model.originationDate)
-    @Html.HiddenFor(model => model.idInitiator)*@
+        @Html.HiddenFor(model => model.originationDate)
+        @Html.HiddenFor(model => model.idInitiator)*@
 
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @id = "koko" })
 
 
-    <div class="form-group container" >
+    <div class="form-group container">
         <div class="row">
-            <div class="col-md-3 mb-3" >
-                @Html.Label("Project*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.meeting.ProjectId, null, new { @class = "koko" })
-                @Html.DropDownListFor(model=>model.meeting.ProjectId, new SelectList(Model.projList, "id", "ProjectName"), new { @class = "form-control" })
-            
+            <div class="col-md-3 mb-3">
+                @*@Html.Label("Project*", new { @class = "control-label" })
+                    @Html.ValidationMessageFor(model => model.meeting.ProjectId, null, new { @class = "koko" })
+                    @Html.DropDownListFor(model=>model.meeting.ProjectId, new SelectList(Model.projList, "id", "ProjectName"), new { @class = "form-control" })*@
+                @foreach (var item in Model.userList)
+                {
+
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="">@item.firstname @item.surname</label>
+                    </div>
+
+
+                }
+
             </div>
             <div class="col-md-1 mb-1" style="margin-left:-20px;">
                 @Html.Label("More", new { @class = "control-label" })
                 <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
             </div>
-           
+
         </div>
     </div>
 
@@ -58,7 +67,7 @@
     </div>
 
     <script>
-   
+
         function SubmitForm(form) {
             $.validator.unobtrusive.parse(form);
             if ($(form).valid()) {
@@ -70,12 +79,12 @@
                         //if (data.success) {
                         Popup.dialog('close');
                         dataTable.ajax.reload();
-                        
-                            $.notify(data.message, {
-                                globalPosition: "top center",
-                                className: "success"
 
-                            })
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "success"
+
+                        })
 
                         //}
                     }

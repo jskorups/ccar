@@ -228,18 +228,18 @@
     <Compile Include="progress.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProgressOfAction.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Projects.cs">
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Protocol.cs">
+    <Compile Include="ProtocolOfAction.cs">
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="reasons.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Status.cs">
-      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="typeOfaction.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>

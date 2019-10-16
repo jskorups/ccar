@@ -33,7 +33,6 @@ namespace ccar.Models
             {
                 id = x.id,
                 Date = x.Date,
-                presentUsers = x.presentUsers,
                 ProjectName = x.ProjectName
 
             }).ToList();
@@ -45,7 +44,6 @@ namespace ccar.Models
             Meeting mmD = new Meeting();
             mmD.id = m.Id;
             mmD.Date = m.Date;
-            mmD.presentUsers = m.presentUsers;
             mmD.projectId = m.ProjectId;
             return mmD;
         }
@@ -55,7 +53,6 @@ namespace ccar.Models
             MeetingModel mmD = new MeetingModel();
             mmD.Id = m.id;
             mmD.Date = m.Date;
-            mmD.presentUsers = m.presentUsers;
             mmD.ProjectId = m.projectId;
             return mmD;
         }

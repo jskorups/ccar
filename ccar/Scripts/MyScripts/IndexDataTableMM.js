@@ -65,7 +65,7 @@ $(document).ready(function () {
                 }
             },
             { "data": "ProjectName" },
-            { "data": "presentUsers" }
+            //{ "data": "presentUsers" }
 
         ],
         "language": {
@@ -122,7 +122,7 @@ function AddNew(url) {
                 autoOpen: true,
                 resizable: false,
                 title: 'Fill Meeting Details',
-                height: 300,
+                height: 400,
                 width: 1200,
                 close: function () {
                     Popup.dialog('destroy').remove();
