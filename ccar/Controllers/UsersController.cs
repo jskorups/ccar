@@ -99,7 +99,7 @@ namespace ccar.Controllers
             }
             return RedirectToAction("UsersList");
         }
-                [HttpGet]
+        [HttpGet]
         public ActionResult DeleteRefused()
         {
             return View();

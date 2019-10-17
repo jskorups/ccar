@@ -433,6 +433,11 @@
     <Content Include="Views\Action\EditDeletePartialDone.cshtml" />
     <Content Include="Views\Users\DeleteRefused.cshtml" />
     <Content Include="Views\Meeting\AddOrEditMeeting.cshtml" />
+    <Content Include="Views\MeetingMinutesUser\UsersList.cshtml" />
+    <Content Include="Views\MeetingMinutesUser\Create.cshtml" />
+    <Content Include="Views\MeetingMinutesUser\Edit.cshtml" />
+    <Content Include="Views\MeetingMinutesUser\Delete.cshtml" />
+    <Content Include="Views\MeetingMinutesUser\DeleteRefused.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

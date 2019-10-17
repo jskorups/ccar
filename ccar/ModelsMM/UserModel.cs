@@ -20,7 +20,7 @@ namespace ccar.ModelsMM
 
         public static List<UserModel> fromUsersDB(List<User> uList)
         {
-            List<UserModel> usersList = uList.Select(x => new UserModel { id = x.id, firstname = x.firstname, surname = x.surname }).ToList();
+            List<UserModel> usersList = uList.Select(x => new UserModel { id = x.id, firstname = x.firstname, surname = x.surname, email = x.email }).ToList();
             return usersList;
         }
 
@@ -30,10 +30,10 @@ namespace ccar.ModelsMM
             return fromUsersDB(ent.User.ToList());
         }
 
-        public UserModel()
-        {
+        //public UserModel()
+        //{
 
-        }
+        //}
 
         public static User COnvertFromModelToDB(UserModel mod)
         {
