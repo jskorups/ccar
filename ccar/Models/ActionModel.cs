@@ -147,8 +147,7 @@ namespace ccar.Models
 
         public static ActionModel ConvertFromEFtoModel(actions a)
         {
-   
-
+  
             ActionModel act = new ActionModel();
             act.id = a.id;
             act.idReason = a.idReason;

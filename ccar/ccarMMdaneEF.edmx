@@ -17,7 +17,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="meetingId" Type="int" />
           <Property Name="userId" Type="int" />
           <Property Name="isPresent" Type="bit" />
@@ -294,7 +294,7 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="meetingId" Type="Int32" />
           <Property Name="userId" Type="Int32" />
           <Property Name="isPresent" Type="Boolean" />

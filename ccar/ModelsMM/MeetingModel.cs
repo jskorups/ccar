@@ -23,9 +23,10 @@ namespace ccar.Models
         public string presentUsers { get; set; }
         [Required(ErrorMessage = "Required")]
         public int? ProjectId { get; set; }
+        public MeetingUsers meetingUsers { get; set; }
 
-        
-      
+
+
         // get meeting minutes list
         public static List<MeetingsView> FromMMDatesView(List<MeetingsView> mList)
         {

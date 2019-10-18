@@ -212,6 +212,7 @@
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsMM\AttendanceStatusModel.cs" />
+    <Compile Include="ModelsMM\MeetingUsersModel.cs" />
     <Compile Include="ModelsMM\MMViewModels\AddMeetingViewModel.cs" />
     <Compile Include="ModelsMM\ProjectModel.cs" />
     <Compile Include="ModelsMM\UserModel.cs" />

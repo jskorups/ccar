@@ -31,9 +31,35 @@ namespace ccar.ControllersMM
         [HttpGet]
         public ActionResult AddOrEditMeeting()
         {
+            AddMeetingViewModel adVM = new AddMeetingViewModel();
+            return View(adVM);
+        }
+        [HttpPost]
+        public ActionResult AddOrEditMeeting()
+        {
             AddMeetingViewModel adVM = new AddMeetingViewModel(); ;
             return View(adVM);
         }
+
+
+         [HttpGet]
+        [Authorize]
+        public ActionResult AddOrEdit(int id = 0)
+        {
+            if (id == 0)
+            {
+                return View(new AddMeetingViewModel());
+            }
+            else
+            {
+                ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
+                AddMeetingViewModel test = ent.Meeting.Where()
+                    
+                   // Where(x => x.id == id).FirstOrDefault();
+                return View(ActionModel.ConvertFromEFtoModel(test));
+            }
+        }
+
 
 
 
