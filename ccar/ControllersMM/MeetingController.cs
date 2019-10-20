@@ -31,36 +31,54 @@ namespace ccar.ControllersMM
         [HttpGet]
         public ActionResult AddOrEditMeeting()
         {
-            AddMeetingViewModel adVM = new AddMeetingViewModel();
+            AddMeetingViewModel adVM = new AddMeetingViewModel(3);
             return View(adVM);
         }
+
         [HttpPost]
-        public ActionResult AddOrEditMeeting()
+        public ActionResult AddOrEditMeeting(AddMeetingViewModel model, bool[] Person, int[] PersonId)
         {
-            AddMeetingViewModel adVM = new AddMeetingViewModel(); ;
+
+            // petla po personid 0 -> personid.count
+            // w petli if person[i]==true to add personid to choosenPerson
+            // przekazac coosenPerson do save (list do array lub w save zmioenic na liste)
+            List<int> choosenPerson = new List<int>();
+            for (int i = 0; i < Person; i++)
+            {
+
+            }
+            model.Save(;
             return View(adVM);
         }
 
 
-         [HttpGet]
-        [Authorize]
-        public ActionResult AddOrEdit(int id = 0)
+        // [HttpGet]
+        //[Authorize]
+        //public ActionResult AddOrEdit(int id = 0)
+        //{
+        //    if (id == 0)
+        //    {
+        //        return View(new AddMeetingViewModel());
+        //    }
+        //    else
+        //    {
+        //        //ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
+        //        //AddMeetingViewModel test = ent.Meeting.Where()
+
+        //        //   // Where(x => x.id == id).FirstOrDefault();
+        //        //return View(ActionModel.ConvertFromEFtoModel(test));
+        //    }
+        //}
+        [HttpPost]
+        public JsonResult SaveList(string ItemList)
         {
-            if (id == 0)
+            string[] arr = ItemList.Split(',');
+            foreach (var id in arr)
             {
-                return View(new AddMeetingViewModel());
+                var currentId = id;
             }
-            else
-            {
-                ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
-                AddMeetingViewModel test = ent.Meeting.Where()
-                    
-                   // Where(x => x.id == id).FirstOrDefault();
-                return View(ActionModel.ConvertFromEFtoModel(test));
-            }
+            return Json("", JsonRequestBehavior.AllowGet);
         }
-
-
 
 
 

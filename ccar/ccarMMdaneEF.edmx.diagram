@@ -5,23 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4c754e4e876a44e1a615acf175533e83" Name="Diagram1">
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.Meeting" Width="1.5" PointX="3" PointY="3.75" />
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingUsers" Width="1.5" PointX="5.25" PointY="3.75" />
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.Priority" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.ProgressOfAction" Width="1.5" PointX="6" PointY="7.125" />
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.Projects" Width="1.5" PointX="0.75" PointY="4" />
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.ProtocolOfAction" Width="1.5" PointX="8.25" PointY="2.75" />
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.TypeOfSubject" Width="1.5" PointX="6" PointY="9.5" />
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.User" Width="1.5" PointX="3" PointY="0.875" />
-        <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingsView" Width="1.5" PointX="0.75" PointY="6.875" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.Meeting" Width="1.5" PointX="3" PointY="5.75" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingUsers" Width="1.5" PointX="8.25" PointY="5.75" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.Priority" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.Projects" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.ProtocolOfAction" Width="1.5" PointX="5.25" PointY="4.375" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.Status" Width="1.5" PointX="3" PointY="9" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.TypeOfSubject" Width="1.5" PointX="3" PointY="11.375" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.User" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="ccarMeetingMinutesModel.MeetingsView" Width="1.5" PointX="7.75" PointY="9.5" />
         <AssociationConnector Association="ccarMeetingMinutesModel.FK_meetingMinutesDates_MeetingMinutesProjects" />
         <AssociationConnector Association="ccarMeetingMinutesModel.FK_MeetingUsers_Meeting" />
         <AssociationConnector Association="ccarMeetingMinutesModel.FK_Protocol_Meeting" />
         <AssociationConnector Association="ccarMeetingMinutesModel.FK_MeetingUsers_User" />
-        <AssociationConnector Association="ccarMeetingMinutesModel.FK_Protocol_Priority" />
-        <AssociationConnector Association="ccarMeetingMinutesModel.FK_Protocol_Progress" />
-        <AssociationConnector Association="ccarMeetingMinutesModel.FK_Protocol_Projects" />
-        <AssociationConnector Association="ccarMeetingMinutesModel.FK_Protocol_TypeOfSubject" />
+        <AssociationConnector Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesPriority" />
+        <AssociationConnector Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProjects" />
+        <AssociationConnector Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProtocol" />
+        <AssociationConnector Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesStatus" />
+        <AssociationConnector Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject" />
+        <AssociationConnector Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_mMusers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

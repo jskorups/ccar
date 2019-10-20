@@ -7,9 +7,9 @@
 }
 
 
-@using (Html.BeginForm("AddOrEditMeeting", "Meeting", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+@using (Html.BeginForm("AddOrEditMeeting", "Meeting", FormMethod.Post@*, new { onsubmit = "return SubmitForm(this)" }*@))
 {
-    @Html.HiddenFor(model => model.meetingUsers.isPresent)
+    @Html.HiddenFor(model => model.meeting.ProjectId)
 
 
     @Html.AntiForgeryToken()
@@ -17,32 +17,52 @@
 
 
     <div class="form-group container">
-        <div class="row">
-            <div class="col-md-3 mb-3">
-                @*@Html.Label("Project*", new { @class = "control-label" })
-                    @Html.ValidationMessageFor(model => model.meeting.ProjectId, null, new { @class = "koko" })
-                    @Html.DropDownListFor(model=>model.meeting.ProjectId, new SelectList(Model.projList, "id", "ProjectName"), new { @class = "form-control" })*@
-                @foreach (var item in Model.userList)
-                {
-                
+
+        <ul class="list-group" id="ItemList">
+
+
+            @*@Html.Label("Project*", new { @class = "control-label" })
+        @Html.ValidationMessageFor(model => model.meeting.ProjectId, null, new { @class = "koko" })
+        @Html.DropDownListFor(model=>model.meeting.ProjectId, new SelectList(Model.projList, "id", "ProjectName"), new { @class = "form-control" })*@
+            @*@foreach (var item in Model.userList)
+        {
+            <li class="list-group-item" style="margin:-10px">
+
+                <div class="checkbox">
+                    <input type="checkbox" id="Check_@item.id" />
+                    <label for="Check_@item.id">@item.firstname @item.surname  </label>
+                </div>
+
+            </li>
+        }*@
+
+            @for (int i = 0; i < Model.userList.Count(); i++)
+            {
+                <li class="list-group-item" style="margin:-10px">
+
                     <div class="checkbox">
-                        <label><input type="checkbox" name="@item.id" value="">@item.firstname @item.surname  </label>
+                        @Html.CheckBox("Person["+i+"]")
+                        @Html.Hidden("PersonId["+i+"]",Model.userList[i].id)
+                        @Html.Label(Model.userList[i].firstname+ " "+ Model.userList[i].surname)
                     </div>
-                }
-            </div>
-            <div class="col-md-3 mb-3" style="margin-left:-20px;">
+
+                </li>
+            }
+        </ul>
+
+        @*<div class="col-md-3 mb-3" style="margin-left:-20px;">
                 @Html.Label("Add new user", new { @class = "control-label" })
                 <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("UsersList", "MeetingMinutesUser")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-            </div>
+            </div>*@
 
-        </div>
     </div>
+
 
 
     <div class="form-group container">
         <div class="row">
             <div class="col-md-12 mb-12 text-center">
-                <input type="submit" value="Submit" class="btn btn-success" style="width:250px; height:40px" />
+                <input type="submit" value="Submit" onclick="SaveList()" class="btn btn-success" style="width:250px; height:40px" />
                 <input type="reset" value="Reset" class="btn btn-danger" style="width:250px; height:40px" />
             </div>
         </div>
@@ -63,30 +83,42 @@
     </div>
 
     <script>
+        var SaveList = function () {
 
-        function SubmitForm(form) {
-            $.validator.unobtrusive.parse(form);
-            if ($(form).valid()) {
+            var arrItem = [];
+            var commaSpareatedIds = "";
+
+            $("#ItemList li input[type=checkbox]").each(function (index, val) {
+
+               
+                var checkId = $(val).attr("Id");
+                var arr = checkId.split('_');
+                var currentCheckboxId = arr[1];
+                var IsChecked = $("#" + checkId).is(":checked", true);
+
+                if (IsChecked) {
+
+                    arrItem.push(currentCheckboxId);
+                }
+
+
+            })
+            if (arrItem.lenght != 0) {
+                commaSpareatedIds = arrItem.toString();
+
                 $.ajax({
+                    url: "/Meeting/SaveList",
                     type: "POST",
-                    url: form.action,
-                    data: $(form).serialize(),
-                    success: function (data) {
-                        //if (data.success) {
-                        Popup.dialog('close');
-                        dataTable.ajax.reload();
+                    data: { ItemList: commaSpareatedIds },
+                    success: function (response) {
 
-                        $.notify(data.message, {
-                            globalPosition: "top center",
-                            className: "success"
-
-                        })
-
-                        //}
                     }
-                });
+
+
+                })
+
+
             }
-            return false;
         }
     </script>
 }

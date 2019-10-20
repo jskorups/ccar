@@ -121,8 +121,8 @@ function AddNew(url) {
             Popup = formDiv.dialog({
                 autoOpen: true,
                 resizable: false,
-                title: 'Fill Meeting Details',
-                height: 400,
+                title: 'Add Meeting',
+                height: 600,
                 width: 1200,
                 close: function () {
                     Popup.dialog('destroy').remove();
