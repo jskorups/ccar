@@ -77,7 +77,7 @@ $(document).ready(function () {
 
 
 
-    $('#meetingMinutesTable tbody').on('click', 'td.details-control', function () {
+    $('#Meeting tbody').on('click', 'td.details-control', function () {
     
         var tr = $(this).closest('tr');
         var tdi = tr.find("i.fa");
@@ -106,7 +106,7 @@ $(document).ready(function () {
 
 function format(d) {
      
-    var rowDetail = $.ajax({ type: "GET", url: "/Action/RowDetailsPartial?id=" + d.id, async: false }).responseText;
+    var rowDetail = $.ajax({ type: "GET", url: "/Meeting/RowDetailsPartial?id=" + d.id, async: false }).responseText;
     return rowDetail;
 }
 

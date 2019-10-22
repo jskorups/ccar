@@ -229,6 +229,9 @@
     <Compile Include="progress.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProgressOfAction.cs">
+      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Projects.cs">
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
@@ -238,9 +241,6 @@
     </Compile>
     <Compile Include="reasons.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Status.cs">
-      <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="typeOfaction.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
@@ -439,6 +439,7 @@
     <Content Include="Views\MeetingMinutesUser\Edit.cshtml" />
     <Content Include="Views\MeetingMinutesUser\Delete.cshtml" />
     <Content Include="Views\MeetingMinutesUser\DeleteRefused.cshtml" />
+    <Content Include="Views\Meeting\RowDetailsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

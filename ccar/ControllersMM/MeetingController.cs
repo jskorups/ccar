@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ccar.Models;
+using ccar.ModelsMM;
 using ccar.ModelsMM.MMViewModels;
 
 namespace ccar.ControllersMM
@@ -38,19 +39,28 @@ namespace ccar.ControllersMM
         [HttpPost]
         public ActionResult AddOrEditMeeting(AddMeetingViewModel model, bool[] Person, int[] PersonId)
         {
-
-            // petla po personid 0 -> personid.count
-            // w petli if person[i]==true to add personid to choosenPerson
-            // przekazac coosenPerson do save (list do array lub w save zmioenic na liste)
             List<int> choosenPerson = new List<int>();
-            for (int i = 0; i < Person; i++)
+            for (int i = 0; i <PersonId.Count(); i++)
             {
-
+                if (Person[i] == true)
+                {
+                    choosenPerson.Add(PersonId[i]);
+                }
             }
-            model.Save(;
-            return View(adVM);
+            int [] myArray =  choosenPerson.ToArray();
+            model.Save(myArray);
+            return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
+
+
         }
 
+
+        public ActionResult RowDetailsPartial(int id)
+        {
+            ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
+            MeetingUsers rowDetail = ent.MeetingUsers.Where(x => x.meetingId == id).Select( i => new (){ i.userId, i. })
+            return View(MeetingUsersModel.ConvertFromDbToModel(rowDetail));
+        }
 
         // [HttpGet]
         //[Authorize]

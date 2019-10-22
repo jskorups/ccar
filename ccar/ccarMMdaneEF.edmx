@@ -29,6 +29,13 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MeetingMinutesPriority" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="ProgressOfAction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Projects">
           <Key>
             <PropertyRef Name="id" />
@@ -52,13 +59,6 @@
           <Property Name="idProgress" Type="int" />
           <Property Name="comments" Type="nvarchar" MaxLength="1000" />
           <Property Name="meetingId" Type="int" />
-        </EntityType>
-        <EntityType Name="Status">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Status" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TypeOfSubject">
           <Key>
@@ -99,78 +99,6 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesPriority">
-          <End Role="Priority" Type="Self.Priority" Multiplicity="0..1" />
-          <End Role="ProtocolOfAction" Type="Self.ProtocolOfAction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Priority">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProtocolOfAction">
-              <PropertyRef Name="priorityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesProjects">
-          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
-          <End Role="ProtocolOfAction" Type="Self.ProtocolOfAction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Projects">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProtocolOfAction">
-              <PropertyRef Name="projectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesProtocol">
-          <End Role="ProtocolOfAction" Type="Self.ProtocolOfAction" Multiplicity="1" />
-          <End Role="ProtocolOfAction1" Type="Self.ProtocolOfAction" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="ProtocolOfAction">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProtocolOfAction1">
-              <PropertyRef Name="id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesStatus">
-          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
-          <End Role="ProtocolOfAction" Type="Self.ProtocolOfAction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProtocolOfAction">
-              <PropertyRef Name="idProgress" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject">
-          <End Role="TypeOfSubject" Type="Self.TypeOfSubject" Multiplicity="0..1" />
-          <End Role="ProtocolOfAction" Type="Self.ProtocolOfAction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TypeOfSubject">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProtocolOfAction">
-              <PropertyRef Name="typeOfSubjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesProtocol_mMusers">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="ProtocolOfAction" Type="Self.ProtocolOfAction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProtocolOfAction">
-              <PropertyRef Name="responsibleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MeetingUsers_Meeting">
           <End Role="Meeting" Type="Self.Meeting" Multiplicity="0..1" />
           <End Role="MeetingUsers" Type="Self.MeetingUsers" Multiplicity="*" />
@@ -207,13 +135,61 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Protocol_Priority">
+          <End Role="Priority" Type="Self.Priority" Multiplicity="0..1" />
+          <End Role="ProtocolOfAction" Type="Self.ProtocolOfAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priority">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProtocolOfAction">
+              <PropertyRef Name="priorityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Protocol_Progress">
+          <End Role="ProgressOfAction" Type="Self.ProgressOfAction" Multiplicity="0..1" />
+          <End Role="ProtocolOfAction" Type="Self.ProtocolOfAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProgressOfAction">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProtocolOfAction">
+              <PropertyRef Name="idProgress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Protocol_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="ProtocolOfAction" Type="Self.ProtocolOfAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProtocolOfAction">
+              <PropertyRef Name="projectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Protocol_TypeOfSubject">
+          <End Role="TypeOfSubject" Type="Self.TypeOfSubject" Multiplicity="0..1" />
+          <End Role="ProtocolOfAction" Type="Self.ProtocolOfAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfSubject">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProtocolOfAction">
+              <PropertyRef Name="typeOfSubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ccarMeetingMinutesModelStoreContainer">
           <EntitySet Name="Meeting" EntityType="Self.Meeting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeetingUsers" EntityType="Self.MeetingUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Priority" EntityType="Self.Priority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgressOfAction" EntityType="Self.ProgressOfAction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProtocolOfAction" EntityType="Self.ProtocolOfAction" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfSubject" EntityType="Self.TypeOfSubject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeetingsView" EntityType="Self.MeetingsView" store:Type="Views" store:Schema="dbo">
@@ -227,30 +203,6 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
             <End Role="Projects" EntitySet="Projects" />
             <End Role="Meeting" EntitySet="Meeting" />
           </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesPriority" Association="Self.FK_MeetingMinutesProtocol_MeetingMinutesPriority">
-            <End Role="Priority" EntitySet="Priority" />
-            <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesProjects" Association="Self.FK_MeetingMinutesProtocol_MeetingMinutesProjects">
-            <End Role="Projects" EntitySet="Projects" />
-            <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesProtocol" Association="Self.FK_MeetingMinutesProtocol_MeetingMinutesProtocol">
-            <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
-            <End Role="ProtocolOfAction1" EntitySet="ProtocolOfAction" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesStatus" Association="Self.FK_MeetingMinutesProtocol_MeetingMinutesStatus">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject" Association="Self.FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject">
-            <End Role="TypeOfSubject" EntitySet="TypeOfSubject" />
-            <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesProtocol_mMusers" Association="Self.FK_MeetingMinutesProtocol_mMusers">
-            <End Role="User" EntitySet="User" />
-            <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
-          </AssociationSet>
           <AssociationSet Name="FK_MeetingUsers_Meeting" Association="Self.FK_MeetingUsers_Meeting">
             <End Role="Meeting" EntitySet="Meeting" />
             <End Role="MeetingUsers" EntitySet="MeetingUsers" />
@@ -263,6 +215,22 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
             <End Role="Meeting" EntitySet="Meeting" />
             <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
           </AssociationSet>
+          <AssociationSet Name="FK_Protocol_Priority" Association="Self.FK_Protocol_Priority">
+            <End Role="Priority" EntitySet="Priority" />
+            <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Protocol_Progress" Association="Self.FK_Protocol_Progress">
+            <End Role="ProgressOfAction" EntitySet="ProgressOfAction" />
+            <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Protocol_Projects" Association="Self.FK_Protocol_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Protocol_TypeOfSubject" Association="Self.FK_Protocol_TypeOfSubject">
+            <End Role="TypeOfSubject" EntitySet="TypeOfSubject" />
+            <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -272,9 +240,9 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
           <EntitySet Name="Meeting" EntityType="ccarMeetingMinutesModel.Meeting" />
           <EntitySet Name="MeetingUsers" EntityType="ccarMeetingMinutesModel.MeetingUsers" />
           <EntitySet Name="Priority" EntityType="ccarMeetingMinutesModel.Priority" />
+          <EntitySet Name="ProgressOfAction" EntityType="ccarMeetingMinutesModel.ProgressOfAction" />
           <EntitySet Name="Projects" EntityType="ccarMeetingMinutesModel.Projects" />
           <EntitySet Name="ProtocolOfAction" EntityType="ccarMeetingMinutesModel.ProtocolOfAction" />
-          <EntitySet Name="Status" EntityType="ccarMeetingMinutesModel.Status" />
           <EntitySet Name="TypeOfSubject" EntityType="ccarMeetingMinutesModel.TypeOfSubject" />
           <EntitySet Name="User" EntityType="ccarMeetingMinutesModel.User" />
           <EntitySet Name="MeetingsView" EntityType="ccarMeetingMinutesModel.MeetingsView" />
@@ -294,28 +262,20 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
             <End Role="User" EntitySet="User" />
             <End Role="MeetingUsers" EntitySet="MeetingUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesPriority" Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesPriority">
+          <AssociationSet Name="FK_Protocol_Priority" Association="ccarMeetingMinutesModel.FK_Protocol_Priority">
             <End Role="Priority" EntitySet="Priority" />
             <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
           </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesProjects" Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProjects">
+          <AssociationSet Name="FK_Protocol_Progress" Association="ccarMeetingMinutesModel.FK_Protocol_Progress">
+            <End Role="ProgressOfAction" EntitySet="ProgressOfAction" />
+            <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Protocol_Projects" Association="ccarMeetingMinutesModel.FK_Protocol_Projects">
             <End Role="Projects" EntitySet="Projects" />
             <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
           </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesProtocol" Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProtocol">
-            <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
-            <End Role="ProtocolOfAction1" EntitySet="ProtocolOfAction" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesStatus" Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesStatus">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject" Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject">
+          <AssociationSet Name="FK_Protocol_TypeOfSubject" Association="ccarMeetingMinutesModel.FK_Protocol_TypeOfSubject">
             <End Role="TypeOfSubject" EntitySet="TypeOfSubject" />
-            <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MeetingMinutesProtocol_mMusers" Association="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_mMusers">
-            <End Role="User" EntitySet="User" />
             <End Role="ProtocolOfAction" EntitySet="ProtocolOfAction" />
           </AssociationSet>
         </EntityContainer>
@@ -347,7 +307,15 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MeetingMinutesPriority" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProtocolOfAction" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesPriority" FromRole="Priority" ToRole="ProtocolOfAction" />
+          <NavigationProperty Name="ProtocolOfAction" Relationship="ccarMeetingMinutesModel.FK_Protocol_Priority" FromRole="Priority" ToRole="ProtocolOfAction" />
+        </EntityType>
+        <EntityType Name="ProgressOfAction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProtocolOfAction" Relationship="ccarMeetingMinutesModel.FK_Protocol_Progress" FromRole="ProgressOfAction" ToRole="ProtocolOfAction" />
         </EntityType>
         <EntityType Name="Projects">
           <Key>
@@ -356,7 +324,7 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Meeting" Relationship="ccarMeetingMinutesModel.FK_meetingMinutesDates_MeetingMinutesProjects" FromRole="Projects" ToRole="Meeting" />
-          <NavigationProperty Name="ProtocolOfAction" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProjects" FromRole="Projects" ToRole="ProtocolOfAction" />
+          <NavigationProperty Name="ProtocolOfAction" Relationship="ccarMeetingMinutesModel.FK_Protocol_Projects" FromRole="Projects" ToRole="ProtocolOfAction" />
         </EntityType>
         <EntityType Name="ProtocolOfAction">
           <Key>
@@ -375,21 +343,10 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
           <Property Name="comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="meetingId" Type="Int32" />
           <NavigationProperty Name="Meeting" Relationship="ccarMeetingMinutesModel.FK_Protocol_Meeting" FromRole="ProtocolOfAction" ToRole="Meeting" />
-          <NavigationProperty Name="Priority" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesPriority" FromRole="ProtocolOfAction" ToRole="Priority" />
-          <NavigationProperty Name="Projects" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProjects" FromRole="ProtocolOfAction" ToRole="Projects" />
-          <NavigationProperty Name="ProtocolOfAction1" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProtocol" FromRole="ProtocolOfAction" ToRole="ProtocolOfAction1" />
-          <NavigationProperty Name="ProtocolOfAction2" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesProtocol" FromRole="ProtocolOfAction1" ToRole="ProtocolOfAction" />
-          <NavigationProperty Name="Status" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesStatus" FromRole="ProtocolOfAction" ToRole="Status" />
-          <NavigationProperty Name="TypeOfSubject" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject" FromRole="ProtocolOfAction" ToRole="TypeOfSubject" />
-          <NavigationProperty Name="User" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_mMusers" FromRole="ProtocolOfAction" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Status">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Status1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProtocolOfAction" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesStatus" FromRole="Status" ToRole="ProtocolOfAction" />
+          <NavigationProperty Name="Priority" Relationship="ccarMeetingMinutesModel.FK_Protocol_Priority" FromRole="ProtocolOfAction" ToRole="Priority" />
+          <NavigationProperty Name="ProgressOfAction" Relationship="ccarMeetingMinutesModel.FK_Protocol_Progress" FromRole="ProtocolOfAction" ToRole="ProgressOfAction" />
+          <NavigationProperty Name="Projects" Relationship="ccarMeetingMinutesModel.FK_Protocol_Projects" FromRole="ProtocolOfAction" ToRole="Projects" />
+          <NavigationProperty Name="TypeOfSubject" Relationship="ccarMeetingMinutesModel.FK_Protocol_TypeOfSubject" FromRole="ProtocolOfAction" ToRole="TypeOfSubject" />
         </EntityType>
         <EntityType Name="TypeOfSubject">
           <Key>
@@ -397,7 +354,7 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TypeOfSubject1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProtocolOfAction" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject" FromRole="TypeOfSubject" ToRole="ProtocolOfAction" />
+          <NavigationProperty Name="ProtocolOfAction" Relationship="ccarMeetingMinutesModel.FK_Protocol_TypeOfSubject" FromRole="TypeOfSubject" ToRole="ProtocolOfAction" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -408,7 +365,6 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
           <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MeetingUsers" Relationship="ccarMeetingMinutesModel.FK_MeetingUsers_User" FromRole="User" ToRole="MeetingUsers" />
-          <NavigationProperty Name="ProtocolOfAction" Relationship="ccarMeetingMinutesModel.FK_MeetingMinutesProtocol_mMusers" FromRole="User" ToRole="ProtocolOfAction" />
         </EntityType>
         <EntityType Name="MeetingsView">
           <Key>
@@ -467,7 +423,7 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesPriority">
+        <Association Name="FK_Protocol_Priority">
           <End Type="ccarMeetingMinutesModel.Priority" Role="Priority" Multiplicity="0..1" />
           <End Type="ccarMeetingMinutesModel.ProtocolOfAction" Role="ProtocolOfAction" Multiplicity="*" />
           <ReferentialConstraint>
@@ -479,7 +435,19 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesProjects">
+        <Association Name="FK_Protocol_Progress">
+          <End Type="ccarMeetingMinutesModel.ProgressOfAction" Role="ProgressOfAction" Multiplicity="0..1" />
+          <End Type="ccarMeetingMinutesModel.ProtocolOfAction" Role="ProtocolOfAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProgressOfAction">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProtocolOfAction">
+              <PropertyRef Name="idProgress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Protocol_Projects">
           <End Type="ccarMeetingMinutesModel.Projects" Role="Projects" Multiplicity="1" />
           <End Type="ccarMeetingMinutesModel.ProtocolOfAction" Role="ProtocolOfAction" Multiplicity="*" />
           <ReferentialConstraint>
@@ -491,31 +459,7 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesProtocol">
-          <End Type="ccarMeetingMinutesModel.ProtocolOfAction" Role="ProtocolOfAction" Multiplicity="1" />
-          <End Type="ccarMeetingMinutesModel.ProtocolOfAction" Role="ProtocolOfAction1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="ProtocolOfAction">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProtocolOfAction1">
-              <PropertyRef Name="id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesStatus">
-          <End Type="ccarMeetingMinutesModel.Status" Role="Status" Multiplicity="0..1" />
-          <End Type="ccarMeetingMinutesModel.ProtocolOfAction" Role="ProtocolOfAction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProtocolOfAction">
-              <PropertyRef Name="idProgress" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesProtocol_MeetingMinutesTypeOfSubject">
+        <Association Name="FK_Protocol_TypeOfSubject">
           <End Type="ccarMeetingMinutesModel.TypeOfSubject" Role="TypeOfSubject" Multiplicity="0..1" />
           <End Type="ccarMeetingMinutesModel.ProtocolOfAction" Role="ProtocolOfAction" Multiplicity="*" />
           <ReferentialConstraint>
@@ -524,18 +468,6 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
             </Principal>
             <Dependent Role="ProtocolOfAction">
               <PropertyRef Name="typeOfSubjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MeetingMinutesProtocol_mMusers">
-          <End Type="ccarMeetingMinutesModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="ccarMeetingMinutesModel.ProtocolOfAction" Role="ProtocolOfAction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProtocolOfAction">
-              <PropertyRef Name="responsibleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -572,6 +504,14 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProgressOfAction">
+            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.ProgressOfAction">
+              <MappingFragment StoreEntitySet="ProgressOfAction">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="ccarMeetingMinutesModel.Projects">
               <MappingFragment StoreEntitySet="Projects">
@@ -594,14 +534,6 @@ warning 6002: The table/view 'ccarMeetingMinutes.dbo.MeetingsView' does not have
                 <ScalarProperty Name="originationDate" ColumnName="originationDate" />
                 <ScalarProperty Name="priorityId" ColumnName="priorityId" />
                 <ScalarProperty Name="projectId" ColumnName="projectId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Status">
-            <EntityTypeMapping TypeName="ccarMeetingMinutesModel.Status">
-              <MappingFragment StoreEntitySet="Status">
-                <ScalarProperty Name="Status1" ColumnName="Status" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

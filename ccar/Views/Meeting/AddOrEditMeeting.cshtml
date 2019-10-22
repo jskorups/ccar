@@ -7,7 +7,7 @@
 }
 
 
-@using (Html.BeginForm("AddOrEditMeeting", "Meeting", FormMethod.Post@*, new { onsubmit = "return SubmitForm(this)" }*@))
+@using (Html.BeginForm("AddOrEditMeeting", "Meeting", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
 {
     @Html.HiddenFor(model => model.meeting.ProjectId)
 
@@ -19,7 +19,6 @@
     <div class="form-group container">
 
         <ul class="list-group" id="ItemList">
-
 
             @*@Html.Label("Project*", new { @class = "control-label" })
         @Html.ValidationMessageFor(model => model.meeting.ProjectId, null, new { @class = "koko" })
@@ -82,44 +81,31 @@
         </div>
     </div>
 
-    <script>
-        var SaveList = function () {
+    <script>      
+            function SubmitForm(form) {
+                $.validator.unobtrusive.parse(form);
+                if ($(form).valid()) {
+                    $.ajax({
+                        type: "POST",
+                        url: form.action,
+                        data: $(form).serialize(),
+                        success: function (data) {
+                            //if (data.success) {
+                            Popup.dialog('close');
+                            dataTable.ajax.reload();
 
-            var arrItem = [];
-            var commaSpareatedIds = "";
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
 
-            $("#ItemList li input[type=checkbox]").each(function (index, val) {
+                            })
 
-               
-                var checkId = $(val).attr("Id");
-                var arr = checkId.split('_');
-                var currentCheckboxId = arr[1];
-                var IsChecked = $("#" + checkId).is(":checked", true);
-
-                if (IsChecked) {
-
-                    arrItem.push(currentCheckboxId);
+                            //}
+                        }
+                    });
                 }
-
-
-            })
-            if (arrItem.lenght != 0) {
-                commaSpareatedIds = arrItem.toString();
-
-                $.ajax({
-                    url: "/Meeting/SaveList",
-                    type: "POST",
-                    data: { ItemList: commaSpareatedIds },
-                    success: function (response) {
-
-                    }
-
-
-                })
-
-
+                return false;
             }
-        }
     </script>
 }
 

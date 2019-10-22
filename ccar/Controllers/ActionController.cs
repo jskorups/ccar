@@ -86,6 +86,7 @@ namespace ccar.Controllers
         }
 
         // get details for row
+        [HttpGet]
         public ActionResult RowDetailsPartial (int id)
         {
             ccarEntities ent = new ccarEntities();
