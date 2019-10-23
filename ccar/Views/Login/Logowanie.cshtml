@@ -20,8 +20,9 @@
 
     <!--Logowanie-->
     <div class="container text-center" id="main" style="margin-top:200px; width:1000px; ">
+
         @Html.AntiForgeryToken()
-        
+
         @using (Html.BeginForm("Logowanie", "Login", FormMethod.Post))
         {
             <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -54,7 +55,7 @@
                                     <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                         @Html.Editor("email", new { htmlAttributes = new { @class = "form-control", @id = "email-username", @type = "text", @name = "email", @value = "", @placeholder = "Wpisz email..." } })
-                                        @Html.ValidationMessageFor(model => model.email, null, new { @class = "koko" })
+                                        @Html.ValidationMessageFor(model => model.email, null, new { @class = "validation" })
                                     </div>
                                     <!--password-->
                                     <div style="margin-bottom:25px" class="input-group">
@@ -91,27 +92,11 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
-
-
-
-
                                 </div>
                                 <div class="col-lg-1">
 
                                 </div>
-                            
                             </div>
-
-
-
-                         
-
-                            <!---->
-
-
                             <div style="float:right; position:center; background-size:cover; width:70px; height:70px; background-image: url(../../images/0.png)"></div>
                         </form>
                     </div>
@@ -119,7 +104,9 @@
             </div>
         }
 
-    <!--Rejestracja-->
+
+
+        <!--Rejestracja-->
         @using (Html.BeginForm("Register", "Login", FormMethod.Post))
         {
             <div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -190,6 +177,29 @@
                 </div>
             </div>
         }
+
+        <!--Zarejestrowano-->
+        @using (Html.BeginForm("Registered", "Login", FormMethod.Get))
+        {
+            <div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-title">Rejestracja</div>
+                        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#forgetPassBox').hide(); $('#loginbox').show()">Zaloguj się</a></div>
+                    </div>
+                    <div class="panel-body">
+                        <form id="signupform" class="form-horizontal" role="form">
+                            <div id="signupalert" style="display:none" class="alert alert-danger">
+                                <p>Error:</p>
+                                <span></span>
+                            </div>                                                                               
+                            <div style="float:right; position:center; background-size:cover; width:70px; height:70px; background-image: url(../../images/0.png)"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+
 
 
         <!--Zapomnienie Hasła-->

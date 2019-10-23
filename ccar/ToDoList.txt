@@ -1,4 +1,4 @@
 ﻿1. Rejestracja
-2. Wylogowanie
+2. Wylogowanie 
 3. Zapomnienie hasla?
 4. Zalogowany jako

@@ -27,6 +27,8 @@ namespace ccar.Models
             userNew.email = email;
             userNew.guid = guid;
             userNew.active = active;
+            ent.users.Add(userNew);
+            ent.SaveChanges();
         }
 
         public bool checkIfExist(string email, string password)
