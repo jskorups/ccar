@@ -19,7 +19,7 @@
 <body id="particles-js">
 
     <!--Logowanie-->
-    <div class="container text-center" id="main" style="margin-top:200px; width:800px; ">
+    <div class="container text-center" id="main" style="margin-top:200px; width:1000px; ">
         @Html.AntiForgeryToken()
         
         @using (Html.BeginForm("Logowanie", "Login", FormMethod.Post))
@@ -35,52 +35,83 @@
 
                         </div>
                     </div>
-                    <div style="padding-top:30px" class="panel-body">
+                    <div style="padding-top:30px; align-content:center; text-align:center" class="panel-body">
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
 
                         <form id="loginform" class="form-horizontal" role="form">
 
-                            <!--login-->
-                            <div style="margin-bottom: 25px" class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                @Html.Editor("email", new { htmlAttributes = new { @class = "form-control", @id = "email-username", @type = "text", @name = "email", @value = "", @placeholder = "Wpisz email..." } })
-                                @Html.ValidationMessageFor(model => model.email, null, new { @class = "koko" })
-                            </div>
-                            <!--password-->
-                            <div style="margin-bottom: 25px" class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                @Html.Editor("password", new { htmlAttributes = new { @class = "form-control", @id = "login-password", @type = "password", @name = "password", @value = "", @placeholder = "Wpisz hasło..." } })
-                            </div>
 
-                            <!--2705-->
-                            <!-- Button Login -->
-                            <div style="margin-top:10px; align-content:center" class="form-group">
+                            <div class="row">
 
-                                <div class="col-sm-12 controls">
-                                    @*@Html.ActionLink("Zaloguj się!", "Index", "Action")*@
-                                    <input id="btn-login" type="submit" value="Login" class="btn btn-info" />
-                                    @*<a id="btn-login" type="submit" value="Create" href="#" class="btn btn-info">Login  </a>*@
+
+                                <div class="col-lg-1">
+
                                 </div>
-                            </div>
+                                <div class="col-lg-10">
 
-                            <!--Checkbox remember me-->
-                            <div class="input-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group" id="zarejestrujSie">
-                                <div class="col-md-12 control">
-                                    <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                        <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show();  ">
-                                            @*location.href='@Url.Action("Register", "Login")'*@
-                                            Zarejestruj się!
-                                        </a>
+
+                                    <!--login-->
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        @Html.Editor("email", new { htmlAttributes = new { @class = "form-control", @id = "email-username", @type = "text", @name = "email", @value = "", @placeholder = "Wpisz email..." } })
+                                        @Html.ValidationMessageFor(model => model.email, null, new { @class = "koko" })
                                     </div>
+                                    <!--password-->
+                                    <div style="margin-bottom:25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        @Html.Editor("password", new { htmlAttributes = new { @class = "form-control", @id = "login-password", @type = "password", @name = "password", @value = "", @placeholder = "Wpisz hasło..." } })
+                                    </div>
+
+                                    <!--2705-->
+                                    <!-- Button Login -->
+                                    <div style="margin-top:10px; align-content:center" class="form-group">
+
+                                        <div class="col-sm-12 controls">
+                                            @*@Html.ActionLink("Zaloguj się!", "Index", "Action")*@
+                                            <input id="btn-login" type="submit" value="Login" class="btn btn-info" />
+                                            @*<a id="btn-login" type="submit" value="Create" href="#" class="btn btn-info">Login  </a>*@
+                                        </div>
+                                    </div>
+
+                                    <!--Checkbox remember me-->
+                                    <div class="input-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="zarejestrujSie">
+                                        <div class="col-md-12 control">
+                                            <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                                                <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show();  ">
+                                                    @*location.href='@Url.Action("Register", "Login")'*@
+                                                    Zarejestruj się!
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
                                 </div>
+                                <div class="col-lg-1">
+
+                                </div>
+                            
                             </div>
+
+
+
+                         
+
+                            <!---->
+
+
                             <div style="float:right; position:center; background-size:cover; width:70px; height:70px; background-image: url(../../images/0.png)"></div>
                         </form>
                     </div>

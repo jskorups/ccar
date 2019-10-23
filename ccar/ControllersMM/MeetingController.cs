@@ -58,9 +58,33 @@ namespace ccar.ControllersMM
         public ActionResult RowDetailsPartial(int id)
         {
             ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
-            MeetingUsers rowDetail = ent.MeetingUsers.Where(x => x.meetingId == id).Select( i => new (){ i.userId, i. })
+            MeetingUsers rowDetail = ent.MeetingUsers.Where(x => x.meetingId == id).FirstOrDefault();               
             return View(MeetingUsersModel.ConvertFromDbToModel(rowDetail));
         }
+
+
+        /*
+        public ActionResult UsersList()
+        {
+            List<UserModel> users = new List<UserModel>();
+            ccarEntities ent = new ccarEntities();
+            users = UserModel.fromUsers(ent.users.ToList());
+            return View(users);
+        }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // [HttpGet]
         //[Authorize]
