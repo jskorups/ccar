@@ -1,4 +1,5 @@
-﻿1. Rejestracja
+﻿1. zwracanie widoku zrejestrowano lub cos innego w razie zlego maila
+2.Rejestracja
 2. Wylogowanie 
 3. Zapomnienie hasla?
 4. Zalogowany jako

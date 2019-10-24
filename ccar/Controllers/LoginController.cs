@@ -48,7 +48,7 @@ namespace ccar.Controllers
         }
         #endregion
         [HttpGet]
-        public ActionResult Registered()
+        public ActionResult Zarejestrowano()
         {
             return View();
         }
@@ -99,13 +99,13 @@ namespace ccar.Controllers
                     userNew.guid = guidPotwierdzenie.ToString();
                     userNew.SaveToDataBase();
 
-                    string url = System.Web.HttpRuntime.AppDomainAppVirtualPath + Url.Action("Aktywacja") + $"?kod={guidPotwierdzenie.ToString()}";
-                    string subject = "Link aktywacyjny";
+                    //string url = System.Web.HttpRuntime.AppDomainAppVirtualPath + Url.Action("Aktywacja") + $"?kod={guidPotwierdzenie.ToString()}";
+                    //string subject = "Link aktywacyjny";
 
-                    emailClass.CreateMailItem(userNew.email, url, subject);
-                    return RedirectToAction("Registered", "Login");
+                    //emailClass.CreateMailItem(userNew.email, url, subject);
+                    //return RedirectToAction("Registered", "Login");
 
-                    //return View("Zarejestrowano");
+                  
                 }
             }
             catch (Exception)
@@ -113,7 +113,8 @@ namespace ccar.Controllers
 
                 throw;
             }
-            return View(userNew);
+            return View("Zarejestrowano");
+            //return View(userNew);
         }
         #endregion
 
