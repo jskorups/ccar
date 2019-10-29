@@ -13,6 +13,7 @@ namespace ccar.Models
         public string surname { get; set; }
         public string email { get; set; }
         public string password { get; set; }
+        public string confirmPassword { get; set; } // walsiciowsc tylko w modelu
         public string guid  { get; set; }
         public bool active { get; set; }
 
