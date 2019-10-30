@@ -24,14 +24,14 @@ namespace ccar.Controllers
             //password = crypto.Hash(password);
             bool check = newlog.checkIfExist(email, password);
             if (check == true)
-            {         
+            {
                 FormsAuthentication.SetAuthCookie(email, false);
                 return RedirectToAction("Index", "Home");
 
             }
             else
             {
-                ModelState.AddModelError("email", "Nie znaleziono użytkownika");                       
+                ModelState.AddModelError("email", "Nie znaleziono użytkownika");
                 return View();
             }
         }
@@ -110,10 +110,8 @@ namespace ccar.Controllers
             PasswordResetModel prMod = new PasswordResetModel();
             return View(prMod);
         }
-
-
         [HttpPost]
-        public ActionResult GenerateGuidForEmail(PasswordResetModel model)
+        public ActionResult RecoverPassword(PasswordResetModel model)
         {
             var exist = PasswordResetModel.checkIfemailExist(model.adresEmail);
             if (exist == true)
@@ -128,21 +126,25 @@ namespace ccar.Controllers
                 body = body.Replace("{guid}", nowyGuid.ToString());
                 emailClass.CreateMailItem(model.adresEmail, body, subjectMail);
 
-                return View("GuidInput", model);
+                return RedirectToAction("GuidInput",model);
+                //return View("GuidInput", model);
             }
-            else 
+            else
             {
                 ModelState.AddModelError("adresEmail", "Email not found");
                 //byc moze trzeba zmeinic atrybuty name  na widoku
                 //return View("SetNewPassword", model);
-                return RedirectToAction("RecoverPassword");
+                return View(model);
             }
-
-           
+        }
+        [HttpGet]
+        public ActionResult GuidInput(PasswordResetModel model)
+        {
+            return View(model);
         }
 
-        [HttpPost]
-        public ActionResult AkceptacjaGuidu(PasswordResetModel model)
+      el choche  [HttpPost]
+        public ActionResult GuidInput2(PasswordResetModel model)
         {
 
             bool check = PasswordResetModel.checkGuid(model.guid, model.adresEmail);

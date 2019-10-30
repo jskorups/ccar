@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,10 +8,23 @@ namespace ccar.Models
 {
     public class PasswordResetModel
     {
+        [Required(ErrorMessage = "Field can't be empty")]
+        [RegularExpression(@"@(grupoantolin)\.com$", ErrorMessage = "Incorrect email")]
         public string adresEmail { get; set; }
 
+        [Required(ErrorMessage = "Field can't be emggpty")]
         public string guid { get; set; }
+
+        [Required(ErrorMessage = "Field can't be empty")]
+        [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
+        [DataType(DataType.Password)]
         public string newPassword { get; set; }
+
+
+        [Required(ErrorMessage = "Confirm Password is required")]
+        [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
+        [DataType(DataType.Password)]
+        [Compare("newPassword")]
         public string newPasswordConfirm { get; set; }
 
         public static bool checkIfemailExist (string email)
