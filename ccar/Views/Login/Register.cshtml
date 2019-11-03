@@ -40,8 +40,8 @@
                             <div class="form-group">
                                 <label for="email" class="col-md-3 control-label">Email</label>
                                 <div class="col-md-9" style="margin-bottom: 25px">
-                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @id = "email-username", @type = "text", @name = "email", @value = "", @placeholder = "Wpisz email..." } })
-                                    @Html.ValidationMessageFor(model => model.email, null, new { @class = "validation" })
+                                    @Html.Editor("email", new { htmlAttributes = new { @class = "form-control", @id = "email-username", @type = "text", @name = "email", @value = "", @placeholder = "Wpisz email..." } })
+                                    @Html.ValidationMessageFor(model => model.email, null, new { @class = "text-danger" })
                                     @*<input type="text" class="form-control" name="email" placeholder="Wpisz email">*@
                                 </div>
                             </div>
@@ -50,6 +50,8 @@
                                 <label for="firstname" class="col-md-3 control-label">Imię</label>
                                 <div class="col-md-9" style="margin-bottom: 25px">
                                     @Html.Editor("firstname", new { htmlAttributes = new { @class = "form-control", @id = "firstname-username", @type = "text", @name = "firstname", @value = "", @placeholder = "Wpisz imię..." } })
+                                    @Html.ValidationMessageFor(model => model.firstname, null, new { @class = "text-danger" })
+
                                     @*<input type="text" class="form-control" name="firstname" placeholder="Wpisz imię">*@
                                 </div>
                             </div>
@@ -58,6 +60,7 @@
                                 <label for="surname" class="col-md-3 control-label">Nazwisko</label>
                                 <div class="col-md-9" style="margin-bottom: 25px">
                                     @Html.Editor("surname", new { htmlAttributes = new { @class = "form-control", @id = "surname-username", @type = "text", @name = "surname", @value = "", @placeholder = "Wpisz nazwisko..." } })
+                                    @Html.ValidationMessageFor(model => model.surname, null, new { @class = "text-danger" })
                                     @*<input type="text" class="form-control" name="surname" placeholder="Wpisz nazwisko">*@
                                 </div>
                             </div>
@@ -67,7 +70,7 @@
                                 <div class="col-md-9" style="margin-bottom: 25px">
                                     @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @id = "password-username", @type = "password", @name = "email", @value = "", @*@placeholder = "Wpisz hasło..."*@}
                             })
-                                    @Html.ValidationMessageFor(model => model.password, null, new { @class = "validation" })
+                                    @Html.ValidationMessageFor(model => model.password, null, new { @class = "text-danger" })
                                     @*<input type="password" class="form-control" name="passwd" placeholder="Wpisz hasło">*@
                                 </div>
                             </div>
@@ -76,7 +79,7 @@
                                 <div class="col-md-9" style="margin-bottom: 25px">
                                     @Html.EditorFor(model => model.confirmPassword, new { htmlAttributes = new { @class = "form-control", @id = "passwordConfirm-username", @type = "password", @name = "email", @value = "", @*@placeholder = "Wpisz login..."*@}
                             })
-                                    @Html.ValidationMessageFor(model => model.confirmPassword, null, new { @class = "validation" })
+                                    @Html.ValidationMessageFor(model => model.confirmPassword, null, new { @class = "text-danger" })
                                     @*<input type="text" class="form-control" name="icode" placeholder="Wpisz hasło ponownie">*@
                                 </div>
                             </div>

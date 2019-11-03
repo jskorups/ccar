@@ -8,11 +8,23 @@ namespace ccar.Models
 {
     public class LoginModel
     {
-
+        [Required(ErrorMessage = "Field can't be empty")]
         public string firstname { get; set; }
+
+        [Required(ErrorMessage = "Field can't be empty")]
         public string surname { get; set; }
+
+        [Required(ErrorMessage = "Field can't be empty")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@gmail.com$", ErrorMessage = "Incorrect email")]
         public string email { get; set; }
+
+        [Required(ErrorMessage = "Field can't be empty")]
+   
+        [DataType(DataType.Password)]
         public string password { get; set; }
+
+        [Required(ErrorMessage = "Field can't be empty")]
+        [Compare("password")]
         public string confirmPassword { get; set; } // walsiciowsc tylko w modelu
         public string guid  { get; set; }
         public bool active { get; set; }

@@ -334,6 +334,8 @@
     <Content Include="images\details_open.png" />
     <Content Include="images\diagram.png" />
     <Content Include="images\discussion.png" />
+    <Content Include="images\fail.png" />
+    <Content Include="images\succes.png" />
     <Content Include="images\presentation.png" />
     <Content Include="images\taskCircle.png" />
     <Content Include="images\top.png" />
@@ -442,11 +444,14 @@
     <Content Include="Views\MeetingMinutesUser\Delete.cshtml" />
     <Content Include="Views\MeetingMinutesUser\DeleteRefused.cshtml" />
     <Content Include="Views\Meeting\RowDetailsPartial.cshtml" />
-    <Content Include="Views\Login\Zarejestrowano.cshtml" />
+    <Content Include="Views\Login\Registered.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Login\RecoverPassword.cshtml" />
     <Content Include="Views\Login\GuidInput.cshtml" />
     <Content Include="Views\Login\SetNewPassword.cshtml" />
+    <Content Include="Views\Login\Activation.cshtml" />
+    <Content Include="Views\Login\ActivationFail.cshtml" />
+    <Content Include="Views\Login\PasswordChanged.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

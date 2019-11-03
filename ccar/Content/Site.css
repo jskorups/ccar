@@ -47,6 +47,9 @@ textarea {
     color: white !important;
     background-color: darkslateblue !important;
 }
+.validatorsCss{
+    margin-bottom:5px;
+}
 .panel-heading a {
     color: white !important;
 }

@@ -4,12 +4,73 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.UI;
 using ccar.Models;
 
 namespace ccar.Controllers
 {
     public class LoginController : Controller
     {
+        #region Rejestracja
+        [HttpGet]
+        public ActionResult Register()
+        {
+            LoginModel user = new LoginModel();
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult Register(LoginModel model)
+        {
+            try
+            {
+                if (model.password != model.confirmPassword)
+                {
+                    ModelState.AddModelError("confirmPassword", "Password not matched");
+                }
+                if (ModelState.IsValid)
+                {                 
+                    model.password = crypto.Hash(model.password);
+                    model.active = false;
+                    Guid guidPotwierdzenie = Guid.NewGuid();
+                    model.guid = guidPotwierdzenie.ToString();
+                    model.SaveToDataBase();
+                    string url3 = HttpContext.Request.Url.AbsoluteUri;
+                    string urlFinal = url3.Replace("Login/Register", "");
+                    string url =urlFinal + Url.Action("Aktywacja") + $"?kod={guidPotwierdzenie.ToString()}";
+                    string subject = "Link aktywacyjny";
+                    emailClass.CreateMailItem(model.email, url, subject);
+                    //return RedirectToAction("Registered", "Login");
+                    return RedirectToAction("Registered");
+                }
+                else
+                {
+                    return View(model);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            //return View(userNew);
+        }
+        #endregion
+        #region Aktywacja
+        public ActionResult Aktywacja(string kod)
+        {
+            ccarEntities ent = new ccarEntities();
+            var user = ent.users.Where(x => x.guid == kod).FirstOrDefault();
+            if (user != null)
+            {
+                user.active = true;
+                return View("Activation");
+            }
+            else
+            {
+                return View("ActivationFail");
+            }
+        }
+        #endregion
         #region Logowanie 
         //  Logowanie
         public ActionResult Logowanie()
@@ -42,63 +103,17 @@ namespace ccar.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Logowanie", "Login");
         }
-        #endregion
-        #region Rejestracja
-        [HttpGet]
-        public ActionResult Register()
-        {
-            LoginModel user = new LoginModel();
-            return View(user);
-        }
-        [HttpPost]
-        public ActionResult Register(LoginModel model)
-        {
-            // w parametrach przesłac model
-            //
-            try
-            {
-                if (model.password != model.confirmPassword)
-                {
-                    ModelState.AddModelError("confirmPassword", "Password not matched");
-                }
-                if (ModelState.IsValid)
-                {
-                    //userNew.email = email;
-                    //userNew.firstname = firstname;
-                    //userNew.surname = surname;
-                    model.password = crypto.Hash(model.password);
-                    model.active = false;
-                    Guid guidPotwierdzenie = Guid.NewGuid();
-                    model.guid = guidPotwierdzenie.ToString();
-                    model.SaveToDataBase();
-
-                    string url = System.Web.HttpRuntime.AppDomainAppVirtualPath + Url.Action("Aktywacja") + $"?kod={guidPotwierdzenie.ToString()}";
-                    string subject = "Link aktywacyjny";
-
-                    emailClass.CreateMailItem(model.email, url, subject);
-                    //return RedirectToAction("Registered", "Login");
-
-
-                    return RedirectToAction("Zarejestrowano");
-
-                }
-                else
-                {
-                    return View(model);
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-            //return View(userNew);
-        }
-        #endregion
+        #endregion     
         #region Zarejestrowano
         [HttpGet]
-        public ActionResult Zarejestrowano()
+        public ActionResult Registered()
+        {
+            return View();
+        }
+        #endregion
+        #region Zmieniono hasło
+        [HttpGet]
+        public ActionResult PasswordChanged()
         {
             return View();
         }
@@ -126,7 +141,7 @@ namespace ccar.Controllers
                 body = body.Replace("{guid}", nowyGuid.ToString());
                 emailClass.CreateMailItem(model.adresEmail, body, subjectMail);
 
-                return RedirectToAction("GuidInput",model);
+                return RedirectToAction("GuidInput", model);
                 //return View("GuidInput", model);
             }
             else
@@ -143,7 +158,7 @@ namespace ccar.Controllers
             return View(model);
         }
 
-      el choche  [HttpPost]
+        [HttpPost]
         public ActionResult GuidInput2(PasswordResetModel model)
         {
 
@@ -152,15 +167,36 @@ namespace ccar.Controllers
             {
                 return View("SetNewPassword", model);
             }
-            return View("GuidInput", model);
+            else
+            {
+                ModelState.AddModelError("guid", "Please input correct code.");
+                return View("GuidInput", model);
+            }
+           
         }
 
         [HttpPost]
         public ActionResult SetNewPassword(PasswordResetModel model, string newPassword, string newPasswordConfirm)
-        { 
+        {
+               
+            if (newPassword != newPasswordConfirm) {
+                ModelState.AddModelError("newPasswordConfirm", "Confirm password not matched");             
+            }
+            else if (string.IsNullOrEmpty(newPassword) )
+            {
+                ModelState.AddModelError("newPassword", "Please input new password.");
+            }
+            else if (string.IsNullOrEmpty(newPasswordConfirm))
+            {
+                ModelState.AddModelError("newPasswordConfirm", "Please input confirm password");
+            }
+            else if (newPassword == newPasswordConfirm)
+            {
                 PasswordResetModel.resetPassword(model.adresEmail, model.guid, newPasswordConfirm);
-                return RedirectToAction("Logowanie");
-                 
+                return RedirectToAction("PasswordChanged");
+            }
+            return View("SetNewPassword", model);
+
         }
 
         #endregion

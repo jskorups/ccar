@@ -3,3 +3,4 @@
 2. Wylogowanie 
 3. Zapomnienie hasla?
 4. Zalogowany jako
+5. Zmienic na wymagana domene grupoantolin w 2 miejscach

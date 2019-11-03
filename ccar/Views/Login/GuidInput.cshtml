@@ -40,30 +40,36 @@
                                 <div class="col-lg-1"></div>
                                 <div class="col-lg-10">
                                     <!--email-->
-                                    <div style="margin-bottom: 25px" class="input-group">
+                                    <div style="margin-bottom: 5px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        @Html.EditorFor(model => model.adresEmail, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly"} })
-                                                                      @*<input type="text" class="form-control" name="email" placeholder="Wpisz email">*@
+                                        @Html.EditorFor(model => model.adresEmail, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @*<input type="text" class="form-control" name="email" placeholder="Wpisz email">*@
                                     </div>
                                     <!--guid-->
-                                    <div style="margin-bottom: 25px" class="input-group">
+                                    <div style="margin-bottom: 5px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
                                         @Html.EditorFor(model => model.guid, new { htmlAttributes = new { @class = "form-control", @value = "", @placeholder = "Paste code from email..." } })
+
+                                    </div>
+                                    <div class="validatorsCss">
                                         @Html.ValidationMessageFor(model => model.guid, "", new { @class = "text-danger" })
                                     </div>
 
-                                    <div class="form-group">
-                                        <!-- Button -->
-                                        <div class="col-md-offset-1 col-md-9" style="border-top:1px solid#888;  padding-top:15px; margin-bottom: 25px">
-                                            <input id="btn-login" type="submit" value="Create" class="btn btn-info" formmethod="post" )" />
-                                            @*<button id="btn-signup" type="button" class="btn btn-info"> &nbsp Sign Up</button>*@
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class="col-lg-1"></div>
 
                             </div>
-
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-10">
+                                    <div class="form-group">
+                                        <!-- Button -->
+                                            <input id="btn-login" type="submit" value="Next" class="btn btn-info" formmethod="post" )" />                                   
+                                    </div>
+                                </div>
+                                <div class="col-lg-1"></div>
+                            </div>
                             
 
                             <div style="float:right; position:center; background-size:cover; width:70px; height:70px; background-image: url(../../images/0.png)"></div>
