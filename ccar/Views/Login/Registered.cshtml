@@ -1,0 +1,57 @@
+﻿@model ccar.Models.LoginModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "Registered";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Logowanie</title>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+</head>
+<body id="particles-js">
+
+    <div class="container text-center" id="main" style="margin-top:200px; width:1000px; ">
+
+        <!--Zarejestrowano-->
+        @*@using (Html.BeginForm("Registered", "Login", FormMethod.Get))
+        {*@
+        <div id="signupbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div style="float:right; font-size: 80%; position: relative; top:-10px">  @Html.ActionLink("Log in", "Logowanie", "Login")  </div>
+
+                </div>
+                <div class="panel-body">
+
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">We sent activation link to your email. <br />Click on the link to activate your account.</div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <div style="float:right; position:center; background-size:cover; width:70px; height:70px; background-image: url(../../images/0.png)"></div>
+
+                </div>
+            </div>
+        </div>
+        @*}*@
+    </div>
+      
+
+        <script src="~/Scripts/particles.js"></script>
+        <script src="~/Scripts/app.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+
+</body>
+
+</html>
