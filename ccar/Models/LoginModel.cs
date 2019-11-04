@@ -15,7 +15,7 @@ namespace ccar.Models
         public string surname { get; set; }
 
         [Required(ErrorMessage = "Field can't be empty")]
-        [RegularExpression(@"^\w+([-+.']\w+)*@gmail.com$", ErrorMessage = "Incorrect email")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@grupoantolin.com$", ErrorMessage = "Incorrect email")]
         public string email { get; set; }
 
         [Required(ErrorMessage = "Field can't be empty")]

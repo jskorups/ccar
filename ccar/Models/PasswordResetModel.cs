@@ -9,7 +9,7 @@ namespace ccar.Models
     public class PasswordResetModel
     {
         [Required(ErrorMessage = "Field can't be empty")]
-        [RegularExpression(@"@(gmail)\.com$", ErrorMessage = "Incorrect email")]
+        [RegularExpression(@"@(grupoantolin)\.com$", ErrorMessage = "Incorrect email")]
         public string adresEmail { get; set; }
 
         //[Required(ErrorMessage = "Field can't be emggpty")]
