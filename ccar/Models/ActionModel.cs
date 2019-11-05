@@ -49,9 +49,9 @@ namespace ccar.Models
         [DataType(DataType.Date)]
         public DateTime? completionDate { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+      
         public string measureEffic { get; set; }
-        [Required(ErrorMessage = "Required")]
+  
         public string dateOfEffic { get; set; }
 
 

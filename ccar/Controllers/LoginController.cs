@@ -23,11 +23,18 @@ namespace ccar.Controllers
         {
             try
             {
+                LoginModel mod = new LoginModel();
                 if (model.password != model.confirmPassword)
                 {
                     ModelState.AddModelError("confirmPassword", "Password not matched");
+                    return View(model);
                 }
-                if (ModelState.IsValid)
+                else if(mod.checkIfExistEmail(model.email))
+                {
+                    ModelState.AddModelError("email", "Email already exist");
+                    return View(model);
+                }
+               else if (ModelState.IsValid)
                 {                 
                     model.password = crypto.Hash(model.password);
                     model.active = false;
@@ -92,7 +99,7 @@ namespace ccar.Controllers
             }
             else
             {
-                ModelState.AddModelError("email", "Nie znaleziono użytkownika");
+                ModelState.AddModelError("email", "Email not found");
                 return View();
             }
         }
@@ -136,7 +143,7 @@ namespace ccar.Controllers
                 // przeslanie mailem
 
                 string subjectMail = "Twoj kod resetujacy haslo to:";
-                string path = HttpContext.Server.MapPath("~/Content/template/guidMailBody.html");
+                string path = Server.MapPath("~/Content/template/guidMailBody.html");
                 string body = System.IO.File.ReadAllText(path);
                 body = body.Replace("{guid}", nowyGuid.ToString());
                 emailClass.CreateMailItem(model.adresEmail, body, subjectMail);

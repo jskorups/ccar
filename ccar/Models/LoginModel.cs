@@ -24,7 +24,7 @@ namespace ccar.Models
         public string password { get; set; }
 
         [Required(ErrorMessage = "Field can't be empty")]
-        [Compare("password")]
+        //[Compare("password")]
         public string confirmPassword { get; set; } // walsiciowsc tylko w modelu
         public string guid  { get; set; }
         public bool active { get; set; }
@@ -48,6 +48,20 @@ namespace ccar.Models
         {
             ccarEntities ent = new ccarEntities();
             int intIfExist = ent.users.Count(x => x.email == email && x.password == password);
+            if (intIfExist == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool checkIfExistEmail(string email)
+        {
+            ccarEntities ent = new ccarEntities();
+            int intIfExist = ent.users.Count(x => x.email == email);
             if (intIfExist == 1)
             {
                 return true;

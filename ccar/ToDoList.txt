@@ -1,11 +1,19 @@
 ﻿1. zwracanie widoku  w razie zlego maila
-6. Dopisac metode sprawdzajaca czy dany mail istnieje, jesli tak addmodelstaterror ze mail juz istnieje
-7. Poprawic add reason/add user/add tao, rozjechaly sie przyciski Create
-8.rozdzielic modele dla passwordResetModel, walidowac na osobnych modelach
+
+8. rozdzielic modele dla passwordResetModel, walidowac na osobnych modelach
 9.wlasciwosci piszemy z duzych liter
 10. zamiast style w znaczniku div, dodawac klasy w site.css
 
 
+______________________________________
+DONE
+
+11
+a.  problem description - required
+b. efficency, date of efficiency  - not required
+12. Logo antolin nech bedzie linkiem do glownej strony
+7. Poprawic add reason/add user/add tao, rozjechaly sie przyciski Create
+6. Dopisac metode sprawdzajaca czy dany mail istnieje, jesli tak addmodelstaterror ze mail juz istnieje
 _____________
 
 web config - polaczenie z baza
