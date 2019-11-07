@@ -196,7 +196,7 @@
     <Compile Include="ControllersMM\MeetingMinutesUserController.cs" />
     <Compile Include="Controllers\ReasonController.cs" />
     <Compile Include="Controllers\typeOfActionController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\ResponsibleController.cs" />
     <Compile Include="crypto.cs" />
     <Compile Include="emailClass.cs" />
     <Compile Include="Global.asax.cs">
@@ -220,6 +220,7 @@
     <Compile Include="ModelsMM\MeetingModel.cs" />
     <Compile Include="Models\PasswordResetModel.cs" />
     <Compile Include="Models\ProgressModel.cs" />
+    <Compile Include="Models\ResponsibleModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ReasonModel.cs" />
@@ -241,6 +242,9 @@
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="reasons.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="responsibles.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="typeOfaction.cs">
@@ -424,10 +428,10 @@
     <Content Include="Views\typeOfAction\Edit.cshtml" />
     <Content Include="Views\typeOfAction\Delete.cshtml" />
     <Content Include="Views\Action\Index2.cshtml" />
-    <Content Include="Views\Users\UsersList.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Responsible\ResponsiblesList.cshtml" />
+    <Content Include="Views\Responsible\Create.cshtml" />
+    <Content Include="Views\Responsible\Edit.cshtml" />
+    <Content Include="Views\Responsible\Delete.cshtml" />
     <Content Include="Views\Action\EditDeletePartial.cshtml" />
     <Content Include="Views\Project\ProjectList.cshtml" />
     <Content Include="Views\Project\Create.cshtml" />
@@ -437,7 +441,7 @@
     <Content Include="Views\Action\RowDetailsPartial.cshtml" />
     <Content Include="Views\Meeting\Index.cshtml" />
     <Content Include="Views\Action\EditDeletePartialDone.cshtml" />
-    <Content Include="Views\Users\DeleteRefused.cshtml" />
+    <Content Include="Views\Responsible\DeleteRefused.cshtml" />
     <Content Include="Views\Meeting\AddOrEditMeeting.cshtml" />
     <Content Include="Views\MeetingMinutesUser\UsersList.cshtml" />
     <Content Include="Views\MeetingMinutesUser\Create.cshtml" />

@@ -57,15 +57,15 @@
                 @Html.Label("Responsible*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.idResponsible, null, new { @class = "koko" })
                 @{
-                    var listOfUser = (ccar.Models.UserModel.getUsersList());
-                    listOfUser.Add(new ccar.Models.UserModel() { id = 0, email = null, firstname = null, surname = null, name = null });
+                    var listOfResponsible = (ccar.Models.ResponsibleModel.getUsersList());
+                    listOfResponsible.Add(new ccar.Models.ResponsibleModel() { id = 0, email = null, FirstName = null, Lastname = null, Name = null });
                 }
-                @Html.DropDownListFor(model => model.idResponsible, new SelectList(listOfUser.OrderBy(x => x.id), "id", "name"), new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.idResponsible, new SelectList(listOfResponsible.OrderBy(x => x.id), "id", "name"), new { @class = "form-control" })
 
             </div>
             <div class="col-md-1 mb-1 " style="margin-left:-20px;">
                 @Html.Label("More", new { @class = "control-label" })
-                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("UsersList", "Users")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ResponsiblesList", "Responsible")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
             </div>
 
         </div>

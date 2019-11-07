@@ -32,8 +32,8 @@ namespace ccar
     
         public virtual progress progress { get; set; }
         public virtual reasons reasons { get; set; }
+        public virtual responsibles responsibles { get; set; }
         public virtual typeOfaction typeOfaction { get; set; }
         public virtual users users { get; set; }
-        public virtual users users1 { get; set; }
     }
 }
