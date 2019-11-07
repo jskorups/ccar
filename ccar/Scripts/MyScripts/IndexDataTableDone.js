@@ -43,7 +43,7 @@ $(document).ready(function () {
                 width: "15px"
             },
             { "data": "Initiator" },
-            { "data": "reason" },
+            { "data": "reason" },  
             { "data": "problem" },
             {
                 "data": "originationDate",
@@ -52,6 +52,7 @@ $(document).ready(function () {
                     return moment(value).format('DD/MM/YYYY');
                 }
             },
+           
             {
                 "data": "targetDate",
                 "render": function (value) {
@@ -59,14 +60,14 @@ $(document).ready(function () {
                     return moment(value).format('DD/MM/YYYY');
                 }
             },
-            //{
-            //    "data": "completionDate",
-            //    "render": function (value) {
-            //        if (value === null) return "";
-            //        return moment(value).format('DD/MM/YYYY');
-            //    }
+            {
+                "data": "completionDate",
+                "render": function (value) {
+                    if (value === null) return "";
+                    return moment(value).format('DD/MM/YYYY');
+                }
 
-            //},
+            },
             { "data": "responsible" },
             { "data": "progressValue" },
 

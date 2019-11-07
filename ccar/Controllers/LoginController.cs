@@ -70,6 +70,7 @@ namespace ccar.Controllers
             if (user != null)
             {
                 user.active = true;
+                ent.SaveChanges();
                 return View("Activation");
             }
             else
@@ -99,7 +100,7 @@ namespace ccar.Controllers
             }
             else
             {
-                ModelState.AddModelError("email", "Email not found");
+                ModelState.AddModelError("password", "Incorrect email or password.");
                 return View();
             }
         }
@@ -143,8 +144,19 @@ namespace ccar.Controllers
                 // przeslanie mailem
 
                 string subjectMail = "Twoj kod resetujacy haslo to:";
-                string path = Server.MapPath("~/Content/template/guidMailBody.html");
+                string path = Server.MapPath("~/Content/template/guidMailBody.htm");
                 string body = System.IO.File.ReadAllText(path);
+
+
+                //string body = @"<html> 
+                //      <body> 
+                //      <p>Dear xxxx,</p> 
+                //      <p>It has been long since we...</p> 
+                //      <p>Sincerely,<br>+{guid}'</br></p> 
+                //      </body> 
+                //      </html> 
+                //     ";
+
                 body = body.Replace("{guid}", nowyGuid.ToString());
                 emailClass.CreateMailItem(model.adresEmail, body, subjectMail);
 
@@ -163,6 +175,12 @@ namespace ccar.Controllers
         public ActionResult GuidInput(PasswordResetModel model)
         {
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Breakdown()
+        {
+            return View();
         }
 
         [HttpPost]

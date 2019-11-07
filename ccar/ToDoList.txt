@@ -3,11 +3,14 @@
 8. rozdzielic modele dla passwordResetModel, walidowac na osobnych modelach
 9.wlasciwosci piszemy z duzych liter
 10. zamiast style w znaczniku div, dodawac klasy w site.css
-
-
+13. Brzydki maila przychodzi po recovery password
+15. Zawezic mozliwosc edycji dla initaitora lub odpowiedzialnego - DONE?
+16. Zawezic mozliwosc kasowania dla admina: ja / managerowie ?  / dodac uprawienia
 ______________________________________
 DONE
 
+
+14. Scrollbar wertykalny usunac
 11
 a.  problem description - required
 b. efficency, date of efficiency  - not required
@@ -20,3 +23,4 @@ web config - polaczenie z baza
 metoda do maila - outlook dla sls
 mail settings w web config
 walidowanie maila w dwóch miejscach - przerobic na grupoantolin
+usunac breakdown w defaults

@@ -1,6 +1,7 @@
 ﻿body {
- font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
- align-content:center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    align-content: center;
+    overflow-y: hidden;
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {

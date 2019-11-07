@@ -77,7 +77,7 @@ namespace ccar.Models
             var user = ent.users.Where(x => x.email == email && x.guid == guid).FirstOrDefault();
             if (user != null)
             {
-                //user.password = crypto.Hash(newPassword);
+                user.password = crypto.Hash(newPassword);
                 user.password = newPassword;
 
                 ent.SaveChanges();

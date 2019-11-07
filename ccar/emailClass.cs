@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Net;
 using System.Net.Mail;
-using System.Web.Configuration;
-using System.Net.Configuration;
-using System.Runtime.InteropServices;
-using Outlook = Microsoft.Office.Interop.Outlook;
-using Microsoft.Office.Core;
+using System.Text;
 
 namespace ccar
 {
@@ -27,6 +19,8 @@ namespace ccar
                 mail.To.Add(to);
                 mail.Subject = subject;
                 mail.Body = body;
+                mail.IsBodyHtml = true;
+                mail.BodyEncoding = Encoding.UTF8;
                 mail.Priority = MailPriority.High;
                 smtpserver.EnableSsl = false;
                 smtpserver.Timeout = 60000;
