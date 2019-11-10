@@ -36,7 +36,7 @@ namespace ccar.Controllers
                 }
                else if (ModelState.IsValid)
                 {                 
-                    model.password = crypto.Hash(model.password);
+                    //model.password = crypto.Hash(model.password);
                     model.active = false;
                     Guid guidPotwierdzenie = Guid.NewGuid();
                     model.guid = guidPotwierdzenie.ToString();
@@ -44,10 +44,19 @@ namespace ccar.Controllers
                     string url3 = HttpContext.Request.Url.AbsoluteUri;
                     string urlFinal = url3.Replace("Login/Register", "");
                     string url =urlFinal + Url.Action("Aktywacja") + $"?kod={guidPotwierdzenie.ToString()}";
-                    string subject = "Link aktywacyjny";
-                    emailClass.CreateMailItem(model.email, url, subject);
-                    //return RedirectToAction("Registered", "Login");
-                    return RedirectToAction("Registered");
+
+                    string subjectMail = "CCAR activation link";
+                    string path = Server.MapPath("~/Content/template/activationMailBody.html");
+                    string body = System.IO.File.ReadAllText(path);
+                    body = body.Replace("{link}", url);
+                    emailClass.CreateMailItem(model.email, body, subjectMail);
+                    return RedirectToAction("Registered", "Login");
+
+                    //string subject = "Link aktywacyjny";
+                    //emailClass.CreateMailItem(model.email, url, subject);
+
+
+                    //return RedirectToAction("Registered");
                 }
                 else
                 {
@@ -90,7 +99,7 @@ namespace ccar.Controllers
         public ActionResult Logowanie(string email, string password)
         {
             LoginModel newlog = new LoginModel();
-            //password = crypto.Hash(password);
+            password = crypto.Hash(password);
             bool check = newlog.checkIfExist(email, password);
             if (check == true)
             {
@@ -141,21 +150,15 @@ namespace ccar.Controllers
             {
                 Guid nowyGuid = Guid.NewGuid();
                 PasswordResetModel.setResetCode(model.adresEmail, nowyGuid.ToString());
+
+              
                 // przeslanie mailem
 
-                string subjectMail = "Twoj kod resetujacy haslo to:";
-                string path = Server.MapPath("~/Content/template/guidMailBody.htm");
+                string subjectMail = "CCAR recovery password code";
+                string path = Server.MapPath("~/Content/template/guidMailBody.html");
                 string body = System.IO.File.ReadAllText(path);
 
 
-                //string body = @"<html> 
-                //      <body> 
-                //      <p>Dear xxxx,</p> 
-                //      <p>It has been long since we...</p> 
-                //      <p>Sincerely,<br>+{guid}'</br></p> 
-                //      </body> 
-                //      </html> 
-                //     ";
 
                 body = body.Replace("{guid}", nowyGuid.ToString());
                 emailClass.CreateMailItem(model.adresEmail, body, subjectMail);

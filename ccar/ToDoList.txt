@@ -6,6 +6,7 @@
 13. Brzydki maila przychodzi po recovery password
 15. Zawezic mozliwosc edycji dla initaitora lub odpowiedzialnego - DONE?
 16. Zawezic mozliwosc kasowania dla admina: ja / managerowie ?  / dodac uprawienia
+17. Odswiezaj th (reason nie odswieza sie po dodaniu nowego i dodaniu nowego zadania)
 ______________________________________
 DONE
 
@@ -17,6 +18,7 @@ b. efficency, date of efficiency  - not required
 12. Logo antolin nech bedzie linkiem do glownej strony
 7. Poprawic add reason/add user/add tao, rozjechaly sie przyciski Create
 6. Dopisac metode sprawdzajaca czy dany mail istnieje, jesli tak addmodelstaterror ze mail juz istnieje
+18. Dodanie atrybutów dla ccar (bez projektów).
 _____________
 
 web config - polaczenie z baza

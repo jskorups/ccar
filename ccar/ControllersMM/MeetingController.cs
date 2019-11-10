@@ -58,8 +58,8 @@ namespace ccar.ControllersMM
         public ActionResult RowDetailsPartial(int id)
         {
             ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
-            MeetingUsers rowDetail = ent.MeetingUsers.Where(x => x.meetingId == id).FirstOrDefault();               
-            return View(MeetingUsersModel.ConvertFromDbToModel(rowDetail));
+            List<User> rowDetail = ent.MeetingUsers.Where(x => x.meetingId == id).Select(x => x.User).ToList();             
+            return PartialView(rowDetail);
         }
 
 

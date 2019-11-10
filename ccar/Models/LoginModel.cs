@@ -9,17 +9,19 @@ namespace ccar.Models
     public class LoginModel
     {
         [Required(ErrorMessage = "Field can't be empty")]
+        [StringLength(10, ErrorMessage = "Maximum 10 characters.")]
         public string firstname { get; set; }
 
+        [StringLength(10, ErrorMessage = "Maximum 10 characters.")]
         [Required(ErrorMessage = "Field can't be empty")]
         public string surname { get; set; }
 
         [Required(ErrorMessage = "Field can't be empty")]
+        [StringLength(50, ErrorMessage = "Maximum 50 characters.")]
         [RegularExpression(@"^\w+([-+.']\w+)*@grupoantolin.com$", ErrorMessage = "Incorrect email")]
         public string email { get; set; }
 
         [Required(ErrorMessage = "Field can't be empty")]
-   
         [DataType(DataType.Password)]
         public string password { get; set; }
 

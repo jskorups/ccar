@@ -1,44 +1,21 @@
-﻿@model ccar.ModelsMM.MeetingUsersModel
+﻿@model IEnumerable<ccar.User>
 
 
-@{
-    /**/
+<table class="table-bordered">
+    <tr>
+        <th class="thList">
+            <p >Attendance list</p>
+        </th>
 
-    Layout = null;
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.firstname)  @Html.DisplayFor(modelItem => item.surname)
+        </td>
+      
+
+    </tr>
 }
-
-<div>
-    <h4>MeetingUsersModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.meetingId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.meetingId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.userId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.userId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.isPresent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isPresent)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</table>

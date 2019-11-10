@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,8 +9,18 @@ namespace ccar.Models
     public class UserModel
     {
         public int? id { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [StringLength(10, ErrorMessage = "Maximum 10 characters.")]
         public string firstname { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [StringLength(15, ErrorMessage = "Maximum 15 characters.")]
         public string surname { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [StringLength(15, ErrorMessage = "Maximum 20 characters.")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@grupoantolin.com$", ErrorMessage = "Incorrect email. ")]
         public string email { get; set; }
         public string name { get; set; }
 

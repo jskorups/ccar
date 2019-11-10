@@ -1,7 +1,7 @@
 ﻿body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     align-content: center;
-    overflow-y: hidden;
+
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -19,7 +19,10 @@ select,
 textarea {
     max-width: 280px;
 }
-
+.thList{
+    background-color:aquamarine;
+    text-align:center;
+}
 .success {
     width: 600px;
 }

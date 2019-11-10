@@ -228,6 +228,9 @@ function Kespa(url) {
                 width: 1200,
                 close: function () {
                     Popup.dialog('destroy').remove();
+
+                 
+                    }
                 }
 
             });

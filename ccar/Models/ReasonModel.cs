@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,8 @@ namespace ccar.Models
     {
         // 1:1 from DB
         public int? id { get; set; }
+        [Required(ErrorMessage = "Required")]
+        [StringLength(20, ErrorMessage = "Maximum 20 characters.")]
         public string reason { get; set; }
 
      
