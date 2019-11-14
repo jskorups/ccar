@@ -59,8 +59,11 @@ namespace ccar.Models
 
       
         public string measureEffic { get; set; }
-  
-        public string dateOfEffic { get; set; }
+
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Required")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? dateOfEffic { get; set; }
 
 
         public string GetTypeOfAction(int id)

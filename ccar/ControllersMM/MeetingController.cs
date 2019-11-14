@@ -53,68 +53,12 @@ namespace ccar.ControllersMM
 
 
         }
-
-
         public ActionResult RowDetailsPartial(int id)
         {
             ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
             List<User> rowDetail = ent.MeetingUsers.Where(x => x.meetingId == id).Select(x => x.User).ToList();             
             return PartialView(rowDetail);
         }
-
-
-        /*
-        public ActionResult UsersList()
-        {
-            List<UserModel> users = new List<UserModel>();
-            ccarEntities ent = new ccarEntities();
-            users = UserModel.fromUsers(ent.users.ToList());
-            return View(users);
-        }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // [HttpGet]
-        //[Authorize]
-        //public ActionResult AddOrEdit(int id = 0)
-        //{
-        //    if (id == 0)
-        //    {
-        //        return View(new AddMeetingViewModel());
-        //    }
-        //    else
-        //    {
-        //        //ccarMeetingMinutesEntities ent = new ccarMeetingMinutesEntities();
-        //        //AddMeetingViewModel test = ent.Meeting.Where()
-
-        //        //   // Where(x => x.id == id).FirstOrDefault();
-        //        //return View(ActionModel.ConvertFromEFtoModel(test));
-        //    }
-        //}
-        [HttpPost]
-        public JsonResult SaveList(string ItemList)
-        {
-            string[] arr = ItemList.Split(',');
-            foreach (var id in arr)
-            {
-                var currentId = id;
-            }
-            return Json("", JsonRequestBehavior.AllowGet);
-        }
-
-
-
+       
     }
 }

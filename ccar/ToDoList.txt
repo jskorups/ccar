@@ -1,12 +1,13 @@
 ﻿1. zwracanie widoku  w razie zlego maila
-
 8. rozdzielic modele dla passwordResetModel, walidowac na osobnych modelach
 9.wlasciwosci piszemy z duzych liter
 10. zamiast style w znaczniku div, dodawac klasy w site.css
-13. Brzydki maila przychodzi po recovery password
 15. Zawezic mozliwosc edycji dla initaitora lub odpowiedzialnego - DONE?
 16. Zawezic mozliwosc kasowania dla admina: ja / managerowie ?  / dodac uprawienia
 17. Odswiezaj th (reason nie odswieza sie po dodaniu nowego i dodaniu nowego zadania)
+19. Dodac atrybuty dla measure efficency
+20. Dodac wysylaeni maila po okresie date effciency i rposba o sparwdzenie?
+21. Brzydki maila z problemem.
 ______________________________________
 DONE
 
@@ -19,6 +20,8 @@ b. efficency, date of efficiency  - not required
 7. Poprawic add reason/add user/add tao, rozjechaly sie przyciski Create
 6. Dopisac metode sprawdzajaca czy dany mail istnieje, jesli tak addmodelstaterror ze mail juz istnieje
 18. Dodanie atrybutów dla ccar (bez projektów).
+18. Zmienic date efficiency na date
+13. Brzydki maila przychodzi po recovery password
 _____________
 
 web config - polaczenie z baza

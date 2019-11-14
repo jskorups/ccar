@@ -28,7 +28,7 @@ namespace ccar
         public Nullable<int> idProgress { get; set; }
         public Nullable<System.DateTime> completionDate { get; set; }
         public string measureEffic { get; set; }
-        public string dateOfEffic { get; set; }
+        public Nullable<System.DateTime> dateOfEffic { get; set; }
     
         public virtual progress progress { get; set; }
         public virtual reasons reasons { get; set; }

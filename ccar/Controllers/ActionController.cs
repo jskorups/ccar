@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ccar.Models;
 using System.Data.Entity;
 using System.Web.Security;
+using System.Text;
 
 namespace ccar.Controllers
 {
@@ -81,7 +82,7 @@ namespace ccar.Controllers
             //actions act = ent.actions.Where(x => x.id == id).FirstOrDefault();
             //return PartialView(act);
 
-            //ViewBag.id = id; // zakomentowac
+            ViewBag.id = id; // zakomentowac
             return PartialView();
         }
         public PartialViewResult EditDeletePartialDone(int id)
@@ -109,10 +110,22 @@ namespace ccar.Controllers
                 try
                 {
                     Act.Save();
-                    //var email = UserModel.getEmailAdress(Act.idResponsible);
+                    var email = UserModel.getEmailAdress(Act.idResponsible);               
                     //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
-                    var email = UserModel.getEmailAdress(Act.idResponsible);
-                    emailClass.CreateMailItem(email, "Problem: " + Act.problem + System.Environment.NewLine + "Target date: " + Act.targetDate, "Utworzono nowe zadanie dla Ciebie w CCAR");
+
+
+                    string subjectMail = "CCAR new action created for your response";
+                    string path = Server.MapPath("~/Content/template/newAction.html");
+                    string body = System.IO.File.ReadAllText(path);
+
+                    body = body.Replace("{Initiator}", Act.problem);
+                    body = body.Replace("{Reason}", Act.completionDate.ToString());
+                    body = body.Replace("{Problem}", Act.problem);
+                    body = body.Replace("{ToA}", Act.TypeOfAction);
+                    body = body.Replace("{Responsible}", UserModel.getNameOfResponsible(Act.idResponsible));
+                    body = body.Replace("{TargetDate}", Act.targetDate.ToString());
+
+                    emailClass.CreateMailItem(email, body, subjectMail);
                 }
                 catch (Exception ex)
                 {

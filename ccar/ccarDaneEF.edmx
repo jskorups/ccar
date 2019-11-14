@@ -23,7 +23,7 @@
           <Property Name="idProgress" Type="int" />
           <Property Name="completionDate" Type="datetime" />
           <Property Name="measureEffic" Type="nvarchar" MaxLength="50" />
-          <Property Name="dateOfEffic" Type="nvarchar" MaxLength="50" />
+          <Property Name="dateOfEffic" Type="datetime" />
         </EntityType>
         <EntityType Name="progress">
           <Key>
@@ -269,7 +269,7 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Property Name="idProgress" Type="Int32" />
           <Property Name="completionDate" Type="DateTime" Precision="3" />
           <Property Name="measureEffic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="dateOfEffic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dateOfEffic" Type="DateTime" Precision="3" />
           <NavigationProperty Name="progress" Relationship="ccarModel.FK_actions_progress" FromRole="actions" ToRole="progress" />
           <NavigationProperty Name="reasons" Relationship="ccarModel.FK_actions_reasons" FromRole="actions" ToRole="reasons" />
           <NavigationProperty Name="responsibles" Relationship="ccarModel.FK_actions_responsibles" FromRole="actions" ToRole="responsibles" />
