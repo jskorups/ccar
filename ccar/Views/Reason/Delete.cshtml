@@ -6,32 +6,35 @@
 }
 
 
-
-
-
 <div class="container movedLeft">
-    <div class="row">
+   
         <div class="col-md-8">
-            <h3>Are you sure you want to delete this?</h3>
-            <div>
-                <hr />
-                <dl class="dl-horizontal">
-                    <dt>
+
+            <div class="row">
+                <h3>Are you sure you want to delete this?</h3>
+                <div class="col-lg-8">
+                    <hr />
+
+                    <div class="row heading">
                         Reason to delete:
-                    </dt>
-                    <dd>
+                    </div>
+                    <div class="row">
                         @Html.DisplayFor(model => model.reason)
-                    </dd>
-                </dl>
+                    </div>
+                </div>
+            </div>                 
+            <div class="row">
                 @using (Html.BeginForm())
-        {
+    {
             @Html.AntiForgeryToken()
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> <br />
-            </div>
+
+            <input type="submit" value="Delete" class="btn btn-default submitDelete" /> <br />
+            <hr />
             @Html.ActionLink("Back to List", "ReasonList")
 }
             </div>
         </div>
-    </div>
+   
 </div>
+
+

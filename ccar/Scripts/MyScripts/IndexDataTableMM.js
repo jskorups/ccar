@@ -15,7 +15,7 @@ $(document).on('click', '.panel-heading span.clickable', function (e) {
         $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
 
     }
-})
+});
 
 $(document).ready(function () {
     dataTable = $('#Meeting').DataTable({
@@ -65,7 +65,24 @@ $(document).ready(function () {
                 }
             },
             { "data": "ProjectName" },
-            //{ "data": "presentUsers" }
+            {
+                "data": "id", "render": function (dane) {
+
+                    // return "<a class='btn btn-default btn-sm' onclick=Kespa('" + $('#DataUrl').val() + "/" + data + "')><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete('" + data + "','" + $('#DeleteUrl').val()+"')><i class='fa fa-trash'></i> Delete</a>";
+                    //var htmlEdit;
+                    //$.get("/Action/EditDeletePartial", function (data) {
+
+                    //    htmlEdit = data;
+                    //});
+                    //alert(htmlEdit);
+                    //return htmlEdit;
+                    var msg = $.ajax({ type: "GET", url: "/Meeting/EditDeletePartial?id=" + dane, async: false }).responseText;
+                    return msg;
+                },
+                "orderable": false,
+                "searchable": true,
+                "width": "150px"
+            }
 
         ],
         "language": {

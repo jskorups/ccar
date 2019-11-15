@@ -11,7 +11,7 @@ namespace ccar.Models
         public int id { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [StringLength(10, ErrorMessage = "Maximum 10 characters.")]
+        [StringLength(25, ErrorMessage = "Maximum 25 characters.")]
         public string typeOfAction1 { get; set; }
 
 

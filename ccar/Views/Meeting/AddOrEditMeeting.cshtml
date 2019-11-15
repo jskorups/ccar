@@ -19,22 +19,7 @@
     <div class="form-group container">
 
         <ul class="list-group" id="ItemList">
-
-            @*@Html.Label("Project*", new { @class = "control-label" })
-        @Html.ValidationMessageFor(model => model.meeting.ProjectId, null, new { @class = "koko" })
-        @Html.DropDownListFor(model=>model.meeting.ProjectId, new SelectList(Model.projList, "id", "ProjectName"), new { @class = "form-control" })*@
-            @*@foreach (var item in Model.userList)
-        {
-            <li class="list-group-item" style="margin:-10px">
-
-                <div class="checkbox">
-                    <input type="checkbox" id="Check_@item.id" />
-                    <label for="Check_@item.id">@item.firstname @item.surname  </label>
-                </div>
-
-            </li>
-        }*@
-
+ 
             @for (int i = 0; i < Model.userList.Count(); i++)
             {
                 <li class="list-group-item" style="margin:-10px">
@@ -44,19 +29,10 @@
                         @Html.Hidden("PersonId["+i+"]",Model.userList[i].id)
                         @Html.Label(Model.userList[i].firstname+ " "+ Model.userList[i].surname)
                     </div>
-
                 </li>
             }
         </ul>
-
-        @*<div class="col-md-3 mb-3" style="margin-left:-20px;">
-                @Html.Label("Add new user", new { @class = "control-label" })
-                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("UsersList", "MeetingMinutesUser")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-            </div>*@
-
     </div>
-
-
 
     <div class="form-group container">
         <div class="row">

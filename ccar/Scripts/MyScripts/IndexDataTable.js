@@ -229,7 +229,6 @@ function Kespa(url) {
                 close: function () {
                     Popup.dialog('destroy').remove();
                 }
-
             });
         });
 }

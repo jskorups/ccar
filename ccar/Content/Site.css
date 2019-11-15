@@ -13,15 +13,32 @@
 .dl-horizontal dt {
     white-space: normal;
 }
+.blah{
+    color:red;
+
+}
+.heading {
+    font-weight:bold;
+    font-size:24px;
+}
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
     max-width: 280px;
 }
-.thList{
-    background-color:aquamarine;
-    text-align:center;
+.submitEdit{
+    background-color: greenyellow;
+}
+.submitDelete {
+    background-color: red;
+}
+.submitCreate {
+    background-color: yellow;
+}
+.thList {
+    background-color: aquamarine;
+    text-align: center;
 }
 .success {
     width: 600px;

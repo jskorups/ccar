@@ -78,7 +78,6 @@ namespace ccar.Models
             if (user != null)
             {
                 user.password = crypto.Hash(newPassword);
-                user.password = newPassword;
 
                 ent.SaveChanges();
                 return true;
