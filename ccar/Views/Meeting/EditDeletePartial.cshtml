@@ -1,0 +1,9 @@
+﻿@*@model ccar.Meeting*@
+
+
+    @*if (Model.users.email == User.Identity.Name)
+    {*@
+<a class='btn btn-default btn-sm' onclick=Kespa('@Url.Action("AddOrEdit","Meeting",new { id=ViewBag.id })')><i class='fa fa-pencil'></i> Edit</a>
+<a class='btn btn-danger btn-sm' style='margin-left:5px' onclick="Delete('@ViewBag.id','@Url.Action(" Delete","Meeting")')")><i class='fa fa-trash'></i> Delete</a>
+@*}*@
+
