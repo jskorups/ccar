@@ -15,6 +15,14 @@ namespace ccar.ModelsMM.MMViewModels
             meetingUsers = new MeetingUsersModel();
         }
 
+        public AddMeetingViewModel(int projectId, int meetingid)
+        {
+            meeting = new MeetingModel();
+            meeting.ProjectId = projectId;
+            meetingUsers = new MeetingUsersModel();
+            meetingUsers.id = meetingid;
+        }
+
         public AddMeetingViewModel()
         {
             meeting = new MeetingModel();
@@ -44,35 +52,10 @@ namespace ccar.ModelsMM.MMViewModels
             }
             ent.SaveChanges();
         }
-
-        //public static MeetingUsers ConvertFromDbToMOdel(MeetingModel m, UserModel u  )
-        //{
-        //    MeetingUsers mU = new MeetingUsers();
-        //    mU.id = m.Id;
-        //    mU.meetingId = m.Id;
-        //    mU.userId = u.id;
-           
-        //    return mU;
-        //}
-
-        //public static Meeting ConvertFromDbToMOdel(MeetingModel m)
-        //{
-        //    Meeting mmD = new Meeting();
-        //    mmD.id = m.Id;
-        //    mmD.Date = m.Date;
-        //    mmD.projectId = m.ProjectId;
-        //    return mmD;
-        //}
-
     }
 
 
-   
 
-    // 1 a (new addmeeting i przekazac do widoku w gecie), return view(model)
-    // 1. metody do zapisywania tego zmieniam na widoku (http post)
-    // 2. podpinanie kontrolek z modelu
-    // 3. textboxfor(x=>x.meeting.projectid)
 
 
 
