@@ -117,12 +117,15 @@ namespace ccar.Controllers
                     string subjectMail = "CCAR new action created for your response";
                     string path = Server.MapPath("~/Content/template/newAction.html");
                     string body = System.IO.File.ReadAllText(path);
+                    var dayName = System.DateTime.Now.DayOfWeek.ToString();
+                    var timeSend = DateTime.Now.ToString("dd.MM.yy");
 
-                    body = body.Replace("{Initiator}", Act.problem);
-                    body = body.Replace("{Reason}", Act.completionDate.ToString());
+                    body = body.Replace("{d}",$"{dayName}, {timeSend}");
+                    body = body.Replace("{Initiator}", ActionModel.getNameOfInitiator(Act.idInitiator));
+                    body = body.Replace("{Reason}", ReasonModel.getNameOfReason(Act.idReason));
                     body = body.Replace("{Problem}", Act.problem);
                     body = body.Replace("{ToA}", Act.TypeOfAction);
-                    body = body.Replace("{Responsible}", UserModel.getNameOfResponsible(Act.idResponsible));
+                    body = body.Replace("{Responsible}", ResponsibleModel.getNameOfResponsible(Act.idResponsible));
                     body = body.Replace("{TargetDate}", Act.targetDate.ToString());
 
                     emailClass.CreateMailItem(email, body, subjectMail);

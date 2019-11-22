@@ -48,7 +48,22 @@ namespace ccar.Models
 
             }
 
-            public static List<ResponsibleModel> fromUsers(List<responsibles> userList)
+        public static string getNameOfResponsible(int? responsibleId)
+        {
+            ccarEntities ent = new ccarEntities();
+            var xo = ent.responsibles.Where(x => x.id == responsibleId).FirstOrDefault();
+            if (xo != null)
+            {
+                return xo.FirstName + " " + xo.Lastname;
+            }
+            else
+            {
+                return "";
+            }
+
+        }
+
+        public static List<ResponsibleModel> fromUsers(List<responsibles> userList)
             {
                 List<ResponsibleModel> listUsers = userList.Select(x => new ResponsibleModel() { id = x.id, FirstName = x.FirstName, Lastname  = x.Lastname, email = x.email, Name = x.FirstName + " " + x.Lastname }).ToList();
                 return listUsers;

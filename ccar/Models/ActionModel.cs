@@ -178,6 +178,23 @@ namespace ccar.Models
             return act;
         }
 
+
+        public static string getNameOfInitiator(int? inititiatorId)
+        {
+            ccarEntities ent = new ccarEntities();
+            var xo = ent.users.Where(x => x.id == inititiatorId).FirstOrDefault();
+            if (xo != null)
+            {
+                return xo.firstname + " " + xo.surname;
+            }
+            else
+            {
+                return "";
+            }
+
+        }
+
+
         public void Save()
         {
             if (this.id == 0)

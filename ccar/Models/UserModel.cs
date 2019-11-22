@@ -44,21 +44,6 @@ namespace ccar.Models
         }
 
 
-        public static string getNameOfResponsible(int? responsibleId)
-        {
-            ccarEntities ent = new ccarEntities();
-            var xo = ent.responsibles.Where(x => x.id == responsibleId).FirstOrDefault();
-            if (xo != null)
-            {
-                return xo.FirstName +" "+ xo.Lastname;
-            }
-            else
-            {
-                return "";
-            }
-
-        }
-
         public static List<UserModel> fromUsers(List<users> userList)
         {
             List<UserModel> listUsers = userList.Select(x => new UserModel() { id = x.id,firstname = x.firstname, surname = x.surname,email = x.email, name = x.firstname + " " + x.surname }).ToList();

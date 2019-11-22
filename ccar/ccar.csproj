@@ -339,12 +339,14 @@
     <Content Include="images\brandLogo.gif" />
     <Content Include="images\breakdown.png" />
     <Content Include="images\checklist.png" />
+    <Content Include="images\chrome.png" />
     <Content Include="images\details_close.png" />
     <Content Include="images\details_open.png" />
     <Content Include="images\diagram.png" />
     <Content Include="images\discussion.png" />
     <Content Include="images\fail.png" />
     <Content Include="images\pF.jpg" />
+    <Content Include="images\register.png" />
     <Content Include="images\succes.png" />
     <Content Include="images\presentation.png" />
     <Content Include="images\taskCircle.png" />
