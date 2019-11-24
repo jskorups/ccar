@@ -1,0 +1,67 @@
+﻿@model ccar.ModelsMM.MMViewModels.AddMeetingViewModel
+
+@{
+    /**/
+
+    Layout = null;
+}
+
+
+@using (Html.BeginForm("AddOrEditMeeting", "Meeting", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+{
+    @Html.HiddenFor(model => model.meeting.ProjectId)
+
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @id = "koko" })
+
+
+    <div class="form-group container">
+
+        <ul class="list-group" id="ItemList">
+
+            @foreach (var item in Model.userList)
+            {
+                @Html.Label(item.firstname + " " + item.surname)
+            }
+
+
+            @*@for (int i = 0; i < Model.userList.Count(); i++)
+        {
+            <li class="list-group-item" style="margin:-10px">
+
+                <div class="checkbox">
+                    @Html.CheckBox("Person[" + i + "]")
+                    @Html.Hidden("PersonId[" + i + "]", Model.userList[i].id)
+                    @Html.Label(Model.userList[i].firstname + " " + Model.userList[i].surname)
+                </div>
+            </li>
+        }*@
+        </ul>
+    </div>
+
+    <div class="form-group container">
+        <div class="row">
+            <div class="col-md-12 mb-12 text-center">
+                <input type="submit" value="Submit" onclick="SaveList()" class="btn btn-success" style="width:250px; height:40px" />
+                <input type="reset" value="Reset" class="btn btn-danger" style="width:250px; height:40px" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group container">
+        <div class="row">
+            <div class="col-md-5 mb-5 text-center">
+            </div>
+            <div class="col-md-5 mb-5 text-center">
+            </div>
+            <div class="col-md-2 mb-2 text-center">
+                <span style="color:red; font-style:oblique;">* Required</span>
+            </div>
+
+
+        </div>
+    </div>
+
+}
+
