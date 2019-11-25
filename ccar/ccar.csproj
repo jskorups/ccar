@@ -220,6 +220,7 @@
     <Compile Include="ModelsMM\UserModel.cs" />
     <Compile Include="Models\ActionModel.cs" />
     <Compile Include="ModelsMM\MeetingModel.cs" />
+    <Compile Include="Models\LayoutModel.cs" />
     <Compile Include="Models\PasswordResetModel.cs" />
     <Compile Include="Models\ProgressModel.cs" />
     <Compile Include="Models\ResponsibleModel.cs" />
@@ -345,8 +346,11 @@
     <Content Include="images\diagram.png" />
     <Content Include="images\discussion.png" />
     <Content Include="images\fail.png" />
+    <Content Include="images\map.png" />
     <Content Include="images\pF.jpg" />
+    <Content Include="images\pin.png" />
     <Content Include="images\register.png" />
+    <Content Include="images\resetpass.png" />
     <Content Include="images\succes.png" />
     <Content Include="images\presentation.png" />
     <Content Include="images\taskCircle.png" />
