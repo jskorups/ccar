@@ -170,6 +170,27 @@ function PopupForm(url) {
         });
 }
 
+function Kespa(url) {
+    var formDiv = $('<div />');
+    $.get(url)
+        .done(function (response) {
+            formDiv.html(response);
+
+            Popup = formDiv.dialog({
+                autoOpen: true,
+                resizable: false,
+                title: 'Fill Actions Details2',
+                height: 650,
+                width: 1200,
+                close: function () {
+                    Popup.dialog('destroy').remove();
+                }
+            });
+        });
+}
+
+
+
 function SubmitForm(form) {
     $.validator.unobtrusive.parse(form);
     if ($(form).valid()) {

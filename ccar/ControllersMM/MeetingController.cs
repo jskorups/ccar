@@ -36,6 +36,14 @@ namespace ccar.ControllersMM
             return View(adVM);
         }
 
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            AddMeetingViewModel adVM = new AddMeetingViewModel();
+            return View(adVM);
+        }
+
+
         [HttpPost]
         public ActionResult AddOrEditMeeting(AddMeetingViewModel model, bool[] Person, int[] PersonId)
         {
