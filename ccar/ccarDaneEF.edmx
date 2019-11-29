@@ -25,6 +25,22 @@
           <Property Name="measureEffic" Type="nvarchar" MaxLength="50" />
           <Property Name="dateOfEffic" Type="datetime" />
         </EntityType>
+        <EntityType Name="actionsLayout">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdReasonLayout" Type="int" Nullable="false" />
+          <Property Name="IdInitiator" Type="int" Nullable="false" />
+          <Property Name="Initiator" Type="nvarchar" MaxLength="50" />
+          <Property Name="OriginationDate" Type="datetime" Nullable="false" />
+          <Property Name="TaskDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdResponsibleLayout" Type="int" Nullable="false" />
+          <Property Name="TargetDate" Type="datetime" Nullable="false" />
+          <Property Name="IdProgress" Type="int" Nullable="false" />
+          <Property Name="CompletionDate" Type="datetime" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="progress">
           <Key>
             <PropertyRef Name="id" />
@@ -39,6 +55,13 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="reason" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="reasonsLayout">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reasonLayout" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="responsibles">
           <Key>
             <PropertyRef Name="id" />
@@ -47,6 +70,15 @@
           <Property Name="FirstName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Lastname" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="responsiblesLayout">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="typeOfaction">
           <Key>
@@ -67,6 +99,46 @@
           <Property Name="guid" Type="nvarchar" MaxLength="200" />
           <Property Name="active" Type="bit" />
           <Property Name="department" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ccar.dbo.actionLayoutDoneView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="actionLayoutDoneView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="OriginationDate" />
+            <PropertyRef Name="Responsible" />
+            <PropertyRef Name="TargetDate" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="50" />
+          <Property Name="Initiator" Type="nvarchar" MaxLength="101" />
+          <Property Name="OriginationDate" Type="datetime" Nullable="false" />
+          <Property Name="TaskDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="Responsible" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="TargetDate" Type="datetime" Nullable="false" />
+          <Property Name="Progress" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompletionDate" Type="datetime" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ccar.dbo.actionLayoutView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="actionLayoutView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="OriginationDate" />
+            <PropertyRef Name="Responsible" />
+            <PropertyRef Name="TargetDate" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="50" />
+          <Property Name="Initiator" Type="nvarchar" MaxLength="101" />
+          <Property Name="OriginationDate" Type="datetime" Nullable="false" />
+          <Property Name="TaskDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="Responsible" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="TargetDate" Type="datetime" Nullable="false" />
+          <Property Name="Progress" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompletionDate" Type="datetime" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -92,6 +164,7 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Key>
             <PropertyRef Name="id" />
             <PropertyRef Name="reason" />
+            <PropertyRef Name="responsible" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="reason" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -100,7 +173,7 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Property Name="originationDate" Type="datetime" />
           <Property Name="targetDate" Type="datetime" />
           <Property Name="completionDate" Type="datetime" />
-          <Property Name="responsible" Type="nvarchar" MaxLength="101" />
+          <Property Name="responsible" Type="nvarchar" MaxLength="511" Nullable="false" />
           <Property Name="progressValue" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_actions_progress">
@@ -163,13 +236,92 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_actionsLayout_progress">
+          <End Role="progress" Type="Self.progress" Multiplicity="1" />
+          <End Role="actionsLayout" Type="Self.actionsLayout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="progress">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actionsLayout">
+              <PropertyRef Name="IdProgress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_actionsLayout_reasonsLayout">
+          <End Role="reasonsLayout" Type="Self.reasonsLayout" Multiplicity="1" />
+          <End Role="actionsLayout" Type="Self.actionsLayout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reasonsLayout">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actionsLayout">
+              <PropertyRef Name="IdReasonLayout" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_actionsLayout_responsiblesLayout">
+          <End Role="responsiblesLayout" Type="Self.responsiblesLayout" Multiplicity="1" />
+          <End Role="actionsLayout" Type="Self.actionsLayout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="responsiblesLayout">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actionsLayout">
+              <PropertyRef Name="IdResponsibleLayout" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_actionsLayout_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="actionsLayout" Type="Self.actionsLayout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actionsLayout">
+              <PropertyRef Name="IdInitiator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ccarModelStoreContainer">
           <EntitySet Name="actions" EntityType="Self.actions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="actionsLayout" EntityType="Self.actionsLayout" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="progress" EntityType="Self.progress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="reasons" EntityType="Self.reasons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reasonsLayout" EntityType="Self.reasonsLayout" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="responsibles" EntityType="Self.responsibles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="responsiblesLayout" EntityType="Self.responsiblesLayout" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="typeOfaction" EntityType="Self.typeOfaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="actionLayoutDoneView" EntityType="Self.actionLayoutDoneView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [actionLayoutDoneView].[Id] AS [Id], 
+    [actionLayoutDoneView].[Reason] AS [Reason], 
+    [actionLayoutDoneView].[Initiator] AS [Initiator], 
+    [actionLayoutDoneView].[OriginationDate] AS [OriginationDate], 
+    [actionLayoutDoneView].[TaskDescription] AS [TaskDescription], 
+    [actionLayoutDoneView].[Responsible] AS [Responsible], 
+    [actionLayoutDoneView].[TargetDate] AS [TargetDate], 
+    [actionLayoutDoneView].[Progress] AS [Progress], 
+    [actionLayoutDoneView].[CompletionDate] AS [CompletionDate], 
+    [actionLayoutDoneView].[Comments] AS [Comments]
+    FROM [dbo].[actionLayoutDoneView] AS [actionLayoutDoneView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="actionLayoutView" EntityType="Self.actionLayoutView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [actionLayoutView].[Id] AS [Id], 
+    [actionLayoutView].[Reason] AS [Reason], 
+    [actionLayoutView].[Initiator] AS [Initiator], 
+    [actionLayoutView].[OriginationDate] AS [OriginationDate], 
+    [actionLayoutView].[TaskDescription] AS [TaskDescription], 
+    [actionLayoutView].[Responsible] AS [Responsible], 
+    [actionLayoutView].[TargetDate] AS [TargetDate], 
+    [actionLayoutView].[Progress] AS [Progress], 
+    [actionLayoutView].[CompletionDate] AS [CompletionDate], 
+    [actionLayoutView].[Comments] AS [Comments]
+    FROM [dbo].[actionLayoutView] AS [actionLayoutView]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="actionView" EntityType="Self.actionView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [actionView].[id] AS [id], 
@@ -216,6 +368,22 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             <End Role="users" EntitySet="users" />
             <End Role="actions" EntitySet="actions" />
           </AssociationSet>
+          <AssociationSet Name="FK_actionsLayout_progress" Association="Self.FK_actionsLayout_progress">
+            <End Role="progress" EntitySet="progress" />
+            <End Role="actionsLayout" EntitySet="actionsLayout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actionsLayout_reasonsLayout" Association="Self.FK_actionsLayout_reasonsLayout">
+            <End Role="reasonsLayout" EntitySet="reasonsLayout" />
+            <End Role="actionsLayout" EntitySet="actionsLayout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actionsLayout_responsiblesLayout" Association="Self.FK_actionsLayout_responsiblesLayout">
+            <End Role="responsiblesLayout" EntitySet="responsiblesLayout" />
+            <End Role="actionsLayout" EntitySet="actionsLayout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actionsLayout_users" Association="Self.FK_actionsLayout_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="actionsLayout" EntitySet="actionsLayout" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -223,11 +391,16 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
       <Schema Namespace="ccarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ccarEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="actions" EntityType="ccarModel.actions" />
+          <EntitySet Name="actionsLayout" EntityType="ccarModel.actionsLayout" />
           <EntitySet Name="progress" EntityType="ccarModel.progress" />
           <EntitySet Name="reasons" EntityType="ccarModel.reasons" />
+          <EntitySet Name="reasonsLayout" EntityType="ccarModel.reasonsLayout" />
           <EntitySet Name="responsibles" EntityType="ccarModel.responsibles" />
+          <EntitySet Name="responsiblesLayout" EntityType="ccarModel.responsiblesLayout" />
           <EntitySet Name="typeOfaction" EntityType="ccarModel.typeOfaction" />
           <EntitySet Name="users" EntityType="ccarModel.users" />
+          <EntitySet Name="actionLayoutDoneView" EntityType="ccarModel.actionLayoutDoneView" />
+          <EntitySet Name="actionLayoutView" EntityType="ccarModel.actionLayoutView" />
           <EntitySet Name="actionView" EntityType="ccarModel.actionView" />
           <EntitySet Name="actionViewDone" EntityType="ccarModel.actionViewDone" />
           <AssociationSet Name="FK_actions_progress" Association="ccarModel.FK_actions_progress">
@@ -249,6 +422,22 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <AssociationSet Name="FK_actions_users" Association="ccarModel.FK_actions_users">
             <End Role="users" EntitySet="users" />
             <End Role="actions" EntitySet="actions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actionsLayout_progress" Association="ccarModel.FK_actionsLayout_progress">
+            <End Role="progress" EntitySet="progress" />
+            <End Role="actionsLayout" EntitySet="actionsLayout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actionsLayout_reasonsLayout" Association="ccarModel.FK_actionsLayout_reasonsLayout">
+            <End Role="reasonsLayout" EntitySet="reasonsLayout" />
+            <End Role="actionsLayout" EntitySet="actionsLayout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actionsLayout_responsiblesLayout" Association="ccarModel.FK_actionsLayout_responsiblesLayout">
+            <End Role="responsiblesLayout" EntitySet="responsiblesLayout" />
+            <End Role="actionsLayout" EntitySet="actionsLayout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_actionsLayout_users" Association="ccarModel.FK_actionsLayout_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="actionsLayout" EntitySet="actionsLayout" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="actions">
@@ -276,6 +465,26 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <NavigationProperty Name="typeOfaction" Relationship="ccarModel.FK_actions_typeOfaction" FromRole="actions" ToRole="typeOfaction" />
           <NavigationProperty Name="users" Relationship="ccarModel.FK_actions_users" FromRole="actions" ToRole="users" />
         </EntityType>
+        <EntityType Name="actionsLayout">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdReasonLayout" Type="Int32" Nullable="false" />
+          <Property Name="IdInitiator" Type="Int32" Nullable="false" />
+          <Property Name="Initiator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OriginationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TaskDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdResponsibleLayout" Type="Int32" Nullable="false" />
+          <Property Name="TargetDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdProgress" Type="Int32" Nullable="false" />
+          <Property Name="CompletionDate" Type="DateTime" Precision="3" />
+          <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="progress" Relationship="ccarModel.FK_actionsLayout_progress" FromRole="actionsLayout" ToRole="progress" />
+          <NavigationProperty Name="reasonsLayout" Relationship="ccarModel.FK_actionsLayout_reasonsLayout" FromRole="actionsLayout" ToRole="reasonsLayout" />
+          <NavigationProperty Name="responsiblesLayout" Relationship="ccarModel.FK_actionsLayout_responsiblesLayout" FromRole="actionsLayout" ToRole="responsiblesLayout" />
+          <NavigationProperty Name="users" Relationship="ccarModel.FK_actionsLayout_users" FromRole="actionsLayout" ToRole="users" />
+        </EntityType>
         <EntityType Name="progress">
           <Key>
             <PropertyRef Name="id" />
@@ -283,6 +492,7 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="progressValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="actions" Relationship="ccarModel.FK_actions_progress" FromRole="progress" ToRole="actions" />
+          <NavigationProperty Name="actionsLayout" Relationship="ccarModel.FK_actionsLayout_progress" FromRole="progress" ToRole="actionsLayout" />
         </EntityType>
         <EntityType Name="reasons">
           <Key>
@@ -291,6 +501,14 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="actions" Relationship="ccarModel.FK_actions_reasons" FromRole="reasons" ToRole="actions" />
+        </EntityType>
+        <EntityType Name="reasonsLayout">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="reasonLayout" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="actionsLayout" Relationship="ccarModel.FK_actionsLayout_reasonsLayout" FromRole="reasonsLayout" ToRole="actionsLayout" />
         </EntityType>
         <EntityType Name="responsibles">
           <Key>
@@ -301,6 +519,16 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Property Name="Lastname" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="actions" Relationship="ccarModel.FK_actions_responsibles" FromRole="responsibles" ToRole="actions" />
+        </EntityType>
+        <EntityType Name="responsiblesLayout">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="actionsLayout" Relationship="ccarModel.FK_actionsLayout_responsiblesLayout" FromRole="responsiblesLayout" ToRole="actionsLayout" />
         </EntityType>
         <EntityType Name="typeOfaction">
           <Key>
@@ -323,6 +551,43 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Property Name="active" Type="Boolean" />
           <Property Name="department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="actions" Relationship="ccarModel.FK_actions_users" FromRole="users" ToRole="actions" />
+          <NavigationProperty Name="actionsLayout" Relationship="ccarModel.FK_actionsLayout_users" FromRole="users" ToRole="actionsLayout" />
+        </EntityType>
+        <EntityType Name="actionLayoutDoneView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="OriginationDate" />
+            <PropertyRef Name="Responsible" />
+            <PropertyRef Name="TargetDate" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Reason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Initiator" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="OriginationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TaskDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Responsible" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="TargetDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Progress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompletionDate" Type="DateTime" Precision="3" />
+          <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="actionLayoutView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="OriginationDate" />
+            <PropertyRef Name="Responsible" />
+            <PropertyRef Name="TargetDate" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Reason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Initiator" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="OriginationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TaskDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Responsible" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="TargetDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Progress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompletionDate" Type="DateTime" Precision="3" />
+          <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="actionView">
           <Key>
@@ -344,6 +609,7 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Key>
             <PropertyRef Name="id" />
             <PropertyRef Name="reason" />
+            <PropertyRef Name="responsible" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -352,7 +618,7 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Property Name="originationDate" Type="DateTime" Precision="3" />
           <Property Name="targetDate" Type="DateTime" Precision="3" />
           <Property Name="completionDate" Type="DateTime" Precision="3" />
-          <Property Name="responsible" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="responsible" Type="String" Nullable="false" MaxLength="511" FixedLength="false" Unicode="true" />
           <Property Name="progressValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_actions_progress">
@@ -415,6 +681,54 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_actionsLayout_progress">
+          <End Type="ccarModel.progress" Role="progress" Multiplicity="1" />
+          <End Type="ccarModel.actionsLayout" Role="actionsLayout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="progress">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actionsLayout">
+              <PropertyRef Name="IdProgress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_actionsLayout_reasonsLayout">
+          <End Type="ccarModel.reasonsLayout" Role="reasonsLayout" Multiplicity="1" />
+          <End Type="ccarModel.actionsLayout" Role="actionsLayout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reasonsLayout">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actionsLayout">
+              <PropertyRef Name="IdReasonLayout" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_actionsLayout_responsiblesLayout">
+          <End Type="ccarModel.responsiblesLayout" Role="responsiblesLayout" Multiplicity="1" />
+          <End Type="ccarModel.actionsLayout" Role="actionsLayout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="responsiblesLayout">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actionsLayout">
+              <PropertyRef Name="IdResponsibleLayout" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_actionsLayout_users">
+          <End Type="ccarModel.users" Role="users" Multiplicity="1" />
+          <End Type="ccarModel.actionsLayout" Role="actionsLayout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="actionsLayout">
+              <PropertyRef Name="IdInitiator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -442,6 +756,23 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="actionsLayout">
+            <EntityTypeMapping TypeName="ccarModel.actionsLayout">
+              <MappingFragment StoreEntitySet="actionsLayout">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
+                <ScalarProperty Name="IdProgress" ColumnName="IdProgress" />
+                <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
+                <ScalarProperty Name="IdResponsibleLayout" ColumnName="IdResponsibleLayout" />
+                <ScalarProperty Name="TaskDescription" ColumnName="TaskDescription" />
+                <ScalarProperty Name="OriginationDate" ColumnName="OriginationDate" />
+                <ScalarProperty Name="Initiator" ColumnName="Initiator" />
+                <ScalarProperty Name="IdInitiator" ColumnName="IdInitiator" />
+                <ScalarProperty Name="IdReasonLayout" ColumnName="IdReasonLayout" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="progress">
             <EntityTypeMapping TypeName="ccarModel.progress">
               <MappingFragment StoreEntitySet="progress">
@@ -458,9 +789,27 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="reasonsLayout">
+            <EntityTypeMapping TypeName="ccarModel.reasonsLayout">
+              <MappingFragment StoreEntitySet="reasonsLayout">
+                <ScalarProperty Name="reasonLayout" ColumnName="reasonLayout" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="responsibles">
             <EntityTypeMapping TypeName="ccarModel.responsibles">
               <MappingFragment StoreEntitySet="responsibles">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="responsiblesLayout">
+            <EntityTypeMapping TypeName="ccarModel.responsiblesLayout">
+              <MappingFragment StoreEntitySet="responsiblesLayout">
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="Lastname" ColumnName="Lastname" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -487,6 +836,38 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
                 <ScalarProperty Name="surname" ColumnName="surname" />
                 <ScalarProperty Name="firstname" ColumnName="firstname" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="actionLayoutDoneView">
+            <EntityTypeMapping TypeName="ccarModel.actionLayoutDoneView">
+              <MappingFragment StoreEntitySet="actionLayoutDoneView">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
+                <ScalarProperty Name="Progress" ColumnName="Progress" />
+                <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
+                <ScalarProperty Name="Responsible" ColumnName="Responsible" />
+                <ScalarProperty Name="TaskDescription" ColumnName="TaskDescription" />
+                <ScalarProperty Name="OriginationDate" ColumnName="OriginationDate" />
+                <ScalarProperty Name="Initiator" ColumnName="Initiator" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="actionLayoutView">
+            <EntityTypeMapping TypeName="ccarModel.actionLayoutView">
+              <MappingFragment StoreEntitySet="actionLayoutView">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
+                <ScalarProperty Name="Progress" ColumnName="Progress" />
+                <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
+                <ScalarProperty Name="Responsible" ColumnName="Responsible" />
+                <ScalarProperty Name="TaskDescription" ColumnName="TaskDescription" />
+                <ScalarProperty Name="OriginationDate" ColumnName="OriginationDate" />
+                <ScalarProperty Name="Initiator" ColumnName="Initiator" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -145,7 +145,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="actionLayoutDoneView.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="actionLayoutView.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="actions.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="actionsLayout.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="actionView.cs">
@@ -187,8 +196,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ccarMMdaneEF.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ControllersMA\MeetingActionsController.cs" />
-    <Compile Include="ControllersMA\MeetingActionsDetailsController.cs" />
+    <Compile Include="ControllersLayout\LayoutController.cs" />
     <Compile Include="ControllersMM\MeetingController.cs" />
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -247,7 +255,13 @@
     <Compile Include="reasons.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="reasonsLayout.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="responsibles.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="responsiblesLayout.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="typeOfaction.cs">
@@ -358,6 +372,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\MyScripts\IndexDataTableDone.js" />
+    <Content Include="Scripts\MyScripts\IndexDataTableLayout.js" />
     <Content Include="Scripts\MyScripts\IndexDataTableMM.js" />
     <Content Include="ToDoList.txt" />
     <Content Include="notes.txt" />
@@ -472,6 +487,8 @@
     <Content Include="Views\Meeting\EditDeletePartial.cshtml" />
     <Content Include="Views\typeOfAction\DeleteRefused.cshtml" />
     <Content Include="Views\Meeting\Edit.cshtml" />
+    <Content Include="Views\Layout\Index.cshtml" />
+    <Content Include="Views\Layout\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

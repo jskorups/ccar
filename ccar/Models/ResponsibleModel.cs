@@ -8,10 +8,6 @@ namespace ccar.Models
 {
     public class ResponsibleModel
     {
-
-
-
-
             public int? id { get; set; }
 
             [Required(ErrorMessage ="Required")]
