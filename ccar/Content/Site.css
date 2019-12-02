@@ -329,9 +329,7 @@ ul.nav.nav-tabs li.active a {
 .meetings {
    color: black;
 }
-select {
-    margin-left: 10px !important;
-}
+
 .form-group {
     margin-bottom: -25px !important;
 }

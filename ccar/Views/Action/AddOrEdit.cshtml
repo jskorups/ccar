@@ -102,11 +102,7 @@
             <div class="col-md-4 mb-4">
                 @Html.Label("Progress*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.idProgress, null, new { @class = "koko" })
-                @{
-                    var listOfProg = (ccar.Models.ProgressModel.GetProgressList());
-                    listOfProg.Add(new ccar.Models.ProgressModel() { id = 0, progressValue = null });
-                }
-                @Html.DropDownListFor(model => model.idProgress, new SelectList(listOfProg.OrderBy(x => x.id), "id", "progressValue"), new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.idProgress, new SelectList(ccar.Models.ProgressModel.GetProgressList().OrderBy(x => x.id), "id", "progressValue"), new { @class = "form-control" })
             </div>
         </div>
     </div>

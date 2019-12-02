@@ -11,6 +11,21 @@
 22. Dodac mozliwosc edytowania reason i typeofaction dynamiczne - ediatble select
 23. Dodac layout moudł dla Krzyska
 24. Zaahaslowac wejscie do projektu, mozliwosc ustwainia, odyzskiwnia dla launch managerów
+
+
+
+to do layout
+________
+dodac resposible controller, model , widoki
+wyrzucic comments
+
+
+
+
+
+
+
+
 ______________________________________
 DONE
 
