@@ -1,0 +1,154 @@
+﻿@model ccar.Models.LayoutModel
+
+@{
+    /**/
+
+    Layout = null;
+}
+
+
+@using (Html.BeginForm("AddOrEdit", "Action", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.OriginationDate)
+    @Html.HiddenFor(model => model.IdInitiator)
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @id = "koko" })
+
+<div class="addPng" >
+    <!--Reason-->
+    <div class="form-group container ">
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                @Html.Label("Reason*", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.IdReason, null, new { @class = "koko" })
+
+
+                @{
+            var listTempReason = (ccar.Models.LayoutReasonModel.GetReasonList());
+            listTempReason.Add(new ccar.Models.LayoutReasonModel() { id = 0, reasonLayout = null });
+                }
+                @Html.DropDownListFor(model => model.IdReason, new SelectList(listTempReason, "id", "reasonLayout"), new { @class = "form-control" })
+
+            </div>
+            <div class="col-md-1 mb-1" style="margin-left:10px;">
+                @Html.Label("More", new { @class = "control-label" })
+                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+            </div>
+            <!--Task Description-->
+
+            <div class="col-md-3 mb-3" style="margin-left:10px;">
+                @Html.Label("Task Description*", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.TaskDescription, null, new { @class = "koko" })
+                @Html.TextAreaFor(model => model.TaskDescription, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+            <div class="col-md-1 mb-1" style="margin-left:10px;">
+                @Html.Label("More", new { @class = "control-label" })
+                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ResponsiblesList", "Responsible")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+            </div>
+            <!--Task Description-->
+
+            <div class="col-md-3 mb-3" style="margin-left:10px;">
+                @Html.Label("Task Description*", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.TaskDescription, null, new { @class = "koko" })
+                @Html.DropDownListFor(model => model.IdReason, new SelectList(listTempReason, "id", "reasonLayout"), new { @class = "form-control" })
+
+            </div>
+            <div class="col-md-1 mb-1" style="margin-left:10px;">
+                @Html.Label("More", new { @class = "control-label" })
+                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ResponsiblesList", "Responsible")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+    <div class="form-group container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+
+                @Html.Label("Problem description*", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.TaskDescription, null, new { @class = "koko" })
+                @Html.TextAreaFor(model => model.TaskDescription, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                @Html.Label("Target date*", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.TargetDate, null, new { @class = "koko" })
+                @Html.EditorFor(model => model.TargetDate, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="col-md-4 mb-4">
+                @Html.Label("Progress*", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.IdProgress, null, new { @class = "koko" })
+                @{
+                    var listOfProg = (ccar.Models.ProgressModel.GetProgressList());
+                    listOfProg.Add(new ccar.Models.ProgressModel() { id = 0, progressValue = null });
+                }
+                @Html.DropDownListFor(model => model.IdProgress, new SelectList(listOfProg.OrderBy(x => x.id), "id", "progressValue"), new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group container">
+        <div class="row">
+            <div class="col-md-12 mb-12 text-center">
+                <input type="submit" value="Submit" class="btn btn-success" style="width:250px; height:40px" />
+                <input type="reset" value="Reset" class="btn btn-danger" style="width:250px; height:40px" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group container">
+        <div class="row">
+            <div class="col-md-5 mb-5 text-center">
+            </div>
+            <div class="col-md-5 mb-5 text-center">
+            </div>
+            <div class="col-md-2 mb-2 text-center">
+                <span style="color:red; font-style:oblique;">* Required</span>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+   
+
+    <script>
+
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        //if (data.success) {
+                        Popup.dialog('close');
+                        dataTable.ajax.reload();
+
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "success"
+
+                        })
+
+                        //}
+                    }
+                });
+            }
+            return false;
+        }
+    </script>
+}
+
