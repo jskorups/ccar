@@ -2,7 +2,7 @@
 
 var Popup, dataTable;
 $(document).ready(function () {
-    dataTable = $('#actionTable').DataTable({
+    dataTable = $('#actionLayoutTable').DataTable({
         initComplete: function () {
 
             this.api().columns([1, 2, 4, 5, 6, 7]).every(function () {
@@ -30,40 +30,35 @@ $(document).ready(function () {
             colorCells();
         },
 
+   
+ 
         "ajax": {
             "url": "/Layout/GetData",
             "type": "GET",
             "datatype": "json"
         },
         "columns": [
-            {    
+              
             { "data": "Initiator" },
-            { "data": "reason" },
-            { "data": "problem" },
             {
-                "data": "originationDate",
+                "data": "OriginationDate",
                 "render": function (value) {
                     if (value === null) return "";
                     return moment(value).format('DD/MM/YYYY');
                 }
             },
+            { "data": "TaskDescription" },
+            { "data": "IdResponsible" },
+           
             {
-                "data": "targetDate",
+                "data": "TargetDate",
                 "render": function (value) {
                     if (value === null) return "";
                     return moment(value).format('DD/MM/YYYY');
                 }
             },
-            //{
-            //    "data": "completionDate",
-            //    "render": function (value) {
-            //        if (value === null) return "";
-            //        return moment(value).format('DD/MM/YYYY');
-            //    }
-
-            //},
-            { "data": "responsible" },
-            { "data": "progressValue" },
+            { "data": "Progress" },
+            { "data": "Comments" },
 
             {
                 "data": "id", "render": function (dane) {
@@ -218,7 +213,7 @@ function Kespa(url) {
             Popup = formDiv.dialog({
                 autoOpen: true,
                 resizable: false,
-                title: 'Fill Actions Details',
+                title: 'Fill Layout Action Details',
                 height: 650,
                 width: 1200,
                 close: function () {

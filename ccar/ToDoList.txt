@@ -8,6 +8,9 @@
 19. Dodac atrybuty dla measure efficency
 20. Dodac wysylaeni maila po okresie date effciency i rposba o sparwdzenie?
 21. Brzydki maila z problemem.
+22. Dodac mozliwosc edytowania reason i typeofaction dynamiczne - ediatble select
+23. Dodac layout moudł dla Krzyska
+24. Zaahaslowac wejscie do projektu, mozliwosc ustwainia, odyzskiwnia dla launch managerów
 ______________________________________
 DONE
 

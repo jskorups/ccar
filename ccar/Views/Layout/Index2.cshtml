@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Layout List";
 }
-<script src="~/Scripts/MyScripts/IndexDataTableLayout.js"></script>
+<script src="~/Scripts/MyScripts/IndexDataTableLayoutDone.js"></script>
 
 <div class="container">
 
@@ -12,8 +12,7 @@
 
             @*<button  class="btn btn-outline-primary" onclick="blab()" )><i class="fa fa-plus-square"></i> kek</button>*@
 
-            <button id="addBtn" class="btn btn-outline-primary" onclick="Kespa('@Url.Action("AddOrEdit","Action")')" )><i class="fa fa-plus-square"></i> Add new action</button>
-            <button id="completedBtn" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Index2", "Action")'" )><i class="fa fa-check"></i> Show completed</button>
+            <button id="backBtn" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Layout")'" )><i class="fa fa-arrow-left"></i>   Back</button>
 
             <table id="actionLayoutTable" class="table table-striped table-bordered" style="width:1600px;">
                 <thead>

@@ -54,7 +54,7 @@ namespace ccar.ControllersLayout
         {
             if (id == 0)
             {
-                return View(new ActionModel());
+                return View(new LayoutModel());
             }
             else
             {
