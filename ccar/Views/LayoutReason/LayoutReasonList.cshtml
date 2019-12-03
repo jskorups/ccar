@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ccar.ModelsLayout.LayoutReasonModel>
+
+@{
+    ViewBag.Title = "LayoutReasonList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <h2>Layout Reason List</h2>
+
+    <p>
+        <button class="btn btn-outline-primary addBtn" onclick="location.href='@Url.Action("Create", "LayoutReason")'"><i class="fa fa-plus-square"></i> Add new reason</button>
+
+    </p>
+    <table class="table">
+  
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.reasonLayout)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
