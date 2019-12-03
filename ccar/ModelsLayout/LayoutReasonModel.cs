@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace ccar.Models
-{
-    public class LayoutReasonModel
-    {
-        
+namespace ccar.ModelsLayout
+{   
+        public class LayoutReasonModel
+        {
+
             // 1:1 from DB
             public int id { get; set; }
             [Required(ErrorMessage = "Required")]
@@ -69,5 +69,4 @@ namespace ccar.Models
                 }
             }
         }
-
     }

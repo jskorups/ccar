@@ -1,4 +1,4 @@
-﻿@model ccar.Models.LayoutModel
+﻿@model ccar.ModelsLayout.LayoutModel
 
 @{
     /**/
@@ -24,13 +24,25 @@
             <div class="col-md-3 mb-3">
                 @Html.Label("Reason*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.IdReason, null, new { @class = "koko" })
-                @Html.DropDownListFor(model => model.IdReason, new SelectList(ccar.Models.LayoutReasonModel.GetReasonList(), "id", "reasonLayout"), new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.IdReason, new SelectList(ccar.ModelsLayout.LayoutReasonModel.GetReasonList(), "id", "reasonLayout"), new { @class = "form-control" })
+            </div>
+            <div class="col-md-1 mb-1">
+                @Html.Label("More", new { @class = "control-label" })
+                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("LayoutReasonList", "LayoutReason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+            </div>
+            <!--Task Description-->
+
+
+
+            <div class="col-md-3 mb-3">
+                @Html.Label("Responsible*", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.IdResponsibleLayout, null, new { @class = "koko" })
+                @Html.DropDownListFor(model => model.IdResponsibleLayout, new SelectList(ccar.ModelsLayout.LayoutResponsibleModel.getUsersList(), "id", "name"), new { @class = "form-control" })
             </div>
             <div class="col-md-1 mb-1">
                 @Html.Label("More", new { @class = "control-label" })
                 <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
             </div>
-            <!--Task Description-->
 
             <div class="col-md-3 mb-3" style="margin-left:10px;">
                 @Html.Label("Task Description*", new { @class = "control-label" })
@@ -39,19 +51,8 @@
 
             </div>
 
-            <div class="col-md-3 mb-3">
-                @Html.Label("Responsible*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.IdReason, null, new { @class = "koko" })
-                @Html.DropDownListFor(model => model.IdReason, new SelectList(ccar.Models.LayoutReasonModel.GetReasonList(), "id", "reasonLayout"), new { @class = "form-control" })
-            </div>
-            <div class="col-md-1 mb-1">
-                @Html.Label("More", new { @class = "control-label" })
-                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-            </div>
-
         </div>
     </div>
-
     <div class="form-group container">
         <div class="row">
             <div class="col-md-4 mb-4">
@@ -62,11 +63,7 @@
             <div class="col-md-4 mb-4">
                 @Html.Label("Progress*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.IdProgress, null, new { @class = "koko" })
-                @{
-                    var listOfProg = (ccar.Models.ProgressModel.GetProgressList());
-                    listOfProg.Add(new ccar.Models.ProgressModel() { id = 0, progressValue = null });
-                }
-                @Html.DropDownListFor(model => model.IdProgress, new SelectList(listOfProg.OrderBy(x => x.id), "id", "progressValue"), new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.IdProgress, new SelectList(ccar.Models.ProgressModel.GetProgressList().OrderBy(x => x.id), "id", "progressValue"), new { @class = "form-control" })
             </div>
         </div>
     </div>

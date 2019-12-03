@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ccar.Models;
+using ccar.ModelsLayout;
 
 namespace ccar.ControllersLayout
 {
@@ -59,8 +59,8 @@ namespace ccar.ControllersLayout
             else
             {
                 ccarEntities ent = new ccarEntities();
-                actions test = ent.actions.Where(x => x.id == id).FirstOrDefault();
-                return View(ActionModel.ConvertFromEFtoModel(test));
+                actionsLayout test = ent.actionsLayout.Where(x => x.Id == id).FirstOrDefault();
+                return View(LayoutModel.ConvertFromEFtoModel(test));
             }
         }
 
@@ -80,67 +80,69 @@ namespace ccar.ControllersLayout
             ViewBag.id = id;
             return PartialView();
         }
+    }
+}
         // post do add or edit
-        [Authorize]
-        [HttpPost]
-        public ActionResult AddOrEdit(ActionModel Act)
-        {
-            if (Act.id == 0)
-            {
-                try
-                {
-                    Act.Save();
-                    var email = UserModel.getEmailAdress(Act.idResponsible);
+        //[Authorize]
+        //[HttpPost]
+        //public ActionResult AddOrEdit(LayoutModel Act)
+        //{
+        //    if (Act.Id == 0)
+        //    {
+        //        try
+        //        {
+        //            Act.Save();
+        //            var email = UserModel.getEmailAdress(Act.idResponsible);
                     //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
 
 
-                    string subjectMail = "CCAR new action created for your response";
-                    string path = Server.MapPath("~/Content/template/newAction.html");
-                    string body = System.IO.File.ReadAllText(path);
-                    var dayName = System.DateTime.Now.DayOfWeek.ToString();
-                    var timeSend = DateTime.Now.ToString("dd.MM.yy");
+                    //string subjectMail = "CCAR new action created for your response";
+                    //string path = Server.MapPath("~/Content/template/newAction.html");
+                    //string body = System.IO.File.ReadAllText(path);
+                    //var dayName = System.DateTime.Now.DayOfWeek.ToString();
+                    //var timeSend = DateTime.Now.ToString("dd.MM.yy");
 
-                    body = body.Replace("{d}", $"{dayName}, {timeSend}");
-                    body = body.Replace("{Initiator}", ActionModel.getNameOfInitiator(Act.idInitiator));
-                    body = body.Replace("{Reason}", ReasonModel.getNameOfReason(Act.idReason));
-                    body = body.Replace("{Problem}", Act.problem);
-                    body = body.Replace("{ToA}", Act.TypeOfAction);
-                    body = body.Replace("{Responsible}", ResponsibleModel.getNameOfResponsible(Act.idResponsible));
-                    body = body.Replace("{TargetDate}", Act.targetDate.ToString());
+                    //body = body.Replace("{d}", $"{dayName}, {timeSend}");
+                    //body = body.Replace("{Initiator}", ActionModel.getNameOfInitiator(Act.idInitiator));
+                    //body = body.Replace("{Reason}", ReasonModel.getNameOfReason(Act.idReason));
+                    //body = body.Replace("{Problem}", Act.problem);
+                    //body = body.Replace("{ToA}", Act.TypeOfAction);
+                    //body = body.Replace("{Responsible}", ResponsibleModel.getNameOfResponsible(Act.idResponsible));
+                    //body = body.Replace("{TargetDate}", Act.targetDate.ToString());
 
-                    emailClass.CreateMailItem(email, body, subjectMail);
-                }
-                catch (Exception ex)
-                {
-                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-                }
-            }
-            else if (Act.id != 0)
-            {
-                try
-                {
-                    Act.Save();
-                }
-                catch (Exception ex)
-                {
-                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-                }
-            }
+//                    emailClass.CreateMailItem(email, body, subjectMail);
+//                }
+//                catch (Exception ex)
+//                {
+//                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+//                }
+//            }
+//            else if (Act.id != 0)
+//            {
+//                try
+//                {
+//                    Act.Save();
+//                }
+//                catch (Exception ex)
+//                {
+//                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+//                }
+//            }
 
-            return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
-        }
-        [Authorize]
-        [HttpPost]
-        public ActionResult Delete(int id)
-        {
-            ccarEntities ent = new ccarEntities();
-            actions act = ent.actions.Find(id);
-            ent.actions.Remove(act);
-            ent.SaveChanges();
-            return Json(new { succes = true, message = "Delete Sucessfully" }, JsonRequestBehavior.AllowGet);
-        }
+//            return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
+//        }
+//        [Authorize]
+//        [HttpPost]
+//        public ActionResult Delete(int id)
+//        {
+//            ccarEntities ent = new ccarEntities();
+//            actions act = ent.actions.Find(id);
+//            ent.actions.Remove(act);
+//            ent.SaveChanges();
+//            return Json(new { succes = true, message = "Delete Sucessfully" }, JsonRequestBehavior.AllowGet);
+//        }
 
 
 
-    }
-}
+//    }
+//}

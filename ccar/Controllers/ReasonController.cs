@@ -5,16 +5,17 @@ using System.Web;
 using System.Web.Mvc;
 using ccar.Models;
 
+
 namespace ccar.Controllers
 {
     public class ReasonController : Controller
     {
         //GET REASON
-        [HttpGet]
-        public ActionResult AddOrEditRsn()
-        {
-            return View("Create");
-        }
+        //[HttpGet]
+        //public ActionResult AddOrEditRsn()
+        //{
+        //    return View("Create");
+        //}
 
         //[HttpGet]
         //public ActionResult AddOrEditRsn2()
@@ -119,12 +120,5 @@ namespace ccar.Controllers
         {
             return View();
         }
-
-
-
-
     }
-
-
-
 }
