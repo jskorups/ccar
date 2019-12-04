@@ -494,7 +494,6 @@
     <Content Include="Views\Layout\Index.cshtml" />
     <Content Include="Views\Layout\Index2.cshtml" />
     <Content Include="Views\Layout\AddOrEdit.cshtml" />
-    <Content Include="Views\LayoutReason\AddOrEditLayoutRsn.cshtml" />
     <Content Include="Views\LayoutReason\Edit.cshtml" />
     <Content Include="Views\LayoutReason\Delete.cshtml" />
     <Content Include="Views\LayoutReason\LayoutReasonList.cshtml" />
