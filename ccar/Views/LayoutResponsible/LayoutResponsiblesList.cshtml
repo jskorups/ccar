@@ -1,0 +1,47 @@
+﻿
+@model IEnumerable<ccar.ModelsLayout.LayoutResponsibleModel>
+
+
+@{
+    ViewBag.Title = "LayoutResponsiblesList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <h2>Layout Responsible List</h2>
+
+    <p>
+        <button class="btn btn-outline-primary addBtn" onclick="location.href='@Url.Action("Create", "LayoutResponsible")'"><i class="fa fa-plus-square"></i> Add new reason</button>
+
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Layout Reason
+                @*@Html.DisplayNameFor(model => model.reason)*@
+            </th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+}
+
+    </table>
+
+</div>
