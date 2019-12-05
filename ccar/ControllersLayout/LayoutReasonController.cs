@@ -12,13 +12,7 @@ namespace ccar.ControllersLayout
     public class LayoutReasonController : Controller
     {
 
-        // Create
-        [HttpGet]
-        public ActionResult Create()
-        {
-            LayoutReasonModel r = new LayoutReasonModel();
-            return View(r);
-        }
+
         [HttpGet]
         public ActionResult LayoutReasonList()
         {
@@ -28,7 +22,13 @@ namespace ccar.ControllersLayout
             return View(reas);
         }
 
-
+        // Create
+        [HttpGet]
+        public ActionResult Create()
+        {
+            LayoutReasonModel r = new LayoutReasonModel();
+            return View(r);
+        }
         //Create post
         [HttpPost]
         public ActionResult Create(LayoutReasonModel r)
@@ -38,7 +38,7 @@ namespace ccar.ControllersLayout
                 ccarEntities ent = new ccarEntities();
                 ent.reasonsLayout.Add(LayoutReasonModel.ConvertFromModelToDB(r));
                 ent.SaveChanges();
-                return RedirectToAction("ReasonList");
+                return RedirectToAction("LayoutReasonList");
             }
             return View(r);
 
@@ -62,7 +62,7 @@ namespace ccar.ControllersLayout
                 rea.id = model.id;
                 rea.reasonLayout = model.reasonLayout;
                 ent.SaveChanges();
-                return RedirectToAction("ReasonList");
+                return RedirectToAction("LayoutReasonList");
             }
             return View(model);
         }
@@ -85,8 +85,8 @@ namespace ccar.ControllersLayout
             try
             {
                 ccarEntities ent = new ccarEntities();
-                reasons rea = ent.reasons.Find(id);
-                ent.reasons.Remove(rea);
+                reasonsLayout rea = ent.reasonsLayout.Find(id);
+                ent.reasonsLayout.Remove(rea);
                 ent.SaveChanges();
             }
             catch (Exception)
@@ -94,7 +94,7 @@ namespace ccar.ControllersLayout
                 return RedirectToAction("DeleteRefused");
 
             }
-            return RedirectToAction("ReasonList");
+            return RedirectToAction("LayoutReasonList");
         }
 
         [HttpGet]

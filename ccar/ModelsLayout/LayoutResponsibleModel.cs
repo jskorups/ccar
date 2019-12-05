@@ -24,7 +24,7 @@ namespace ccar.ModelsLayout
             [RegularExpression(@"^\w+([-+.']\w+)*@grupoantolin.com$", ErrorMessage = "Incorrect email. ")]
             public string email { get; set; }
 
-            public string Name { get; set; }
+            public string Name { get { return FirstName + ' ' + Lastname; }}
 
             //      1.pobrac adres mailowy na podtsawie ID act(w modelu initaiotor), get emailadress, zwraca maila
             //2. sprawdzanie czy nie jest null i czy jest poprawny - w metodzie
@@ -62,7 +62,7 @@ namespace ccar.ModelsLayout
 
             public static List<LayoutResponsibleModel> fromUsers(List<responsiblesLayout> userList)
             {
-                List<LayoutResponsibleModel> listUsers = userList.Select(x => new LayoutResponsibleModel() { id = x.id, FirstName = x.FirstName, Lastname = x.Lastname, email = x.email, Name = x.FirstName + " " + x.Lastname }).ToList();
+                List<LayoutResponsibleModel> listUsers = userList.Select(x => new LayoutResponsibleModel() { id = x.id, FirstName = x.FirstName, Lastname = x.Lastname, email = x.email }).ToList();
                 return listUsers;
             }
             public static List<LayoutResponsibleModel> getUsersList()
@@ -71,9 +71,9 @@ namespace ccar.ModelsLayout
                 return fromUsers(ent.responsiblesLayout.ToList());
             }
 
-            public static responsibles ConvertFromModelToDB(LayoutResponsibleModel u)
+            public static responsiblesLayout ConvertFromModelToDB(LayoutResponsibleModel u)
             {
-                responsibles us = new responsibles();
+                responsiblesLayout us = new responsiblesLayout();
                 us.id = u.id;
                 us.FirstName = u.FirstName;
                 us.Lastname = u.Lastname;
@@ -81,7 +81,7 @@ namespace ccar.ModelsLayout
 
                 return us;
             }
-            public static LayoutResponsibleModel ConvertFromDbToModel(responsibles u)
+            public static LayoutResponsibleModel ConvertFromDbToModel(responsiblesLayout u)
             {
                 LayoutResponsibleModel mod = new LayoutResponsibleModel();
                 mod.id = u.id;
@@ -97,7 +97,7 @@ namespace ccar.ModelsLayout
                 if (this.id == 0)
                 {
                     ccarEntities ent = new ccarEntities();
-                    ent.responsibles.Add(LayoutResponsibleModel.ConvertFromModelToDB(this));
+                    ent.responsiblesLayout.Add(LayoutResponsibleModel.ConvertFromModelToDB(this));
                 }
             }
         }

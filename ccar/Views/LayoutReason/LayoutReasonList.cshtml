@@ -14,20 +14,26 @@
 
     </p>
     <table class="table">
-  
+        <tr>
+            <th>
+                Layout Reason
+                @*@Html.DisplayNameFor(model => model.reason)*@
+            </th>
+            <th>Actions</th>
+        </tr>
 
         @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.reasonLayout)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                </td>
-            </tr>
-        }
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.reasonLayout)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+}
 
     </table>
 

@@ -198,6 +198,7 @@
     </Compile>
     <Compile Include="ControllersLayout\LayoutController.cs" />
     <Compile Include="ControllersLayout\LayoutReasonController.cs" />
+    <Compile Include="ControllersLayout\LayoutResponsibleController.cs" />
     <Compile Include="ControllersMM\MeetingController.cs" />
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -225,13 +226,13 @@
     <Compile Include="ModelsLayout\LayoutModel.cs" />
     <Compile Include="ModelsLayout\LayoutReasonModel.cs" />
     <Compile Include="ModelsLayout\LayoutResponsibleModel.cs" />
-    <Compile Include="ModelsLayout\ModelsMM\AttendanceStatusModel.cs" />
-    <Compile Include="ModelsLayout\ModelsMM\MeetingUsersModel.cs" />
-    <Compile Include="ModelsLayout\ModelsMM\MMViewModels\AddMeetingViewModel.cs" />
-    <Compile Include="ModelsLayout\ModelsMM\ProjectModel.cs" />
-    <Compile Include="ModelsLayout\ModelsMM\UserModel.cs" />
+    <Compile Include="ModelsMM\AttendanceStatusModel.cs" />
+    <Compile Include="ModelsMM\MeetingUsersModel.cs" />
+    <Compile Include="ModelsMM\MMViewModels\AddMeetingViewModel.cs" />
+    <Compile Include="ModelsMM\ProjectModel.cs" />
+    <Compile Include="ModelsMM\UserModel.cs" />
     <Compile Include="Models\ActionModel.cs" />
-    <Compile Include="ModelsLayout\ModelsMM\MeetingModel.cs" />
+    <Compile Include="ModelsMM\MeetingModel.cs" />
     <Compile Include="Models\PasswordResetModel.cs" />
     <Compile Include="Models\ProgressModel.cs" />
     <Compile Include="Models\ResponsibleModel.cs" />
@@ -498,6 +499,10 @@
     <Content Include="Views\LayoutReason\Delete.cshtml" />
     <Content Include="Views\LayoutReason\LayoutReasonList.cshtml" />
     <Content Include="Views\LayoutReason\Create.cshtml" />
+    <Content Include="Views\LayoutResponsible\LayoutResponsiblesList.cshtml" />
+    <Content Include="Views\LayoutResponsible\Create.cshtml" />
+    <Content Include="Views\LayoutResponsible\Edit.cshtml" />
+    <Content Include="Views\LayoutResponsible\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
