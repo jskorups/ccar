@@ -5,22 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/Content/Site.css" rel="stylesheet" />
 
 </head>
 
 
-<div class="container">
+<div class="container movedLeft">
     <div class="row">
-        <div class="col-lg-10" style="margin-left:-210px;">
-           
-            
+        @*<div class="col-md-1">
+
+            </div>*@
+
+        <div class="col-md-8">
+
             <h2>Responsible list</h2>
             <p>
                 @*@Html.ActionLink("Create New", "Create")*@
-                <button  class="btn btn-outline-primary addBtn" onclick="location.href='@Url.Action("Create", "Responsible")'"><i class="fa fa-plus-square"></i> Add new user</button>
+                <button class="btn btn-outline-primary addBtn" onclick="location.href='@Url.Action("Create", "Responsible")'"><i class="fa fa-plus-square"></i> Add new user</button>
             </p>
+
             <table class="table">
                 <tr>
                     <th>
@@ -35,25 +41,40 @@
 
                     <th></th>
                 </tr>
+
                 @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lastname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.email)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                </td>
-            </tr>
+    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lastname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+
+                        <button id="edit" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Edit", "Responsible", new { id = item.id })'"><i class="fa fa-edit"></i>   Edit</button>
+                        <button id="delete" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Delete", "Responsible", new { id = item.id })'"><i class="fa fa-trash"></i>   Delete</button>
+
+
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                    </td>
+                </tr>
 }
             </table>
         </div>
+
+        <div class="col-md-2">
+
+        </div>
+
+
     </div>
 </div>
+
+
