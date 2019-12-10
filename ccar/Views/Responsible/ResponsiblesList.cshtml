@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ccar.Models.ResponsibleModel>
 
 @{
-    ViewBag.Title = "ResponsibleList";
+    ViewBag.Title = "ReasonList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <head>
@@ -44,37 +44,37 @@
 
                 @foreach (var item in Model)
     {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Lastname)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.email)
-                    </td>
-                    <td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
 
-                        <button id="edit" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Edit", "Responsible", new { id = item.id })'"><i class="fa fa-edit"></i>   Edit</button>
-                        <button id="delete" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Delete", "Responsible", new { id = item.id })'"><i class="fa fa-trash"></i>   Delete</button>
+                    <button id="edit" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Edit", "Responsible", new { id = item.id })'"><i class="fa fa-edit"></i>   Edit</button>
+                    <button id="delete" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Delete", "Responsible", new { id = item.id })'"><i class="fa fa-trash"></i>   Delete</button>
 
 
-                        @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
             @Html.ActionLink("Details", "Details", new { id = item.id }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.id })*@
-                    </td>
-                </tr>
+                </td>
+            </tr>
 }
             </table>
         </div>
-
-        <div class="col-md-2">
-
-        </div>
-
-
     </div>
+
+    <div class="row">
+        <a href="@Url.Action("Index", "Action")" class="nav-link">Back to CCAR</a>
+    </div>
+
 </div>
+
 
 

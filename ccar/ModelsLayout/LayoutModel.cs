@@ -39,7 +39,7 @@ namespace ccar.ModelsLayout
 
             [Required(ErrorMessage = "Required")]
             [StringLength(20, ErrorMessage = "Maximum 30 characters.")]
-            public string Comments { get; set; }
+            public int Status { get; set; }
 
 
             public static List<actionLayoutView> fromLayoutDB(List<actionLayoutView> layoutList)
@@ -92,7 +92,7 @@ namespace ccar.ModelsLayout
                 act.TargetDate = a.TargetDate;
                 act.IdProgress = a.IdProgress;
                 act.CompletionDate = a.CompletionDate;
-                act.Comments = a.Comments;
+                act.Status = a.Status;
                 return act;
             }
 
@@ -110,10 +110,52 @@ namespace ccar.ModelsLayout
                 actL.TargetDate = a.TargetDate;
                 actL.IdProgress = a.IdProgress;
                 actL.CompletionDate = a.CompletionDate;
-                actL.Comments = a.Comments;
+                actL.Status = a.Status;
 
                 return actL;
             }
+
+        public void Save()
+        {
+            if (this.Id == 0)
+            {
+
+                ccarEntities ent = new ccarEntities();
+
+
+                this.IdInitiator = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.id).SingleOrDefault();
+                this.OriginationDate = DateTime.Now;
+                this.Status = 0;
+
+                ent.actionsLayout.Add(LayoutModel.ConvertToActionsFromDb(this));
+                ent.SaveChanges();
+            }
+            else
+            {
+                ccarEntities ent = new ccarEntities();
+
+                if (this.idProgress == 5)
+                {
+                    this.completionDate = DateTime.Now;
+                }
+
+                string Replaced = System.Environment.UserName.Replace('.', ' ');
+                CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+                TextInfo textInfo = cultureInfo.TextInfo;
+
+                this.Initiator = (textInfo.ToTitleCase(Replaced));
+
+                ent.Entry(ActionModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
+                ent.SaveChanges();
+
+            }
         }
+
+
+
+
+
+
+    }
 
     }

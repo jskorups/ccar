@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<ccar.ModelsLayout.LayoutResponsibleModel>
+﻿@model IEnumerable<ccar.ModelsLayout.LayoutResponsibleModel>
 
 
 @{
@@ -7,41 +6,53 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
+<div class="container movedLeft">
+    <div class="row">
+        @*<div class="col-md-1">
 
-    <h2>Layout Responsible List</h2>
+            </div>*@
 
-    <p>
-        <button class="btn btn-outline-primary addBtn" onclick="location.href='@Url.Action("Create", "LayoutResponsible")'"><i class="fa fa-plus-square"></i> Add new reason</button>
+        <div class="col-md-8">
+            <h2>Layout Responsible List</h2>
+            <p>
+                @*@Html.ActionLink("Create New", "Create")*@
+                <button class="btn btn-outline-primary addBtn" onclick="location.href='@Url.Action("Create", "LayoutResponsible")'"><i class="fa fa-plus-square"></i> Add new reason</button>
+            </p>
 
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                Layout Reason
-                @*@Html.DisplayNameFor(model => model.reason)*@
-            </th>
-            <th>Email</th>
-            <th>Actions</th>
-        </tr>
+            <table class="table">
+                <tr>
+                    <th>
+                        Layout Reason
+                        @*@Html.DisplayNameFor(model => model.reason)*@
+                    </th>
+                    <th></th>
+                </tr>
 
-        @foreach (var item in Model)
+                @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
-            </td>
-        </tr>
+                <td>
+                    <button id="edit" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Edit", "LayoutResponsible", new { id = item.id })'"><i class="fa fa-edit"></i>   Edit</button>
+                    <button id="delete" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Delete", "LayoutResponsible", new { id = item.id })'"><i class="fa fa-trash"></i>   Delete</button>
+                </td>
+            </tr>
 }
+            </table>
+        </div>
+    </div>
 
-    </table>
+    <div class="row">
+        <div class="col-md-8">
+            <a href="@Url.Action("Index", "Layout" )" class="nav-link">Back to LayoutCCAR</a>
+
+        </div>
+    </div>
 
 </div>
