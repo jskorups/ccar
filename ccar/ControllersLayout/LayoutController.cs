@@ -80,5 +80,47 @@ namespace ccar.ControllersLayout
             ViewBag.id = id;
             return PartialView();
         }
+
+
+        // post do add or edit
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddOrEdit(LayoutModel lay)
+        {
+            if (lay.Id == 0)
+            {
+                try
+                {
+                    lay.Save();
+                    //pobranie maila var email = UserModel.getEmailAdress(Act.idResponsible);
+                    ////ewysyalnie maila
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else if (lay.Id != 0)
+            {
+                try
+                {
+                    lay.Save();
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
+
+
+
     }
 }

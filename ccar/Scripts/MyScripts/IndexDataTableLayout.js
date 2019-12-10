@@ -58,7 +58,7 @@ $(document).ready(function () {
                 }
             },
             { "data": "Progress" },
-            { "data": "Comments" },
+            //{ "data": "Comments" },
 
             {
                 "data": "id", "render": function (dane) {

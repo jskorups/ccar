@@ -138,7 +138,6 @@ warning 6002: The table/view 'ccar.dbo.actionLayoutView' does not have a primary
           <Property Name="TargetDate" Type="datetime" Nullable="false" />
           <Property Name="Progress" Type="nvarchar" MaxLength="50" />
           <Property Name="CompletionDate" Type="datetime" />
-          <Property Name="Comments" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -318,8 +317,7 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
     [actionLayoutView].[Responsible] AS [Responsible], 
     [actionLayoutView].[TargetDate] AS [TargetDate], 
     [actionLayoutView].[Progress] AS [Progress], 
-    [actionLayoutView].[CompletionDate] AS [CompletionDate], 
-    [actionLayoutView].[Comments] AS [Comments]
+    [actionLayoutView].[CompletionDate] AS [CompletionDate]
     FROM [dbo].[actionLayoutView] AS [actionLayoutView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="actionView" EntityType="Self.actionView" store:Type="Views" store:Schema="dbo">
@@ -587,7 +585,6 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Property Name="TargetDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Progress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CompletionDate" Type="DateTime" Precision="3" />
-          <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="actionView">
           <Key>
@@ -858,7 +855,6 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <EntitySetMapping Name="actionLayoutView">
             <EntityTypeMapping TypeName="ccarModel.actionLayoutView">
               <MappingFragment StoreEntitySet="actionLayoutView">
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
                 <ScalarProperty Name="Progress" ColumnName="Progress" />
                 <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />

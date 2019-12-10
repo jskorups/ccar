@@ -55,7 +55,7 @@ namespace ccar.ModelsLayout
                     TargetDate = x.TargetDate,
                     Progress = x.Progress,
                     CompletionDate = x.CompletionDate,
-                    Comments = x.Comments
+                    //Comments = x.Comments
 
                 }).ToList();
                 return layoutList;
@@ -74,7 +74,7 @@ namespace ccar.ModelsLayout
                     TargetDate = x.TargetDate,
                     Progress = x.Progress,
                     CompletionDate = x.CompletionDate,
-                    Comments = x.Comments
+                    //Comments = x.Comments
 
                 }).ToList();
                 return layoutList;
@@ -130,25 +130,25 @@ namespace ccar.ModelsLayout
                 ent.actionsLayout.Add(LayoutModel.ConvertToActionsFromDb(this));
                 ent.SaveChanges();
             }
-            else
-            {
-                ccarEntities ent = new ccarEntities();
+            //else
+            //{
+            //    ccarEntities ent = new ccarEntities();
 
-                if (this.idProgress == 5)
-                {
-                    this.completionDate = DateTime.Now;
-                }
+            //    if (this.idProgress == 5)
+            //    {
+            //        this.completionDate = DateTime.Now;
+            //    }
 
-                string Replaced = System.Environment.UserName.Replace('.', ' ');
-                CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
-                TextInfo textInfo = cultureInfo.TextInfo;
+            //    string Replaced = System.Environment.UserName.Replace('.', ' ');
+            //    CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+            //    TextInfo textInfo = cultureInfo.TextInfo;
 
-                this.Initiator = (textInfo.ToTitleCase(Replaced));
+            //    this.Initiator = (textInfo.ToTitleCase(Replaced));
 
-                ent.Entry(ActionModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
-                ent.SaveChanges();
+            //    ent.Entry(ActionModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
+            //    ent.SaveChanges();
 
-            }
+            //}
         }
 
 
