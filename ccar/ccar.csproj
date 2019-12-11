@@ -376,6 +376,8 @@
     <Content Include="images\top.png" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\MyScripts\layoutAdd.js" />
+    <Content Include="Scripts\MyScripts\actionAdd.js" />
     <Content Include="Scripts\MyScripts\IndexDataTableDone.js" />
     <Content Include="Scripts\MyScripts\IndexDataTableLayout.js" />
     <Content Include="Scripts\MyScripts\IndexDataTableMM.js" />
