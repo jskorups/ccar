@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace ccar.ModelsLayout
@@ -55,7 +58,7 @@ namespace ccar.ModelsLayout
                     TargetDate = x.TargetDate,
                     Progress = x.Progress,
                     CompletionDate = x.CompletionDate,
-                    Comments = x.Comments
+                    //Comments = x.Comments
 
                 }).ToList();
                 return layoutList;
@@ -74,7 +77,7 @@ namespace ccar.ModelsLayout
                     TargetDate = x.TargetDate,
                     Progress = x.Progress,
                     CompletionDate = x.CompletionDate,
-                    Comments = x.Comments
+                    //Comments = x.Comments
 
                 }).ToList();
                 return layoutList;
@@ -134,9 +137,9 @@ namespace ccar.ModelsLayout
             {
                 ccarEntities ent = new ccarEntities();
 
-                if (this.idProgress == 5)
+                if (this.IdProgress == 5)
                 {
-                    this.completionDate = DateTime.Now;
+                    this.CompletionDate = DateTime.Now;
                 }
 
                 string Replaced = System.Environment.UserName.Replace('.', ' ');
@@ -145,7 +148,7 @@ namespace ccar.ModelsLayout
 
                 this.Initiator = (textInfo.ToTitleCase(Replaced));
 
-                ent.Entry(ActionModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
+                ent.Entry(LayoutModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
                 ent.SaveChanges();
 
             }

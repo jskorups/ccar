@@ -21,8 +21,4 @@ namespace ccar.Models
             return ConvertListFromDBtoModel(ent.progress.ToList());
         }
     }
-
-   
-
-
 }
