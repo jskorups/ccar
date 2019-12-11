@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace ccar.ModelsLayout
@@ -130,25 +133,25 @@ namespace ccar.ModelsLayout
                 ent.actionsLayout.Add(LayoutModel.ConvertToActionsFromDb(this));
                 ent.SaveChanges();
             }
-            //else
-            //{
-            //    ccarEntities ent = new ccarEntities();
+            else
+            {
+                ccarEntities ent = new ccarEntities();
 
-            //    if (this.idProgress == 5)
-            //    {
-            //        this.completionDate = DateTime.Now;
-            //    }
+                if (this.IdProgress == 5)
+                {
+                    this.CompletionDate = DateTime.Now;
+                }
 
-            //    string Replaced = System.Environment.UserName.Replace('.', ' ');
-            //    CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
-            //    TextInfo textInfo = cultureInfo.TextInfo;
+                string Replaced = System.Environment.UserName.Replace('.', ' ');
+                CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+                TextInfo textInfo = cultureInfo.TextInfo;
 
-            //    this.Initiator = (textInfo.ToTitleCase(Replaced));
+                this.Initiator = (textInfo.ToTitleCase(Replaced));
 
-            //    ent.Entry(ActionModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
-            //    ent.SaveChanges();
+                ent.Entry(LayoutModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
+                ent.SaveChanges();
 
-            //}
+            }
         }
 
 
