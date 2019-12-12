@@ -16,109 +16,105 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @id = "koko" })
 
-<div class="addPng" >
-    <!--Reason-->
+    <div class="addPng">
+        <!--Reason-->
 
-    <div class="form-group container ">
-        <div class="row">
-            <div class="col-md-3 mb-3">
-                @Html.Label("Reason*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.IdReason, null, new { @class = "koko" })
-                @Html.DropDownListFor(model => model.IdReason, new SelectList(ccar.ModelsLayout.LayoutReasonModel.GetReasonList(), "id", "reasonLayout"), new { @class = "form-control" })
-            </div>
-            <div class="col-md-1 mb-1">
-                @Html.Label("More", new { @class = "control-label" })
-                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("LayoutReasonList", "LayoutReason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-            </div>
-            <!--Task Description-->
+        <div class="form-group container ">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    @Html.Label("Reason*", new { @class = "control-label" })
+                    @Html.ValidationMessageFor(model => model.IdReason, null, new { @class = "koko" })
+                    @Html.DropDownListFor(model => model.IdReason, new SelectList(ccar.ModelsLayout.LayoutReasonModel.GetReasonList(), "id", "reasonLayout"), new { @class = "form-control" })
+                </div>
+                <div class="col-md-1 mb-1">
+                    @Html.Label("More", new { @class = "control-label" })
+                    <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("LayoutReasonList", "LayoutReason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+                </div>
+                <!--Task Description-->
 
 
 
-            <div class="col-md-3 mb-3">
-                @Html.Label("Responsible*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.IdResponsibleLayout, null, new { @class = "koko" })
-                @Html.DropDownListFor(model => model.IdResponsibleLayout, new SelectList(ccar.ModelsLayout.LayoutResponsibleModel.getUsersList(), "id", "name"), new { @class = "form-control" })
-            </div>
-            <div class="col-md-1 mb-1">
-                @Html.Label("More", new { @class = "control-label" })
-                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("LayoutResponsiblesList", "LayoutResponsible")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-            </div>
+                <div class="col-md-3 mb-3">
+                    @Html.Label("Responsible*", new { @class = "control-label" })
+                    @Html.ValidationMessageFor(model => model.IdResponsibleLayout, null, new { @class = "koko" })
+                    @Html.DropDownListFor(model => model.IdResponsibleLayout, new SelectList(ccar.ModelsLayout.LayoutResponsibleModel.getUsersList(), "id", "name"), new { @class = "form-control" })
+                </div>
+                <div class="col-md-1 mb-1">
+                    @Html.Label("More", new { @class = "control-label" })
+                    <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("LayoutResponsiblesList", "LayoutResponsible")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+                </div>
 
-            <div class="col-md-3 mb-3" style="margin-left:10px;">
-                @Html.Label("Task Description*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.TaskDescription, null, new { @class = "koko" })
-                @Html.TextAreaFor(model => model.TaskDescription, 5, 33, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-3 mb-3" style="margin-left:10px;">
+                    @Html.Label("Task Description*", new { @class = "control-label" })
+                    @Html.ValidationMessageFor(model => model.TaskDescription, null, new { @class = "koko" })
+                    @Html.TextAreaFor(model => model.TaskDescription, 5, 33, new { htmlAttributes = new { @class = "form-control" } })
 
-            </div>
+                </div>
 
-        </div>
-    </div>
-    <div class="form-group container">
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                @Html.Label("Target date*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.TargetDate, null, new { @class = "koko" })
-                @Html.EditorFor(model => model.TargetDate, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-            <div class="col-md-4 mb-4">
-                @Html.Label("Progress*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.IdProgress, null, new { @class = "koko" })
-                @Html.DropDownListFor(model => model.IdProgress, new SelectList(ccar.Models.ProgressModel.GetProgressList().OrderBy(x => x.id), "id", "progressValue"), new { @class = "form-control" })
             </div>
         </div>
-    </div>
+        <div class="form-group container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    @Html.Label("Target date*", new { @class = "control-label" })
+                    @Html.ValidationMessageFor(model => model.TargetDate, null, new { @class = "koko" })
+                    @Html.EditorFor(model => model.TargetDate, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="col-md-4 mb-4">
+                    @Html.Label("Progress*", new { @class = "control-label" })
+                    @Html.ValidationMessageFor(model => model.IdProgress, null, new { @class = "koko" })
+                    @Html.DropDownListFor(model => model.IdProgress, new SelectList(ccar.Models.ProgressModel.GetProgressList().OrderBy(x => x.id), "id", "progressValue"), new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
 
-    <div class="form-group container">
-        <div class="row">
-            <div class="col-md-12 mb-12 text-center">
-                <input type="submit" value="Submit" class="btn btn-success" style="width:250px; height:40px" />
-                <input type="reset" value="Reset" class="btn btn-danger" style="width:250px; height:40px" />
+        <div class="form-group container">
+            <div class="row">
+                <div class="col-md-12 mb-12 text-center">
+                    <input type="submit" value="Submit" class="btn btn-success" style="width:250px; height:40px" />
+                    <input type="reset" value="Reset" class="btn btn-danger" style="width:250px; height:40px" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group container">
+            <div class="row">
+                <div class="col-md-5 mb-5 text-center">
+                </div>
+                <div class="col-md-5 mb-5 text-center">
+                </div>
+                <div class="col-md-2 mb-2 text-center">
+                    <span style="color:red; font-style:oblique;">* Required</span>
+                </div>
+
+
             </div>
         </div>
     </div>
-
-    <div class="form-group container">
-        <div class="row">
-            <div class="col-md-5 mb-5 text-center">
-            </div>
-            <div class="col-md-5 mb-5 text-center">
-            </div>
-            <div class="col-md-2 mb-2 text-center">
-                <span style="color:red; font-style:oblique;">* Required</span>
-            </div>
-
-
-        </div>
-    </div>
-</div>
-   
-
-    <script>
-
-        function SubmitForm(form) {
-            $.validator.unobtrusive.parse(form);
-            if ($(form).valid()) {
-                $.ajax({
-                    type: "POST",
-                    url: form.action,
-                    data: $(form).serialize(),
-                    success: function (data) {
-                        //if (data.success) {
-                        Popup.dialog('close');
-                        dataTable.ajax.reload();
-
-                        $.notify(data.message, {
-                            globalPosition: "top center",
-                            className: "success"
-
-                        })
-
-                        //}
-                    }
-                });
-            }
-            return false;
-        }
-    </script>
 }
+@*<script>
+    function SubmitForm(form) {
+        $.validator.unobtrusive.parse(form);
+        if ($(form).valid()) {
+            $.ajax({
+                type: "POST",
+                url: form.action,
+                data: $(form).serialize(),
+                success: function (data) {
+                    //if (data.success) {
+                    Popup.dialog('close');
+                    dataTable.ajax.reload();
 
+                    $.notify(data.message, {
+                        globalPosition: "top center",
+                        className: "success"
+
+                    })
+
+                    //}
+                }
+            });
+        }
+        return false;
+    }
+</script>*@

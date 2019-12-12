@@ -19,7 +19,7 @@ $(document).ready(function () {
                     });
                 column.cells('', column[0]).render('display').sort().unique().each(function (d, j) {
                     //select.append('<option value="' + d + '">' + d + '</option>')
-                    select.append('<option value="' + d + '">' + d.substr(0, 30) + '</option>')
+                    select.append('<option value="' + d + '">' + d.substr(0, 30) + '</option>');
                 });
                 $(select).click(function (e) {
                     e.stopPropagation();
@@ -59,28 +59,12 @@ $(document).ready(function () {
                     return moment(value).format('DD/MM/YYYY');
                 }
             },
-            //{
-            //    "data": "completionDate",
-            //    "render": function (value) {
-            //        if (value === null) return "";
-            //        return moment(value).format('DD/MM/YYYY');
-            //    }
-
-            //},
             { "data": "responsible" },
             { "data": "progressValue" },
 
             {
                 "data": "id", "render": function (dane) {
 
-                    // return "<a class='btn btn-default btn-sm' onclick=Kespa('" + $('#DataUrl').val() + "/" + data + "')><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete('" + data + "','" + $('#DeleteUrl').val()+"')><i class='fa fa-trash'></i> Delete</a>";
-                    //var htmlEdit;
-                    //$.get("/Action/EditDeletePartial", function (data) {
-
-                    //    htmlEdit = data;
-                    //});
-                    //alert(htmlEdit);
-                    //return htmlEdit;
                     var msg = $.ajax({ type: "GET", url: "/Action/EditDeletePartial?id=" + dane, async: false }).responseText;
                     return msg;
                 },
@@ -89,13 +73,7 @@ $(document).ready(function () {
                 "width": "150px"
             }
 
-            //{ "data": "idTypeOfAction" },
-
-            //{ "data": "rootCause" },
-            //{ "data": "correctiveAction" },
-
-            //{ "data": "measureEffic" },
-            //{ "data": "dateOfEffic" }
+      
         ],
         "language": {
             "emptyTable": "No data found, Pleas click on <b> Add New Button</b>"
@@ -134,48 +112,6 @@ $(document).ready(function () {
 });
 
 
-//////////////////////////////////////////////////////
-
-
-// Array to track the ids of the details displayed rows
-//var detailRows = [];
-
-//$('#actionTable tbody').on('click', 'tr td.details-control', function () {
-//    var tr = $(this).closest('tr');
-//    var row = dt.row(tr);
-//    var idx = $.inArray(tr.attr('id'), detailRows);
-
-//    if (row.child.isShown()) {
-//        tr.removeClass('details');
-//        row.child.hide();
-
-//        // Remove from the 'open' array
-//        detailRows.splice(idx, 1);
-//    }
-//    else {
-//        tr.addClass('details');
-//        row.child(format(row.data())).show();
-
-//        // Add to the 'open' array
-//        if (idx === -1) {
-//            detailRows.push(tr.attr('id'));
-//        }
-//    }
-//});
-
-//// On each draw, loop over the `detailRows` array and show any child rows
-//dt.on('draw', function () {
-//    $.each(detailRows, function (i, id) {
-//        $('#' + id + ' td.details-control').trigger('click');
-//    });
-//});
-//} );
-
-
-
-//////////////////////////////////////////////////////
-
-
 function format(d) {
     // `d` is the original data object for the row
     var rowDetail = $.ajax({ type: "GET", url: "/Action/RowDetailsPartial?id=" + d.id, async: false }).responseText;
@@ -184,11 +120,6 @@ function format(d) {
 
 
 
-//var scale = [['vPoor', '10%'], ['poor', '45%'], ['avg', '50%'], ['good', '75%'], ['vGood', '100%']];
-//var score = $(this).text();
-//for (var i = 0; i < scale.length; i++) {
-//    if (score <= scale[i][1]) {
-//        $(this).addClass(scale[i][0]);
 
 
 

@@ -19,16 +19,8 @@ ________
 dodac resposible controller, model , widoki
 wyrzucic comments
 
-
-
-
-
-
-
-
 ______________________________________
 DONE
-
 
 14. Scrollbar wertykalny usunac
 11
@@ -47,3 +39,5 @@ metoda do maila - outlook dla sls
 mail settings w web config
 walidowanie maila w dwóch miejscach - przerobic na grupoantolin
 usunac breakdown w defaults
+
+

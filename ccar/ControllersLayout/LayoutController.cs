@@ -64,6 +64,50 @@ namespace ccar.ControllersLayout
             }
         }
 
+        // post do add or edit
+
+        [HttpPost]
+        public ActionResult AddOrEdit(LayoutModel Lay)
+        {
+            if (ModelState.IsValid)
+            {
+                if (Lay.Id == 0)
+                {
+                    try
+                    {
+                        Lay.Save();
+                        //var email = UserModel.getEmailAdress(Act.idResponsible);
+                        //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
+
+                    }
+                    catch (Exception ex)
+                    {
+                        return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else if (Lay.Id != 0)
+                {
+                    try
+                    {
+                        Lay.Save();
+                    }
+                    catch (Exception ex)
+                    {
+                        return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                    }
+                }
+
+
+            }
+         
+                return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
+           
+
+        }
+
+
+
+
         // get partial view for edit or delete
         public PartialViewResult EditDeletePartial(int id)
         {

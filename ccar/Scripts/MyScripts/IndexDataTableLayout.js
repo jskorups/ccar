@@ -5,7 +5,7 @@ $(document).ready(function () {
     dataTable = $('#actionLayoutTable').DataTable({
         initComplete: function () {
 
-            this.api().columns([1, 2, 4, 5, 6, 7]).every(function () {
+            this.api().columns([ 5, 6]).every(function () {
                 var column = this;
                 var select = $('<select><option value="">Show all</option></select>')
                     .appendTo($(column.header()))
@@ -19,7 +19,7 @@ $(document).ready(function () {
                     });
                 column.cells('', column[0]).render('display').sort().unique().each(function (d, j) {
                     //select.append('<option value="' + d + '">' + d + '</option>')
-                    select.append('<option value="' + d + '">' + d.substr(0, 30) + '</option>')
+                    select.append('<option value="' + d + '">' + d.substr(0, 30) + '</option>');
                 });
                 $(select).click(function (e) {
                     e.stopPropagation();
@@ -31,7 +31,8 @@ $(document).ready(function () {
         },
 
    
- 
+  
+
         "ajax": {
             "url": "/Layout/GetData",
             "type": "GET",
@@ -48,7 +49,8 @@ $(document).ready(function () {
                 }
             },
             { "data": "TaskDescription" },
-            { "data": "IdResponsible" },
+            { "data": "Reason" },
+            { "data": "Responsible" },
            
             {
                 "data": "TargetDate",
@@ -58,26 +60,9 @@ $(document).ready(function () {
                 }
             },
             { "data": "Progress" },
-            { "data": "Comments" },
+         
 
-            {
-                "data": "id", "render": function (dane) {
-
-                    // return "<a class='btn btn-default btn-sm' onclick=Kespa('" + $('#DataUrl').val() + "/" + data + "')><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete('" + data + "','" + $('#DeleteUrl').val()+"')><i class='fa fa-trash'></i> Delete</a>";
-                    //var htmlEdit;
-                    //$.get("/Action/EditDeletePartial", function (data) {
-
-                    //    htmlEdit = data;
-                    //});
-                    //alert(htmlEdit);
-                    //return htmlEdit;
-                    var msg = $.ajax({ type: "GET", url: "/Action/EditDeletePartial?id=" + dane, async: false }).responseText;
-                    return msg;
-                },
-                "orderable": false,
-                "searchable": true,
-                "width": "150px"
-            }
+       
 
             //{ "data": "idTypeOfAction" },
 
@@ -96,7 +81,7 @@ $(document).ready(function () {
 
 
 
-    $('#actionTable tbody').on('click', 'td.details-control', function () {
+    $('#actionLayoutTable tbody').on('click', 'td.details-control', function () {
 
         var tr = $(this).closest('tr');
         var tdi = tr.find("i.fa");

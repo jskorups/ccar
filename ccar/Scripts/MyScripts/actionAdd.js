@@ -14,7 +14,7 @@
                     globalPosition: "top center",
                     className: "success"
 
-                })
+                });
 
                 //}
             }
