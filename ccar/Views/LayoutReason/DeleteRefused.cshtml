@@ -1,0 +1,19 @@
+﻿@model ccar.ModelsLayout.LayoutReasonModel
+
+@{
+    ViewBag.Title = "DeleteRefused";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container movedLeft">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>DeleteRefused</h2>
+            Ta pozycja nie może zostać usunięta, ponieważ jest użyta.
+            <br />
+            @Html.ActionLink("Back to List", "LayoutReasonList")
+        </div>
+    </div>
+</div>
+
