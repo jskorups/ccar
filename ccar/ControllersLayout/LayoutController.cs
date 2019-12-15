@@ -108,21 +108,21 @@ namespace ccar.ControllersLayout
 
 
 
-        // get partial view for edit or delete
-        public PartialViewResult EditDeletePartial(int id)
-        {
-            //odkomentowac
-            //ccarEntities ent = new ccarEntities();
-            //actions act = ent.actions.Where(x => x.id == id).FirstOrDefault();
-            //return PartialView(act);
+        //// get partial view for edit or delete
+        //public PartialViewResult EditDeletePartial(int id)
+        //{
+        //    //odkomentowac
+        //    //ccarEntities ent = new ccarEntities();
+        //    //actions act = ent.actions.Where(x => x.id == id).FirstOrDefault();
+        //    //return PartialView(act);
 
-            ViewBag.id = id; // zakomentowac
-            return PartialView();
-        }
-        public PartialViewResult EditDeletePartialDone(int id)
-        {
-            ViewBag.id = id;
-            return PartialView();
-        }
+        //    ViewBag.id = id; // zakomentowac
+        //    return PartialView();
+        //}
+        //public PartialViewResult EditDeletePartialDone(int id)
+        //{
+        //    ViewBag.id = id;
+        //    return PartialView();
+        //}
     }
 }
