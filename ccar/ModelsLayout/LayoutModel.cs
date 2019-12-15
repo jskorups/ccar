@@ -42,6 +42,7 @@ namespace ccar.ModelsLayout
         [DataType(DataType.Date)]
         public DateTime? CompletionDate { get; set; }
 
+        //kek
         [Required(ErrorMessage = "Required")]
         public int Status { get; set; }
 
