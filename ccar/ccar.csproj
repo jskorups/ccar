@@ -376,6 +376,7 @@
     <Content Include="images\top.png" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\MyScripts\IndexDataTableLayoutDone.js" />
     <Content Include="Scripts\MyScripts\layoutAdd.js" />
     <Content Include="Scripts\MyScripts\actionAdd.js" />
     <Content Include="Scripts\MyScripts\IndexDataTableDone.js" />
@@ -505,6 +506,7 @@
     <Content Include="Views\LayoutResponsible\Create.cshtml" />
     <Content Include="Views\LayoutResponsible\Edit.cshtml" />
     <Content Include="Views\LayoutResponsible\Delete.cshtml" />
+    <Content Include="Views\Layout\EditDeletePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

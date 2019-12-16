@@ -5,7 +5,7 @@ $(document).ready(function () {
     dataTable = $('#actionLayoutTable').DataTable({
         initComplete: function () {
 
-            this.api().columns([ 5, 6]).every(function () {
+            this.api().columns([0,3,4,5,6]).every(function () {
                 var column = this;
                 var select = $('<select><option value="">Show all</option></select>')
                     .appendTo($(column.header()))
@@ -30,8 +30,6 @@ $(document).ready(function () {
             colorCells();
         },
 
-   
-  
 
         "ajax": {
             "url": "/Layout/GetData",
@@ -60,17 +58,21 @@ $(document).ready(function () {
                 }
             },
             { "data": "Progress" },
-         
 
-       
 
-            //{ "data": "idTypeOfAction" },
+            {
+                "data": "Id", "render": function (dane) {
 
-            //{ "data": "rootCause" },
-            //{ "data": "correctiveAction" },
+                    var msg = $.ajax({ type: "GET", url: "/Layout/EditDeletePartial?id=" + dane, async: false }).responseText;
+                    return msg;
+                },
+                "orderable": false,
+                "searchable": true,
+                "width": "150px"
+            }
 
-            //{ "data": "measureEffic" },
-            //{ "data": "dateOfEffic" }
+
+
         ],
         "language": {
             "emptyTable": "No data found, Pleas click on <b> Add New Button</b>"
@@ -78,8 +80,6 @@ $(document).ready(function () {
         "pageLength": 100
 
     });
-
-
 
     $('#actionLayoutTable tbody').on('click', 'td.details-control', function () {
 
@@ -161,25 +161,6 @@ function Kespa(url) {
         });
 }
 
-function PopupForm(url) {
-    var formDiv = $('<div />');
-    $.get(url)
-        .done(function (response) {
-            formDiv.html(response);
-
-            Popup = formDiv.dialog({
-                autoOpen: true,
-                resizable: false,
-                title: 'Fill Actijjjjjjjons Details',
-                height: 300,
-                width: 1100,
-                close: function () {
-                    Popup.dialog('destroy').remove();
-                }
-
-            });
-        });
-}
 function Delete(id, urlForDelete) {
     if (confirm('Are You Sure to Delete this Employee Record ?')) {
         $.ajax({

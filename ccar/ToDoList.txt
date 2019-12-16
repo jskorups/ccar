@@ -16,8 +16,9 @@
 
 to do layout
 ________
-dodac resposible controller, model , widoki
-wyrzucic comments
+ 100% dla layout przerzucac do innego widoku if lay.save , progres==5 , status =2
+ wysylanie maila dla Layout
+
 
 ______________________________________
 DONE
