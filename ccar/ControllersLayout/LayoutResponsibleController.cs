@@ -47,7 +47,7 @@ namespace ccar.ControllersLayout
                     ccarEntities ent = new ccarEntities();
                     ent.responsiblesLayout.Add(LayoutResponsibleModel.ConvertFromModelToDB(u));
                     ent.SaveChanges();
-                    return RedirectToAction("ResponsiblesList");
+                    return RedirectToAction("LayoutResponsiblesList");
                 }
                 return View(u);
 
@@ -72,7 +72,7 @@ namespace ccar.ControllersLayout
                     res.Lastname = us.Lastname;
                     res.email = us.email;
                     ent.SaveChanges();
-                    return RedirectToAction("ResponsiblesList");
+                    return RedirectToAction("LayoutResponsiblesList");
                 }
                 return View(us);
             }
@@ -98,7 +98,7 @@ namespace ccar.ControllersLayout
                 {
                     return RedirectToAction("DeleteRefused");
                 }
-                return RedirectToAction("ResponsiblesList");
+                return RedirectToAction("LayoutResponsiblesList");
             }
             [HttpGet]
             public ActionResult DeleteRefused()

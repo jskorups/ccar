@@ -306,6 +306,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\heroic-features.css" />
     <Content Include="Content\template\activationMailBody.html" />
+    <Content Include="Content\template\newLayoutAction.html" />
     <Content Include="Content\template\newAction.html" />
     <Content Include="Content\template\guidMailBody.html" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -507,6 +508,7 @@
     <Content Include="Views\LayoutResponsible\Edit.cshtml" />
     <Content Include="Views\LayoutResponsible\Delete.cshtml" />
     <Content Include="Views\Layout\EditDeletePartial.cshtml" />
+    <Content Include="Views\LayoutResponsible\DeleteRefused.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

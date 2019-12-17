@@ -33,7 +33,7 @@ namespace ccar.Models
         public string TypeOfAction { get { return GetTypeOfAction(this.idTypeOfAction.Value); } }
 
         [Required(ErrorMessage = "Required")]
-        [StringLength(20, ErrorMessage ="Maximum 20 characters.")]
+        [StringLength(30, ErrorMessage ="Maximum 30 characters.")]
         public string problem { get; set; }
 
         [Required(ErrorMessage = "Required")]

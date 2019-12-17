@@ -1,6 +1,6 @@
 ﻿function SubmitForm(form) {
-    //$.validator.unobtrusive.parse(form);
-    //if ($(form).valid()) {
+    $.validator.unobtrusive.parse(form);
+    if ($(form).valid()) {
         $.ajax({
             type: "POST",
             url: form.action,
@@ -19,6 +19,6 @@
                 //}
             }
         });
-    //}
+    }
     return false;
 }

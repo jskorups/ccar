@@ -58,7 +58,14 @@ $(document).ready(function () {
                 }
             },
             { "data": "Progress" },
-            { "data": "CompletionDate"},
+           
+            {
+                "data": "CompletionDate",
+                "render": function (value) {
+                    if (value === null) return "";
+                    return moment(value).format('DD/MM/YYYY');
+                }
+            },
 
 
             {

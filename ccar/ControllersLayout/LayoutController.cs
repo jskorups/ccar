@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ccar.Models;
 using ccar.ModelsLayout;
 
 namespace ccar.ControllersLayout
@@ -20,6 +21,7 @@ namespace ccar.ControllersLayout
 
             return View();
         }
+
 
         // get list with not done
         [HttpGet]
@@ -76,8 +78,32 @@ namespace ccar.ControllersLayout
                     try
                     {
                         Lay.Save();
-                        //var email = UserModel.getEmailAdress(Act.idResponsible);
+                      
+
+                        var email = LayoutResponsibleModel.getEmailAdress(Lay.IdResponsibleLayout);
                         //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
+
+
+                        string subjectMail = "CCAR new layout action created for your response";
+                        string path = Server.MapPath("~/Content/template/newLayoutAction.html");
+                        string body = System.IO.File.ReadAllText(path);
+                        var dayName = System.DateTime.Now.DayOfWeek.ToString();
+                        var timeSend = DateTime.Now.ToString("dd.MM.yy");
+
+
+
+                        body = body.Replace("{d}", $"{dayName}, {timeSend}");
+                        body = body.Replace("{Reason}", LayoutReasonModel.getNameOfReason(Lay.IdReason));
+                        body = body.Replace("{Responsible}", ResponsibleModel.getNameOfResponsible(Lay.IdResponsibleLayout));
+                        body = body.Replace("{Problem}", Lay.TaskDescription);
+                        body = body.Replace("{TargetDate}", Lay.TargetDate.ToString());
+                        body = body.Replace("{IniTargetDatetiator}", ActionModel.getNameOfInitiator(Lay.IdInitiator));
+                       
+         
+
+
+
+                        emailClass.CreateMailItem(email, body, subjectMail);
 
                     }
                     catch (Exception ex)

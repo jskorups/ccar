@@ -142,6 +142,7 @@ namespace ccar.ModelsLayout
                 if (this.IdProgress == 5)
                 {
                     this.CompletionDate = DateTime.Now;
+                    this.Status = 2;
                 }
 
                 string Replaced = System.Environment.UserName.Replace('.', ' ');
