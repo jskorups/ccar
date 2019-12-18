@@ -90,16 +90,27 @@ namespace ccar.ControllersLayout
                         var dayName = System.DateTime.Now.DayOfWeek.ToString();
                         var timeSend = DateTime.Now.ToString("dd.MM.yy");
 
+                        int lineLenght = 20;
+                        var charCount = 0;
+                        var text = Lay.TaskDescription;
+                        var lines = text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
+                                      .GroupBy(w => (charCount += w.Length + 1) / lineLenght)
+                                      .Select(g => string.Join(" ", g));
 
 
                         body = body.Replace("{d}", $"{dayName}, {timeSend}");
                         body = body.Replace("{Reason}", LayoutReasonModel.getNameOfReason(Lay.IdReason));
                         body = body.Replace("{Responsible}", ResponsibleModel.getNameOfResponsible(Lay.IdResponsibleLayout));
-                        body = body.Replace("{Problem}", Lay.TaskDescription);
+                        body = body.Replace("{Problem}", lines.ToString());
                         body = body.Replace("{TargetDate}", Lay.TargetDate.ToString());
-                        body = body.Replace("{IniTargetDatetiator}", ActionModel.getNameOfInitiator(Lay.IdInitiator));
-                       
-         
+                        body = body.Replace("{Initiator}", ActionModel.getNameOfInitiator(Lay.IdInitiator));
+
+                
+                   
+
+                      
+
+
 
 
 
