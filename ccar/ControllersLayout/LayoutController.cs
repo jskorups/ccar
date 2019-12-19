@@ -79,9 +79,14 @@ namespace ccar.ControllersLayout
                     {
                         Lay.Save();
                       
-
                         var email = LayoutResponsibleModel.getEmailAdress(Lay.IdResponsibleLayout);
                         //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
+
+                        string newline = Lay.TaskDescription;
+                        string lines = string.Join(Environment.NewLine, newline.Split()
+                            .Select((word, index) => new { word, index })
+                            .GroupBy(x => x.index / 9)
+                            .Select(grp => string.Join(" ", grp.Select(x => x.word))));
 
 
                         string subjectMail = "CCAR new layout action created for your response";
@@ -90,19 +95,13 @@ namespace ccar.ControllersLayout
                         var dayName = System.DateTime.Now.DayOfWeek.ToString();
                         var timeSend = DateTime.Now.ToString("dd.MM.yy");
 
-
-
                         body = body.Replace("{d}", $"{dayName}, {timeSend}");
                         body = body.Replace("{Reason}", LayoutReasonModel.getNameOfReason(Lay.IdReason));
                         body = body.Replace("{Responsible}", ResponsibleModel.getNameOfResponsible(Lay.IdResponsibleLayout));
-                        body = body.Replace("{Problem}", Lay.TaskDescription);
+                        body = body.Replace("{Problem}", lines);
                         body = body.Replace("{TargetDate}", Lay.TargetDate.ToString());
-                        body = body.Replace("{IniTargetDatetiator}", ActionModel.getNameOfInitiator(Lay.IdInitiator));
-                       
-         
-
-
-
+                        body = body.Replace("{Initiator}", ActionModel.getNameOfInitiator(Lay.IdInitiator));
+ 
                         emailClass.CreateMailItem(email, body, subjectMail);
 
                     }

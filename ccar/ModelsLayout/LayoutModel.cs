@@ -27,7 +27,7 @@ namespace ccar.ModelsLayout
         public DateTime OriginationDate { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [StringLength(20, ErrorMessage = "Maximum 20 characters.")]
+        [StringLength(60, ErrorMessage = "Maximum 60 characters.")]
         public string TaskDescription { get; set; }
         [Range(1, float.MaxValue, ErrorMessage = "Required")]
         public int IdResponsibleLayout { get; set; }
@@ -35,7 +35,7 @@ namespace ccar.ModelsLayout
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "Required")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime TargetDate { get; set; }
+        public DateTime? TargetDate { get; set; }
 
         [Required(ErrorMessage = "Required")]
         public int IdProgress { get; set; }

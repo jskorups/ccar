@@ -37,11 +37,11 @@ namespace ccar.Models
         public string problem { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [StringLength(50, ErrorMessage = "Maximum 50 characters.")]
+        [StringLength(200, ErrorMessage = "Maximum 200 characters.")]
         public string rootCause { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [StringLength(15, ErrorMessage = "Maximum 50 characters.")]
+        [StringLength(200, ErrorMessage = "Maximum 200 characters.")]
         public string correctiveAction { get; set; }
 
         [Range(1, float.MaxValue, ErrorMessage = "Required")]
@@ -111,28 +111,6 @@ namespace ccar.Models
             }).ToList();
             return actionList;
         }
-
-
-
-
-
-        //public Komputer(komputery comps)
-        //{
-        //    Firma = comps.firma;
-        //    Dostawca = comps.dostawca;
-        //    UzytkownikId = comps.uzykownikId;
-        //    Id = comps.komputerId;
-        //}
-
-        //// saveToDatabase
-        //public void saveToDatabase()
-        //{
-        //    ccarEntities ent = new ccarEntities();
-        //    action newAction = new action();
-        //    newAction.id = id;
-        //    newAction.idReason = idReason;
-        //    //newAction.idInitiator
-        //}
 
 
         public static actions ConvertToActionsFromDb(ActionModel a)
