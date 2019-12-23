@@ -65,6 +65,7 @@ namespace ccar.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? dateOfEffic { get; set; }
 
+        public int? Status { get; set; }
 
         public string GetTypeOfAction(int id)
         {
@@ -72,6 +73,10 @@ namespace ccar.Models
             string toa = ent.typeOfaction.Where(x => x.id == id).Select(x => x.typeOfaction1).SingleOrDefault();
             return toa;
         }
+
+      
+        #region ACTION VIEW BASE 
+        // ACTIONVIEW BASE
 
         public static List<actionView> fromActionsDB(List<actionView> aList)
         {
@@ -86,13 +91,16 @@ namespace ccar.Models
                 targetDate = x.targetDate,
                 completionDate = x.completionDate,
                 responsible = x.responsible,
-                progressValue = x.progressValue
+                progressValue = x.progressValue,
+                Status = x.Status
                 /*, measureEffic = x.measureEffic , dateOfEffic = x.dateOfEffic*/
+                
             }).ToList();
             return actionList;
         }
-            
-
+        #endregion
+        #region ACTIONVIEW DONE (100%) BASE
+        // ACTIONVIEW DONE (100%) BASE
         public static List<actionViewDone> fromActionsDB2(List<actionViewDone> aList)
         {
             List<actionViewDone> actionList = aList.Select(x => new actionViewDone()
@@ -106,11 +114,60 @@ namespace ccar.Models
                 targetDate = x.targetDate,
                 completionDate = x.completionDate,
                 responsible = x.responsible,
-                progressValue = x.progressValue
+                progressValue = x.progressValue,
+                Status = x.Status
                 /*, measureEffic = x.measureEffic , dateOfEffic = x.dateOfEffic*/
             }).ToList();
             return actionList;
         }
+        #endregion
+
+        #region LAYOUT ACTION VIEW BASE 
+        // ACTIONVIEW BASE
+
+        public static List<actionLayoutView> fromLayoutActionsDB(List<actionLayoutView> aList)
+        {
+            List<actionLayoutView> actionList = aList.Select(x => new actionLayoutView()
+            {
+                id = x.id,
+                reason = x.reason,
+                problem = x.problem,
+                Initiator = x.Initiator,
+                originationDate = x.originationDate,
+                /*rootCause = x.rootCause, correctiveAction = x.correctiveAction,*/
+                targetDate = x.targetDate,
+                completionDate = x.completionDate,
+                responsible = x.responsible,
+                progressValue = x.progressValue,
+                /*, measureEffic = x.measureEffic , dateOfEffic = x.dateOfEffic*/
+               Status = x.Status
+            }).ToList();
+            return actionList;
+        }
+        #endregion
+        #region  LAYOUT ACTIONVIEW DONE (100%) BASE
+        // ACTIONVIEW DONE (100%) BASE
+        public static List<actionViewDone> fromLayoutActionsDB2(List<actionViewDone> aList)
+        {
+            List<actionViewDone> actionList = aList.Select(x => new actionViewDone()
+            {
+                id = x.id,
+                Initiator = x.Initiator,
+                reason = x.reason,
+                problem = x.problem,
+                originationDate = x.originationDate,
+                /*rootCause = x.rootCause, correctiveAction = x.correctiveAction,*/
+                targetDate = x.targetDate,
+                completionDate = x.completionDate,
+                responsible = x.responsible,
+                progressValue = x.progressValue,
+                Status = x.Status
+                /*, measureEffic = x.measureEffic , dateOfEffic = x.dateOfEffic*/
+            }).ToList();
+            return actionList;
+        }
+        #endregion
+
 
 
         public static actions ConvertToActionsFromDb(ActionModel a)
@@ -131,6 +188,7 @@ namespace ccar.Models
             act.completionDate = a.completionDate;
             act.measureEffic = a.measureEffic;
             act.dateOfEffic = a.dateOfEffic;
+            act.Status = a.Status;
             return act;
         }
 
@@ -153,6 +211,7 @@ namespace ccar.Models
             act.completionDate = a.completionDate;
             act.measureEffic = a.measureEffic;
             act.dateOfEffic = a.dateOfEffic;
+            act.Status = a.Status;
             return act;
         }
 
@@ -183,6 +242,7 @@ namespace ccar.Models
 
                 this.idInitiator = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.id).SingleOrDefault();
                 this.originationDate = DateTime.Now;
+                this.Status = 0;
 
                 string Replaced = System.Environment.UserName.Replace('.', ' ');
                 CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;

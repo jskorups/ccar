@@ -5,19 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="edd59b1aa72f4b6f938d14cad0f56a44" Name="Diagram1" ShowGrid="true" ZoomLevel="86">
-        <EntityTypeShape EntityType="ccarModel.actions" Width="1.5" PointX="3" PointY="3.625" />
-        <EntityTypeShape EntityType="ccarModel.actionsLayout" Width="1.5" PointX="6" PointY="4.125" />
-        <EntityTypeShape EntityType="ccarModel.progress" Width="1.5" PointX="0.75" PointY="12.5" />
-        <EntityTypeShape EntityType="ccarModel.reasons" Width="1.5" PointX="0.75" PointY="15.125" />
-        <EntityTypeShape EntityType="ccarModel.reasonsLayout" Width="1.5" PointX="3.75" PointY="0.875" />
-        <EntityTypeShape EntityType="ccarModel.responsibles" Width="1.5" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="ccarModel.responsiblesLayout" Width="1.5" PointX="3.75" PointY="9.25" />
-        <EntityTypeShape EntityType="ccarModel.typeOfaction" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="ccarModel.users" Width="1.5" PointX="0.75" PointY="4.625" />
-        <EntityTypeShape EntityType="ccarModel.actionLayoutDoneView" Width="1.5" PointX="8.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ccarModel.actionLayoutView" Width="1.5" PointX="8.75" PointY="4.75" />
-        <EntityTypeShape EntityType="ccarModel.actionView" Width="1.5" PointX="8.75" PointY="8.75" />
-        <EntityTypeShape EntityType="ccarModel.actionViewDone" Width="1.5" PointX="5.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ccarModel.actions" Width="1.5" PointX="3" PointY="4.375" />
+        <EntityTypeShape EntityType="ccarModel.actionsLayout" Width="1.5" PointX="6" PointY="5" />
+        <EntityTypeShape EntityType="ccarModel.progress" Width="1.5" PointX="0.75" PointY="13" />
+        <EntityTypeShape EntityType="ccarModel.reasons" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="ccarModel.reasonsLayout" Width="1.5" PointX="3.75" PointY="10.5" />
+        <EntityTypeShape EntityType="ccarModel.responsibles" Width="1.5" PointX="0.75" PointY="15.5" />
+        <EntityTypeShape EntityType="ccarModel.responsiblesLayout" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ccarModel.typeOfaction" Width="1.5" PointX="0.75" PointY="10.625" />
+        <EntityTypeShape EntityType="ccarModel.users" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="ccarModel.actionLayoutDoneView" Width="1.5" PointX="8.75" PointY="1.5" />
+        <EntityTypeShape EntityType="ccarModel.actionLayoutView" Width="1.5" PointX="8.75" PointY="5.5" />
+        <EntityTypeShape EntityType="ccarModel.actionView" Width="1.5" PointX="8.75" PointY="9.5" />
+        <EntityTypeShape EntityType="ccarModel.actionViewDone" Width="1.5" PointX="5.75" PointY="10.5" />
         <AssociationConnector Association="ccarModel.FK_actions_progress" />
         <AssociationConnector Association="ccarModel.FK_actions_reasons" />
         <AssociationConnector Association="ccarModel.FK_actions_responsibles" />

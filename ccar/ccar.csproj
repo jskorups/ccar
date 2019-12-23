@@ -196,9 +196,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ccarMMdaneEF.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ControllersLayout\LayoutController.cs" />
-    <Compile Include="ControllersLayout\LayoutReasonController.cs" />
-    <Compile Include="ControllersLayout\LayoutResponsibleController.cs" />
+    <Compile Include="ControllerCCARprojects\CCARprojectsController.cs" />
+    <Compile Include="ControllerLayout\LayoutController.cs" />
     <Compile Include="ControllersMM\MeetingController.cs" />
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -496,9 +495,8 @@
     <Content Include="Views\Meeting\EditDeletePartial.cshtml" />
     <Content Include="Views\typeOfAction\DeleteRefused.cshtml" />
     <Content Include="Views\Meeting\Edit.cshtml" />
-    <Content Include="Views\Layout\Index.cshtml" />
+    <Content Include="Views\Layout\Indexxxxxxx.cshtml" />
     <Content Include="Views\Layout\Index2.cshtml" />
-    <Content Include="Views\Layout\AddOrEdit.cshtml" />
     <Content Include="Views\LayoutReason\Edit.cshtml" />
     <Content Include="Views\LayoutReason\Delete.cshtml" />
     <Content Include="Views\LayoutReason\LayoutReasonList.cshtml" />
@@ -507,8 +505,13 @@
     <Content Include="Views\LayoutResponsible\Create.cshtml" />
     <Content Include="Views\LayoutResponsible\Edit.cshtml" />
     <Content Include="Views\LayoutResponsible\Delete.cshtml" />
-    <Content Include="Views\Layout\EditDeletePartial.cshtml" />
     <Content Include="Views\LayoutResponsible\DeleteRefused.cshtml" />
+    <Content Include="Views\Layout\Index.cshtml" />
+    <Content Include="Views\Layout\AddOrEdit.cshtml" />
+    <Content Include="Views\Layout\EditDeletePartial.cshtml" />
+    <Content Include="Views\Layout\RowDetailsPartial.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\CCARprojects\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -37,31 +37,37 @@ $(document).ready(function () {
             "datatype": "json"
         },
         "columns": [
-              
+            {
+                "className": 'details-control',
+                "data": null,
+                "defaultContent": "",
+                width: "15px"
+            },
             { "data": "Initiator" },
+            { "data": "reason" },
+            { "data": "problem" },
             {
-                "data": "OriginationDate",
+                "data": "originationDate",
                 "render": function (value) {
                     if (value === null) return "";
                     return moment(value).format('DD/MM/YYYY');
                 }
             },
-            { "data": "TaskDescription" },
-            { "data": "Reason" },
-            { "data": "Responsible" },
-           
             {
-                "data": "TargetDate",
+                "data": "targetDate",
                 "render": function (value) {
                     if (value === null) return "";
                     return moment(value).format('DD/MM/YYYY');
                 }
             },
-            { "data": "Progress" },
+            { "data": "responsible" },
+            { "data": "progressValue" }
 
+
+            ,
 
             {
-                "data": "Id", "render": function (dane) {
+                "data": "id", "render": function (dane) {
 
                     var msg = $.ajax({ type: "GET", url: "/Layout/EditDeletePartial?id=" + dane, async: false }).responseText;
                     return msg;
@@ -72,7 +78,6 @@ $(document).ready(function () {
             }
 
 
-
         ],
         "language": {
             "emptyTable": "No data found, Pleas click on <b> Add New Button</b>"
@@ -80,6 +85,7 @@ $(document).ready(function () {
         "pageLength": 100
 
     });
+
 
     $('#actionLayoutTable tbody').on('click', 'td.details-control', function () {
 
@@ -113,7 +119,7 @@ $(document).ready(function () {
 
 function format(d) {
     // `d` is the original data object for the row
-    var rowDetail = $.ajax({ type: "GET", url: "/Action/RowDetailsPartial?id=" + d.id, async: false }).responseText;
+    var rowDetail = $.ajax({ type: "GET", url: "/Layout/RowDetailsPartial?id=" + d.id, async: false }).responseText;
     return rowDetail;
 }
 
@@ -152,7 +158,7 @@ function Kespa(url) {
                 autoOpen: true,
                 resizable: false,
                 title: 'Fill Layout Action Details',
-                height: 432,
+                height: 650,
                 width: 1200,
                 close: function () {
                     Popup.dialog('destroy').remove();

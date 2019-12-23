@@ -1,4 +1,11 @@
-﻿1. zwracanie widoku  w razie zlego maila
+﻿PRIORYTET 1.
+_____________________________________________________________
+1. Zafixowac reason = 26 z modułu Krzyska
+
+
+PRIORYTET 2
+_____________________________________________________________
+1. zwracanie widoku  w razie zlego maila
 8. rozdzielic modele dla passwordResetModel, walidowac na osobnych modelach
 9.wlasciwosci piszemy z duzych liter
 10. zamiast style w znaczniku div, dodawac klasy w site.css
@@ -13,27 +20,10 @@
 24. Zaahaslowac wejscie do projektu, mozliwosc ustwainia, odyzskiwnia dla launch managerów
 
 
-
-to do layout
-________
- 100% dla layout przerzucac do innego widoku if lay.save , progres==5 , status =2
- wysylanie maila dla Layout
- przeniswc : .getEmailAdress do responsible
-
 ______________________________________
 DONE
 
-14. Scrollbar wertykalny usunac
-11
-a.  problem description - required
-b. efficency, date of efficiency  - not required
-12. Logo antolin nech bedzie linkiem do glownej strony
-7. Poprawic add reason/add user/add tao, rozjechaly sie przyciski Create
-6. Dopisac metode sprawdzajaca czy dany mail istnieje, jesli tak addmodelstaterror ze mail juz istnieje
-18. Dodanie atrybutów dla ccar (bez projektów).
-18. Zmienic date efficiency na date
-13. Brzydki maila przychodzi po recovery password
-_____________
+
 
 web config - polaczenie z baza
 metoda do maila - outlook dla sls
