@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "action List";
+}
+<script src="~/Scripts/MyScripts/IndexDataTable.js"></script>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-10" style="margin-left:-210px;">
+
+
+            @*<button  class="btn btn-outline-primary" onclick="blab()" )><i class="fa fa-plus-square"></i> kek</button>*@
+
+            <button class="btn btn-outline-primary addBtn" onclick="Kespa('@Url.Action("AddOrEdit","Action")')" )><i class="fa fa-plus-square"></i> Add new action</button>
+            <button class="btn btn-outline-primary completedBtn" onclick="location.href='@Url.Action("Index2", "Action")'" )><i class="fa fa-check"></i> Show completed</button>
+            <button class="btn btn-outline-primary goomeetings" onclick="location.href='@Url.Action("Meetings", "Action")'" )><i class="fa fa-users"></i> Show meetings</button>
+
+            <table id="actionTable" class="table table-striped table-bordered" style="width:1600px;">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Initiator</th>
+                        <th>Reason</th>
+                        <th>Problem</th>
+                        <th>Origination Date</th>
+                        <th>Target Date</th>
+                        @*<th>Completion Date</th>*@
+                        <th>Responsible</th>
+                        <th id="score">Progress<br></th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Initiator</th>
+                        <th>Reason</th>
+                        <th>Problem</th>
+                        <th>Origination Date</th>
+                        <th>Target Date</th>
+                        @*<th>Completion Date</th>*@
+                        <th>Rsponsible</th>
+                        <th id="score">Progress<br></th>
+                        <th>Actions</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+<input type="hidden" id="DataUrl" value="@Url.Action("AddOrEdit","action")" />
+<input type="hidden" id="DeleteUrl" value="@Url.Action("Delete","action")" />
+
