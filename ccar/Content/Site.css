@@ -1,8 +1,17 @@
-﻿body {
+﻿
+.star {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     align-content: center;
-
+;
 }
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
  padding:40px;
@@ -54,6 +63,12 @@ textarea {
     background-size: cover;
     background-position: 50% 50%;
     background-repeat: no-repeat;
+}
+
+.navbar {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
 }
 #signupbox{
     text-decoration-color:red !important;
@@ -334,7 +349,7 @@ ul.nav.nav-tabs li.active a {
 }
 
 body {
-    margin-top: 20px;
+  
     background: #eee;
 }
 
@@ -447,5 +462,53 @@ p, .p {
 
 .head-icon {
     margin-top: 18px;
-    color: #FF4500
+    color: #FF4500;
+}
+.rounded-circle {
+    height: 90px;
+    margin-top: -45px;
+    width: 90px;
+}
+#circle1st {
+    background: url('../images/vw3.png');
+    background-position: center !important;
+    background-size: contain !important;
+}
+#circle2nd {
+    background: url('../images/vw3.png');
+    background-position: center !important;
+    background-size: contain !important;
+}
+#circle3rd {
+    background: url('../images/vw3.png');
+    background-position: center !important;
+    background-size: contain !important;
+}
+#circle4th {
+    background: url('../images/skoda.png');
+    background-position: center !important;
+    background-size: contain !important;
+}
+.shortDesc{
+    min-height:80px;
+}
+#reunion {
+    background: url('../images/reunion.png');
+    background-position: center !important;
+    background-size: contain !important;
+}
+#checklist {
+    background: url('../images/checklist.png');
+    background-position: center !important;
+    background-size: contain !important;
+}
+.goomeetings 
+{
+    margin-bottom: 30px !important;
+    margin-bottom: 40px !important;
+    background-color: lightcoral !important;
+    color: white !important;
+    height: 50px !important;
+    width: 200px !important;
+    font-size: 18px !important;
 }

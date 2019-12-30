@@ -1,6 +1,7 @@
 ﻿PRIORYTET 1.
 _____________________________________________________________
-1. Zafixowac reason = 26 z modułu Krzyska
+1. zafixowac reason = 26 z modułu krzyska _ DONE
+2. dodac moduly projektowe
 
 
 PRIORYTET 2

@@ -169,6 +169,25 @@ namespace ccar.Models
         #endregion
 
 
+        public static List<actionViewCustom> fromLayoutActionsCustomDB(List<actionViewCustom> aList)
+        {
+            List<actionViewCustom> actionList = aList.Select(x => new actionViewCustom()
+            {
+                id = x.id,
+                reason = x.reason,
+                problem = x.problem,
+                Initiator = x.Initiator,
+                originationDate = x.originationDate,
+                /*rootCause = x.rootCause, correctiveAction = x.correctiveAction,*/
+                targetDate = x.targetDate,
+                completionDate = x.completionDate,
+                responsible = x.responsible,
+                progressValue = x.progressValue,
+                /*, measureEffic = x.measureEffic , dateOfEffic = x.dateOfEffic*/
+                Status = x.Status
+            }).ToList();
+            return actionList;
+        }
 
         public static actions ConvertToActionsFromDb(ActionModel a)
         {

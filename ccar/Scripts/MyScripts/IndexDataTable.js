@@ -31,7 +31,7 @@ $(document).ready(function () {
         },
 
         "ajax": {
-            "url": "/Action/GetData",
+            "url": "/Action/GetData"  ,    
             "type": "GET",
             "datatype": "json"
         },

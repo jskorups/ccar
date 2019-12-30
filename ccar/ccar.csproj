@@ -160,6 +160,9 @@
     <Compile Include="actionView.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="actionViewCustom.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="actionViewDone.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
@@ -370,12 +373,16 @@
     <Content Include="images\pin.png" />
     <Content Include="images\register.png" />
     <Content Include="images\resetpass.png" />
+    <Content Include="images\skoda.png" />
     <Content Include="images\succes.png" />
     <Content Include="images\presentation.png" />
     <Content Include="images\taskCircle.png" />
     <Content Include="images\top.png" />
+    <Content Include="images\vw3.png" />
+    <Content Include="images\vw3.svg" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\MyScripts\GetDataProject.js" />
     <Content Include="Scripts\MyScripts\IndexDataTableLayoutDone.js" />
     <Content Include="Scripts\MyScripts\layoutAdd.js" />
     <Content Include="Scripts\MyScripts\actionAdd.js" />
@@ -447,7 +454,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\particles.json" />
     <Content Include="Views\Login\Logowanie.cshtml" />
-    <Content Include="Views\Action\Index.cshtml" />
+    <Content Include="Views\Action\General.cshtml" />
     <Content Include="Views\Action\AddOrEdit.cshtml" />
     <Content Include="Views\Reason\AddOrEditRsn.cshtml" />
     <Content Include="Views\typeOfAction\AddOrEditToA.cshtml" />
@@ -512,12 +519,15 @@
     <Content Include="Views\Layout\RowDetailsPartial.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\CCARprojects\Index.cshtml" />
+    <Content Include="Views\CCARprojects\GetData.cshtml" />
+    <Content Include="Views\Action\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="dd\" />
     <Folder Include="Views\MeetingActionsDetails\" />
     <Folder Include="Views\MeetingActions\" />
+    <Folder Include="Views\Projects\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

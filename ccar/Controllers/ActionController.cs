@@ -28,6 +28,14 @@ namespace ccar.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public ActionResult General()
+        {
+
+            return View();
+        }
+
         [Authorize]
 
 
