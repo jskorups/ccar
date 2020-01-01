@@ -21,6 +21,7 @@ namespace ccar
         public Nullable<System.DateTime> originationDate { get; set; }
         public Nullable<int> idTypeOfAction { get; set; }
         public string problem { get; set; }
+        public string problemLong { get; set; }
         public string rootCause { get; set; }
         public string correctiveAction { get; set; }
         public Nullable<int> idResponsible { get; set; }

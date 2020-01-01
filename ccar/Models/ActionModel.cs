@@ -36,12 +36,17 @@ namespace ccar.Models
         [StringLength(30, ErrorMessage ="Maximum 30 characters.")]
         public string problem { get; set; }
 
-        [Required(ErrorMessage = "Required")]
-        [StringLength(200, ErrorMessage = "Maximum 200 characters.")]
-        public string rootCause { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [StringLength(200, ErrorMessage = "Maximum 200 characters.")]
+        [StringLength(300, ErrorMessage = "Maximum 300 characters.")]
+        public string problemLong { get; set; }
+
+        //[Required(ErrorMessage = "Required")]
+        //[StringLength(200, ErrorMessage = "Maximum 200 characters.")]
+        public string rootCause { get; set; }
+
+        //[Required(ErrorMessage = "Required")]
+        //[StringLength(200, ErrorMessage = "Maximum 200 characters.")]
         public string correctiveAction { get; set; }
 
         [Range(1, float.MaxValue, ErrorMessage = "Required")]
@@ -199,6 +204,7 @@ namespace ccar.Models
             act.originationDate = a.originationDate;
             act.idTypeOfAction = a.idTypeOfAction;
             act.problem = a.problem;
+            act.problemLong = a.problemLong;
             act.rootCause = a.rootCause;
             act.correctiveAction = a.correctiveAction;
             act.idResponsible = a.idResponsible;
@@ -222,6 +228,7 @@ namespace ccar.Models
             act.originationDate = a.originationDate;
             act.idTypeOfAction = a.idTypeOfAction;
             act.problem = a.problem;
+            act.problemLong = a.problemLong;
             act.rootCause = a.rootCause;
             act.correctiveAction = a.correctiveAction;
             act.idResponsible = a.idResponsible;

@@ -22,7 +22,7 @@ namespace ccar.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index2()
+        public ActionResult GeneralDone()
         {
 
             return View();
@@ -46,7 +46,7 @@ namespace ccar.Controllers
             using (ccarEntities ent = new ccarEntities())
             {
                 List<actionView> actList = new List<actionView>();
-
+                //actList = ent.actionView.ToList();
                 actList = ActionModel.fromActionsDB(ent.actionView.ToList());
                 return Json(new { data = actList }, JsonRequestBehavior.AllowGet);
             }

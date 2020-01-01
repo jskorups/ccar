@@ -157,6 +157,9 @@
     <Compile Include="actionsLayout.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="actionsMeetings.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="actionView.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
@@ -199,6 +202,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ccarMMdaneEF.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ControllerActionMeetings\ActionMeetingsController.cs" />
     <Compile Include="ControllerCCARprojects\CCARprojectsController.cs" />
     <Compile Include="ControllerLayout\LayoutController.cs" />
     <Compile Include="ControllersMM\MeetingController.cs" />
@@ -233,6 +237,7 @@
     <Compile Include="ModelsMM\MMViewModels\AddMeetingViewModel.cs" />
     <Compile Include="ModelsMM\ProjectModel.cs" />
     <Compile Include="ModelsMM\UserModel.cs" />
+    <Compile Include="Models\ActionMeetingsModel.cs" />
     <Compile Include="Models\ActionModel.cs" />
     <Compile Include="ModelsMM\MeetingModel.cs" />
     <Compile Include="Models\PasswordResetModel.cs" />
@@ -363,6 +368,7 @@
     <Content Include="images\breakdown.png" />
     <Content Include="images\checklist.png" />
     <Content Include="images\chrome.png" />
+    <Content Include="images\db.JPG" />
     <Content Include="images\details_close.png" />
     <Content Include="images\details_open.png" />
     <Content Include="images\diagram.png" />
@@ -383,6 +389,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\MyScripts\GetDataProject.js" />
+    <Content Include="Scripts\MyScripts\Meetings.js" />
     <Content Include="Scripts\MyScripts\IndexDataTableLayoutDone.js" />
     <Content Include="Scripts\MyScripts\layoutAdd.js" />
     <Content Include="Scripts\MyScripts\actionAdd.js" />
@@ -468,7 +475,7 @@
     <Content Include="Views\typeOfAction\Create.cshtml" />
     <Content Include="Views\typeOfAction\Edit.cshtml" />
     <Content Include="Views\typeOfAction\Delete.cshtml" />
-    <Content Include="Views\Action\Index2.cshtml" />
+    <Content Include="Views\Action\GeneralDone.cshtml" />
     <Content Include="Views\Responsible\ResponsiblesList.cshtml" />
     <Content Include="Views\Responsible\Create.cshtml" />
     <Content Include="Views\Responsible\Edit.cshtml" />
@@ -521,6 +528,7 @@
     <Content Include="Views\CCARprojects\Index.cshtml" />
     <Content Include="Views\CCARprojects\GetData.cshtml" />
     <Content Include="Views\Action\Index.cshtml" />
+    <Content Include="Views\ActionMeetings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

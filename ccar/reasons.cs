@@ -18,6 +18,7 @@ namespace ccar
         public reasons()
         {
             this.actions = new HashSet<actions>();
+            this.actionsMeetings = new HashSet<actionsMeetings>();
         }
     
         public int id { get; set; }
@@ -25,5 +26,7 @@ namespace ccar
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<actions> actions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<actionsMeetings> actionsMeetings { get; set; }
     }
 }
