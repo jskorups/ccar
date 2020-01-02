@@ -163,9 +163,6 @@
     <Compile Include="actionView.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="actionViewCustom.cs">
-      <DependentUpon>ccarDaneEF.tt</DependentUpon>
-    </Compile>
     <Compile Include="actionViewDone.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>

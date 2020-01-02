@@ -38,7 +38,6 @@ namespace ccar
         public virtual DbSet<actionLayoutDoneView> actionLayoutDoneView { get; set; }
         public virtual DbSet<actionLayoutView> actionLayoutView { get; set; }
         public virtual DbSet<actionView> actionView { get; set; }
-        public virtual DbSet<actionViewCustom> actionViewCustom { get; set; }
         public virtual DbSet<actionViewDone> actionViewDone { get; set; }
     }
 }
