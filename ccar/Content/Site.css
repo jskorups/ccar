@@ -512,3 +512,11 @@ p, .p {
     width: 200px !important;
     font-size: 18px !important;
 }
+.downArrow {
+    /*background: url('../images/dowarrow.png');*/
+    background-color:red;
+    /*background-position: center !important;
+    background-size: contain !important;*/
+    width:40px;
+    height:60px;
+}

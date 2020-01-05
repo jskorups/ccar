@@ -50,51 +50,51 @@ namespace ccar.Models
         }
 
 
-        public void Save()
-        {
-            if (this.id == 0)
-            {
+        //public void Save()
+        //{
+        //    if (this.id == 0)
+        //    {
 
-                ccarEntities ent = new ccarEntities();
+        //        ccarEntities ent = new ccarEntities();
 
 
-                this.idInitiator = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.id).SingleOrDefault();
-                this.originationDate = DateTime.Now;
-                this.Status = 0;
+        //        this.idInitiator = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.id).SingleOrDefault();
+        //        this.originationDate = DateTime.Now;
+        //        this.Status = 0;
 
-                string Replaced = System.Environment.UserName.Replace('.', ' ');
-                CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
-                TextInfo textInfo = cultureInfo.TextInfo;
+        //        string Replaced = System.Environment.UserName.Replace('.', ' ');
+        //        CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+        //        TextInfo textInfo = cultureInfo.TextInfo;
 
-                this.originationDate = DateTime.Now;
-                //this.Initiator = (textInfo.ToTitleCase(Replaced));
-                //this.idInitiator = 1;
+        //        this.originationDate = DateTime.Now;
+        //        //this.Initiator = (textInfo.ToTitleCase(Replaced));
+        //        //this.idInitiator = 1;
 
-                ent.actions.Add(ActionModel.ConvertToActionsFromDb(this));
-                ent.SaveChanges();
-                //emailClass.CreateMailItem(UserModel.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
+        //        ent.actions.Add(ActionModel.ConvertToActionsFromDb(this));
+        //        ent.SaveChanges();
+        //        //emailClass.CreateMailItem(UserModel.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
 
-            }
-            else
-            {
-                ccarEntities ent = new ccarEntities();
+        //    }
+        //    else
+        //    {
+        //        ccarEntities ent = new ccarEntities();
 
-                if (this.idProgress == 5)
-                {
-                    this.completionDate = DateTime.Now;
-                }
+        //        if (this.idProgress == 5)
+        //        {
+        //            this.completionDate = DateTime.Now;
+        //        }
 
-                string Replaced = System.Environment.UserName.Replace('.', ' ');
-                CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
-                TextInfo textInfo = cultureInfo.TextInfo;
+        //        string Replaced = System.Environment.UserName.Replace('.', ' ');
+        //        CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+        //        TextInfo textInfo = cultureInfo.TextInfo;
 
-                this.Initiator = (textInfo.ToTitleCase(Replaced));
+        //        this.Initiator = (textInfo.ToTitleCase(Replaced));
 
-                ent.Entry(ActionModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
-                ent.SaveChanges();
+        //        ent.Entry(ActionModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
+        //        ent.SaveChanges();
 
-            }
-        }
+        //    }
+        //}
 
 
     }

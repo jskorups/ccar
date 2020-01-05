@@ -17,17 +17,17 @@ namespace ccar.ControllerProjects
         }
 
 
-        // get list with not done
-        //    [HttpGet]
-        //    public ActionResult GetData(int id)
-        //    {
-        //        using (ccarEntities ent = new ccarEntities())
-        //        {
-        //            List<actionViewCustom> actList = new List<actionViewCustom>();
+       
+           [HttpGet]
+            public ActionResult GetData(int id)
+        {
+            using (ccarEntities ent = new ccarEntities())
+            {
+                List<actionViewCustom> actList = new List<actionViewCustom>();
 
-        //            actList = ActionModel.fromLayoutActionsCustomDB(ent.actionViewCustom.Where(x=>x.idReason == id).ToList());
-        //            return Json(new { data = actList }, JsonRequestBehavior.AllowGet);
-        //        }
-        //    }
+                actList = ActionModel.fromLayoutActionsCustomDB(ent.actionViewCustom.Where(x => x.idReason == id).ToList());
+                return Json(new { data = actList }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

@@ -163,6 +163,9 @@
     <Compile Include="actionView.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="actionViewCustom.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="actionViewDone.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
@@ -370,6 +373,7 @@
     <Content Include="images\details_open.png" />
     <Content Include="images\diagram.png" />
     <Content Include="images\discussion.png" />
+    <Content Include="images\downarrow.png" />
     <Content Include="images\fail.png" />
     <Content Include="images\map.png" />
     <Content Include="images\pF.jpg" />

@@ -38,15 +38,15 @@ namespace ccar.Models
 
 
         [Required(ErrorMessage = "Required")]
-        [StringLength(300, ErrorMessage = "Maximum 300 characters.")]
+        [StringLength(300, ErrorMessage = "Maximum 500 characters.")]
         public string problemLong { get; set; }
 
-        //[Required(ErrorMessage = "Required")]
-        //[StringLength(200, ErrorMessage = "Maximum 200 characters.")]
+        [Required(ErrorMessage = "Required")]
+        [StringLength(500, ErrorMessage = "Maximum 500 characters.")]
         public string rootCause { get; set; }
 
-        //[Required(ErrorMessage = "Required")]
-        //[StringLength(200, ErrorMessage = "Maximum 200 characters.")]
+        [Required(ErrorMessage = "Required")]
+        [StringLength(500, ErrorMessage = "Maximum 500 characters.")]
         public string correctiveAction { get; set; }
 
         [Range(1, float.MaxValue, ErrorMessage = "Required")]
@@ -289,14 +289,15 @@ namespace ccar.Models
 
                 if (this.idProgress == 5)
                 {
+                    this.Status = 1;
                     this.completionDate = DateTime.Now;
                 }
 
-                string Replaced = System.Environment.UserName.Replace('.', ' ');
-                CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
-                TextInfo textInfo = cultureInfo.TextInfo;
+                //string Replaced = System.Environment.UserName.Replace('.', ' ');
+                //CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+                //TextInfo textInfo = cultureInfo.TextInfo;
 
-                this.Initiator = (textInfo.ToTitleCase(Replaced));
+                //this.Initiator = (textInfo.ToTitleCase(Replaced));
 
                 ent.Entry(ActionModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
                     ent.SaveChanges();

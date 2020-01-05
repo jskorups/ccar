@@ -34,6 +34,7 @@ $(document).ready(function () {
             "url": "/CCARprojects/GetData/" + id,
             "type": "GET",
             "datatype": "json"
+            
         },
         "columns": [
             //{

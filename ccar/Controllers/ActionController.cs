@@ -118,6 +118,7 @@ namespace ccar.Controllers
                 try
                 {
                     Act.Save();
+                    #region Sending mail
                     var email = UserModel.getEmailAdress(Act.idResponsible);               
                     //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
 
@@ -137,6 +138,7 @@ namespace ccar.Controllers
                     body = body.Replace("{TargetDate}", Act.targetDate.ToString());
 
                     emailClass.CreateMailItem(email, body, subjectMail);
+                    #endregion
                 }
                 catch (Exception ex)
                 {
@@ -148,6 +150,7 @@ namespace ccar.Controllers
                 try
                 {
                     Act.Save();
+                   
                 }
                 catch (Exception ex)
                 {
