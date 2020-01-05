@@ -380,6 +380,7 @@
     <Content Include="images\pin.png" />
     <Content Include="images\register.png" />
     <Content Include="images\resetpass.png" />
+    <Content Include="images\reunion.png" />
     <Content Include="images\skoda.png" />
     <Content Include="images\succes.png" />
     <Content Include="images\presentation.png" />
