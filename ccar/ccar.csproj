@@ -397,6 +397,7 @@
     <Content Include="Scripts\MyScripts\IndexDataTableDone.js" />
     <Content Include="Scripts\MyScripts\IndexDataTableLayout.js" />
     <Content Include="Scripts\MyScripts\IndexDataTableMM.js" />
+    <Content Include="sql.txt" />
     <Content Include="ToDoList.txt" />
     <Content Include="notes.txt" />
     <Content Include="Scripts\app.js" />
