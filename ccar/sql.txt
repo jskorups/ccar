@@ -1,0 +1,12 @@
+﻿actionViewCustom
+
+SELECT        dbo.actions.id, dbo.reasons.reason, dbo.actions.problem, us3.firstname + ' ' + us3.surname AS Initiator, dbo.actions.originationDate, dbo.actions.targetDate, dbo.actions.completionDate, 
+                         us2.FirstName + ' ' + us2.Lastname AS responsible, dbo.progress.progressValue, dbo.actions.Status, dbo.actions.idReason
+FROM            dbo.actions INNER JOIN
+                         dbo.users AS us ON us.id = dbo.actions.idInitiator INNER JOIN
+                         dbo.responsibles AS us2 ON us2.id = dbo.actions.idResponsible INNER JOIN
+                         dbo.users AS us3 ON us3.id = dbo.actions.idInitiator INNER JOIN
+                         dbo.progress ON dbo.progress.id = dbo.actions.idProgress INNER JOIN
+                         dbo.reasons ON dbo.reasons.id = dbo.actions.idReason
+WHERE        (dbo.progress.progressValue <> '100%') OR
+                         (dbo.actions.Status = 0)
