@@ -5,7 +5,7 @@ $(document).ready(function () {
     dataTable = $('#actionMeetings').DataTable({
         initComplete: function () {
 
-            this.api().columns([3]).every(function () {
+            this.api().columns([1,2,3]).every(function () {
                 var column = this;
                 var select = $('<select><option value="">Show all</option></select>')
                     .appendTo($(column.header()))
@@ -36,12 +36,12 @@ $(document).ready(function () {
             "datatype": "json"
         },
         "columns": [
-            //{
-            //    "className": 'details-control',
-            //    "data": null,
-            //    "defaultContent": "",
-            //    width: "15px"
-            //},
+            {
+                "className": 'details-control',
+                "data": null,
+                "defaultContent": "",
+                width: "15px"
+            },
             //{ "data": "Initiator" },
             //{ "data": "idReason" },
             { "data": "reason" },
@@ -53,8 +53,8 @@ $(document).ready(function () {
                 }
             },
 
-            { "data": "initiatorId" },
-            { "data": "attendanceList" }
+            { "data": "Initiator" }
+            //{ "data": "attendanceList" }
 
             //{
             //    "data": "id", "render": function (dane) {
@@ -72,13 +72,13 @@ $(document).ready(function () {
         "language": {
             "emptyTable": "No data found, Pleas click on <b> Add New Button</b>"
         },
-        "pageLength": 100
+        "pageLength": 10
 
     });
 
 
 
-    $('#actionTable tbody').on('click', 'td.details-control', function () {
+    $('#actionMeetings tbody').on('click', 'td.details-control', function () {
 
         var tr = $(this).closest('tr');
         var tdi = tr.find("i.fa");
@@ -108,7 +108,7 @@ $(document).ready(function () {
 
 function format(d) {
     // `d` is the original data object for the row
-    var rowDetail = $.ajax({ type: "GET", url: "/Action/RowDetailsPartial?id=" + d.id, async: false }).responseText;
+    var rowDetail = $.ajax({ type: "GET", url: "/ActionMeetings/RowDetailsPartial?id=" + d.id, async: false }).responseText;
     return rowDetail;
 }
 
@@ -148,9 +148,9 @@ function Kespa(url) {
             Popup = formDiv.dialog({
                 autoOpen: true,
                 resizable: false,
-                title: 'Fill Actions Details',
+                title: 'Fill Meeting Details',
                 height: 650,
-                width: 1200,
+                width: 600,
                 close: function () {
                     Popup.dialog('destroy').remove();
                 }

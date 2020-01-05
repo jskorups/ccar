@@ -15,7 +15,10 @@
 
             <button class="btn btn-outline-primary addBtn" onclick="Kespa('@Url.Action("AddOrEdit","Action")')" )><i class="fa fa-plus-square"></i> Add new action</button>
             <button class="btn btn-outline-primary completedBtn" onclick="location.href='@Url.Action("GeneralDone", "Action")'" )><i class="fa fa-check"></i> Show completed</button>
-            <button class="btn btn-outline-primary goomeetings" onclick="location.href='@Url.Action("Meetings", "Action")'" )><i class="fa fa-users"></i> Show meetings</button>
+            <button class="btn btn-outline-primary goomeetings" onclick="location.href='@Url.Action("Index", "ActionMeetings")'" )><i class="fa fa-users"></i> Show meetings</button>
+
+
+         
 
             <table id="actionTable" class="table table-striped table-bordered" style="width:1600px;">
                 <thead>

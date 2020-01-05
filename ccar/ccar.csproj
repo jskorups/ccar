@@ -391,6 +391,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\MyScripts\GetDataProject.js" />
+    <Content Include="Scripts\MyScripts\meetingAdd.js" />
     <Content Include="Scripts\MyScripts\Meetings.js" />
     <Content Include="Scripts\MyScripts\IndexDataTableLayoutDone.js" />
     <Content Include="Scripts\MyScripts\layoutAdd.js" />
@@ -532,6 +533,8 @@
     <Content Include="Views\CCARprojects\GetData.cshtml" />
     <Content Include="Views\Action\Index.cshtml" />
     <Content Include="Views\ActionMeetings\Index.cshtml" />
+    <Content Include="Views\ActionMeetings\RowDetailsPartial.cshtml" />
+    <Content Include="Views\ActionMeetings\AddOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
