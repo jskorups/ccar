@@ -1,0 +1,66 @@
+﻿@model ccar.Models.ActionMeetingsModel
+
+@{
+    /**/
+
+    Layout = null;
+}
+<script src="~/Scripts/MyScripts/meetingAdd.js"></script>
+
+@using (Html.BeginForm("AddOrEdit", "ActionMeetings", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+{
+    @*@Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.originationDate)
+        @Html.HiddenFor(model => model.idInitiator)
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @id = "koko" })*@
+
+
+    <div class="form-group container" style="width:500px;">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                @Html.Label("Reason*", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.reason, null, new { @class = "koko" })
+                @{
+                    var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
+                    listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
+                }
+                @Html.DropDownListFor(model => model.reason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-4 mb-4">
+                @Html.Label("Attendance list", new { @class = "control-label" })
+                @Html.TextAreaFor(model => model.attendanceList, 10, 40, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.attendanceList, null, new { @class = "koko" })
+
+            </div>
+
+        </div>
+
+
+
+        <div class="form-group container" style="width:500px;">
+            <div class="row">
+                <div class="col-md-2 mb-2 text-center">
+                    <input type="submit" value="Submit" class="btn btn-success" style="width:100px; height:40px" />
+
+                </div>
+                <div class="col-md-1 mb-1 text-center">
+                   
+
+                </div>
+                <div class="col-md-2 mb-2 text-center">
+
+                    <input type="reset" value="Reset" class="btn btn-danger" style="width:100px; height:40px" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+}
+
