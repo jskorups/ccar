@@ -63,32 +63,14 @@ namespace ccar.ControllerActionMeetings
         [HttpPost]
         public ActionResult AddOrEdit(ActionMeetingsModel Act)
         {
-            if (Act.id == 0)
-            {
-                //try
-                //{
-                    Act.Save();
-                    
-                //}
-                //catch (Exception ex)
-                //{
-                //    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-                //}
-            }
-            //else if (Act.id != 0)
-            //{
-            //    try
-            //    {
-            //        Act.Save();
+     
+          Act.Save();
+          return Json(new { succes = false }, JsonRequestBehavior.AllowGet);
 
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-            //    }
-            //}
 
-            return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
+
+
+
         }
 
 

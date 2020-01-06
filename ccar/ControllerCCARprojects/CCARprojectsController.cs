@@ -16,10 +16,17 @@ namespace ccar.ControllerProjects
             return View();
         }
 
+        // GET: Projects
+        public ActionResult General(int id)
+        {
+            GeneralModel mod = new GeneralModel();
+            mod.Id = id;
+            return View(mod);
+        }
 
-       
-           [HttpGet]
-            public ActionResult GetData(int id)
+
+        [HttpGet]
+        public ActionResult GetData(int id)
         {
             using (ccarEntities ent = new ccarEntities())
             {
@@ -30,4 +37,10 @@ namespace ccar.ControllerProjects
             }
         }
     }
+
+    public class GeneralModel
+    {
+        public int Id { get; set; }
+    }
+
 }

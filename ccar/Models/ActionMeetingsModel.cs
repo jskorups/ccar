@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -69,7 +70,7 @@ namespace ccar.Models
             actionsMeetings act = new actionsMeetings();
             act.attendanceList = a.attendanceList;
             act.originationDate = a.originationDate;
-            act.idReason = ent.reasons.Where(x => x. == a.reason).Select(x => x.id).SingleOrDefault();
+            act.idReason = ent.reasons.Where(x => x.reason == a.reason).Select(x => x.id).SingleOrDefault();
             act.initiatorId = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.id).SingleOrDefault();
 
             return act;
@@ -83,31 +84,18 @@ namespace ccar.Models
 
                 ccarEntities ent = new ccarEntities();
 
-                //this.Initiator = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => (x.firstname + " " + x.surname)).SingleOrDefault();
                 this.originationDate = DateTime.Now;
-
-                ent.actionsMeetings.Add(ActionMeetingsModel.ConvertToActionsFromDb(this));
+                actionsMeetings mod = new actionsMeetings();
+                mod = ActionMeetingsModel.ConvertToActionsFromDb(this);
+                ent.actionsMeetings.Add(mod);
                 ent.SaveChanges();
-                //emailClass.CreateMailItem(UserModel.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
 
             }
             else
             {
-                //ccarEntities ent = new ccarEntities();
-
-                //if (this.idProgress == 5)
-                //{
-                //    this.completionDate = DateTime.Now;
-                //}
-
-                //string Replaced = System.Environment.UserName.Replace('.', ' ');
-                //CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
-                //TextInfo textInfo = cultureInfo.TextInfo;
-
-                //this.Initiator = (textInfo.ToTitleCase(Replaced));
-
-                //ent.Entry(ActionModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
-                //ent.SaveChanges();
+                ccarEntities ent = new ccarEntities();
+                ent.Entry(ActionMeetingsModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
+                ent.SaveChanges();
 
             }
         }

@@ -26,7 +26,7 @@
                     var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
                     listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
                 }
-                @Html.DropDownListFor(model => model.reason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.reason, new SelectList(listTempReason,"reason", "reason"), new { @class = "form-control" })
             </div>
         </div>
         <div class="row">

@@ -5,7 +5,7 @@ $(document).ready(function () {
     dataTable = $('#projectTable').DataTable({
         initComplete: function () {
 
-            this.api().columns([2]).every(function () {
+            this.api().columns([3]).every(function () {
                 var column = this;
                 var select = $('<select><option value="">Show all</option></select>')
                     .appendTo($(column.header()))
@@ -31,7 +31,7 @@ $(document).ready(function () {
         },
 
         "ajax": {
-            "url": "/CCARprojects/GetData/" + id,
+            "url": "/CCARprojects/GetData" ,
             "type": "GET",
             "datatype": "json"
             
@@ -61,7 +61,8 @@ $(document).ready(function () {
                 }
             },
             { "data": "responsible" },
-            { "data": "progressValue" },
+            { 
+                "data": "progressValue" },
 
             {
                 //"data": "id", "render": function (dane) {
@@ -105,11 +106,11 @@ $(document).ready(function () {
     //    }
     //});
 
-    dataTable.on("user-select", function (e, dt, type, cell, originalEvent) {
-        if ($(cell.node()).hasClass("details-control")) {
-            e.preventDefault();
-        }
-    });
+    //dataTable.on("user-select", function (e, dt, type, cell, originalEvent) {
+    //    if ($(cell.node()).hasClass("details-control")) {
+    //        e.preventDefault();
+    //    }
+    //});
 });
 
 

@@ -24,7 +24,7 @@
                 @Html.ValidationMessageFor(model => model.problem, null, new { @class = "koko" })
                 @Html.EditorFor(model => model.problem, new { htmlAttributes = new { @class = "form-control" } })
             </div>
-            <div class="col-md-3 mb-3">
+            <div class="col-md-2 mb-2">
                 @Html.Label("Reason*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.idReason, null, new { @class = "koko" })
 
@@ -40,7 +40,7 @@
             @Html.Label("More", new { @class = "control-label" })
             <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
         </div>*@
-            <div class="col-md-2 mb-2" style="margin-left:-20px;">
+            <div class="col-md-3 mb-3" style="margin-left:-20px;">
 
                 @Html.Label("Type of action*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.idTypeOfAction, null, new { @class = "koko" })
@@ -80,20 +80,23 @@
         <div class="row">
             <div class="col-md-4 mb-4">
                 @Html.Label("Problem detail(long)", new { @class = "control-label" })
-                @Html.TextAreaFor(model => model.problemLong, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.problemLong, null, new { @class = "koko" })
+                @Html.TextAreaFor(model => model.problemLong, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
+
 
             </div>
             <div class="col-md-4 mb-4">
                 @Html.Label("Root Cause", new { @class = "control-label" })
-                @Html.TextAreaFor(model => model.rootCause, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.rootCause, null, new { @class = "koko" })
+                @Html.TextAreaFor(model => model.rootCause, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
+
 
             </div>
             <div class="col-md-4 mb-4">
                 @Html.Label("Corrective Action", new { @class = "control-label" })
-                @Html.TextAreaFor(model => model.correctiveAction, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.correctiveAction, null, new { @class = "koko" })
+                @Html.TextAreaFor(model => model.correctiveAction, 5, 39, new { htmlAttributes = new { @class = "form-control" } })
+
             </div>
         </div>
     </div>
@@ -106,7 +109,7 @@
                 @Html.EditorFor(model => model.targetDate, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="col-md-4 mb-4">
-                @Html.Label("Progress*", new { @class = "control-label" })
+                @Html.Label("Progress", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.idProgress, null, new { @class = "koko" })
                 @Html.DropDownListFor(model => model.idProgress, new SelectList(ccar.Models.ProgressModel.GetProgressList().OrderBy(x => x.id), "id", "progressValue"), new { @class = "form-control" })
             </div>
