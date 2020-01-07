@@ -53,19 +53,19 @@ $(document).ready(function () {
                 }
             },
 
-            { "data": "Initiator" }
+            { "data": "Initiator" },
             //{ "data": "attendanceList" }
 
-            //{
-            //    "data": "id", "render": function (dane) {
+            {
+                "data": "id", "render": function (dane) {
 
-            //        var msg = $.ajax({ type: "GET", url: "/Action/EditDeletePartial?id=" + dane, async: false }).responseText;
-            //        return msg;
-            //    },
-            //    "orderable": false,
-            //    "searchable": true,
-            //    "width": "150px"
-            //}
+                    var msg = $.ajax({ type: "GET", url: "/ActionMeetings/EditDeletePartial?id=" + dane, async: false }).responseText;
+                    return msg;
+                },
+                "orderable": false,
+                "searchable": true,
+                "width": "150px"
+            }
 
       
         ],

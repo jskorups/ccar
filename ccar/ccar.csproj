@@ -535,6 +535,7 @@
     <Content Include="Views\ActionMeetings\Index.cshtml" />
     <Content Include="Views\ActionMeetings\RowDetailsPartial.cshtml" />
     <Content Include="Views\ActionMeetings\AddOrEdit.cshtml" />
+    <Content Include="Views\ActionMeetings\EditDeletePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

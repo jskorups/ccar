@@ -56,7 +56,7 @@ namespace ccar.ControllerActionMeetings
             }
         }
         #endregion
-        #region Add or Edit
+        #region Add or Edit - POST
 
         // post do add or edit
         [Authorize]
@@ -64,10 +64,35 @@ namespace ccar.ControllerActionMeetings
         public ActionResult AddOrEdit(ActionMeetingsModel Act)
         {
      
-          Act.Save();
-          return Json(new { succes = false }, JsonRequestBehavior.AllowGet);
+          //Act.Save();
+          //return Json(new { succes = false }, JsonRequestBehavior.AllowGet);
 
+            if (Act.id == 0)
+            {
+                try
+                {
+                    Act.Save();
+                   
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else if (Act.id != 0)
+            {
+                try
+                {
+                    Act.Save();
 
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
 
 
 
@@ -75,5 +100,20 @@ namespace ccar.ControllerActionMeetings
 
 
         #endregion
+
+        #region  PartialView - Edit/Delete
+        // get partial view for edit or delete
+        public PartialViewResult EditDeletePartial(int id)
+        {
+            //odkomentowac
+            //ccarEntities ent = new ccarEntities();
+            //actions act = ent.actions.Where(x => x.id == id).FirstOrDefault();
+            //return PartialView(act);
+
+            ViewBag.id = id; // zakomentowac
+            return PartialView();
+        }
+        #endregion
+
     }
 }
