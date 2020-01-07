@@ -69,11 +69,11 @@ $(document).ready(function () {
             { "data": "progressValue" },
 
             {
-                //"data": "id", "render": function (dane) {
+                "data": "id", "render": function (dane) {
 
-                //    var msg = $.ajax({ type: "GET", url: "/Action/EditDeletePartial?id=" + dane, async: false }).responseText;
-                //    return msg;
-                //},
+                    var msg = $.ajax({ type: "GET", url: "/Action/EditDeletePartial?id=" + dane, async: false }).responseText;
+                    return msg;
+                },
                 "orderable": false,
                 "searchable": true,
                 "width": "150px"

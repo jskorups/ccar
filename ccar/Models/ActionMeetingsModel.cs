@@ -68,6 +68,7 @@ namespace ccar.Models
             ccarEntities ent = new ccarEntities();
 
             actionsMeetings act = new actionsMeetings();
+            act.id = a.id;
             act.attendanceList = a.attendanceList;
             act.originationDate = a.originationDate;
             act.idReason = ent.reasons.Where(x => x.reason == a.reason).Select(x => x.id).SingleOrDefault();
@@ -94,8 +95,12 @@ namespace ccar.Models
             else
             {
                 ccarEntities ent = new ccarEntities();
+                this.originationDate = DateTime.Now;
                 ent.Entry(ActionMeetingsModel.ConvertToActionsFromDb(this)).State = EntityState.Modified;
                 ent.SaveChanges();
+
+
+
 
             }
         }

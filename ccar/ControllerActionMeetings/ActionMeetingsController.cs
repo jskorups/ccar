@@ -81,15 +81,15 @@ namespace ccar.ControllerActionMeetings
             }
             else if (Act.id != 0)
             {
-                try
-                {
+                //try
+                //{
                     Act.Save();
 
-                }
-                catch (Exception ex)
-                {
-                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                //}
             }
 
             return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
@@ -114,6 +114,17 @@ namespace ccar.ControllerActionMeetings
             return PartialView();
         }
         #endregion
-
+        #region Delete
+        [Authorize]
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            ccarEntities ent = new ccarEntities();
+            actionsMeetings act = ent.actionsMeetings.Find(id);
+            ent.actionsMeetings.Remove(act);
+            ent.SaveChanges();
+            return Json(new { succes = true, message = "Delete Sucessfully" }, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }
