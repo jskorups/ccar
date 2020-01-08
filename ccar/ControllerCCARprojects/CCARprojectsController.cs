@@ -39,9 +39,6 @@ namespace ccar.ControllerProjects
     }
 
 
-
-
-
     public class GeneralModel
     {
         public int Id { get; set; }

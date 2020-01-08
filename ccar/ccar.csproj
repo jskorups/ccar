@@ -204,7 +204,6 @@
     </Compile>
     <Compile Include="ControllerActionMeetings\ActionMeetingsController.cs" />
     <Compile Include="ControllerCCARprojects\CCARprojectsController.cs" />
-    <Compile Include="ControllerLayout\LayoutController.cs" />
     <Compile Include="ControllersMM\MeetingController.cs" />
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
