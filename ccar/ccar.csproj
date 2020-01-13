@@ -530,7 +530,7 @@
     <Content Include="Views\CCARprojects\Index.cshtml" />
     <Content Include="Views\CCARprojects\General.cshtml" />
     <Content Include="Views\Action\Index.cshtml" />
-    <Content Include="Views\ActionMeetings\Index.cshtml" />
+    <Content Include="Views\ActionMeetings\General.cshtml" />
     <Content Include="Views\ActionMeetings\RowDetailsPartial.cshtml" />
     <Content Include="Views\ActionMeetings\AddOrEdit.cshtml" />
     <Content Include="Views\ActionMeetings\EditDeletePartial.cshtml" />

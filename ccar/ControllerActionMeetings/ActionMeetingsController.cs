@@ -15,14 +15,24 @@ namespace ccar.ControllerActionMeetings
         {
             return View();        
         }
+
+        // GET: Projects
+        public ActionResult General(int? id)
+        {
+            GeneralModel mod = new GeneralModel();
+            mod.Id = id;
+            return View(mod);
+        }
+
+
         [HttpGet]
-        public ActionResult GetData()
+        public ActionResult GetData(int? id)
         {
             using (ccarEntities ent = new ccarEntities())
             {
                 List<ActionMeetingsModel> actList = new List<ActionMeetingsModel>();
                 //actList = ent.actionView.ToList();
-                actList = ActionMeetingsModel.fromActions(ent.actionsMeetings.ToList());
+                actList = ActionMeetingsModel.fromActions(ent.actionsMeetings.Where(x=>x.idReason == id).ToList());
                 return Json(new { data = actList }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -127,4 +137,11 @@ namespace ccar.ControllerActionMeetings
         }
         #endregion
     }
+
+    public class GeneralModel
+    {
+        public int? Id { get; set; }
+    }
+
+
 }
