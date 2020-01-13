@@ -1,10 +1,8 @@
-﻿PRIORYTET 1.
-_____________________________________________________________
-1. zafixowac reason = 26 z modułu krzyska _ DONE
-2. dodac moduly projektowe
+﻿prio 1
+_______
+dodac pole komenatarz dla meeting w general ccar
 
 
-PRIORYTET 2
 _____________________________________________________________
 1. zwracanie widoku  w razie zlego maila
 8. rozdzielic modele dla passwordResetModel, walidowac na osobnych modelach

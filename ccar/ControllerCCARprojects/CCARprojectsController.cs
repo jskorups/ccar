@@ -17,7 +17,7 @@ namespace ccar.ControllerProjects
         }
 
         // GET: Projects
-        public ActionResult General(int id)
+        public ActionResult General(int? id)
         {
             GeneralModel mod = new GeneralModel();
             mod.Id = id;
@@ -26,13 +26,20 @@ namespace ccar.ControllerProjects
 
 
         [HttpGet]
-        public ActionResult GetData(int id)
+        public ActionResult GetData(int? id)
         {
             using (ccarEntities ent = new ccarEntities())
             {
                 List<actionViewCustom> actList = new List<actionViewCustom>();
-
-                actList = ActionModel.fromLayoutActionsCustomDB(ent.actionViewCustom.Where(x => x.idReason == id).ToList());
+                if (id != null)
+                {
+                    actList = ActionModel.fromLayoutActionsCustomDB(ent.actionViewCustom.Where(x => x.idReason == id).ToList());
+                }
+                else
+                {
+                    actList = ActionModel.fromLayoutActionsCustomDB(ent.actionViewCustom.ToList());
+                }
+              
                 return Json(new { data = actList }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -41,7 +48,7 @@ namespace ccar.ControllerProjects
 
     public class GeneralModel
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
     }
 
 }
