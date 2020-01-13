@@ -12,9 +12,13 @@ namespace ccar.ControllerProjects
         // GET: Projects
         public ActionResult Index()
         {
-
+      
             return View();
         }
+
+
+
+
 
         // GET: Projects
         public ActionResult General(int? id)

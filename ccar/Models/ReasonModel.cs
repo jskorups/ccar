@@ -27,6 +27,13 @@ namespace ccar.Models
             return fromReason(ent.reasons.ToList());
         }
 
+
+        public static int getIdOfReason (string NameOfReason)
+        {
+            ccarEntities ent = new ccarEntities();
+            return ent.reasons.Where(x => x.reason == NameOfReason).Select(x => x.id).FirstOrDefault();
+        }
+
         public static string getNameOfReason(int? reasonId)
         {
             ccarEntities ent = new ccarEntities();
