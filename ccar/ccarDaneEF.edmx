@@ -17,8 +17,8 @@
           <Property Name="idTypeOfAction" Type="int" />
           <Property Name="problem" Type="nvarchar" MaxLength="50" />
           <Property Name="problemLong" Type="nvarchar" MaxLength="500" />
-          <Property Name="rootCause" Type="nvarchar" MaxLength="200" />
-          <Property Name="correctiveAction" Type="nvarchar" MaxLength="200" />
+          <Property Name="rootCause" Type="nvarchar" MaxLength="500" />
+          <Property Name="correctiveAction" Type="nvarchar" MaxLength="500" />
           <Property Name="idResponsible" Type="int" />
           <Property Name="targetDate" Type="datetime" />
           <Property Name="idProgress" Type="int" />
@@ -51,7 +51,7 @@
           <Property Name="idReason" Type="int" Nullable="false" />
           <Property Name="originationDate" Type="datetime" Nullable="false" />
           <Property Name="initiatorId" Type="int" Nullable="false" />
-          <Property Name="attendanceList" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="attendanceList" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="progress">
           <Key>
@@ -530,8 +530,8 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Property Name="idTypeOfAction" Type="Int32" />
           <Property Name="problem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="problemLong" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="rootCause" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="correctiveAction" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="rootCause" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="correctiveAction" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="idResponsible" Type="Int32" />
           <Property Name="targetDate" Type="DateTime" Precision="3" />
           <Property Name="idProgress" Type="Int32" />
@@ -573,7 +573,7 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Property Name="idReason" Type="Int32" Nullable="false" />
           <Property Name="originationDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="initiatorId" Type="Int32" Nullable="false" />
-          <Property Name="attendanceList" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="attendanceList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="reasons" Relationship="ccarModel.FK_actionsMeetings_reasons" FromRole="actionsMeetings" ToRole="reasons" />
         </EntityType>
         <EntityType Name="progress">

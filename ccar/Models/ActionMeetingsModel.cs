@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -10,10 +11,12 @@ namespace ccar.Models
     {
         public int id { get; set; }
         //public int idReason { get; set; }
+        [Required(ErrorMessage = "Required")]
         public string reason { get; set; }
         public DateTime originationDate { get; set; }
         //public int initiatorId { get; set; }
         public string Initiator { get; set; }
+        [Required(ErrorMessage = "Required")]
         public string attendanceList { get; set; }
 
 
