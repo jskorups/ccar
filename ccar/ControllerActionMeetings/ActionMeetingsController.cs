@@ -33,7 +33,23 @@ namespace ccar.ControllerActionMeetings
                 List<ActionMeetingsModel> actList = new List<ActionMeetingsModel>();
                 //actList = ent.actionView.ToList();
                 actList = ActionMeetingsModel.fromActions(ent.actionsMeetings.Where(x=>x.idReason == id).ToList());
+          
+
+           
+                if (id != null)
+                {
+                    actList = ActionMeetingsModel.fromActions(ent.actionsMeetings.Where(x => x.idReason == id).ToList());
+                }
+                else
+                {
+                    actList = ActionMeetingsModel.fromActions(ent.actionsMeetings.ToList());
+                }
+
                 return Json(new { data = actList }, JsonRequestBehavior.AllowGet);
+
+
+
+
             }
         }
         #endregion

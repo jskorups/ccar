@@ -203,7 +203,6 @@
       <DependentUpon>ccarMMdaneEF.edmx</DependentUpon>
     </Compile>
     <Compile Include="ControllerActionMeetings\ActionMeetingsController.cs" />
-    <Compile Include="ControllerCCARprojects\CCARprojectsController.cs" />
     <Compile Include="ControllersMM\MeetingController.cs" />
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -530,11 +529,12 @@
     <Content Include="Views\CCARprojects\Index.cshtml" />
     <Content Include="Views\CCARprojects\General.cshtml" />
     <Content Include="Views\Action\Index.cshtml" />
-    <Content Include="Views\ActionMeetings\General.cshtml" />
     <Content Include="Views\ActionMeetings\RowDetailsPartial.cshtml" />
     <Content Include="Views\ActionMeetings\AddOrEdit.cshtml" />
     <Content Include="Views\ActionMeetings\EditDeletePartial.cshtml" />
     <Content Include="Views\CCARprojects\ListaReasonow.cshtml" />
+    <Content Include="Views\ActionMeetings\General.cshtml" />
+    <Content Include="Views\Action\ProjectsIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

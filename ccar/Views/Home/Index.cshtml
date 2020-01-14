@@ -57,7 +57,7 @@
                         <p class="card-text">Attendance list for the meeting minutes. List of tasks accoring to projects.</p>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "CCARprojects")'">More</button>
+                        <button class="btn btn-primary" onclick="location.href='@Url.Action("ProjectsIndex", "Action")'">More</button>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,12 @@
                     <div class="card-footer">
 
                         @*<a class="card" href="@Url.Action("General", "CCARprojects", new { id = 26 })">*@
-                            <button class="btn btn-primary" onclick="location.href='@Url.Action("General", "CCARprojects", new { id = 26 })'">More</button>
+                        <button class="btn btn-primary" onclick="location.href='@Url.Action("General", "Action", new { id = ccar.Models.ReasonModel.getIdOfReason("Layout meetings") })'">More</button>
+
+
+               
+
+
                     </div>
                 </div>
             </div>

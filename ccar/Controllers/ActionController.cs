@@ -14,6 +14,15 @@ namespace ccar.Controllers
     {
         [Authorize]
 
+
+        [HttpGet]
+        public ActionResult ProjectsIndex()
+        {
+
+            return View();
+        }
+
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -30,10 +39,11 @@ namespace ccar.Controllers
 
 
         [HttpGet]
-        public ActionResult General()
+        public ActionResult General(int? id)
         {
-
-            return View();
+            GeneralModel mod = new GeneralModel();
+            mod.Id = id;
+            return View(mod);
         }
 
         [Authorize]
@@ -41,14 +51,27 @@ namespace ccar.Controllers
 
         // get list with not done
         [HttpGet]
-        public ActionResult GetData()
+        public ActionResult GetData(int? id)
         {
             using (ccarEntities ent = new ccarEntities())
             {
                 List<actionView> actList = new List<actionView>();
                 //actList = ent.actionView.ToList();
-                actList = ActionModel.fromActionsDB(ent.actionView.ToList());
+                //actList = ActionModel.fromActionsDB(ent.actionView.ToList());
+                
+
+
+                if (id != null)
+                {
+                    actList = ActionModel.fromActionsDB(ent.actionView.Where(x => x.idReason == id).ToList());
+                }
+                else
+                {
+                    actList = ActionModel.fromActionsDB(ent.actionView.ToList());
+                }
+
                 return Json(new { data = actList }, JsonRequestBehavior.AllowGet);
+
             }
         }
 
@@ -136,6 +159,7 @@ namespace ccar.Controllers
                     body = body.Replace("{ToA}", Act.TypeOfAction);
                     body = body.Replace("{Responsible}", ResponsibleModel.getNameOfResponsible(Act.idResponsible));
                     body = body.Replace("{TargetDate}", Act.targetDate.ToString());
+                    body = body.Replace("{ProLong}", Act.problemLong.ToString());
 
                     emailClass.CreateMailItem(email, body, subjectMail);
                     #endregion
@@ -171,4 +195,12 @@ namespace ccar.Controllers
             return Json(new { succes = true, message = "Delete Sucessfully" }, JsonRequestBehavior.AllowGet);
         }
     }
+
+    public class GeneralModel
+    {
+        public int? Id { get; set; }
+    }
+
+
+
 }
