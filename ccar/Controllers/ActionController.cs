@@ -136,10 +136,10 @@ namespace ccar.Controllers
         [HttpPost]
         public ActionResult AddOrEdit(ActionModel Act)
         {
-            if (Act.id == 0)
-            {
-                try
-                {
+            //if (Act.id == 0)
+            //{
+            //    try
+            //    {
                     Act.Save();
                     #region Sending mail
                     var email = UserModel.getEmailAdress(Act.idResponsible);               
@@ -163,24 +163,24 @@ namespace ccar.Controllers
 
                     emailClass.CreateMailItem(email, body, subjectMail);
                     #endregion
-                }
-                catch (Exception ex)
-                {
-                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-                }
-            }
-            else if (Act.id != 0)
-            {
-                try
-                {
-                    Act.Save();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            //    }
+            //}
+            //else if (Act.id != 0)
+            //{
+            //    try
+            //    {
+            //        Act.Save();
                    
-                }
-                catch (Exception ex)
-                {
-                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-                }
-            }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            //    }
+            //}
            
             return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
         }      

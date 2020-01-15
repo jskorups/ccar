@@ -196,9 +196,11 @@ namespace ccar.Models
 
         public static actions ConvertToActionsFromDb(ActionModel a)
         {
+            ccarEntities ent = new ccarEntities();
+
             actions act = new actions();
             act.id = a.id;
-            act.idReason = a.idReason;
+            act.idReason = ent.reasons.Where(x => x.reason == a.Reason).Select(x => x.id).FirstOrDefault();
             act.idInitiator = a.idInitiator;
             act.Initiator = a.Initiator;
             act.originationDate = a.originationDate;
@@ -207,7 +209,7 @@ namespace ccar.Models
             act.problemLong = a.problemLong;
             act.rootCause = a.rootCause;
             act.correctiveAction = a.correctiveAction;
-            act.idResponsible = a.idResponsible;
+            act.idResponsible = a.idResponsible;      
             act.targetDate = a.targetDate;
             act.idProgress = a.idProgress;
             act.completionDate = a.completionDate;
@@ -278,7 +280,10 @@ namespace ccar.Models
                 //this.Initiator = (textInfo.ToTitleCase(Replaced));
                 //this.idInitiator = 1;
 
-                ent.actions.Add(ActionModel.ConvertToActionsFromDb(this));
+                actions act = new actions();
+                act = ActionModel.ConvertToActionsFromDb(this);            
+                ent.actions.Add(act);
+                
                 ent.SaveChanges();
                 //emailClass.CreateMailItem(UserModel.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
 

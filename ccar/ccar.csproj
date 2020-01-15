@@ -386,6 +386,8 @@
     <Content Include="images\top.png" />
     <Content Include="images\vw3.png" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\jquery-editable-select.css" />
+    <Content Include="Scripts\jquery-editable-select.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\MyScripts\jquery-editable-select.css" />
     <Content Include="Scripts\MyScripts\jquery-editable-select.js" />
