@@ -37,15 +37,15 @@ namespace ccar.Models
         public string problem { get; set; }
 
 
-        [Required(ErrorMessage = "Required")]
+        //[Required(ErrorMessage = "Required")]
         [StringLength(300, ErrorMessage = "Maximum 500 characters.")]
         public string problemLong { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+        //[Required(ErrorMessage = "Required")]
         [StringLength(500, ErrorMessage = "Maximum 500 characters.")]
         public string rootCause { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+        //[Required(ErrorMessage = "Required")]
         [StringLength(500, ErrorMessage = "Maximum 500 characters.")]
         public string correctiveAction { get; set; }
 

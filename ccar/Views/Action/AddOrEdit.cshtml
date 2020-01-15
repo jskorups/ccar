@@ -6,6 +6,7 @@
     Layout = null;
 }
 <script src="~/Scripts/MyScripts/actionAdd.js"></script>
+<script src="~/Scripts/MyScripts/selector.js"></script>
 
 @using (Html.BeginForm("AddOrEdit", "Action", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
 {
@@ -29,11 +30,13 @@
                 @Html.ValidationMessageFor(model => model.idReason, null, new { @class = "koko" })
 
 
-                @{
-                    var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
-                    listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
+                @*@{
+        var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
+        listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
                 }
-                @Html.DropDownListFor(model => model.idReason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.idReason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control", @id = "filter" })*@
+                @Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), null, "reason"), new { @class = "form-control", @id = "filter" })
+
 
             </div>
             <div class="col-md-1 mb-1" style="margin-left:-20px;">
@@ -50,7 +53,7 @@
                     listTempToA.Add(new ccar.Models.TypeOfActionModel() { id = 0, typeOfAction1 = null });
                 }
 
-                @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(listTempToA.OrderBy(x => x.id), "id", "typeOfAction1"), new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(listTempToA.OrderBy(x => x.id), "id", "typeOfAction1"), new { @class = "form-control",  })
             </div>
 
             @*<div class="col-md-1 mb-1 " style="margin-left:-20px;">
