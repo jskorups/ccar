@@ -52,6 +52,11 @@ namespace ccar.Models
         [Range(1, float.MaxValue, ErrorMessage = "Required")]
         public int? idResponsible { get; set; }
 
+        [Required(ErrorMessage = "Required")]
+        public string Responsible { get; set; }
+
+
+
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "Required")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
