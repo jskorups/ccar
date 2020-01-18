@@ -6,32 +6,35 @@
     Layout = null;
 }
 <script src="~/Scripts/MyScripts/meetingAdd.js"></script>
+<script src="~/Scripts/MyScripts/selector.js"></script>
 
 @using (Html.BeginForm("AddOrEdit", "ActionMeetings", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
 {
-        @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.id)
 
-    
 
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @id = "koko" })
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @id = "koko" })
 
 
     <div class="form-group container" style="width:500px;">
         <div class="row">
-            <div class="col-md-4 mb-4">
+            <div class="col-md-8 mb-8">
                 @Html.Label("Reason*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.reason, null, new { @class = "koko" })
-                @{
-            var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
-            listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
-                }
-                @Html.DropDownListFor(model => model.reason, new SelectList(listTempReason, "reason", "reason"), new { @class = "form-control" })
+                @*@{
+                    var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
+                    listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
+                        }*@
+                @*@Html.DropDownListFor(model => model.reason, new SelectList(listTempReason, "reason", "reason"), new { @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "reason", "reason", "id"), new { @class = "form-control", @id = "filter" })
+
             </div>
             @*<div class="col-md-1 mb-1" style="margin-left:-20px;">
-                @Html.Label("More", new { @class = "control-label" })
-                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-            </div>*@
+                    @Html.Label("More", new { @class = "control-label" })
+                    <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+                </div>*@
         </div>
         <div class="row">
 
@@ -54,7 +57,7 @@
 
                 </div>
                 <div class="col-md-1 mb-1 text-center">
-                   
+
 
                 </div>
                 <div class="col-md-2 mb-2 text-center">

@@ -163,9 +163,6 @@
     <Compile Include="actionView.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="actionViewCustom.cs">
-      <DependentUpon>ccarDaneEF.tt</DependentUpon>
-    </Compile>
     <Compile Include="actionViewDone.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
@@ -218,6 +215,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="infrastructure\CustomRolesProvider.cs" />
     <Compile Include="Meeting.cs">
       <DependentUpon>ccarMMdaneEF.tt</DependentUpon>
     </Compile>
@@ -271,6 +269,12 @@
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="responsiblesLayout.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="roleMapping.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="roles.cs">
       <DependentUpon>ccarDaneEF.tt</DependentUpon>
     </Compile>
     <Compile Include="typeOfaction.cs">
@@ -395,11 +399,8 @@
     <Content Include="Scripts\MyScripts\GetDataProject.js" />
     <Content Include="Scripts\MyScripts\meetingAdd.js" />
     <Content Include="Scripts\MyScripts\Meetings.js" />
-    <Content Include="Scripts\MyScripts\IndexDataTableLayoutDone.js" />
     <Content Include="Scripts\MyScripts\layoutAdd.js" />
     <Content Include="Scripts\MyScripts\actionAdd.js" />
-    <Content Include="Scripts\MyScripts\IndexDataTableDone.js" />
-    <Content Include="Scripts\MyScripts\IndexDataTableLayout.js" />
     <Content Include="Scripts\MyScripts\IndexDataTableMM.js" />
     <Content Include="sql.txt" />
     <Content Include="ToDoList.txt" />

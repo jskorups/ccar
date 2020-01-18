@@ -31,14 +31,16 @@ namespace ccar.Controllers
         }
 
         [HttpGet]
-        public ActionResult GeneralDone()
+        public ActionResult GeneralDone(int? id)
         {
-
-            return View();
+            GeneralModel mod = new GeneralModel();
+            mod.Id = id;
+            return View(mod);
         }
 
 
         [HttpGet]
+        //[Authorize(Roles = "user")]
         public ActionResult General(int? id)
         {
             GeneralModel mod = new GeneralModel();
@@ -58,7 +60,7 @@ namespace ccar.Controllers
                 List<actionView> actList = new List<actionView>();
                 //actList = ent.actionView.ToList();
                 //actList = ActionModel.fromActionsDB(ent.actionView.ToList());
-                
+
 
 
                 if (id != null)
@@ -77,13 +79,13 @@ namespace ccar.Controllers
 
         // get list with done 100%
         [HttpGet]
-        public ActionResult GetData2()
+        public ActionResult GetData2(int? id)
         {
             using (ccarEntities ent = new ccarEntities())
             {
                 List<actionViewDone> actList = new List<actionViewDone>();
 
-                actList = ActionModel.fromActionsDB2(ent.actionViewDone.ToList());
+                actList = ActionModel.fromActionsDB2(ent.actionViewDone.Where(x => x.idReason == id).ToList());
                 return Json(new { data = actList }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -109,12 +111,12 @@ namespace ccar.Controllers
         public PartialViewResult EditDeletePartial(int id)
         {
             //odkomentowac
-            //ccarEntities ent = new ccarEntities();
-            //actions act = ent.actions.Where(x => x.id == id).FirstOrDefault();
-            //return PartialView(act);
+            ccarEntities ent = new ccarEntities();
+            actions act = ent.actions.Where(x => x.id == id).FirstOrDefault();
+            return PartialView(act);
 
-            ViewBag.id = id; // zakomentowac
-            return PartialView();
+            //ViewBag.id = id; // zakomentowac
+            //return PartialView();
         }
         public PartialViewResult EditDeletePartialDone(int id)
         {
@@ -124,7 +126,7 @@ namespace ccar.Controllers
 
         // get details for row
         [HttpGet]
-        public ActionResult RowDetailsPartial (int id)
+        public ActionResult RowDetailsPartial(int id)
         {
             ccarEntities ent = new ccarEntities();
             actions rowDetail = ent.actions.Where(x => x.id == id).FirstOrDefault();
@@ -136,23 +138,38 @@ namespace ccar.Controllers
         [HttpPost]
         public ActionResult AddOrEdit(ActionModel Act)
         {
-            //if (Act.id == 0)
-            //{
-            //    try
-            //    {
+
+            if (Act.id == 0)
+            {
+
+                ccarEntities ent = new ccarEntities();
+
+                var ifReasonExist = ent.reasons.Any(x => x.reason == Act.Reason);
+                var ifResponsibleExist = ent.responsibles.Any(x => (x.FirstName + " " + x.Lastname) == Act.Responsible);
+
+                if (ifReasonExist == false)
+                {
+                    return Json(new { succes = false, message = "Reason not exist" }, JsonRequestBehavior.AllowGet);
+                }
+                else if (ifResponsibleExist == false)
+                {
+                    return Json(new { succes = false, message = "Responsible not exist" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
                     Act.Save();
                     #region Sending mail
-                    var email = UserModel.getEmailAdress(Act.idResponsible);               
+                    var email = UserModel.getEmailAdress(Act.idResponsible);
                     //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
 
 
-                    string subjectMail = "CCAR new action created for your response";
+                    string subjectMail = "CCAR - new action";
                     string path = Server.MapPath("~/Content/template/newAction.html");
                     string body = System.IO.File.ReadAllText(path);
                     var dayName = System.DateTime.Now.DayOfWeek.ToString();
                     var timeSend = DateTime.Now.ToString("dd.MM.yy");
 
-                    body = body.Replace("{d}",$"{dayName}, {timeSend}");
+                    body = body.Replace("{d}", $"{dayName}, {timeSend}");
                     body = body.Replace("{Initiator}", ActionModel.getNameOfInitiator(Act.idInitiator));
                     body = body.Replace("{Reason}", ReasonModel.getNameOfReason(Act.idReason));
                     body = body.Replace("{Problem}", Act.problem);
@@ -163,30 +180,57 @@ namespace ccar.Controllers
 
                     emailClass.CreateMailItem(email, body, subjectMail);
                     #endregion
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-            //    }
-            //}
-            //else if (Act.id != 0)
-            //{
-            //    try
-            //    {
-            //        Act.Save();
-                   
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-            //    }
-            //}
-           
-            return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
-        }      
+                    return Json(new { succes = true, message = "Saved sucessfully" }, JsonRequestBehavior.AllowGet);
+
+                }
+            }
+
+            else if (Act.id != 0)
+            {
+                ccarEntities ent = new ccarEntities();
+
+                var ifReasonExist = ent.reasons.Any(x => x.reason == Act.Reason);
+                if (ifReasonExist == false)
+                {
+                    return Json(new { succes = false, message = "Reason not exist" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    Act.Save();
+                    #region Sending mail
+                    var email = UserModel.getEmailAdress(Act.idResponsible);
+                    //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
+
+
+                    string subjectMail = "CCAR - edited action";
+                    string path = Server.MapPath("~/Content/template/newAction.html");
+                    string body = System.IO.File.ReadAllText(path);
+                    var dayName = System.DateTime.Now.DayOfWeek.ToString();
+                    var timeSend = DateTime.Now.ToString("dd.MM.yy");
+
+                    body = body.Replace("{d}", $"{dayName}, {timeSend}");
+                    body = body.Replace("{Initiator}", ActionModel.getNameOfInitiator(Act.idInitiator));
+                    body = body.Replace("{Reason}", ReasonModel.getNameOfReason(Act.idReason));
+                    body = body.Replace("{Problem}", Act.problem);
+                    body = body.Replace("{ToA}", Act.TypeOfAction);
+                    body = body.Replace("{Responsible}", ResponsibleModel.getNameOfResponsible(Act.idResponsible));
+                    body = body.Replace("{TargetDate}", Act.targetDate.ToString());
+                    body = body.Replace("{ProLong}", Act.problemLong.ToString());
+
+                    emailClass.CreateMailItem(email, body, subjectMail);
+                    #endregion
+                    return Json(new { succes = true, message = "Saved sucessfully" }, JsonRequestBehavior.AllowGet);
+
+                }
+
+
+            }
+            return Json(new { succes = false, message = "Something went wrong" }, JsonRequestBehavior.AllowGet);
+        }
+
         [Authorize]
         [HttpPost]
-        public ActionResult Delete (int id)
+        public ActionResult Delete(int id)
         {
             ccarEntities ent = new ccarEntities();
             actions act = ent.actions.Find(id);

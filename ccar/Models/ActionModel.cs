@@ -25,7 +25,7 @@ namespace ccar.Models
         public string Initiator { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime? originationDate { get; set; }
+        public DateTime originationDate { get; set; }
 
         [Range(1, float.MaxValue, ErrorMessage = "Required")]
         public int? idTypeOfAction { get; set; }
@@ -77,6 +77,8 @@ namespace ccar.Models
 
         public int? Status { get; set; }
 
+        public string AttendanceList { get; set; }
+
         public string GetTypeOfAction(int id)
         {
             ccarEntities ent = new ccarEntities();
@@ -84,7 +86,13 @@ namespace ccar.Models
             return toa;
         }
 
-      
+        public static DateTime getDate(DateTime kok)
+        {
+            kok = DateTime.Now;
+            var date = kok.Date;
+            return date;
+        }
+
         #region ACTION VIEW BASE 
         // ACTIONVIEW BASE
 
@@ -179,25 +187,25 @@ namespace ccar.Models
         #endregion
 
 
-        public static List<actionViewCustom> fromLayoutActionsCustomDB(List<actionViewCustom> aList)
-        {
-            List<actionViewCustom> actionList = aList.Select(x => new actionViewCustom()
-            {
-                id = x.id,
-                reason = x.reason,
-                problem = x.problem,
-                Initiator = x.Initiator,
-                originationDate = x.originationDate,
-                /*rootCause = x.rootCause, correctiveAction = x.correctiveAction,*/
-                targetDate = x.targetDate,
-                completionDate = x.completionDate,
-                responsible = x.responsible,
-                progressValue = x.progressValue,
-                /*, measureEffic = x.measureEffic , dateOfEffic = x.dateOfEffic*/
-                Status = x.Status
-            }).ToList();
-            return actionList;
-        }
+        //public static List<actionViewCustom> fromLayoutActionsCustomDB(List<actionViewCustom> aList)
+        //{
+        //    List<actionViewCustom> actionList = aList.Select(x => new actionViewCustom()
+        //    {
+        //        id = x.id,
+        //        reason = x.reason,
+        //        problem = x.problem,
+        //        Initiator = x.Initiator,
+        //        originationDate = x.originationDate,
+        //        /*rootCause = x.rootCause, correctiveAction = x.correctiveAction,*/
+        //        targetDate = x.targetDate,
+        //        completionDate = x.completionDate,
+        //        responsible = x.responsible,
+        //        progressValue = x.progressValue,
+        //        /*, measureEffic = x.measureEffic , dateOfEffic = x.dateOfEffic*/
+        //        Status = x.Status
+        //    }).ToList();
+        //    return actionList;
+        //}
 
         public static actions ConvertToActionsFromDb(ActionModel a)
         {
@@ -214,7 +222,8 @@ namespace ccar.Models
             act.problemLong = a.problemLong;
             act.rootCause = a.rootCause;
             act.correctiveAction = a.correctiveAction;
-            act.idResponsible = a.idResponsible;      
+            //act.idResponsible = a.idResponsible;
+            act.idResponsible = ent.responsibles.Where(x => (x.FirstName+" "+ x.Lastname) == a.Responsible).Select(x => x.id).FirstOrDefault();
             act.targetDate = a.targetDate;
             act.idProgress = a.idProgress;
             act.completionDate = a.completionDate;
@@ -226,27 +235,35 @@ namespace ccar.Models
 
         public static ActionModel ConvertFromEFtoModel(actions a)
         {
-  
+            ccarEntities ent = new ccarEntities();
+
             ActionModel act = new ActionModel();
             act.id = a.id;
-            act.idReason = a.idReason;
+            //act.idReason = a.idReason;
+            act.Reason = ent.reasons.Where(x => x.id == a.idReason).Select(x => x.reason).FirstOrDefault();
             act.idInitiator = a.idInitiator;
             act.Initiator = a.Initiator;
-            act.originationDate = a.originationDate;
+            act.originationDate =  a.originationDate;
             act.idTypeOfAction = a.idTypeOfAction;
             act.problem = a.problem;
             act.problemLong = a.problemLong;
             act.rootCause = a.rootCause;
             act.correctiveAction = a.correctiveAction;
-            act.idResponsible = a.idResponsible;
+            //act.idResponsible = a.idResponsible;
+            act.Responsible = ent.responsibles.Where(x => x.id == a.idResponsible).Select(x => (x.FirstName + " " + x.Lastname)).FirstOrDefault();
             act.targetDate = a.targetDate;
             act.idProgress = a.idProgress;
             act.completionDate = a.completionDate;
             act.measureEffic = a.measureEffic;
             act.dateOfEffic = a.dateOfEffic;
             act.Status = a.Status;
+
+          
+            act.AttendanceList = ent.actionsMeetings.Where(x => x.idReason == a.idReason && x.originationDate == a.originationDate).Select(x => x.attendanceList).FirstOrDefault();
             return act;
         }
+
+    
 
 
         public static string getNameOfInitiator(int? inititiatorId)

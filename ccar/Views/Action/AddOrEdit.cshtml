@@ -36,7 +36,7 @@
                 }
                 @Html.DropDownListFor(model => model.idReason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control", @id = "filter" })*@
                 @*@Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), null, "reason"), new { @class = "form-control", @id = "filter" })*@
-                @Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "id", "reason"), new { @class = "form-control", @id = "filter" })
+                @Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id),"Reason","Reason","id"), new { @class = "form-control", @id = "filter" })
 
 
             </div>
@@ -69,7 +69,7 @@
                     var listOfResponsible = (ccar.Models.ResponsibleModel.getUsersList());
                     listOfResponsible.Add(new ccar.Models.ResponsibleModel() { id = 0, email = null, FirstName = null, Lastname = null, Name = null });
                 }*@
-                @Html.DropDownListFor(model => model.Responsible, new SelectList(ccar.Models.ResponsibleModel.getUsersList().OrderBy(x => x.id), "id", "Name"), new { @class = "form-control", @id = "filter2" })
+                @Html.DropDownListFor(model => model.Responsible, new SelectList(ccar.Models.ResponsibleModel.getUsersList().OrderBy(x => x.id), "Name","Name", "id"), new { @class = "form-control", @id = "filter2" })
                 @*@Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "id", "reason"), new { @class = "form-control", @id = "filter" })*@
 
             </div>

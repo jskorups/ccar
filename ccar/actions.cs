@@ -18,7 +18,7 @@ namespace ccar
         public int idReason { get; set; }
         public Nullable<int> idInitiator { get; set; }
         public string Initiator { get; set; }
-        public Nullable<System.DateTime> originationDate { get; set; }
+        public System.DateTime originationDate { get; set; }
         public Nullable<int> idTypeOfAction { get; set; }
         public string problem { get; set; }
         public string problemLong { get; set; }
