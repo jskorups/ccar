@@ -21,5 +21,6 @@ namespace ccar
         public string attendanceList { get; set; }
     
         public virtual reasons reasons { get; set; }
+        public virtual users users { get; set; }
     }
 }

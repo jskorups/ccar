@@ -19,6 +19,7 @@
         myFunction();
 
     }
+
     function myFunction() {
         confirm("CCAR: You sure want to set target date before today?");
     }

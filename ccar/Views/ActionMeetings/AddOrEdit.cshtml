@@ -7,25 +7,28 @@
 }
 <script src="~/Scripts/MyScripts/meetingAdd.js"></script>
 <script src="~/Scripts/MyScripts/selector.js"></script>
+
+
+
 @*<script src="~/Scripts/MyScripts/addRow.js"></script>*@
 
 
 
-<script>
-    $(document).ready(function () {
-       
-        $("#add_row").click(function cloneRow() {
-            var row = document.getElementById("rowToClone"); // find row to copy
-            var table = document.getElementById("tableToModify"); // find table to append to
-            var clone = row.cloneNode(true); // copy children too
-            clone.id = "newID"; // change id or other attributes/contents
-            table.appendChild(clone); // add new row to end of table
-        }
-            )
-    });
+@*<script>
+        $(document).ready(function () {
+
+            $("#add_row").click(function cloneRow() {
+                var row = document.getElementById("rowToClone"); // find row to copy
+                var table = document.getElementById("tableToModify"); // find table to append to
+                var clone = row.cloneNode(true); // copy children too
+                clone.id = "newID"; // change id or other attributes/contents
+                table.appendChild(clone); // add new row to end of table
+            }
+                )
+        });
 
 
-</script>
+    </script>*@
 
 
 @using (Html.BeginForm("AddOrEdit", "ActionMeetings", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
@@ -47,25 +50,25 @@
 
 
 
-        <div class="row">
-            <div class="col-md-6 column">
-                <table class="table" id="tableToModify">
-                    <tbody>
-                        <tr id="rowToClone">
-                            <td>
-                                @Html.DropDownListFor(model => model.reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "reason", "reason", "id"), new { @class = "form-control" })
+        @*<div class="row">
+                <div class="col-md-6 column">
+                    <table class="table" id="tableToModify">
+                        <tbody>
+                            <tr id="rowToClone">
+                                <td>
+                                    @Html.DropDownListFor(model => model.reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "reason", "reason", "id"), new { @class = "form-control" })
 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <a id="add_row" class="btn btn-default pull-left">Add Row</a>
-            <a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
+            <div class="row">
+                <a id="add_row" class="btn btn-default pull-left">Add Row</a>
+                <a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
 
-        </div>
+            </div>*@
 
 
 
@@ -74,17 +77,17 @@
                 @Html.Label("Reason*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.reason, null, new { @class = "koko" })
                 @*@{
-                var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
-                listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
-                    }*@
+                    var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
+                    listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
+                        }*@
                 @*@Html.DropDownListFor(model => model.reason, new SelectList(listTempReason, "reason", "reason"), new { @class = "form-control" })*@
                 @Html.DropDownListFor(model => model.reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "reason", "reason", "id"), new { @class = "form-control", @id = "filter" })
 
             </div>
             @*<div class="col-md-1 mb-1" style="margin-left:-20px;">
-                @Html.Label("More", new { @class = "control-label" })
-                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-            </div>*@
+                    @Html.Label("More", new { @class = "control-label" })
+                    <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+                </div>*@
         </div>
         <div class="row">
 

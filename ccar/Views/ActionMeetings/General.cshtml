@@ -227,7 +227,7 @@ function Delete(id, urlForDelete) {
             @*<button  class="btn btn-outline-primary" onclick="blab()" )><i class="fa fa-plus-square"></i> kek</button>*@
 
             <button class="btn btn-outline-primary addBtn" onclick="Kespa('@Url.Action("AddOrEdit","ActionMeetings")')" )><i class="fa fa-plus-square"></i> Add meeting</button>
-            <button class="btn btn-outline-primary completedBtn" onclick="location.href='@Url.Action("General", "Action")'" )><i class="fa fa-plus-square"></i>  Add actions</button>
+            <button class="btn btn-outline-primary completedBtn" onclick="location.href='@Url.Action("General", "Action", new {id = Model.Id })'" )><i class="fa fa-plus-square"></i>  Add actions</button>
 
             <table id="actionMeetings" class="table table-striped table-bordered" style="width:1600px;">
                 <thead>

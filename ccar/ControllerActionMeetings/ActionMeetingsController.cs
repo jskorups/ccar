@@ -133,7 +133,7 @@ namespace ccar.ControllerActionMeetings
         {
             //odkomentowac
             //ccarEntities ent = new ccarEntities();
-            //actions act = ent.actions.Where(x => x.id == id).FirstOrDefault();
+            //actionsMeetings act = ent.actionsMeetings.Where(x => x.id == id).FirstOrDefault();
             //return PartialView(act);
 
             ViewBag.id = id; // zakomentowac
