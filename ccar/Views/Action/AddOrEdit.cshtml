@@ -23,75 +23,78 @@
             <div class="col-md-2 mb-2">
 
 
-                @*@if (Model.id != 0)
+                @if (Model.idReason != 0)
                 {
-                    @Html.Label("KOKO", new { @class = "control-label" })
+                    @Html.HiddenFor(model => model.idReason, new { idReason = Model.id })
                 }
-                else if (Model.idReason == 0)
-                {
-                    @Html.Label("KESPA", new { @class = "control-label" })
-                }*@
-
 
 
                 @Html.Label("Problem(short)", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.problem, null, new { @class = "koko" })
                 @Html.EditorFor(model => model.problem, new { htmlAttributes = new { @class = "form-control" } })
             </div>
+
+
+
+            @if (Model.showReas == true)
+            {
             <div class="col-md-2 mb-2">
                 @Html.Label("Reason*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.idReason, null, new { @class = "koko" })
+                @Html.ValidationMessageFor(model => model.idReason, null, new { @class = "koko" }) 
 
 
                 @*@{
-                    var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
-                    listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
-                            }
-                            @Html.DropDownListFor(model => model.idReason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control", @id = "filter" })*@
+        var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
+        listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
+                }
+                @Html.DropDownListFor(model => model.idReason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control", @id = "filter" })*@
                 @*@Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), null, "reason"), new { @class = "form-control", @id = "filter" })*@
                 @Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "Reason", "Reason", "id"), new { @class = "form-control", @id = "filter" })
-
-
             </div>
-            <div class="col-md-1 mb-1" style="margin-left:-20px;">
+                    }
+
+
+
+            
+                @*<div class="col-md-1 mb-1" style="margin-left:-20px;">
                 @Html.Label("More", new { @class = "control-label" })
                 <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-            </div>
-            <div class="col-md-3 mb-3" style="margin-left:-20px;">
+            </div>*@
+                <div class="col-md-3 mb-3" style="margin-left:-20px;">
 
-                @Html.Label("Type of action*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.idTypeOfAction, null, new { @class = "koko" })
+                    @Html.Label("Type of action*", new { @class = "control-label" })
+                    @Html.ValidationMessageFor(model => model.idTypeOfAction, null, new { @class = "koko" })
 
-                @{
-                    var listTempToA = (ccar.Models.TypeOfActionModel.GetTypeOfActionList());
-                    listTempToA.Add(new ccar.Models.TypeOfActionModel() { id = 0, typeOfAction1 = null });
-                }
+                    @{
+                        var listTempToA = (ccar.Models.TypeOfActionModel.GetTypeOfActionList());
+                        listTempToA.Add(new ccar.Models.TypeOfActionModel() { id = 0, typeOfAction1 = null });
+                    }
 
-                @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(listTempToA.OrderBy(x => x.id), "id", "typeOfAction1"), new { @class = "form-control", })
-            </div>
+                    @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(listTempToA.OrderBy(x => x.id), "id", "typeOfAction1"), new { @class = "form-control", })
+                </div>
 
-            @*<div class="col-md-1 mb-1 " style="margin-left:-20px;">
-                    @Html.Label("More", new { @class = "control-label" })
-                    <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ToAlist", "typeOfAction")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-                </div>*@
-
-            <div class="col-md-3 mb-3" style="margin-left:-20px;">
-                @Html.Label("Responsible*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.Responsible, null, new { @class = "koko" })
-                @*@{
-                        var listOfResponsible = (ccar.Models.ResponsibleModel.getUsersList());
-                        listOfResponsible.Add(new ccar.Models.ResponsibleModel() { id = 0, email = null, FirstName = null, Lastname = null, Name = null });
-                    }*@
-                @Html.DropDownListFor(model => model.Responsible, new SelectList(ccar.Models.ResponsibleModel.getUsersList().OrderBy(x => x.id), "Name", "Name", "id"), new { @class = "form-control", @id = "filter2" })
-                @*@Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "id", "reason"), new { @class = "form-control", @id = "filter" })*@
-
-            </div>
-            <div class="col-md-1 mb-1 " style="margin-left:-20px;">
+                @*<div class="col-md-1 mb-1 " style="margin-left:-20px;">
                 @Html.Label("More", new { @class = "control-label" })
-                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ResponsiblesList", "Responsible")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-            </div>
+                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ToAlist", "typeOfAction")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+            </div>*@
 
-        </div>
+                <div class="col-md-3 mb-3" style="margin-left:-20px;">
+                    @Html.Label("Responsible*", new { @class = "control-label" })
+                    @Html.ValidationMessageFor(model => model.Responsible, null, new { @class = "koko" })
+                    @*@{
+                    var listOfResponsible = (ccar.Models.ResponsibleModel.getUsersList());
+                    listOfResponsible.Add(new ccar.Models.ResponsibleModel() { id = 0, email = null, FirstName = null, Lastname = null, Name = null });
+                }*@
+                    @Html.DropDownListFor(model => model.Responsible, new SelectList(ccar.Models.ResponsibleModel.getUsersList().OrderBy(x => x.id), "Name", "Name", "id"), new { @class = "form-control", @id = "filter2" })
+                    @*@Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "id", "reason"), new { @class = "form-control", @id = "filter" })*@
+
+                </div>
+                <div class="col-md-1 mb-1 " style="margin-left:-20px;">
+                    @Html.Label("More", new { @class = "control-label" })
+                    <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ResponsiblesList", "Responsible")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+                </div>
+
+            </div>
     </div>
 
     <div class="form-group container">

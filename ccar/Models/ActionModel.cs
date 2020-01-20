@@ -19,7 +19,7 @@ namespace ccar.Models
         public int id { get; set; }
 
         [Range(1, float.MaxValue, ErrorMessage = "Required")]
-        public int idReason { get; set; }
+        public int? idReason { get; set; }
         public string Reason { get; set; }
         public int? idInitiator { get; set; }
         public string Initiator { get; set; }
@@ -78,6 +78,10 @@ namespace ccar.Models
         public int? Status { get; set; }
 
         public string AttendanceList { get; set; }
+
+        public bool? showReas { get; set; }
+
+        // ------------------------------------------------------//
 
         public string GetTypeOfAction(int id)
         {
@@ -213,7 +217,17 @@ namespace ccar.Models
 
             actions act = new actions();
             act.id = a.id;
-            act.idReason = ent.reasons.Where(x => x.reason == a.Reason).Select(x => x.id).FirstOrDefault();
+         
+            if (a.Reason == null)
+            {
+                act.idReason = a.idReason;
+            }
+            else
+            {
+                act.idReason = ent.reasons.Where(x => x.reason == a.Reason).Select(x => x.id).FirstOrDefault();
+            }
+          
+
             act.idInitiator = a.idInitiator;
             act.Initiator = a.Initiator;
             act.originationDate = a.originationDate;
@@ -257,6 +271,7 @@ namespace ccar.Models
             act.measureEffic = a.measureEffic;
             act.dateOfEffic = a.dateOfEffic;
             act.Status = a.Status;
+            
 
           
             act.AttendanceList = ent.actionsMeetings.Where(x => x.idReason == a.idReason && x.originationDate == a.originationDate).Select(x => x.attendanceList).FirstOrDefault();
@@ -319,7 +334,7 @@ namespace ccar.Models
                     this.Status = 1;
                     this.completionDate = DateTime.Now;
                 }
-
+                this.Status = 0;
                 //string Replaced = System.Environment.UserName.Replace('.', ' ');
                 //CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
                 //TextInfo textInfo = cultureInfo.TextInfo;

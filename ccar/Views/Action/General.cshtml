@@ -42,7 +42,7 @@ $(document).ready(function () {
         },
 
         "ajax": {
-          "url": "@Url.Action("GetData", new {id = Model.Id })" ,
+          "url": "@Url.Action("GetData", new { id = Model.Id })" ,
             "type": "GET",
             "datatype": "json"
         },
@@ -198,7 +198,7 @@ function Delete(id, urlForDelete) {
     if (confirm('Are You Sure to Delete this Employee Record ?')) {
         $.ajax({
             type: "POST",
-            url: urlForDelete + '/' + id, /*'@Url.Action("Delete","Action")/' + id,*/
+            url: urlForDelete + '/' + id,
             success: function (data) {
                 //if (data.success)
                 {
@@ -231,11 +231,21 @@ function Delete(id, urlForDelete) {
 
             @*<button  class="btn btn-outline-primary" onclick="blab()" )><i class="fa fa-plus-square"></i> kek</button>*@
 
-            <button class="btn btn-outline-primary addBtn" onclick="Kespa('@Url.Action("AddOrEdit","Action")')"  )><i class="fa fa-plus-square"></i> Add new action</button>
-            <button class="btn btn-outline-primary completedBtn" onclick="location.href='@Url.Action("GeneralDone", "Action",new { id = Model.Id } )'" )><i class="fa fa-check"></i> Show completed</button>
+
+
+            @if (@*Model.Id == 0 ||*@ Model.Id == null)
+            {
+                <button class="btn btn-outline-primary addBtn" onclick="Kespa('@Url.Action("AddOrEdit", "Action", new { showReas = true})')" )><i class="fa fa-plus-square"></i> Add new action</button>
+                
+            }
+            else
+            {    
+                <button class="btn btn-outline-primary addBtn" onclick="Kespa('@Url.Action("AddOrEdit", "Action", new { idReas = Model.Id, showReas = false })')" )><i class="fa fa-plus-square"></i> Add new action</button>
+
+            }
+
+            <button class="btn btn-outline-primary completedBtn" onclick="location.href='@Url.Action("GeneralDone", "Action", new { id = Model.Id })'" )><i class="fa fa-check"></i> Show completed</button>
             <button class="btn btn-outline-primary goomeetings" onclick="location.href='@Url.Action("General", "ActionMeetings", new { id = Model.Id })'" )><i class="fa fa-users"></i> Show meetings</button>
-
-
 
 
             <table id="actionTable" class="table table-striped table-bordered" style="width:1600px;">

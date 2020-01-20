@@ -99,7 +99,7 @@ namespace ccar.Controllers
         public ActionResult Logowanie(string email, string password)
         {
             LoginModel newlog = new LoginModel();
-            password = crypto.Hash(password);
+            //password = crypto.Hash(password);
             bool check = newlog.checkIfExist(email, password);
             if (check == true)
             {

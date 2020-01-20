@@ -31,11 +31,10 @@ namespace ccar.Controllers
         }
 
         [HttpGet]
-        public ActionResult GeneralDone(int? id, bool showReas)
+        public ActionResult GeneralDone(int? id)
         {
             GeneralModel mod = new GeneralModel();
             mod.Id = id;
-            mod.showReason = showReas;
             return View(mod);
         }
 
@@ -96,18 +95,25 @@ namespace ccar.Controllers
         // get edit or add
         [HttpGet]
         [Authorize]
-        public ActionResult AddOrEdit(/*bool showReas,*/ int id = 0)
+        public ActionResult AddOrEdit(int? idReas, bool? showReas, int id = 0)
         {
             if (id == 0)
             {
-                return View(new ActionModel());
+                ActionModel act = new ActionModel();
+               
+                act.showReas = showReas;
+                act.idReason = idReas;
+                return View(act);
 
             }
             else
             {
                 ccarEntities ent = new ccarEntities();
                 actions test = ent.actions.Where(x => x.id == id).FirstOrDefault();
-                return View(ActionModel.ConvertFromEFtoModel(test));
+                ActionModel act = ActionModel.ConvertFromEFtoModel(test);
+                act.idReason = idReas;
+                act.showReas = showReas;
+                return View(act);
             }
         }
 
@@ -146,47 +152,46 @@ namespace ccar.Controllers
             if (Act.id == 0)
             {
 
-                ccarEntities ent = new ccarEntities();
+               
 
-                var ifReasonExist = ent.reasons.Any(x => x.reason == Act.Reason);
-                var ifResponsibleExist = ent.responsibles.Any(x => (x.FirstName + " " + x.Lastname) == Act.Responsible);
+                //var ifReasonExist = ent.reasons.Any(x => x.reason == Act.Reason);
+                //var ifResponsibleExist = ent.responsibles.Any(x => (x.FirstName + " " + x.Lastname) == Act.Responsible);
 
-                if (ifReasonExist == false)
-                {
-                    return Json(new { succes = false, message = "Reason not exist" }, JsonRequestBehavior.AllowGet);
-                }
-                else if (ifResponsibleExist == false)
-                {
-                    return Json(new { succes = false, message = "Responsible not exist" }, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    Act.Save();
-                    #region Sending mail
-                    var email = UserModel.getEmailAdress(Act.idResponsible);
-                    //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
+                //if (ifReasonExist == false)
+                //{
+                //    return Json(new { succes = false, message = "Reason not exist" }, JsonRequestBehavior.AllowGet);
+                //}
+                //else if (ifResponsibleExist == false)
+                //{
+                //    return Json(new { succes = false, message = "Responsible not exist" }, JsonRequestBehavior.AllowGet);
+                //}
+
+                Act.Save();
+                #region Sending mail
+                var email = UserModel.getEmailAdress(Act.idResponsible);
+                //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
 
 
-                    string subjectMail = "CCAR - new action";
-                    string path = Server.MapPath("~/Content/template/newAction.html");
-                    string body = System.IO.File.ReadAllText(path);
-                    var dayName = System.DateTime.Now.DayOfWeek.ToString();
-                    var timeSend = DateTime.Now.ToString("dd.MM.yy");
+                string subjectMail = "CCAR - new action";
+                string path = Server.MapPath("~/Content/template/newAction.html");
+                string body = System.IO.File.ReadAllText(path);
+                var dayName = System.DateTime.Now.DayOfWeek.ToString();
+                var timeSend = DateTime.Now.ToString("dd.MM.yy");
 
-                    body = body.Replace("{d}", $"{dayName}, {timeSend}");
-                    body = body.Replace("{Initiator}", ActionModel.getNameOfInitiator(Act.idInitiator));
-                    body = body.Replace("{Reason}", ReasonModel.getNameOfReason(Act.idReason));
-                    body = body.Replace("{Problem}", Act.problem);
-                    body = body.Replace("{ToA}", Act.TypeOfAction);
-                    body = body.Replace("{Responsible}", ResponsibleModel.getNameOfResponsible(Act.idResponsible));
-                    body = body.Replace("{TargetDate}", Act.targetDate.ToString());
-                    body = body.Replace("{ProLong}", Act.problemLong.ToString());
+                body = body.Replace("{d}", $"{dayName}, {timeSend}");
+                body = body.Replace("{Initiator}", ActionModel.getNameOfInitiator(Act.idInitiator));
+                body = body.Replace("{Reason}", ReasonModel.getNameOfReason(Act.idReason));
+                body = body.Replace("{Problem}", Act.problem);
+                body = body.Replace("{ToA}", Act.TypeOfAction);
+                body = body.Replace("{Responsible}", ResponsibleModel.getNameOfResponsible(Act.idResponsible));
+                body = body.Replace("{TargetDate}", Act.targetDate.ToString());
+                body = body.Replace("{ProLong}", Act.problemLong.ToString());
 
-                    emailClass.CreateMailItem(email, body, subjectMail);
-                    #endregion
-                    return Json(new { succes = true, message = "Saved sucessfully" }, JsonRequestBehavior.AllowGet);
+                emailClass.CreateMailItem(email, body, subjectMail);
+                #endregion
+                return Json(new { succes = true, message = "Saved sucessfully" }, JsonRequestBehavior.AllowGet);
 
-                }
+
             }
 
             else if (Act.id != 0)

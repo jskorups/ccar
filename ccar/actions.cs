@@ -15,7 +15,7 @@ namespace ccar
     public partial class actions
     {
         public int id { get; set; }
-        public int idReason { get; set; }
+        public Nullable<int> idReason { get; set; }
         public Nullable<int> idInitiator { get; set; }
         public string Initiator { get; set; }
         public System.DateTime originationDate { get; set; }
