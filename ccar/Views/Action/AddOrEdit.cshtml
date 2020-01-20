@@ -7,6 +7,7 @@
 }
 <script src="~/Scripts/MyScripts/actionAdd.js"></script>
 <script src="~/Scripts/MyScripts/selector.js"></script>
+<script src="~/Scripts/MyScripts/targetDateConf.js"></script>
 
 @using (Html.BeginForm("AddOrEdit", "Action", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
 {
@@ -31,12 +32,12 @@
 
 
                 @*@{
-        var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
-        listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
-                }
-                @Html.DropDownListFor(model => model.idReason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control", @id = "filter" })*@
+                    var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
+                    listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
+                            }
+                            @Html.DropDownListFor(model => model.idReason, new SelectList(listTempReason, "id", "reason"), new { @class = "form-control", @id = "filter" })*@
                 @*@Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), null, "reason"), new { @class = "form-control", @id = "filter" })*@
-                @Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id),"Reason","Reason","id"), new { @class = "form-control", @id = "filter" })
+                @Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "Reason", "Reason", "id"), new { @class = "form-control", @id = "filter" })
 
 
             </div>
@@ -54,7 +55,7 @@
                     listTempToA.Add(new ccar.Models.TypeOfActionModel() { id = 0, typeOfAction1 = null });
                 }
 
-                @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(listTempToA.OrderBy(x => x.id), "id", "typeOfAction1"), new { @class = "form-control",  })
+                @Html.DropDownListFor(model => model.idTypeOfAction, new SelectList(listTempToA.OrderBy(x => x.id), "id", "typeOfAction1"), new { @class = "form-control", })
             </div>
 
             @*<div class="col-md-1 mb-1 " style="margin-left:-20px;">
@@ -66,10 +67,10 @@
                 @Html.Label("Responsible*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.Responsible, null, new { @class = "koko" })
                 @*@{
-                    var listOfResponsible = (ccar.Models.ResponsibleModel.getUsersList());
-                    listOfResponsible.Add(new ccar.Models.ResponsibleModel() { id = 0, email = null, FirstName = null, Lastname = null, Name = null });
-                }*@
-                @Html.DropDownListFor(model => model.Responsible, new SelectList(ccar.Models.ResponsibleModel.getUsersList().OrderBy(x => x.id), "Name","Name", "id"), new { @class = "form-control", @id = "filter2" })
+                        var listOfResponsible = (ccar.Models.ResponsibleModel.getUsersList());
+                        listOfResponsible.Add(new ccar.Models.ResponsibleModel() { id = 0, email = null, FirstName = null, Lastname = null, Name = null });
+                    }*@
+                @Html.DropDownListFor(model => model.Responsible, new SelectList(ccar.Models.ResponsibleModel.getUsersList().OrderBy(x => x.id), "Name", "Name", "id"), new { @class = "form-control", @id = "filter2" })
                 @*@Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "id", "reason"), new { @class = "form-control", @id = "filter" })*@
 
             </div>
@@ -111,7 +112,7 @@
             <div class="col-md-4 mb-4">
                 @Html.Label("Target date*", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.targetDate, null, new { @class = "koko" })
-                @Html.EditorFor(model => model.targetDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.targetDate, new { htmlAttributes = new { @class = "form-control", @id = "kespa" } })
             </div>
             <div class="col-md-4 mb-4">
                 @Html.Label("Progress", new { @class = "control-label" })
@@ -138,7 +139,7 @@
     <div class="form-group container">
         <div class="row">
             <div class="col-md-12 mb-12 text-center">
-                <input type="submit" value="Submit" class="btn btn-success" style="width:250px; height:40px" />
+                <input type="submit" value="Submit" class="btnAdd btn btn-success" style="width:250px; height:40px" />
                 <input type="reset" value="Reset" class="btn btn-danger" style="width:250px; height:40px" />
             </div>
         </div>
@@ -153,11 +154,8 @@
             <div class="col-md-2 mb-2 text-center">
                 <span style="color:red; font-style:oblique;">* Required</span>
             </div>
-
-
         </div>
     </div>
 
 
 }
-

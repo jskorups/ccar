@@ -1,6 +1,10 @@
 ﻿prio 1
 _______
-dodac pole komenatarz dla meeting w general ccar
+
+ustawienia projektu dla add actions przy wybieraniu w porjekcie
+target date nie mneijszy niz obecna data
+dynamiczna lista osób
+tracking zmian target date
 
 
 _____________________________________________________________

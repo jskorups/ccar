@@ -393,6 +393,8 @@
     <Content Include="Scripts\jquery-editable-select.css" />
     <Content Include="Scripts\jquery-editable-select.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\MyScripts\targetDateConf.js" />
+    <Content Include="Scripts\MyScripts\addRow.js" />
     <Content Include="Scripts\MyScripts\jquery-editable-select.css" />
     <Content Include="Scripts\MyScripts\jquery-editable-select.js" />
     <Content Include="Scripts\MyScripts\selector.js" />

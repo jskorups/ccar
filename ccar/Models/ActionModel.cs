@@ -59,7 +59,7 @@ namespace ccar.Models
 
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "Required")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? targetDate { get; set; }
 
         [Range(1, float.MaxValue, ErrorMessage = "Required")]
