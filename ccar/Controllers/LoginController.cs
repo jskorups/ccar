@@ -36,7 +36,7 @@ namespace ccar.Controllers
                 }
                else if (ModelState.IsValid)
                 {                 
-                    //model.password = crypto.Hash(model.password);
+                    model.password = crypto.Hash(model.password);
                     model.active = false;
                     Guid guidPotwierdzenie = Guid.NewGuid();
                     model.guid = guidPotwierdzenie.ToString();
@@ -99,7 +99,7 @@ namespace ccar.Controllers
         public ActionResult Logowanie(string email, string password)
         {
             LoginModel newlog = new LoginModel();
-            //password = crypto.Hash(password);
+            password = crypto.Hash(password);
             bool check = newlog.checkIfExist(email, password);
             if (check == true)
             {

@@ -157,6 +157,7 @@ namespace ccar.ControllerActionMeetings
     public class GeneralModel
     {
         public int? Id { get; set; }
+       
     }
 
 

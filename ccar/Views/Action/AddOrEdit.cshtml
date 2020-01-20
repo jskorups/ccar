@@ -11,17 +11,29 @@
 
 @using (Html.BeginForm("AddOrEdit", "Action", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
 {
-    @Html.HiddenFor(model => model.id)
+
     @Html.HiddenFor(model => model.originationDate)
     @Html.HiddenFor(model => model.idInitiator)
 
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @id = "koko" })
 
-
     <div class="form-group container">
         <div class="row">
             <div class="col-md-2 mb-2">
+
+
+                @*@if (Model.id != 0)
+                {
+                    @Html.Label("KOKO", new { @class = "control-label" })
+                }
+                else if (Model.idReason == 0)
+                {
+                    @Html.Label("KESPA", new { @class = "control-label" })
+                }*@
+
+
+
                 @Html.Label("Problem(short)", new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.problem, null, new { @class = "koko" })
                 @Html.EditorFor(model => model.problem, new { htmlAttributes = new { @class = "form-control" } })

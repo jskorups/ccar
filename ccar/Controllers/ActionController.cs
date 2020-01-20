@@ -31,10 +31,11 @@ namespace ccar.Controllers
         }
 
         [HttpGet]
-        public ActionResult GeneralDone(int? id)
+        public ActionResult GeneralDone(int? id, bool showReas)
         {
             GeneralModel mod = new GeneralModel();
             mod.Id = id;
+            mod.showReason = showReas;
             return View(mod);
         }
 
@@ -47,6 +48,8 @@ namespace ccar.Controllers
             mod.Id = id;
             return View(mod);
         }
+
+
 
         [Authorize]
 
@@ -93,11 +96,12 @@ namespace ccar.Controllers
         // get edit or add
         [HttpGet]
         [Authorize]
-        public ActionResult AddOrEdit(int id = 0)
+        public ActionResult AddOrEdit(/*bool showReas,*/ int id = 0)
         {
             if (id == 0)
             {
                 return View(new ActionModel());
+
             }
             else
             {
@@ -243,8 +247,6 @@ namespace ccar.Controllers
     public class GeneralModel
     {
         public int? Id { get; set; }
+        //public bool showReason { get; set; }
     }
-
-
-
 }
