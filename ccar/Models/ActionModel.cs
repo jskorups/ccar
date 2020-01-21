@@ -329,12 +329,11 @@ namespace ccar.Models
             {
                 ccarEntities ent = new ccarEntities();
 
-                if (this.idProgress == 5)
+                if (ProgressModel.getIdByName("100%") == idProgress)
                 {
                     this.Status = 1;
                     this.completionDate = DateTime.Now;
                 }
-                this.Status = 0;
                 //string Replaced = System.Environment.UserName.Replace('.', ' ');
                 //CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
                 //TextInfo textInfo = cultureInfo.TextInfo;

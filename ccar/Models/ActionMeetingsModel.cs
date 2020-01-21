@@ -18,6 +18,8 @@ namespace ccar.Models
         public string Initiator { get; set; }
         [Required(ErrorMessage = "Required")]
         public string attendanceList { get; set; }
+        public string user { get; set; }
+
 
 
         //public static actionsMeetings fromDBtoModel (ActionMeetingsModel model)

@@ -20,5 +20,11 @@ namespace ccar.Models
             ccarEntities ent = new ccarEntities();
             return ConvertListFromDBtoModel(ent.progress.ToList());
         }
+
+        public static int getIdByName (string progressValue)
+        {
+            ccarEntities ent = new ccarEntities();
+            return ent.progress.Where(x => x.progressValue == progressValue).Select(x => x.id).FirstOrDefault();
+        }
     }
 }

@@ -87,8 +87,18 @@ namespace ccar.Controllers
             {
                 List<actionViewDone> actList = new List<actionViewDone>();
 
-                actList = ActionModel.fromActionsDB2(ent.actionViewDone.Where(x => x.idReason == id).ToList());
+
+                if (id != null)
+                {
+                    actList = ActionModel.fromActionsDB2(ent.actionViewDone.Where(x => x.idReason == id).ToList());
+                }
+                else
+                {
+                    actList = ActionModel.fromActionsDB2(ent.actionViewDone.ToList());
+                }
+           
                 return Json(new { data = actList }, JsonRequestBehavior.AllowGet);
+
             }
         }
 
@@ -168,7 +178,7 @@ namespace ccar.Controllers
 
                 Act.Save();
                 #region Sending mail
-                var email = UserModel.getEmailAdress(Act.idResponsible);
+                var email = UserModel.getEmailAdress(Act.Responsible);
                 //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
 
 
@@ -207,7 +217,7 @@ namespace ccar.Controllers
                 {
                     Act.Save();
                     #region Sending mail
-                    var email = UserModel.getEmailAdress(Act.idResponsible);
+                    var email = UserModel.getEmailAdress(Act.Responsible);
                     //emailClass.CreateMailItem(email, "Bablabla", "sdjklhsljkdjflksdf");
 
 

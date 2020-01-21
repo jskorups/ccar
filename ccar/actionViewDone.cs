@@ -18,12 +18,12 @@ namespace ccar
         public string reason { get; set; }
         public string problem { get; set; }
         public string Initiator { get; set; }
-        public Nullable<System.DateTime> originationDate { get; set; }
+        public System.DateTime originationDate { get; set; }
         public Nullable<System.DateTime> targetDate { get; set; }
         public Nullable<System.DateTime> completionDate { get; set; }
         public string responsible { get; set; }
         public string progressValue { get; set; }
         public Nullable<int> Status { get; set; }
-        public int idReason { get; set; }
+        public Nullable<int> idReason { get; set; }
     }
 }

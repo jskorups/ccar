@@ -28,10 +28,26 @@ namespace ccar.Models
         //2. sprawdzanie czy nie jest null i czy jest poprawny - w metodzie
 
 
-        public static string getEmailAdress(int? responsibleId)
+        //public static string getEmailAdress(int? responsibleId)
+        //{
+        //    ccarEntities ent = new ccarEntities();
+        //    var xo = ent.responsibles.Where(x => x.id == responsibleId).FirstOrDefault();
+        //    if (xo != null)
+        //    {
+        //        return xo.email;
+        //    }
+        //    else
+        //    {
+        //        return "";
+        //    }
+
+        //}
+
+
+        public static string getEmailAdress(string Responsible)
         {
             ccarEntities ent = new ccarEntities();
-            var xo = ent.responsibles.Where(x => x.id == responsibleId).FirstOrDefault();
+            var xo = ent.responsibles.Where(x => (x.FirstName +" "+x.Lastname) == Responsible).FirstOrDefault();
             if (xo != null)
             {
                 return xo.email;
@@ -42,6 +58,7 @@ namespace ccar.Models
             }
 
         }
+
 
 
         public static List<UserModel> fromUsers(List<users> userList)

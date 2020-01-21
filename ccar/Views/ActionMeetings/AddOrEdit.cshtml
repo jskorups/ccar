@@ -9,26 +9,57 @@
 <script src="~/Scripts/MyScripts/selector.js"></script>
 
 
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>*@
 
 @*<script src="~/Scripts/MyScripts/addRow.js"></script>*@
 
 
 
-@*<script>
-        $(document).ready(function () {
+<script>
+    $(document).ready(function () {
 
-            $("#add_row").click(function cloneRow() {
-                var row = document.getElementById("rowToClone"); // find row to copy
-                var table = document.getElementById("tableToModify"); // find table to append to
-                var clone = row.cloneNode(true); // copy children too
-                clone.id = "newID"; // change id or other attributes/contents
-                table.appendChild(clone); // add new row to end of table
-            }
-                )
-        });
+        $("#add_row").click(function cloneRow() {
+            var row = document.getElementById("rowToClone"); // find row to copy
+            var table = document.getElementById("tableToModify"); // find table to append to
+            var clone = row.cloneNode(true); // copy children too
+            clone.id = "newID"; // change id or other attributes/contents
+            table.appendChild(clone); // add new row to end of table
+        }
+        )
+    });
 
 
-    </script>*@
+
+
+
+    //$("body").on("click", ".kespa", function () {
+    //    alert("kek");
+
+    //    //Loop through the Table rows and build a JSON array.
+    //    var customers = new Array();
+    //    $("#tblCustomers TBODY TR").each(function () {
+    //        var row = $(this);
+    //        var customer = {};
+    //        customer.Name = row.find("TD").eq(0).html();
+    //        customer.Country = row.find("TD").eq(1).html();
+    //        customers.push(customer);
+    //    });
+
+    //    //Send the JSON array to Controller using AJAX.
+    //    $.ajax({
+    //        type: "POST",
+    //        url: "/Home/InsertCustomers",
+    //        data: JSON.stringify(customers),
+    //        contentType: "application/json; charset=utf-8",
+    //        dataType: "json",
+    //        success: function (r) {
+    //            alert(r + " record(s) inserted.");
+    //        }
+    //    });
+    //});
+
+</script>
 
 
 @using (Html.BeginForm("AddOrEdit", "ActionMeetings", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
@@ -46,81 +77,83 @@
 
 
 
-    <div class="form-group container" style="width:500px;">
+<div class="form-group container" style="width:500px;">
 
 
 
-        @*<div class="row">
-                <div class="col-md-6 column">
-                    <table class="table" id="tableToModify">
-                        <tbody>
-                            <tr id="rowToClone">
-                                <td>
-                                    @Html.DropDownListFor(model => model.reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "reason", "reason", "id"), new { @class = "form-control" })
+    @*<div class="row">
+        <div class="col-md-6 column">
+            <table class="table" id="tableToModify">
+                <tbody>
+                    <tr id="rowToClone">
+                        <td>*@
+    @*@Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "Reason", "Reason", "id"), new { @class = "form-control", @id = "filter" })*@
 
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+    @* @Html.DropDownListFor(model => model.user, new SelectList(ccar.Models.UserModel.getUsersList().OrderBy(x => x.id), "id", "Name"), new { @class = "form-control" })*@
+
+    @*</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="row">
-                <a id="add_row" class="btn btn-default pull-left">Add Row</a>
-                <a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
+        </div>
+        <div class="row">
+            <a id="add_row" class="btn btn-default pull-left">Add Row</a>
+            <a id='delete_row' class="pull-right btn btn-default">Delete Row</a>*@
 
+
+
+
+
+    <div class="row">
+        <div class="col-md-8 mb-8">
+            @Html.Label("Reason*", new { @class = "control-label" })
+            @Html.ValidationMessageFor(model => model.reason, null, new { @class = "koko" })
+            @*@{
+                var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
+                listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
+                    }*@
+            @*@Html.DropDownListFor(model => model.reason, new SelectList(listTempReason, "reason", "reason"), new { @class = "form-control" })*@
+            @Html.DropDownListFor(model => model.reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "reason", "reason", "id"), new { @class = "form-control", @id = "filter" })
+
+        </div>
+        @*<div class="col-md-1 mb-1" style="margin-left:-20px;">
+                @Html.Label("More", new { @class = "control-label" })
+                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
             </div>*@
+    </div>
+    <div class="row">
+
+        <div class="col-md-4 mb-4">
+            @Html.Label("Attendance list", new { @class = "control-label" })
+            @Html.ValidationMessageFor(model => model.attendanceList, null, new { @class = "koko" })
+            @Html.TextAreaFor(model => model.attendanceList, 10, 40, new { htmlAttributes = new { @class = "form-control" } })
 
 
-
-        <div class="row">
-            <div class="col-md-8 mb-8">
-                @Html.Label("Reason*", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.reason, null, new { @class = "koko" })
-                @*@{
-                    var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
-                    listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
-                        }*@
-                @*@Html.DropDownListFor(model => model.reason, new SelectList(listTempReason, "reason", "reason"), new { @class = "form-control" })*@
-                @Html.DropDownListFor(model => model.reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "reason", "reason", "id"), new { @class = "form-control", @id = "filter" })
-
-            </div>
-            @*<div class="col-md-1 mb-1" style="margin-left:-20px;">
-                    @Html.Label("More", new { @class = "control-label" })
-                    <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-                </div>*@
-        </div>
-        <div class="row">
-
-            <div class="col-md-4 mb-4">
-                @Html.Label("Attendance list", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.attendanceList, null, new { @class = "koko" })
-                @Html.TextAreaFor(model => model.attendanceList, 10, 40, new { htmlAttributes = new { @class = "form-control" } })
-
-
-            </div>
-
-        </div>
-
-
-
-        <div class="form-group container" style="width:500px;">
-            <div class="row">
-                <div class="col-md-2 mb-2 text-center">
-                    <input type="submit" value="Submit" class="btn btn-success" style="width:100px; height:40px" />
-
-                </div>
-                <div class="col-md-1 mb-1 text-center">
-
-
-                </div>
-                <div class="col-md-2 mb-2 text-center">
-
-                    <input type="reset" value="Reset" class="btn btn-danger" style="width:100px; height:40px" />
-                </div>
-            </div>
         </div>
 
     </div>
+
+
+
+    <div class="form-group container" style="width:500px;">
+        <div class="row">
+            <div class="col-md-2 mb-2 text-center">
+                <input type="submit" value="Submit" class="btn btn-success" style="width:100px; height:40px" />
+
+            </div>
+            <div class="col-md-1 mb-1 text-center">
+
+
+            </div>
+            <div class="col-md-2 mb-2 text-center">
+
+                <input type="reset" value="Reset" class="kespa btn btn-danger" style="width:100px; height:40px" />
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
 }
