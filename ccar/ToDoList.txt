@@ -1,9 +1,9 @@
 ﻿prio 1
 _______
 zmieniony reason - zwracanie ostrzezenia
-ustawienia projektu dla add actions przy wybieraniu w porjekcie
 target date nie mneijszy niz obecna data
 dynamiczna lista osób
+https://www.aspsnippets.com/Articles/Pass-send-HTML-Table-rows-from-View-to-Controller-in-ASPNet-MVC.aspx
 tracking zmian target date
 
 

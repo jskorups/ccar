@@ -9,9 +9,34 @@ namespace ccar.ControllerActionMeetings
 {
     public class ActionMeetingsController : Controller
     {
-        #region Index & GetData
-        // GET: ActionMeetings
-        public ActionResult Index()
+
+
+        public JsonResult InsertCustomers(List<Customer> customers)
+        {
+            using (CustomersEntities entities = new CustomersEntities())
+            {
+                //Truncate Table to delete all old records.
+                entities.Database.ExecuteSqlCommand("TRUNCATE TABLE [Customers]");
+
+                //Check for NULL.
+                if (customers == null)
+                {
+                    customers = new List<Customer>();
+                }
+
+                //Loop and insert records.
+                foreach (Customer customer in customers)
+                {
+                    entities.Customers.Add(customer);
+                }
+                int insertedRecords = entities.SaveChanges();
+                return Json(insertedRecords);
+            }
+
+
+            #region Index & GetData
+            // GET: ActionMeetings
+            public ActionResult Index()
         {
             return View();        
         }
