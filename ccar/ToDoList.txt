@@ -1,4 +1,9 @@
-﻿prio 1
+﻿did
+___________________________
+wyrzucono tabele responsible layout z sql
+
+
+prio 1
 _______
 zmieniony reason - zwracanie ostrzezenia
 target date nie mneijszy niz obecna data

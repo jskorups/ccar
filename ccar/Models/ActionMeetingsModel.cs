@@ -19,6 +19,7 @@ namespace ccar.Models
         [Required(ErrorMessage = "Required")]
         public string attendanceList { get; set; }
         public string user { get; set; }
+        public List<string> names { get; set; }
 
 
 

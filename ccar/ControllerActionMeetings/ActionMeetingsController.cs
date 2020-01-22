@@ -11,27 +11,28 @@ namespace ccar.ControllerActionMeetings
     {
 
 
-        public JsonResult InsertCustomers(List<Customer> customers)
-        {
-            using (CustomersEntities entities = new CustomersEntities())
-            {
-                //Truncate Table to delete all old records.
-                entities.Database.ExecuteSqlCommand("TRUNCATE TABLE [Customers]");
+        //public JsonResult InsertCustomers(List<Customer> customers)
+        //{
+        //    using (ccarEntities entities = new ccarEntities())
+        //    {
+        //        //Truncate Table to delete all old records.
+        //        //entities.Database.ExecuteSqlCommand("TRUNCATE TABLE [Customers]");
 
-                //Check for NULL.
-                if (customers == null)
-                {
-                    customers = new List<Customer>();
-                }
+        //        //Check for NULL.
+        //        if (customers == null)
+        //        {
+        //            customers = new List<Customer>();
+        //        }
 
-                //Loop and insert records.
-                foreach (Customer customer in customers)
-                {
-                    entities.Customers.Add(customer);
-                }
-                int insertedRecords = entities.SaveChanges();
-                return Json(insertedRecords);
-            }
+        //        //Loop and insert records.
+        //        foreach (Customer customer in customers)
+        //        {
+        //            entities.Customers.Add(customer);
+        //        }
+        //        int insertedRecords = entities.SaveChanges();
+        //        return Json(insertedRecords);
+        //    }
+        //}
 
 
             #region Index & GetData
@@ -109,45 +110,57 @@ namespace ccar.ControllerActionMeetings
         #endregion
         #region Add or Edit - POST
 
-        // post do add or edit
-        [Authorize]
+
+
+
+        //[HttpPost]
+        //    public JsonResult AddOrEdit ()
         [HttpPost]
-        public ActionResult AddOrEdit(ActionMeetingsModel Act)
+        public JsonResult AddOrEdit(ActionMeetingsModel model)
         {
-     
-          //Act.Save();
-          //return Json(new { succes = false }, JsonRequestBehavior.AllowGet);
-
-            if (Act.id == 0)
-            {
-                try
-                {
-                    Act.Save();
-                   
-                }
-                catch (Exception ex)
-                {
-                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-                }
-            }
-            else if (Act.id != 0)
-            {
-                //try
-                //{
-                    Act.Save();
-
-                //}
-                //catch (Exception ex)
-                //{
-                //    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-                //}
-            }
-
-            return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
-
-
-
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
+
+
+        // post do add or edit
+        //[Authorize]
+        //[HttpPost]
+        //public ActionResult AddOrEdit(ActionMeetingsModel Act, JsonResult values)
+        //{
+            
+        //  //Act.Save();
+        //  //return Json(new { succes = false }, JsonRequestBehavior.AllowGet);
+
+        //    if (Act.id == 0)
+        //    {
+        //        try
+        //        {
+        //            Act.Save();
+                   
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //    else if (Act.id != 0)
+        //    {
+        //        //try
+        //        //{
+        //            Act.Save();
+
+        //        //}
+        //        //catch (Exception ex)
+        //        //{
+        //        //    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+        //        //}
+        //    }
+
+        //    return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
+
+
+
+        //}
 
 
         #endregion

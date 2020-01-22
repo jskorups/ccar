@@ -10,7 +10,7 @@
 
 
 @*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>*@
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>*@
 
 @*<script src="~/Scripts/MyScripts/addRow.js"></script>*@
 
@@ -28,28 +28,29 @@
         })
 
 
-        $("#fire").click( function () {
+        $("#fire").click(function () {
             alert("kek");
-            var customers = new Array();
-            $("#tableToModify TBODY TR").each(function () {
-
-                var values = [];
-                $('.koza').each(function () {
-                    values.push({name: this.value });
-                });
-                console.log(values);
+            //var customers = new Array();
+            var values = [];
+            $('.koza').each(function () {
+                values.push({ names: this.value });
             });
+            var postData = { values }; 
+            console.log(values);
 
-         
+
+
             $.ajax({
                 type: "POST",
-                url: "/Home/InsertCustomers",
-                data: JSON.stringify(customers),
+                url: "/ActionMeetings/AddOrEdit",
+                //data: JSON.stringify(values),
+                data: postData,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (r) {
-                    alert(r + " record(s) inserted.");
-                }
+                traditional: true 
+                //success: function (r) {
+                //    alert(r + " record(s) inserted.");
+                //}
             });
         });
 
@@ -79,81 +80,81 @@
 
 
 
-<div class="form-group container" style="width:500px;">
+    <div class="form-group container" style="width:500px;">
 
 
 
-    <div class="row">
-        <div class="col-md-6 column">
-            <table class="table" id="tableToModify">
-                <tbody>
-                    <tr id="rowToClone">
-                        <td>
-    @*@Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "Reason", "Reason", "id"), new { @class = "form-control", @id = "filter" })*@
+        <div class="row">
+            <div class="col-md-6 column">
+                <table class="table" id="tableToModify">
+                    <tbody>
+                        <tr id="rowToClone">
+                            <td>
+                                @*@Html.DropDownListFor(model => model.Reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "Reason", "Reason", "id"), new { @class = "form-control", @id = "filter" })*@
 
-     @Html.DropDownListFor(model => model.user, new SelectList(ccar.Models.UserModel.getUsersList().OrderBy(x => x.id), "Name", "Name", "id"), new { @class = "koza form-control"})
+                                @Html.DropDownListFor(model => model.user, new SelectList(ccar.Models.UserModel.getUsersList().OrderBy(x => x.id), "Name", "Name", "id"), new { @class = "koza form-control" })
 
-    </td>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-    <div class="row">
-        <a id="add_row" class="btn btn-default pull-left">Add Row</a>
-        <a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
-    </div>
-
-
-
-
-    <div class="row">
-        <div class="col-md-8 mb-8">
-            @Html.Label("Reason*", new { @class = "control-label" })
-            @Html.ValidationMessageFor(model => model.reason, null, new { @class = "koko" })
-            @*@{
-                var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
-                listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
-                    }*@
-            @*@Html.DropDownListFor(model => model.reason, new SelectList(listTempReason, "reason", "reason"), new { @class = "form-control" })*@
-            @Html.DropDownListFor(model => model.reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "reason", "reason", "id"), new { @class = "form-control", @id = "filter" })
-
-        </div>
-        @*<div class="col-md-1 mb-1" style="margin-left:-20px;">
-                @Html.Label("More", new { @class = "control-label" })
-                <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
-            </div>*@
-    </div>
-    <div class="row">
-
-        <div class="col-md-4 mb-4">
-            @Html.Label("Attendance list", new { @class = "control-label" })
-            @Html.ValidationMessageFor(model => model.attendanceList, null, new { @class = "koko" })
-            @Html.TextAreaFor(model => model.attendanceList, 10, 40, new { htmlAttributes = new { @class = "form-control" } })
-
-        </div>
-    </div>
-
-
-
-    <div class="form-group container" style="width:500px;">
         <div class="row">
-            <div class="col-md-2 mb-2 text-center">
-                <input type="submit" value="Submit" class="btn btn-success" id="fire" style="width:100px; height:40px" />
+            <a id="add_row" class="btn btn-default pull-left">Add Row</a>
+            <a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-md-8 mb-8">
+                @Html.Label("Reason*", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.reason, null, new { @class = "koko" })
+                @*@{
+                    var listTempReason = (ccar.Models.ReasonModel.GetReasonList());
+                    listTempReason.Add(new ccar.Models.ReasonModel() { id = 0, reason = null });
+                        }*@
+                @*@Html.DropDownListFor(model => model.reason, new SelectList(listTempReason, "reason", "reason"), new { @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.reason, new SelectList(ccar.Models.ReasonModel.GetReasonList().OrderBy(x => x.id), "reason", "reason", "id"), new { @class = "form-control", @id = "filter" })
 
             </div>
-            <div class="col-md-1 mb-1 text-center">
+            @*<div class="col-md-1 mb-1" style="margin-left:-20px;">
+                    @Html.Label("More", new { @class = "control-label" })
+                    <button type="button" class="btn btn-default" style="display:block; background-color:indianred" onclick="location.href='@Url.Action("ReasonList", "Reason")'"> <span class="glyphicon glyphicon-edit" style="color:white; background-color:indianred" aria-hidden="true"></span></button>
+                </div>*@
+        </div>
+        <div class="row">
 
+            <div class="col-md-4 mb-4">
+                @Html.Label("Attendance list", new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.attendanceList, null, new { @class = "koko" })
+                @Html.TextAreaFor(model => model.attendanceList, 10, 40, new { htmlAttributes = new { @class = "form-control" } })
 
-            </div>
-            <div class="col-md-2 mb-2 text-center">
-
-                <input type="reset" value="Reset" class="btn btn-danger" style="width:100px; height:40px" />
             </div>
         </div>
-    </div>
 
-</div>
+
+
+        <div class="form-group container" style="width:500px;">
+            <div class="row">
+                <div class="col-md-2 mb-2 text-center">
+                    <input type="submit" value="Submit" class="btn btn-success" id="fire" style="width:100px; height:40px" />
+
+                </div>
+                <div class="col-md-1 mb-1 text-center">
+
+
+                </div>
+                <div class="col-md-2 mb-2 text-center">
+
+                    <input type="reset" value="Reset" class="btn btn-danger" style="width:100px; height:40px" />
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
 }
