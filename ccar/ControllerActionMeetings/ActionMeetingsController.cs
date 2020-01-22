@@ -115,59 +115,50 @@ namespace ccar.ControllerActionMeetings
 
         //[HttpPost]
         //    public JsonResult AddOrEdit ()
-        [HttpPost]
-        public JsonResult AddOrEdit(ActionMeetingsModel model)
-        {
-            return Json(true, JsonRequestBehavior.AllowGet);
-        }
-
-
-        // post do add or edit
-        //[Authorize]
         //[HttpPost]
-        //public ActionResult AddOrEdit(ActionMeetingsModel Act, JsonResult values)
+        //public JsonResult AddOrEdit(ActionMeetingsModel model)
         //{
-            
-        //  //Act.Save();
-        //  //return Json(new { succes = false }, JsonRequestBehavior.AllowGet);
-
-        //    if (Act.id == 0)
-        //    {
-        //        try
-        //        {
-        //            Act.Save();
-                   
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-        //        }
-        //    }
-        //    else if (Act.id != 0)
-        //    {
-        //        //try
-        //        //{
-        //            Act.Save();
-
-        //        //}
-        //        //catch (Exception ex)
-        //        //{
-        //        //    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-        //        //}
-        //    }
-
-        //    return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
-
-
-
+        //    return Json(true, JsonRequestBehavior.AllowGet);
         //}
 
 
-        #endregion
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddOrEdit(ActionMeetingsModel Act)
+        {
+            //Act.Save();
+            //return Json(new { succes = false }, JsonRequestBehavior.AllowGet);
+            if (Act.id == 0)
+            {
+                try
+                {
+                    Act.Save();
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else if (Act.id != 0)
+            {
+                try
+                        {
+                            Act.Save();
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { succes = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+                    return Json(new { succes = true, message = "Saved sucesfully" }, JsonRequestBehavior.AllowGet);
+            }
 
-        #region  PartialView - Edit/Delete
-        // get partial view for edit or delete
-        public PartialViewResult EditDeletePartial(int id)
+
+            #endregion
+
+            #region  PartialView - Edit/Delete
+            // get partial view for edit or delete
+            public PartialViewResult EditDeletePartial(int id)
         {
             //odkomentowac
             //ccarEntities ent = new ccarEntities();

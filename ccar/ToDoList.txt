@@ -5,6 +5,7 @@ wyrzucono tabele responsible layout z sql
 
 prio 1
 _______
+dodanie widoków: VOLVO V620D, Health and Safety, Enviroment, Audits (zakladka Zew i Flash)
 zmieniony reason - zwracanie ostrzezenia
 target date nie mneijszy niz obecna data
 dynamiczna lista osób
