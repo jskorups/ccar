@@ -365,6 +365,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\0.png" />
     <Content Include="images\analytics.png" />
+    <Content Include="images\audit.png" />
     <Content Include="images\blue.png" />
     <Content Include="images\brandLogo.gif" />
     <Content Include="images\breakdown.png" />
@@ -376,6 +377,7 @@
     <Content Include="images\diagram.png" />
     <Content Include="images\discussion.png" />
     <Content Include="images\downarrow.png" />
+    <Content Include="images\enviroment.png" />
     <Content Include="images\fail.png" />
     <Content Include="images\map.png" />
     <Content Include="images\pF.jpg" />
@@ -383,6 +385,7 @@
     <Content Include="images\register.png" />
     <Content Include="images\resetpass.png" />
     <Content Include="images\reunion.png" />
+    <Content Include="images\safe.png" />
     <Content Include="images\skoda.png" />
     <Content Include="images\succes.png" />
     <Content Include="images\presentation.png" />

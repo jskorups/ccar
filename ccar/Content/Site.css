@@ -330,7 +330,7 @@ ul.nav.nav-tabs li.active a {
     border-top: 3px solid #fbdf33
 }
 .row {
-    margin-top: 40px;
+    margin-top: 25px;
     padding: 0 10px;
 }
 .clickable {
@@ -522,4 +522,7 @@ p, .p {
 }
 .actionFromProjects {
     background-color: lightgreen !important;
+}
+.navLay{
+    color:pink;
 }

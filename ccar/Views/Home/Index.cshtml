@@ -13,31 +13,14 @@
         <meta name="author" content="">*@
 
     <title>Heroic Features - Start Bootstrap Template</title>
-
-
 </head>
 
 <body>
-
-    <!-- Navigation -->
-
-
     <!-- Page Content -->
-    <div class="container">
-
-        <!-- Jumbotron Header -->
-        @*<header class="jumbotron my-4">
-            <h1 class="display-3">SLS task system</h1>
-            <p class="lead">All in one: project notes, general tasks, meeting minutes </p>
-            <a href="#" class="btn btn-primary btn-lg">Call to action!</a>
-        </header>*@
-        <!-- Page Features -->
+    <div class="container" style="margin-top:-40px;">
         <div class="row text-center">
-
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card h-100">
-
-
                     <img class="card-img-top" src="../images/taskCircle.png" alt="">
                     <div class="card-body">
                         <h5 class="card-title">General task - CCAR</h5>
@@ -61,31 +44,19 @@
                     </div>
                 </div>
             </div>
-
-
-
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card h-100">
-
-
                     <img class="card-img-top" src="../images/map.png" alt="">
                     <div class="card-body">
                         <h5 class="card-title">Layout meetings</h5>
                         <p class="card-text">Layout meetings, list of actions. Add or edit.</p>
                     </div>
                     <div class="card-footer">
-
                         @*<a class="card" href="@Url.Action("General", "CCARprojects", new { id = 26 })">*@
                         <button class="btn btn-primary" onclick="location.href='@Url.Action("General", "Action", new { id = ccar.Models.ReasonModel.getIdOfReason("Layout meetings") })'">More</button>
-
-
-               
-
-
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card h-100">
                     <img class="card-img-top" src="../images/analytics.png" alt="">
@@ -98,16 +69,57 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="row text-center justify-content-center">
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="../images/enviroment.png" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Enviroment</h5>
+                        <p class="card-text">Enviroment</p>
+                    </div>
+                    <div class="card-footer">
+                        @*<a class="card" href="@Url.Action("General", "CCARprojects", new { id = 26 })">*@
+                        <button class="btn btn-primary" onclick="location.href='@Url.Action("General", "Action", new { id = ccar.Models.ReasonModel.getIdOfReason("Enviroment") })'">More</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="../images/safe.png" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Occupational safety and health</h5>
+                        <p class="card-text">The goal of occupational safety and health programs is to foster a safe and healthy work environment.</p>
+                    </div>
+                    <div class="card-footer">
+                        @*<a class="card" href="@Url.Action("General", "CCARprojects", new { id = 26 })">*@
+                        <button class="btn btn-primary" onclick="location.href='@Url.Action("General", "Action", new { id = ccar.Models.ReasonModel.getIdOfReason("OHS") })'">More</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="../images/Audit.png" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Audit</h5>
+                        <p class="card-text">Audit predefined and postdefined actions.</p>
+                    </div>
+                    <div class="card-footer">
+                        @*<a class="card" href="@Url.Action("General", "CCARprojects", new { id = 26 })">*@
+                        <button class="btn btn-primary" onclick="location.href='@Url.Action("General", "Action", new { id = ccar.Models.ReasonModel.getIdOfReason("Audit") })'">More</button>
+                    </div>
+                </div>
+            </div>
 
 
 
         </div>
-
-        <div class="row text-center">
-
-
-
-
 
 
 
