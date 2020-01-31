@@ -489,6 +489,11 @@ p, .p {
     background-position: center !important;
     background-size: contain !important;
 }
+#circle5th {
+    background: url('../images/VOLVO.png');
+    background-position: center !important;
+    background-size: contain !important;
+}
 .shortDesc{
     min-height:80px;
 }

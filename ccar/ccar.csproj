@@ -391,6 +391,7 @@
     <Content Include="images\presentation.png" />
     <Content Include="images\taskCircle.png" />
     <Content Include="images\top.png" />
+    <Content Include="images\VOLVO.png" />
     <Content Include="images\vw3.png" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\jquery-editable-select.css" />

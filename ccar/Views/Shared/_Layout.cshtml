@@ -62,7 +62,7 @@
                         <li class="dropdown">
                             <a href="@Url.Action("Index", "Meeting")" data-toggle="dropdown" class="nav-link">CCAR<span class="caret"></span></a>
                             <ul class="dropdown-menu" aria-labelledby="about-us">
-                                <li>   <a href="@Url.Action("Index", "ActionMeetings")">+ Add meeting</a></li>
+                                <li>   <a href="@Url.Action("General", "ActionMeetings")">+ Add meeting</a></li>                         
                                 <li>   <a href="@Url.Action("General", "Action")">+ Add actions</a></li>
                             </ul>
                         </li>
@@ -70,8 +70,7 @@
                         <li class="dropdown">
                             <a href="@Url.Action("Index", "Meeting")" data-toggle="dropdown" class="nav-link">Projects<span class="caret"></span></a>
                             <ul class="dropdown-menu" aria-labelledby="about-us">
-                                <li>   <a href="@Url.Action("Index", "CCARprojects")">CCAR</a></li>
-                                <li><a href="#">Dummy</a></li>
+                                <li>   <a href="@Url.Action("ProjectsIndex", "Action")">CCAR</a></li>
                             </ul>
                         </li>
 
@@ -80,8 +79,10 @@
                         <li class="dropdown">
                             <a href="@Url.Action("Index", "Meeting")" data-toggle="dropdown" class="nav-link">Layout<span class="caret"></span></a>
                             <ul class="dropdown-menu" aria-labelledby="about-us">
-                                <li>   <a href="@Url.Action("Index", "Layout")">CCAR</a></li>
-                                <li><a href="#">Dummy</a></li>
+                                <li>   <a href="@Url.Action("General", "Action", new { id = ccar.Models.ReasonModel.getIdOfReason("Layout meetings") })">CCAR</a></li>
+
+
+
                             </ul>
                         </li>
                     </ul>

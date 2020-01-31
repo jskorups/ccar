@@ -193,7 +193,7 @@ namespace ccar.Controllers
                 body = body.Replace("{Reason}", ReasonModel.getNameOfReason(Act.idReason));
                 body = body.Replace("{Problem}", Act.problem);
                 body = body.Replace("{ToA}", Act.TypeOfAction);
-                body = body.Replace("{Responsible}", ResponsibleModel.getNameOfResponsible(Act.idResponsible));
+                body = body.Replace("{Responsible}", Act.Responsible);
                 body = body.Replace("{TargetDate}", Act.targetDate.ToString());
                 body = body.Replace("{ProLong}", Act.problemLong.ToString());
 
@@ -232,7 +232,7 @@ namespace ccar.Controllers
                     body = body.Replace("{Reason}", ReasonModel.getNameOfReason(Act.idReason));
                     body = body.Replace("{Problem}", Act.problem);
                     body = body.Replace("{ToA}", Act.TypeOfAction);
-                    body = body.Replace("{Responsible}", ResponsibleModel.getNameOfResponsible(Act.idResponsible));
+                    body = body.Replace("{Responsible}", Act.Responsible);
                     body = body.Replace("{TargetDate}", Act.targetDate.ToString());
                     body = body.Replace("{ProLong}", Act.problemLong.ToString());
 
