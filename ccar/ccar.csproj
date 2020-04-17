@@ -169,6 +169,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AttendanceMeetings.cs">
+      <DependentUpon>ccarDaneEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="ccarDaneEF.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -236,6 +239,9 @@
     <Compile Include="Models\ActionMeetingsModel.cs" />
     <Compile Include="Models\ActionModel.cs" />
     <Compile Include="ModelsMM\MeetingModel.cs" />
+    <Compile Include="Models\AttendanceListRowModel.cs" />
+    <Compile Include="Models\AttendanceUserRowModel.cs" />
+    <Compile Include="Models\EditMeetingModel.cs" />
     <Compile Include="Models\PasswordResetModel.cs" />
     <Compile Include="Models\ProgressModel.cs" />
     <Compile Include="Models\ResponsibleModel.cs" />
@@ -393,6 +399,7 @@
     <Content Include="Scripts\jquery-editable-select.css" />
     <Content Include="Scripts\jquery-editable-select.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\MyScripts\personAdd.js" />
     <Content Include="Scripts\MyScripts\targetDateConf.js" />
     <Content Include="Scripts\MyScripts\addRow.js" />
     <Content Include="Scripts\MyScripts\jquery-editable-select.css" />
@@ -542,6 +549,9 @@
     <Content Include="Views\ActionMeetings\EditDeletePartial.cshtml" />
     <Content Include="Views\ActionMeetings\General.cshtml" />
     <Content Include="Views\Action\ProjectsIndex.cshtml" />
+    <Content Include="Views\ActionMeetings\GetRowOfUsers.cshtml" />
+    <Content Include="Views\ActionMeetings\GetRowOfAttendanceList.cshtml" />
+    <Content Include="Views\ActionMeetings\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

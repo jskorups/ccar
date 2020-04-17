@@ -7,102 +7,90 @@
 }
 <script src="~/Scripts/MyScripts/meetingAdd.js"></script>
 <script src="~/Scripts/MyScripts/selector.js"></script>
-
+<script src="~/Scripts/MyScripts/personAdd.js"></script>
 
 @*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>*@
 
-@*<script src="~/Scripts/MyScripts/addRow.js"></script>*@
 
 
 
-<script>
-    //$(document).ready(function () {
+@*<script>
+    $(document).ready(function () {
 
-        //$("#add_row").click(function cloneRow() {
-        //    var row = document.getElementById("rowToClone"); // find row to copy
-        //    var table = document.getElementById("tableToModify"); // find table to append to
-        //    var clone = row.cloneNode(true); // copy children too
-        //    clone.id = "newID"; // change id or other attributes/contents
-        //    table.appendChild(clone); // add new row to end of table
-        //})
+        $('#btnAdd').click(function (e) {
 
+            var selected = [];
+            $.each($(".addMeeting option:selected"), function () {
+                selected.push($(this).val());
+            });
 
-        //$("#fire").click(function () {
-        //    alert("kek");
-        //    //var customers = new Array();
-        //    var values = [];
-        //    $('.koza').each(function () {
-        //        values.push({ names: this.value });
-        //    });
-        //    var postData = { values }; 
-        //    console.log(values);
+            $.ajax({
+                url: '@Url.Action("GetRowOfUsers")',
+                data: { wybrane: selected},
+                async: false,
+                type: "GET",
+                traditional: true,
+            }).done(function (res) {
+                $('#responseContent').append("<tr><td>" + res + "</td></tr>")
+            });
+        })
 
+        $('#btnRemove').click(function () {
+            $("#kespa").find('select[name="AttendanceIds"]:last').each(function () {
 
+                $(this).parents("td").remove()
 
-        //    $.ajax({
-        //        type: "POST",
-        //        url: "/ActionMeetings/AddOrEdit",
-        //        //data: JSON.stringify(values),
-        //        data: postData,
-        //        contentType: "application/json; charset=utf-8",
-        //        dataType: "json",
-        //        traditional: true 
-        //        //success: function (r) {
-        //        //    alert(r + " record(s) inserted.");
-        //        //}
-        //    });
-        //});
+            });
+        });
+
+    });
+
+      
 
 
-    //});
-
-
-
-
-
-
-</script>
-
+</script>*@
 
 @using (Html.BeginForm("AddOrEdit", "ActionMeetings", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
 {
+
     @Html.HiddenFor(model => model.id)
-
-
-
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @id = "koko" })
 
 
-
-
-
-
-
     <div class="form-group container" style="width:500px;">
 
+        <table id="kespa">
+            <thead>Attendance list</thead>
+            <tbody id="responseContent"></tbody>
+        </table>
+
+
+
+        <button type="button" class="btn btn-success" id="btnAdd"> <i class="fa fa-user-plus"></i> Add user</button>
+        <button type="button" class="btn btn-danger" id="btnRemove"> <i class="fa fa-user-times"></i> Add user</button>
 
 
         @*<div class="row">
-            <div class="col-md-6 column">
-                <table class="table" id="tableToModify">
-                    <tbody>
-                        <tr id="rowToClone">
-                            <td>*@
+                <div class="col-md-6 column">
+                    <table class="table" id="tableToModify">
+                        <tbody>
+                            <tr id="rowToClone">
+                                <td>
 
-                                @*@Html.DropDownListFor(model => model.user, new SelectList(ccar.Models.UserModel.getUsersList().OrderBy(x => x.id), "Name", "Name", "id"), new { @class = "koza form-control" })*@
+                                    @Html.DropDownListFor(model => model.user, new SelectList(ccar.Models.UserModel.getUsersList().OrderBy(x => x.id), "Name", "Name", "id"), new { @class = "koza form-control" })
 
-                            @*</td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <a id="add_row" class="btn btn-default pull-left">Add Row</a>
-            <a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
-        </div>*@
+            <div class="row">
+                <a id="add_row" class="btn btn-default pull-left">Add Row</a>
+                <a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
+            </div>*@
 
 
 
@@ -126,12 +114,12 @@
         </div>
         <div class="row">
 
-            <div class="col-md-4 mb-4">
-                @Html.Label("Attendance list", new { @class = "control-label" })
-                @Html.ValidationMessageFor(model => model.attendanceList, null, new { @class = "koko" })
-                @Html.TextAreaFor(model => model.attendanceList, 10, 40, new { htmlAttributes = new { @class = "form-control" } })
+            @*<div class="col-md-4 mb-4">
+                    @Html.Label("Attendance list", new { @class = "control-label" })
+                    @Html.ValidationMessageFor(model => model.attendanceList, null, new { @class = "koko" })
+                    @Html.TextAreaFor(model => model.attendanceList, 10, 40, new { htmlAttributes = new { @class = "form-control" } })
 
-            </div>
+                </div>*@
         </div>
 
 

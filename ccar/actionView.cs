@@ -24,6 +24,6 @@ namespace ccar
         public string responsible { get; set; }
         public string progressValue { get; set; }
         public Nullable<int> Status { get; set; }
-        public int idReason { get; set; }
+        public Nullable<int> idReason { get; set; }
     }
 }

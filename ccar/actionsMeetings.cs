@@ -14,6 +14,12 @@ namespace ccar
     
     public partial class actionsMeetings
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public actionsMeetings()
+        {
+            this.AttendanceMeetings = new HashSet<AttendanceMeetings>();
+        }
+    
         public int id { get; set; }
         public int idReason { get; set; }
         public System.DateTime originationDate { get; set; }
@@ -21,5 +27,7 @@ namespace ccar
         public string attendanceList { get; set; }
     
         public virtual reasons reasons { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AttendanceMeetings> AttendanceMeetings { get; set; }
     }
 }

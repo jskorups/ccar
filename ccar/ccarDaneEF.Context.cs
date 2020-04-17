@@ -28,6 +28,7 @@ namespace ccar
         public virtual DbSet<actions> actions { get; set; }
         public virtual DbSet<actionsLayout> actionsLayout { get; set; }
         public virtual DbSet<actionsMeetings> actionsMeetings { get; set; }
+        public virtual DbSet<AttendanceMeetings> AttendanceMeetings { get; set; }
         public virtual DbSet<progress> progress { get; set; }
         public virtual DbSet<reasons> reasons { get; set; }
         public virtual DbSet<reasonsLayout> reasonsLayout { get; set; }

@@ -53,6 +53,14 @@
           <Property Name="initiatorId" Type="int" Nullable="false" />
           <Property Name="attendanceList" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="AttendanceMeetings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="MeetingId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="progress">
           <Key>
             <PropertyRef Name="id" />
@@ -179,19 +187,18 @@ warning 6002: The table/view 'ccar.dbo.actionView' does not have a primary key d
             <PropertyRef Name="reason" />
             <PropertyRef Name="originationDate" />
             <PropertyRef Name="responsible" />
-            <PropertyRef Name="idReason" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="reason" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="problem" Type="nvarchar" MaxLength="50" />
           <Property Name="Initiator" Type="nvarchar" MaxLength="101" />
           <Property Name="originationDate" Type="date" Nullable="false" />
-          <Property Name="targetDate" Type="datetime" />
-          <Property Name="completionDate" Type="datetime" />
+          <Property Name="targetDate" Type="date" />
+          <Property Name="completionDate" Type="date" />
           <Property Name="responsible" Type="nvarchar" MaxLength="511" Nullable="false" />
           <Property Name="progressValue" Type="nvarchar" MaxLength="50" />
           <Property Name="Status" Type="int" />
-          <Property Name="idReason" Type="int" Nullable="false" />
+          <Property Name="idReason" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -334,6 +341,30 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AttendanceMeetings_actionsMeetings">
+          <End Role="actionsMeetings" Type="Self.actionsMeetings" Multiplicity="1" />
+          <End Role="AttendanceMeetings" Type="Self.AttendanceMeetings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actionsMeetings">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AttendanceMeetings">
+              <PropertyRef Name="MeetingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttendanceMeetings_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="AttendanceMeetings" Type="Self.AttendanceMeetings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AttendanceMeetings">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_roleMapping_roles">
           <End Role="roles" Type="Self.roles" Multiplicity="1" />
           <End Role="roleMapping" Type="Self.roleMapping" Multiplicity="*" />
@@ -362,6 +393,7 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <EntitySet Name="actions" EntityType="Self.actions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="actionsLayout" EntityType="Self.actionsLayout" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="actionsMeetings" EntityType="Self.actionsMeetings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AttendanceMeetings" EntityType="Self.AttendanceMeetings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="progress" EntityType="Self.progress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="reasons" EntityType="Self.reasons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="reasonsLayout" EntityType="Self.reasonsLayout" Schema="dbo" store:Type="Tables" />
@@ -475,6 +507,14 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             <End Role="reasons" EntitySet="reasons" />
             <End Role="actionsMeetings" EntitySet="actionsMeetings" />
           </AssociationSet>
+          <AssociationSet Name="FK_AttendanceMeetings_actionsMeetings" Association="Self.FK_AttendanceMeetings_actionsMeetings">
+            <End Role="actionsMeetings" EntitySet="actionsMeetings" />
+            <End Role="AttendanceMeetings" EntitySet="AttendanceMeetings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttendanceMeetings_users" Association="Self.FK_AttendanceMeetings_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="AttendanceMeetings" EntitySet="AttendanceMeetings" />
+          </AssociationSet>
           <AssociationSet Name="FK_roleMapping_roles" Association="Self.FK_roleMapping_roles">
             <End Role="roles" EntitySet="roles" />
             <End Role="roleMapping" EntitySet="roleMapping" />
@@ -492,6 +532,7 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <EntitySet Name="actions" EntityType="ccarModel.actions" />
           <EntitySet Name="actionsLayout" EntityType="ccarModel.actionsLayout" />
           <EntitySet Name="actionsMeetings" EntityType="ccarModel.actionsMeetings" />
+          <EntitySet Name="AttendanceMeetings" EntityType="ccarModel.AttendanceMeetings" />
           <EntitySet Name="progress" EntityType="ccarModel.progress" />
           <EntitySet Name="reasons" EntityType="ccarModel.reasons" />
           <EntitySet Name="reasonsLayout" EntityType="ccarModel.reasonsLayout" />
@@ -544,6 +585,14 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <AssociationSet Name="FK_actionsMeetings_reasons" Association="ccarModel.FK_actionsMeetings_reasons">
             <End Role="reasons" EntitySet="reasons" />
             <End Role="actionsMeetings" EntitySet="actionsMeetings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttendanceMeetings_actionsMeetings" Association="ccarModel.FK_AttendanceMeetings_actionsMeetings">
+            <End Role="actionsMeetings" EntitySet="actionsMeetings" />
+            <End Role="AttendanceMeetings" EntitySet="AttendanceMeetings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttendanceMeetings_users" Association="ccarModel.FK_AttendanceMeetings_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="AttendanceMeetings" EntitySet="AttendanceMeetings" />
           </AssociationSet>
           <AssociationSet Name="FK_roleMapping_roles" Association="ccarModel.FK_roleMapping_roles">
             <End Role="roles" EntitySet="roles" />
@@ -611,6 +660,17 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Property Name="initiatorId" Type="Int32" Nullable="false" />
           <Property Name="attendanceList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="reasons" Relationship="ccarModel.FK_actionsMeetings_reasons" FromRole="actionsMeetings" ToRole="reasons" />
+          <NavigationProperty Name="AttendanceMeetings" Relationship="ccarModel.FK_AttendanceMeetings_actionsMeetings" FromRole="actionsMeetings" ToRole="AttendanceMeetings" />
+        </EntityType>
+        <EntityType Name="AttendanceMeetings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="MeetingId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="actionsMeetings" Relationship="ccarModel.FK_AttendanceMeetings_actionsMeetings" FromRole="AttendanceMeetings" ToRole="actionsMeetings" />
+          <NavigationProperty Name="users" Relationship="ccarModel.FK_AttendanceMeetings_users" FromRole="AttendanceMeetings" ToRole="users" />
         </EntityType>
         <EntityType Name="progress">
           <Key>
@@ -688,6 +748,7 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
           <Property Name="department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="actions" Relationship="ccarModel.FK_actions_users" FromRole="users" ToRole="actions" />
           <NavigationProperty Name="actionsLayout" Relationship="ccarModel.FK_actionsLayout_users" FromRole="users" ToRole="actionsLayout" />
+          <NavigationProperty Name="AttendanceMeetings" Relationship="ccarModel.FK_AttendanceMeetings_users" FromRole="users" ToRole="AttendanceMeetings" />
           <NavigationProperty Name="roleMapping" Relationship="ccarModel.FK_roleMapping_users" FromRole="users" ToRole="roleMapping" />
         </EntityType>
         <EntityType Name="roleMapping">
@@ -744,19 +805,18 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             <PropertyRef Name="reason" />
             <PropertyRef Name="originationDate" />
             <PropertyRef Name="responsible" />
-            <PropertyRef Name="idReason" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="problem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Initiator" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
           <Property Name="originationDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="targetDate" Type="DateTime" Precision="3" />
-          <Property Name="completionDate" Type="DateTime" Precision="3" />
+          <Property Name="targetDate" Type="DateTime" Precision="0" />
+          <Property Name="completionDate" Type="DateTime" Precision="0" />
           <Property Name="responsible" Type="String" Nullable="false" MaxLength="511" FixedLength="false" Unicode="true" />
           <Property Name="progressValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Int32" />
-          <Property Name="idReason" Type="Int32" Nullable="false" />
+          <Property Name="idReason" Type="Int32" />
         </EntityType>
         <EntityType Name="actionViewDone">
           <Key>
@@ -897,6 +957,30 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AttendanceMeetings_actionsMeetings">
+          <End Type="ccarModel.actionsMeetings" Role="actionsMeetings" Multiplicity="1" />
+          <End Type="ccarModel.AttendanceMeetings" Role="AttendanceMeetings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actionsMeetings">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AttendanceMeetings">
+              <PropertyRef Name="MeetingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttendanceMeetings_users">
+          <End Type="ccarModel.users" Role="users" Multiplicity="1" />
+          <End Type="ccarModel.AttendanceMeetings" Role="AttendanceMeetings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AttendanceMeetings">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_roleMapping_roles">
           <End Type="ccarModel.roles" Role="roles" Multiplicity="1" />
           <End Type="ccarModel.roleMapping" Role="roleMapping" Multiplicity="*" />
@@ -975,6 +1059,15 @@ warning 6002: The table/view 'ccar.dbo.actionViewDone' does not have a primary k
                 <ScalarProperty Name="originationDate" ColumnName="originationDate" />
                 <ScalarProperty Name="idReason" ColumnName="idReason" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttendanceMeetings">
+            <EntityTypeMapping TypeName="ccarModel.AttendanceMeetings">
+              <MappingFragment StoreEntitySet="AttendanceMeetings">
+                <ScalarProperty Name="MeetingId" ColumnName="MeetingId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

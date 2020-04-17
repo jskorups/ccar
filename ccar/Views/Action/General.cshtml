@@ -125,7 +125,7 @@ $(document).ready(function () {
 
 function format(d) {
     // `d` is the original data object for the row
-    var rowDetail = $.ajax({ type: "GET", url: "/Action/RowDetailsPartial?id=" + d.id, async: false }).responseText;
+    var rowDetail = $.ajax({ type: "GET", url: "/Action/GetRowOfAttendanceList?id=" + d.id, async: false }).responseText;
     return rowDetail;
 }
 

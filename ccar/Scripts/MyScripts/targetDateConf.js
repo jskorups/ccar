@@ -1,6 +1,6 @@
 ﻿$(".btnAdd").click(function () {
 
-    var time1 = document.getElementById('kespa').value
+    var time1 = document.getElementById('kespa').value;
 
     var today = new Date();
     var dd = today.getDate();
