@@ -301,28 +301,19 @@ namespace ccar.Models
         {
             if (this.id == 0)
             {
-
                 ccarEntities ent = new ccarEntities();
-
-
                 this.idInitiator = ent.users.Where(x => x.email == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.id).SingleOrDefault();
                 this.originationDate = DateTime.Now;
                 this.Status = 0;
-
                 string Replaced = System.Environment.UserName.Replace('.', ' ');
                 CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
                 TextInfo textInfo = cultureInfo.TextInfo;
-
                 this.originationDate = DateTime.Now;
-                //this.Initiator = (textInfo.ToTitleCase(Replaced));
-                //this.idInitiator = 1;
-
                 actions act = new actions();
                 act = ActionModel.ConvertToActionsFromDb(this);            
-                ent.actions.Add(act);
-                
+                ent.actions.Add(act);             
                 ent.SaveChanges();
-                //emailClass.CreateMailItem(UserModel.getEmailAdress(this.idResponsible), "Utworzono nowe zadanie", "Nowe zadanie");
+
 
             }
             else

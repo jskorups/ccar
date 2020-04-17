@@ -1,37 +1,46 @@
-﻿using System;
-using System.Net;
-using System.Net.Configuration;
+﻿using ccar.Models;
+using System;
 using System.Net.Mail;
 using System.Text;
-using System.Web;
-using System.Web.Configuration;
+using System.Web.Hosting;
 
 namespace ccar
 {
     public class emailClass
     {
 
-        public static void CreateMailItem(string to, string body, string subject)
+
+        public static void CreateNewMailItem(ActionModel act, string subject)
         {
             try
             {
+                string path = HostingEnvironment.MapPath("~/Content/template/newAction.html");
+            string bodyPath = System.IO.File.ReadAllText(path);
+
+            bodyPath = bodyPath.Replace("{d}", $"{System.DateTime.Now.DayOfWeek.ToString()}, { DateTime.Now.ToString("dd.MM.yy")}");
+            bodyPath = bodyPath.Replace("{Initiator}", ActionModel.getNameOfInitiator(act.idInitiator));
+            bodyPath = bodyPath.Replace("{Reason}", ReasonModel.getNameOfReason(act.idReason));
+            bodyPath = bodyPath.Replace("{Problem}", act.problem);
+            bodyPath = bodyPath.Replace("{ToA}", act.TypeOfAction);
+            bodyPath = bodyPath.Replace("{Responsible}", act.Responsible);
+            bodyPath = bodyPath.Replace("{TargetDate}", act.targetDate.ToString());
+            bodyPath = bodyPath.Replace("{ProLong}", act.problemLong.ToString());
+
+         
                 MailMessage mail = new MailMessage();
                 SmtpClient smtpserver = new SmtpClient("172.25.120.139", 25);
-
                 smtpserver.UseDefaultCredentials = false;
                 mail.From = new MailAddress("ccar@system.com");
-                mail.To.Add(to);
+                mail.To.Add(UserModel.getEmailAdress(act.Responsible));
                 mail.Subject = subject;
-                mail.Body = body;
+                mail.Body = bodyPath;
                 mail.IsBodyHtml = true;
                 mail.BodyEncoding = Encoding.UTF8;
                 mail.Priority = MailPriority.High;
                 smtpserver.EnableSsl = false;
                 smtpserver.Timeout = 60000;
                 smtpserver.Send(mail);
-
-
-
+                #region gmail
                 //System.Configuration.Configuration config = WebConfigurationManager.OpenWebConfiguration(
                 //  HttpContext.Current.Request.ApplicationPath);
                 //MailSettingsSectionGroup settings =
@@ -51,8 +60,7 @@ namespace ccar
 
                 //client.Send(msg);
 
-
-
+                #endregion
             }
             catch (Exception exp)
             {
