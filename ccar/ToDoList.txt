@@ -1,6 +1,12 @@
-﻿did
+﻿to do
 ___________________________
-wyrzucono tabele responsible layout z sql
+edytowac moze initiator albo responsible
+
+
+
+
+
+
 
 
 prio 1
