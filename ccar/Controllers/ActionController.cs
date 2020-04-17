@@ -131,12 +131,12 @@ namespace ccar.Controllers
         public PartialViewResult EditDeletePartial(int id)
         {
             //odkomentowac
-            //ccarEntities ent = new ccarEntities();
-            //actions act = ent.actions.Where(x => x.id == id).FirstOrDefault();
-            //return PartialView(act);
+            ccarEntities ent = new ccarEntities();
+            actions act = ent.actions.Where(x => x.id == id).FirstOrDefault();
+            return PartialView(act);
 
-            ViewBag.id = id; // zakomentowac
-            return PartialView();
+            //ViewBag.id = id; // zakomentowac
+            //return PartialView();
         }
         public PartialViewResult EditDeletePartialDone(int id)
         {
@@ -193,7 +193,7 @@ namespace ccar.Controllers
                 body = body.Replace("{Reason}", ReasonModel.getNameOfReason(Act.idReason));
                 body = body.Replace("{Problem}", Act.problem);
                 body = body.Replace("{ToA}", Act.TypeOfAction);
-                body = body.Replace("{Responsible}", ResponsibleModel.getNameOfResponsible(Act.idResponsible));
+                body = body.Replace("{Responsible}", Act.Responsible);
                 body = body.Replace("{TargetDate}", Act.targetDate.ToString());
                 body = body.Replace("{ProLong}", Act.problemLong.ToString());
 
@@ -232,7 +232,7 @@ namespace ccar.Controllers
                     body = body.Replace("{Reason}", ReasonModel.getNameOfReason(Act.idReason));
                     body = body.Replace("{Problem}", Act.problem);
                     body = body.Replace("{ToA}", Act.TypeOfAction);
-                    body = body.Replace("{Responsible}", ResponsibleModel.getNameOfResponsible(Act.idResponsible));
+                    body = body.Replace("{Responsible}", Act.Responsible);
                     body = body.Replace("{TargetDate}", Act.targetDate.ToString());
                     body = body.Replace("{ProLong}", Act.problemLong.ToString());
 

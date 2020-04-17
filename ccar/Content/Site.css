@@ -33,10 +33,6 @@ body {
     font-weight: bold;
     font-size: 24px;
 }
-.addMeeting {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
@@ -334,7 +330,7 @@ ul.nav.nav-tabs li.active a {
     border-top: 3px solid #fbdf33
 }
 .row {
-    margin-top: 40px;
+    margin-top: 25px;
     padding: 0 10px;
 }
 .clickable {
@@ -493,6 +489,11 @@ p, .p {
     background-position: center !important;
     background-size: contain !important;
 }
+#circle5th {
+    background: url('../images/VOLVO.png');
+    background-position: center !important;
+    background-size: contain !important;
+}
 .shortDesc{
     min-height:80px;
 }
@@ -527,28 +528,9 @@ p, .p {
 .actionFromProjects {
     background-color: lightgreen !important;
 }
-.usersList{
-    margin-top:5px !important;
+.navLay{
+    color:pink;
 }
-
-.wrapper {
-    padding-bottom: 10px;
+.accessBan{
+    color: red;
 }
-
-.divider {
-    position: relative;
-    margin-top: 30px;
-    height: 1px;
-}
-
-.div-transparent:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 5%;
-    right: 5%;
-    width: 90%;
-    height: 1px;
-    background-color:dimgrey;
-}
-
